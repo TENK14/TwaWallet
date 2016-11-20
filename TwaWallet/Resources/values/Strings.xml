@@ -1,5 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="Hello">Hello World, Click Me!</string>
-    <string name="ApplicationName">TwaWallet</string>  
+    <string name="ApplicationName">TwaWallet</string>
+
+  <string name="Category">Kategorie</string>
+  <string name="Cost">Cena</string>
+  <string name="Date">Datum</string>
+  <string name="Description">Popis</string>
+  <string name="Earnings">Příjem</string>
+  <string name="PaymentType">Typ platby</string>
+  <string name="Owner">Vlastník</string>
+  <string name="Save">Uložit</string>
+  <string name="Warranty">Záruka</string>
+  
+  
 </resources>

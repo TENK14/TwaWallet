@@ -1,8 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <resources>
-  <item name="yellow" type="color">#FFCC00</item>
+  <item name="black" type="color">#000000</item>
   <item name="blue" type="color">#294F6D</item>
+  <item name="green" type="color">#0D6332</item>
   <item name="orange" type="color">#C25002</item>
   <item name="red" type="color">#C40C0A</item>
-  <item name="green" type="color">#0D6332</item>
+  <item name="yellow" type="color">#FFCC00</item>
 </resources>
