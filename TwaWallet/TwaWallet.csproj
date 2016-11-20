@@ -93,6 +93,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Adapters\CustomListAdapter.cs" />
     <Compile Include="CustomPagerAdapter.cs" />
     <Compile Include="Fragments\ExportFragment.cs" />
     <Compile Include="Fragments\HistoryFragment.cs" />
@@ -129,6 +130,9 @@
       <SubType>Designer</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\layout\Export.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\ListRowLayout.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>
