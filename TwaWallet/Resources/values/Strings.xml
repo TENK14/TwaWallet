@@ -2,7 +2,18 @@
 <resources>
     <string name="Hello">Hello World, Click Me!</string>
     <string name="ApplicationName">TwaWallet</string>
+  
+  <!-- Frames name -->
 
+  <string name="FilenameDB">TwaWalletDB.db</string>
+  
+  <string name="Report">REPORT</string>
+  <string name="History">HISTORIE</string>
+  <string name="Export">EXPORT</string>
+  <string name="Settings">NASTAVENI</string>
+  <string name="RegularPayments">PRAVIDELNE PLATBY</string>
+  
+  <!--  -->
   <string name="Category">Kategorie</string>
   <string name="Cost">Cena</string>
   <string name="Date">Datum</string>
