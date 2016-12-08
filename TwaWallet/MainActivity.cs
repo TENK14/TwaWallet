@@ -9,11 +9,16 @@ using Android.Runtime;
 using TwaWallet.Fragments;
 using Android.Util;
 using Java.Lang;
+using System.IO;
+using Database;
 //using Org.Apache.Commons.Logging;
 
 namespace TwaWallet
 {
-    [Android.App.Activity(Label = "TwaWallet_Xam", MainLauncher = true, Icon = "@drawable/icon")]
+    [Android.App.Activity(Label = "TwaWallet_Xam", 
+        MainLauncher = true, 
+        Icon = "@drawable/icon",
+        WindowSoftInputMode = Android.Views.SoftInput.AdjustPan)]
     public class MainActivity : AppCompatActivity
     {
         private const string TAG = "X:" + nameof(MainActivity);
@@ -28,14 +33,14 @@ namespace TwaWallet
             };
 
 
-        ICharSequence[] titles = CharSequence.ArrayFromStringArray(new[]
-            {
-                    "REPORT",
-                    "HISTORIE",
-                    "EXPORT",
-                    "NASTAVENI",
-                    "PRAVIDELNE PLATBY"
-                });
+        //ICharSequence[] titles = CharSequence.ArrayFromStringArray(new[]
+        //    {
+        //            Resources.GetString(Resource.String.Report),//"REPORT",
+        //            "HISTORIE",
+        //            "EXPORT",
+        //            "NASTAVENI",
+        //            "PRAVIDELNE PLATBY"
+        //        });
 
 
         protected override void OnCreate(Bundle bundle)
@@ -74,6 +79,17 @@ namespace TwaWallet
             //    TabLayout.Tab tab = tabLayout.GetTabAt(i);
             //    tab.SetCustomView(adapter.GetTabView(i));
             //}
+
+            // create DB path
+            var docsFolder = System.Environment.GetFolderPath(System.Environment.SpecialFolder.MyDocuments);
+            var pathToDatabase = System.IO.Path.Combine(docsFolder, Resources.GetString(Resource.String.FilenameDB));// "db_sqlcompnet.db");
+
+
+            if(!File.Exists(pathToDatabase))
+            {
+                DataContext db = new DataContext(pathToDatabase);
+                db.CreateDatabase();// (pathToDatabase);
+            }
         }
 
         private void InitialFragment()
@@ -95,6 +111,16 @@ namespace TwaWallet
             var adapter = new CustomPagerAdapter(this, SupportFragmentManager);
             //adapter.addFragment(exploreFrg, "Explore");
             //adapter.addFragment(featuredFrg, "Featured");
+
+
+            var titles = new[]
+            {
+                Resources.GetString(Resource.String.Report),
+                Resources.GetString(Resource.String.History),
+                Resources.GetString(Resource.String.Export),
+                Resources.GetString(Resource.String.Settings),
+                Resources.GetString(Resource.String.RegularPayments)
+            };
 
             // Adding Fragments to viewPager
             for (int i = 0; i < fragments.Length; i++)

@@ -26,6 +26,8 @@ namespace TwaWallet
 		
 		public static void UpdateIdValues()
 		{
+			global::Database.Resource.String.ApplicationName = global::TwaWallet.Resource.String.ApplicationName;
+			global::Database.Resource.String.Hello = global::TwaWallet.Resource.String.Hello;
 		}
 		
 		public partial class Animation
@@ -2336,7 +2338,7 @@ namespace TwaWallet
 			public const int right = 2131099697;
 			
 			// aapt resource value: 0x7f0600a1
-			public const int save_editText = 2131099809;
+			public const int save_button = 2131099809;
 			
 			// aapt resource value: 0x7f060017
 			public const int screen = 2131099671;
@@ -2749,35 +2751,53 @@ namespace TwaWallet
 			// aapt resource value: 0x7f070025
 			public const int ApplicationName = 2131165221;
 			
-			// aapt resource value: 0x7f070026
-			public const int Category = 2131165222;
+			// aapt resource value: 0x7f07002c
+			public const int Category = 2131165228;
 			
-			// aapt resource value: 0x7f070027
-			public const int Cost = 2131165223;
+			// aapt resource value: 0x7f07002d
+			public const int Cost = 2131165229;
 			
-			// aapt resource value: 0x7f070028
-			public const int Date = 2131165224;
+			// aapt resource value: 0x7f07002e
+			public const int Date = 2131165230;
+			
+			// aapt resource value: 0x7f07002f
+			public const int Description = 2131165231;
+			
+			// aapt resource value: 0x7f070030
+			public const int Earnings = 2131165232;
 			
 			// aapt resource value: 0x7f070029
-			public const int Description = 2131165225;
+			public const int Export = 2131165225;
 			
-			// aapt resource value: 0x7f07002a
-			public const int Earnings = 2131165226;
+			// aapt resource value: 0x7f070026
+			public const int FilenameDB = 2131165222;
 			
 			// aapt resource value: 0x7f070024
 			public const int Hello = 2131165220;
 			
-			// aapt resource value: 0x7f07002c
-			public const int Owner = 2131165228;
+			// aapt resource value: 0x7f070028
+			public const int History = 2131165224;
+			
+			// aapt resource value: 0x7f070032
+			public const int Owner = 2131165234;
+			
+			// aapt resource value: 0x7f070031
+			public const int PaymentType = 2131165233;
 			
 			// aapt resource value: 0x7f07002b
-			public const int PaymentType = 2131165227;
+			public const int RegularPayments = 2131165227;
 			
-			// aapt resource value: 0x7f07002d
-			public const int Save = 2131165229;
+			// aapt resource value: 0x7f070027
+			public const int Report = 2131165223;
 			
-			// aapt resource value: 0x7f07002e
-			public const int Warranty = 2131165230;
+			// aapt resource value: 0x7f070033
+			public const int Save = 2131165235;
+			
+			// aapt resource value: 0x7f07002a
+			public const int Settings = 2131165226;
+			
+			// aapt resource value: 0x7f070034
+			public const int Warranty = 2131165236;
 			
 			// aapt resource value: 0x7f070000
 			public const int abc_action_bar_home_description = 2131165184;
