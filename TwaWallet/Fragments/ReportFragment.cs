@@ -116,12 +116,25 @@ namespace TwaWallet.Fragments
             description_editText = v.FindViewById<EditText>(Resource.Id.description_editText);
 
             date_button = v.FindViewById<Button>(Resource.Id.date_button);
+            date_button.Click += Date_button_Click;
+
             warranty_button = v.FindViewById<Button>(Resource.Id.warranty_button);
+
             tags_editText = v.FindViewById<EditText>(Resource.Id.tags_editText);
+
             save_button = v.FindViewById<Button>(Resource.Id.save_button);
             save_button.Click += Save_button_Click;
 
             return v; 
+        }
+
+        private void Date_button_Click(object sender, EventArgs e)
+        {
+            DatePickerFragment frag = DatePickerFragment.NewInstance(delegate (DateTime time)
+            {
+                date_button.Text = time.ToLongDateString();
+            });
+            frag.Show(this.Activity.FragmentManager, DatePickerFragment.TAG);
         }
 
         private void Save_button_Click(object sender, EventArgs e)
