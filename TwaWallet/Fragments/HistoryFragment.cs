@@ -12,12 +12,16 @@ using Android.Views;
 using Android.Widget;
 using Android.Support.V4.App;
 using TwaWallet.Adapters;
+using Database;
+using Database.POCO;
 
 namespace TwaWallet.Fragments
 {
     public class HistoryFragment : Fragment
     {
-        private const string TAG = "X:" + nameof(MainActivity);
+        private const string TAG = "X:" + nameof(HistoryFragment);
+
+        private DataContext db;
 
         List<string> listData = new List<string>
             {
@@ -39,9 +43,22 @@ namespace TwaWallet.Fragments
             base.OnCreate(savedInstanceState);
 
             // Create your fragment here
-            
+
             //var view = inflater.Inflate(Resource.Layout.History, container, false);
             //var lv = view.FindViewById(Resources.Id.);
+
+            string pathToDatabase = DeviceInfo.GetFileFinallPath(Resources.GetString(Resource.String.DBfilename));
+            db = new DataContext(pathToDatabase);
+
+            //LoadData();
+        }
+
+        private void LoadData()
+        {
+            Log.Debug(TAG, nameof(LoadData));
+
+            var r = db.Select<Record, int>((o) => o.Id > 0, (o) => o.Id, false).Result;
+            listData = r.Select(p => $"{p.Description}, {p.Cost}, {p.DateCreated}").ToList();
         }
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
@@ -58,7 +75,9 @@ namespace TwaWallet.Fragments
 
             ListView lv = view.FindViewById<ListView>(Resource.Id.history_listView);
             lv.ItemClick += OnListItemClick;
-            lv.Adapter = new CusotmListAdapter(this.Activity, listData);
+
+            LoadData();
+            lv.Adapter = new CustomListAdapter(this.Activity, listData);
 
             return view;
         }

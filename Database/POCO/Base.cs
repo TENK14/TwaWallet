@@ -16,6 +16,6 @@ namespace Database.POCO
     public class Base
     {
         [PrimaryKey, AutoIncrement]
-        public int ID { get; set; }
+        public int Id { get; set; }
     }
 }

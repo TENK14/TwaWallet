@@ -12,12 +12,12 @@ using Android.Widget;
 
 namespace TwaWallet.Adapters
 {
-    public class CusotmListAdapter : BaseAdapter<string>
+    public class CustomListAdapter : BaseAdapter<string>
     {
         Activity context;
         List<string> list;
 
-        public CusotmListAdapter(Activity _context, List<string> _list)
+        public CustomListAdapter(Activity _context, List<string> _list)
             : base()
         {
             this.context = _context;

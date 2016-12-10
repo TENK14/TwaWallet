@@ -181,6 +181,39 @@
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@id/sixthRow">
+        <TextView
+            style="@style/TextViewStyle"
+            android:text="@string/Tags"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/warranty_textView"
+            android:gravity="left"
+            android:layout_weight="1" />
+        <LinearLayout
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_weight="4">
+            <EditText
+                style="@style/EditTextStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/tags_editText"
+                android:inputType="numberDecimal"
+                android:layout_weight="1" />
+        <!--<Button
+        style="@style/ButtonStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:id="@+id/warranty_button"
+        android:layout_weight="4" />-->
+        </LinearLayout>
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/eighthRow"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_alignParentBottom="true">
         <Button
             style="@style/ButtonStyle"

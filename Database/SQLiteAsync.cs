@@ -46,7 +46,8 @@ namespace SQLite
             _connectionString = new SQLiteConnectionString(databasePath, storeDateTimeAsTicks);
         }
 
-		SQLiteConnectionWithLock GetConnection ()
+        //SQLiteConnectionWithLock GetConnection ()
+        public SQLiteConnectionWithLock GetConnection ()
 		{
 			return SQLiteConnectionPool.Shared.GetConnection (_connectionString, _openFlags);
 		}
@@ -106,7 +107,22 @@ namespace SQLite
 			});
 		}
 
-		public Task<int> DropTableAsync<T> ()
+        public CreateTablesResult CreateTables(params Type[] types)
+        {
+                CreateTablesResult result = new CreateTablesResult();
+                var conn = GetConnection();
+                using (conn.Lock())
+                {
+                    foreach (Type type in types)
+                    {
+                        int aResult = conn.CreateTable(type);
+                        result.Results[type] = aResult;
+                    }
+                }
+                return result;
+        }
+
+        public Task<int> DropTableAsync<T> ()
 			where T : new ()
 		{
 			return Task.Factory.StartNew (() => {
@@ -469,7 +485,7 @@ namespace SQLite
 		}
 	}
 
-	class SQLiteConnectionWithLock : SQLiteConnection
+	public class SQLiteConnectionWithLock : SQLiteConnection
 	{
 		readonly object _lockPoint = new object ();
 

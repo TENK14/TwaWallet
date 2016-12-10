@@ -13,7 +13,7 @@ using SQLite;
 
 namespace Database.POCO
 {
-    class Category : BaseWithDescriptionAndDefault
+    public class Category : BaseWithDescriptionAndDefault
     {
         
     }

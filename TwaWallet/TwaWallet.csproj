@@ -95,6 +95,7 @@
   <ItemGroup>
     <Compile Include="Adapters\CustomListAdapter.cs" />
     <Compile Include="CustomPagerAdapter.cs" />
+    <Compile Include="DeviceInfo.cs" />
     <Compile Include="Fragments\ExportFragment.cs" />
     <Compile Include="Fragments\HistoryFragment.cs" />
     <Compile Include="Fragments\RegularPaymentsFragment.cs" />

@@ -6,4 +6,22 @@
   <item name="orange" type="color">#C25002</item>
   <item name="red" type="color">#C40C0A</item>
   <item name="yellow" type="color">#FFCC00</item>
+
+
+  <!--K.collect 2 modra barva pozadi titulkoveho pruhu-->
+  <color name="primary">#00024C</color>
+  
+  <!--K.collect 2 temne modra barva-->
+  <color name="primaryDark">#ff0126</color>
+  
+  <!--Bily text-->
+  <color name="textOnPrimary">#ffffff</color>
+
+  <!--Cerny text-->
+  <color name="normalText">#000000</color>
+  
+
+
+  <color name="window_background">#F5F5F5</color>
+  <color name="splash_background">#FFFFFF</color>
 </resources>

@@ -11,6 +11,7 @@ using Android.Util;
 using Java.Lang;
 using System.IO;
 using Database;
+using Android.Widget;
 //using Org.Apache.Commons.Logging;
 
 namespace TwaWallet
@@ -52,13 +53,28 @@ namespace TwaWallet
             // Set our view from the "main" layout resource
             SetContentView(Resource.Layout.main);
 
-            
+
+            int minWorker, minIOC;
+            // Get the current settings.
+            System.Threading.ThreadPool.GetMinThreads(out minWorker, out minIOC);
+            // Change the minimum number of worker threads to four, but
+            // keep the old setting for minimum asynchronous I/O 
+            // completion threads.
+            if (System.Threading.ThreadPool.SetMinThreads(8, minIOC))
+            {
+                Log.Debug(TAG, $"{nameof(OnCreate)} - The minimum number of threads was set successfully.");
+            }
+            else
+            {
+                Log.Debug(TAG, $"{nameof(OnCreate)} - The minimum number of threads was not changed.");
+            }
+
 
             // Find views
             var pager = FindViewById<ViewPager>(Resource.Id.pager);
             var tabLayout = FindViewById<TabLayout>(Resource.Id.sliding_tabs);
             //var adapter = new CustomPagerAdapter(this, SupportFragmentManager, fragments, titles);
-            var toolbar = FindViewById<Toolbar>(Resource.Id.my_toolbar);
+            var toolbar = FindViewById<Android.Support.V7.Widget.Toolbar>(Resource.Id.my_toolbar);
 
             // Setup Toolbar
             SetSupportActionBar(toolbar);
@@ -80,16 +96,63 @@ namespace TwaWallet
             //    tab.SetCustomView(adapter.GetTabView(i));
             //}
 
+            #region Show Version
+            /**/
+            string version = System.Reflection.Assembly.GetExecutingAssembly()
+                                           .GetName()
+                                           .Version
+                                           .ToString();
+
+            RunOnUiThread(() =>
+            {
+                string s = "test";
+                Android.Widget.Toast.MakeText(this, version, Android.Widget.ToastLength.Short).Show();
+            });
+            /**/
+            #endregion Show Version
+
+
             // create DB path
-            var docsFolder = System.Environment.GetFolderPath(System.Environment.SpecialFolder.MyDocuments);
-            var pathToDatabase = System.IO.Path.Combine(docsFolder, Resources.GetString(Resource.String.FilenameDB));// "db_sqlcompnet.db");
+            //var docsFolder = System.Environment.GetFolderPath(System.Environment.SpecialFolder.MyDocuments);
+            //var dbPath = Resources.GetString(Resource.String.DBPath);
+            //var pathToDatabase = System.IO.Path.Combine(dbPath, Resources.GetString(Resource.String.DBfilename));// "db_sqlcompnet.db");
 
+            //Directory.CreateDirectory(directoryPath);            
+            //Directory.CreateDirectory(dbPath);
 
-            if(!File.Exists(pathToDatabase))
+            string directoryPath = DeviceInfo.GetDirectoryFinallPath();
+            Directory.CreateDirectory(directoryPath);
+
+            #region DB
+            string pathToDatabase = DeviceInfo.GetFileFinallPath(Resources.GetString(Resource.String.DBfilename));
+            //var dbAdapter = new kCollect2.Data.Database.StateMachineDataAdapter(new SQLite_Android(new LogWrapper()), dbPath);
+            //dbAdapter.CreateOrUpdateDatabase();
+
+            #endregion
+
+            Android.Widget.Toast.MakeText(this, pathToDatabase, Android.Widget.ToastLength.Short).Show();
+            Log.Debug(TAG, $"directory: {directoryPath}, pathToDB: {pathToDatabase}");
+
+            //#region DB
+            //string dbPath = DeviceInfo.GetFileFinallPath(Resources.GetString(Resource.String.DBfilename));
+            //var dbAdapter = new kCollect2.Data.Database.StateMachineDataAdapter(new SQLite_Android(new LogWrapper()), dbPath);
+            //dbAdapter.CreateOrUpdateDatabase();
+            //#endregion
+
+            if (!File.Exists(pathToDatabase))
             {
                 DataContext db = new DataContext(pathToDatabase);
-                db.CreateDatabase();// (pathToDatabase);
+                var result = db.CreateDatabase().Result;
+                //Toast.MakeText(this,result,ToastLength.Short).Show();// (pathToDatabase);
+                Log.Debug(TAG, $"DB was created!:: {result}");
             }
+            else
+            {
+                //Toast.MakeText(this, "DB soubor již existuje.", ToastLength.Short).Show();
+                Log.Debug(TAG, "DB exists!");
+            }
+
+
         }
 
         private void InitialFragment()

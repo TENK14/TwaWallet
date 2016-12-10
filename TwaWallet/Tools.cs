@@ -15,12 +15,16 @@ namespace TwaWallet
     public static class Tools
     {
         private const string TAG = "X:" + nameof(Tools);
-        
+
 
         //public void Log()
         //{
         //    Log.Debug(TAG, string.Empty);
 
         //}
+
+
+
+        //System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal)
     }
 }

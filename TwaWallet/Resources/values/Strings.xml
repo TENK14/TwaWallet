@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="Hello">Hello World, Click Me!</string>
-    <string name="ApplicationName">TwaWallet</string>
+  <string name="Hello">Hello World, Click Me!</string>
+  <string name="ApplicationName">TwaWallet</string>
+  <string name="Tags">Tagy</string>
   
   <!-- Frames name -->
 
-  <string name="FilenameDB">TwaWalletDB.db</string>
+  <string name="DBPath">TWA/TwaWallet</string>
+  <string name="DBfilename">TwaWalletDB.db</string>
+  <!--<string name="FilenameDB">TwaWalletDB.db</string>-->
   
   <string name="Report">REPORT</string>
   <string name="History">HISTORIE</string>
