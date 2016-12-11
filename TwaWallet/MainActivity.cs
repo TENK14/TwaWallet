@@ -192,6 +192,17 @@ namespace TwaWallet
             }
 
             viewPager.Adapter = adapter;
+
+            viewPager.PageSelected += ViewPager_PageSelected;
+        }
+
+        private void ViewPager_PageSelected(object sender, ViewPager.PageSelectedEventArgs e)
+        {
+            Log.Debug(TAG, nameof(ViewPager_PageSelected));
+
+            var fr = ((FragmentPagerAdapter)((ViewPager)sender).Adapter).GetItem(e.Position);
+            fr.OnResume();
+
         }
     }
 }

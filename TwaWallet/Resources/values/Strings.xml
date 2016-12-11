@@ -6,6 +6,7 @@
   
   <!-- Frames name -->
 
+  <string name="DateFormat">dd.MM.yyyy</string>
   <string name="DBPath">TWA/TwaWallet</string>
   <string name="DBfilename">TwaWalletDB.db</string>
   <!--<string name="FilenameDB">TwaWalletDB.db</string>-->

@@ -14,6 +14,8 @@ using Android.Support.V4.App;
 using Database.POCO;
 using Database;
 using System.Threading.Tasks;
+using TwaWallet.Extensions;
+using TwaWallet.Classes;
 
 namespace TwaWallet.Fragments
 {
@@ -36,7 +38,8 @@ namespace TwaWallet.Fragments
         CheckBox earnings_checkBox;
         EditText description_editText;
         Button date_button;
-        Button warranty_button;
+        //Button warranty_button;
+        EditText warranty_editText;
         EditText tags_editText;
         Button save_button;
         #endregion
@@ -102,13 +105,16 @@ namespace TwaWallet.Fragments
             View v = inflater.Inflate(Resource.Layout.Report, container, false);
 
             category_button = v.FindViewById<Button>(Resource.Id.category_button);
-            category_button.Text = lstCategory?.First()?.Description ?? "nic";
+            //category_button.Text = lstCategory?.First()?.Description ?? "nic";
+            category_button.Click += Category_button_Click;
 
             paymentType_button = v.FindViewById<Button>(Resource.Id.paymentType_button);
-            paymentType_button.Text = lstPaymentType?.First()?.Description ?? "nic";
+            //paymentType_button.Text = lstPaymentType?.First()?.Description ?? "nic";
+            paymentType_button.Click += PaymentType_button_Click;
 
             owner_button = v.FindViewById<Button>(Resource.Id.owner_button);
-            owner_button.Text = lstOwner?.First()?.Name ?? "nic";
+            //owner_button.Text = lstOwner?.First()?.Name ?? "nic";
+            owner_button.Click += Owner_button_Click;
 
             cost_editText = v.FindViewById<EditText>(Resource.Id.cost_editText);
             earnings_checkBox = v.FindViewById<CheckBox>(Resource.Id.earnings_checkBox);
@@ -118,21 +124,90 @@ namespace TwaWallet.Fragments
             date_button = v.FindViewById<Button>(Resource.Id.date_button);
             date_button.Click += Date_button_Click;
 
-            warranty_button = v.FindViewById<Button>(Resource.Id.warranty_button);
+            //warranty_button = v.FindViewById<Button>(Resource.Id.warranty_button);
+            warranty_editText = v.FindViewById<EditText>(Resource.Id.warranty_editText);
 
             tags_editText = v.FindViewById<EditText>(Resource.Id.tags_editText);
 
             save_button = v.FindViewById<Button>(Resource.Id.save_button);
             save_button.Click += Save_button_Click;
 
+            InitLayout();
+
             return v; 
+        }
+
+        private void InitLayout()
+        {
+            Log.Debug(TAG, nameof(InitLayout));
+
+            this.category_button.Text = lstCategory.FirstOrDefault().Description;
+            this.category_button.Tag = new JavaLangObjectWrapper<Category>(lstCategory.FirstOrDefault());
+            this.paymentType_button.Text = lstPaymentType.FirstOrDefault().Description;
+            this.paymentType_button.Tag = new JavaLangObjectWrapper<PaymentType>(lstPaymentType.FirstOrDefault());
+            this.owner_button.Text = lstOwner.FirstOrDefault().Name;
+            this.owner_button.Tag = new JavaLangObjectWrapper<Owner>(lstOwner.FirstOrDefault());
+
+            this.earnings_checkBox.Checked = false;
+
+            this.cost_editText.Text = string.Empty;
+            this.description_editText.Text = string.Empty;
+            this.warranty_editText.Text = string.Empty;
+            this.tags_editText.Text = string.Empty;
+                        
+            this.date_button.Text = DateTime.Now.ToString(Resources.GetString(Resource.String.DateFormat));
+            
+        }
+
+
+        #region Button click
+
+        private void Owner_button_Click(object sender, EventArgs e)
+        {
+            Log.Debug(TAG, nameof(Owner_button_Click));
+
+            var fr = SimpleListViewDialogFragment<Owner>.NewInstance(lstOwner, delegate (Owner selectedItem)
+            {
+                owner_button.Text = selectedItem.Name;
+                owner_button.Tag = new JavaLangObjectWrapper<Owner>(selectedItem);
+            });
+            fr.Show(this.Activity.FragmentManager, SimpleListViewDialogFragment<Owner>.TAG);
+        }
+
+        private void PaymentType_button_Click(object sender, EventArgs e)
+        {
+            Log.Debug(TAG, nameof(PaymentType_button_Click));
+
+            var fr = SimpleListViewDialogFragment<PaymentType>.NewInstance(lstPaymentType, delegate (PaymentType selectedItem)
+            {
+                paymentType_button.Text = selectedItem.Description;
+                paymentType_button.Tag = new JavaLangObjectWrapper<PaymentType>(selectedItem);
+            });
+            fr.Show(this.Activity.FragmentManager, SimpleListViewDialogFragment<PaymentType>.TAG);
+        }
+
+        private void Category_button_Click(object sender, EventArgs e)
+        {
+            Log.Debug(TAG, nameof(Category_button_Click));
+
+            var fr = SimpleListViewDialogFragment<Category>.NewInstance(lstCategory, delegate (Category selectedItem)
+             {
+                 category_button.Text = selectedItem.Description;
+                //category_button.SetFlags();
+                //category_button.Tag = /*"str";//*/ // (Java.Lang.Object)c;
+                category_button.Tag = new JavaLangObjectWrapper<Category>(selectedItem);
+             });
+            fr.Show(this.Activity.FragmentManager, SimpleListViewDialogFragment<Category>.TAG);
+
         }
 
         private void Date_button_Click(object sender, EventArgs e)
         {
-            DatePickerFragment frag = DatePickerFragment.NewInstance(delegate (DateTime time)
+            Log.Debug(TAG, nameof(Date_button_Click));
+
+            DatePickerFragment frag = DatePickerFragment.NewInstance(delegate (DateTime date)
             {
-                date_button.Text = time.ToLongDateString();
+                date_button.Text = date.ToString(Resources.GetString(Resource.String.DateFormat)); //.ToLongDateString();
             });
             frag.Show(this.Activity.FragmentManager, DatePickerFragment.TAG);
         }
@@ -143,33 +218,56 @@ namespace TwaWallet.Fragments
 
             //this.Activity.RunOnUiThread(() =>
             //{
-            Toast.MakeText(this.Activity, "You clicked on me!", ToastLength.Short).Show();
+            //Toast.MakeText(this.Activity, "You clicked on me!", ToastLength.Short).Show();
             //});
 
-            var record = new Record
+            try
             {
-                CategoryId = lstCategory?.First()?.Id ?? 0, //this.category_button.Text,
-                Cost = int.Parse(this.cost_editText.Text),
-                DateCreated = DateTime.Now,
-                Description = this.description_editText.Text,
-                OwnerId = lstOwner?.First()?.Id ?? 0, //this.owner_button.Text,
-                PaymantTypeId = lstPaymentType?.First()?.Id ?? 0, //this.paymentType_button.Text,
-                Tag = this.tags_editText.Text,
-                Warranty = 0, //int.Parse(this.warranty_button.Text),
-            };
+                int cId = ((JavaLangObjectWrapper<Category>)category_button.Tag).Value.Id;
+                int oId = ((JavaLangObjectWrapper<Owner>)owner_button.Tag).Value.Id;
+                int pId = ((JavaLangObjectWrapper<PaymentType>)paymentType_button.Tag).Value.Id;
 
-            if (db.Insert(record).Result)
-            {
-                Toast.MakeText(this.Activity, record.ToString(), ToastLength.Short).Show();
+                int warranty;
+                if (!int.TryParse(warranty_editText.Text, out warranty))
+                {
+                    warranty = 0;
+                }
+
+                var record = new Record
+                {
+                    CategoryId = cId, // lstCategory?.First()?.Id ?? 0, //this.category_button.Text,
+                    Cost = int.Parse(this.cost_editText.Text),
+                    DateCreated = DateTime.Now,
+                    Description = this.description_editText.Text,
+                    OwnerId = oId, //lstOwner?.First()?.Id ?? 0, //this.owner_button.Text,
+                    PaymantTypeId = pId, //lstPaymentType?.First()?.Id ?? 0, //this.paymentType_button.Text,
+                    Tag = this.tags_editText.Text,
+                    Warranty = warranty // 0, //int.Parse(this.warranty_button.Text),
+                };
+
+                if (db.Insert(record).Result)
+                {
+                    Toast.MakeText(this.Activity, record.ToString(), ToastLength.Short).Show();
+                }
+                else
+                {
+                    Toast.MakeText(this.Activity, "Wasnt saved", ToastLength.Short).Show();
+                }
+
+                InitLayout();
             }
-            else
+            catch (Exception ex)
             {
-                Toast.MakeText(this.Activity, "Wasnt saved", ToastLength.Short).Show();
+                Log.Error(TAG, nameof(Save_button_Click), ex.Message);
+                Toast.MakeText(this.Activity, ex.Message, ToastLength.Short).Show();
             }
 
             //Toast.MakeText(this.Activity, db.Insert<Record>(record).Result,ToastLength.Short); //.RunSynchronously();
 
 
         }
+
+        
+        #endregion
     }
 }

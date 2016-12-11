@@ -23,6 +23,8 @@ namespace TwaWallet.Fragments
 
         private DataContext db;
 
+        ListView listView;
+
         List<string> listData = new List<string>
             {
                 "Line 1",
@@ -53,6 +55,16 @@ namespace TwaWallet.Fragments
             //LoadData();
         }
 
+        public override void OnResume()
+        {
+            Log.Debug(TAG, nameof(OnResume));
+
+            base.OnResume();
+
+            LoadData();
+            InitLayout();
+        }
+
         private void LoadData()
         {
             Log.Debug(TAG, nameof(LoadData));
@@ -73,17 +85,27 @@ namespace TwaWallet.Fragments
 
             View view = inflater.Inflate(Resource.Layout.History, container, false);
 
-            ListView lv = view.FindViewById<ListView>(Resource.Id.history_listView);
-            lv.ItemClick += OnListItemClick;
+            listView = view.FindViewById<ListView>(Resource.Id.history_listView);
+            listView.ItemClick += OnListItemClick;
 
             LoadData();
-            lv.Adapter = new CustomListAdapter(this.Activity, listData);
+            //listView.Adapter = new CustomListAdapter(this.Activity, listData);
+            InitLayout();
 
             return view;
         }
 
+        private void InitLayout()
+        {
+            Log.Debug(TAG, nameof(InitLayout));
+
+            listView.Adapter = new CustomListAdapter(this.Activity, listData);
+        }
+
         void OnListItemClick(object sender, AdapterView.ItemClickEventArgs e)
         {
+            Log.Debug(TAG, nameof(OnListItemClick));
+
             //string item = result.posts.ElementAt(e.Position);
             string item = listData.ElementAt(e.Position);
             // Do whatever you like here

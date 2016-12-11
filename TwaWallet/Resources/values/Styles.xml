@@ -37,6 +37,10 @@
   </style>
 
   <style name="EditTextStyle" parent="@style/CodeFont">
+    <!-- normal border color change as you wish -->
+    <item name="colorControlNormal">@color/black</item>
+    <!-- activated color change as you wish -->
+    <item name="colorControlActivated">@color/black</item>
     <!--<item name="android:textAppearance">?android:attr/textAppearanceSmall</item>-->
     <item name="android:textAppearance">@android:style/TextAppearance.Small</item>
     <!--<item name="textAppearanceSmall">@android:style/TextAppearance.Small</item>-->
@@ -48,17 +52,21 @@
   </style>
 
   <style name="ButtonStyle" parent="@style/CodeFont">
+    <!-- normal border color change as you wish -->
+    <item name="colorControlNormal">@color/black</item>
+    <!-- activated color change as you wish -->
+    <item name="colorControlActivated">@color/black</item>
     <!--<item name="android:textAppearance">?android:attr/textAppearanceLarge</item>-->
-    <item name="android:textAppearance">@android:style/TextAppearance.Medium</item>
+    <item name="android:textAppearance">@android:style/TextAppearance.Small</item>
     <!--<item name="textAppearanceLarge">@android:style/TextAppearance.Large</item>-->
     <item name="android:layout_margin">5dp</item>
+    <!--<item name="android:padding">5dp</item>-->
     <item name="android:background">@drawable/my_button</item>
   </style>
 
   <style name="CheckBoxStyle" parent="@style/CodeFont">
     <!-- normal border color change as you wish -->
-    <item name="colorControlNormal">@color/black</item>
-    
+    <item name="colorControlNormal">@color/black</item>    
     <!-- activated color change as you wish -->
     <item name="colorControlActivated">@color/black</item>
   </style>
@@ -94,8 +102,8 @@
     <item name="android:scaleType">centerCrop</item>
   </style>-->
 
-  <style name="EditTextStyle" parent="MyTheme">
+  <!--<style name="EditTextStyle" parent="MyTheme">
     <item name="android:textSize">30sp</item>
     <item name="android:textColor">#008</item>
-  </style>
+  </style>-->
 </resources>

@@ -24,24 +24,24 @@
         android:layout_height="wrap_content">
         <TextView
             style="@style/TextViewStyle"
+            android:id="@+id/category_textView"
             android:text="@string/Category"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/category_textView"
             android:layout_weight="1" />
         <TextView
             style="@style/TextViewStyle"
+            android:id="@+id/paymentType_textView"
             android:text="@string/PaymentType"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/paymentType_textView"
             android:layout_weight="1" />
         <TextView
             style="@style/TextViewStyle"
+            android:id="@+id/owner_textView"
             android:text="@string/Owner"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/owner_textView"
             android:layout_weight="1" />
     </LinearLayout>
 <!-- ListViews (buttons) -->
@@ -96,8 +96,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/cost_editText"
-                android:inputType="numberDecimal"
+                android:inputType="phone"
                 android:layout_weight="1" />
+        <!--android:inputType="numberDecimal"-->
         </LinearLayout>
         <CheckBox
             style="@style/CheckBoxStyle"
@@ -139,6 +140,7 @@
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin=" 5dp"
         android:layout_below="@id/fourthRow">
         <TextView
             style="@style/TextViewStyle"
@@ -150,16 +152,19 @@
             android:layout_weight="1" />
         <Button
             style="@style/ButtonStyle"
+            android:id="@+id/date_button"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:id="@+id/date_button"
+            android:layout_margin="1dp"
             android:layout_weight="4" />
+    <!--android:padding="3dp"-->
     </LinearLayout>
     <LinearLayout
         android:id="@+id/sixthRow"
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin=" 5dp"
         android:layout_below="@id/fifthRow">
         <TextView
             style="@style/TextViewStyle"
@@ -169,12 +174,25 @@
             android:id="@+id/warranty_textView"
             android:gravity="left"
             android:layout_weight="1" />
-        <Button
+        <!--<Button
             style="@style/ButtonStyle"
+            android:id="@+id/warranty_button"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:id="@+id/warranty_button"
-            android:layout_weight="4" />
+            android:layout_margin="1dp"
+            android:layout_weight="4" />-->
+      <LinearLayout
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_weight="4">
+        <EditText
+            style="@style/EditTextStyle"
+            android:id="@+id/warranty_editText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"            
+            android:inputType="number"
+            android:layout_weight="1" />
+      </LinearLayout>
     </LinearLayout>
     <LinearLayout
         android:id="@+id/seventhRow"
@@ -199,7 +217,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/tags_editText"
-                android:inputType="numberDecimal"
+                android:inputType="text"
                 android:layout_weight="1" />
         <!--<Button
         style="@style/ButtonStyle"

@@ -2040,6 +2040,9 @@ namespace TwaWallet
 		public partial class Id
 		{
 			
+			// aapt resource value: 0x7f0600a4
+			public const int DataListView = 2131099812;
+			
 			// aapt resource value: 0x7f06007a
 			public const int Title = 2131099770;
 			
@@ -2521,7 +2524,7 @@ namespace TwaWallet
 			public const int view_offset_helper = 2131099658;
 			
 			// aapt resource value: 0x7f06009f
-			public const int warranty_button = 2131099807;
+			public const int warranty_editText = 2131099807;
 			
 			// aapt resource value: 0x7f06009e
 			public const int warranty_textView = 2131099806;
@@ -2757,7 +2760,10 @@ namespace TwaWallet
 			public const int Settings = 2130903098;
 			
 			// aapt resource value: 0x7f03003b
-			public const int support_simple_spinner_dropdown_item = 2130903099;
+			public const int SimpleListView = 2130903099;
+			
+			// aapt resource value: 0x7f03003c
+			public const int support_simple_spinner_dropdown_item = 2130903100;
 			
 			static Layout()
 			{
@@ -2775,59 +2781,62 @@ namespace TwaWallet
 			// aapt resource value: 0x7f070025
 			public const int ApplicationName = 2131165221;
 			
-			// aapt resource value: 0x7f07002e
-			public const int Category = 2131165230;
-			
 			// aapt resource value: 0x7f07002f
-			public const int Cost = 2131165231;
-			
-			// aapt resource value: 0x7f070027
-			public const int DBPath = 2131165223;
-			
-			// aapt resource value: 0x7f070028
-			public const int DBfilename = 2131165224;
+			public const int Category = 2131165231;
 			
 			// aapt resource value: 0x7f070030
-			public const int Date = 2131165232;
+			public const int Cost = 2131165232;
+			
+			// aapt resource value: 0x7f070028
+			public const int DBPath = 2131165224;
+			
+			// aapt resource value: 0x7f070029
+			public const int DBfilename = 2131165225;
 			
 			// aapt resource value: 0x7f070031
-			public const int Description = 2131165233;
+			public const int Date = 2131165233;
+			
+			// aapt resource value: 0x7f070027
+			public const int DateFormat = 2131165223;
 			
 			// aapt resource value: 0x7f070032
-			public const int Earnings = 2131165234;
+			public const int Description = 2131165234;
 			
-			// aapt resource value: 0x7f07002b
-			public const int Export = 2131165227;
+			// aapt resource value: 0x7f070033
+			public const int Earnings = 2131165235;
+			
+			// aapt resource value: 0x7f07002c
+			public const int Export = 2131165228;
 			
 			// aapt resource value: 0x7f070024
 			public const int Hello = 2131165220;
 			
-			// aapt resource value: 0x7f07002a
-			public const int History = 2131165226;
-			
-			// aapt resource value: 0x7f070034
-			public const int Owner = 2131165236;
-			
-			// aapt resource value: 0x7f070033
-			public const int PaymentType = 2131165235;
-			
-			// aapt resource value: 0x7f07002d
-			public const int RegularPayments = 2131165229;
-			
-			// aapt resource value: 0x7f070029
-			public const int Report = 2131165225;
+			// aapt resource value: 0x7f07002b
+			public const int History = 2131165227;
 			
 			// aapt resource value: 0x7f070035
-			public const int Save = 2131165237;
+			public const int Owner = 2131165237;
 			
-			// aapt resource value: 0x7f07002c
-			public const int Settings = 2131165228;
+			// aapt resource value: 0x7f070034
+			public const int PaymentType = 2131165236;
+			
+			// aapt resource value: 0x7f07002e
+			public const int RegularPayments = 2131165230;
+			
+			// aapt resource value: 0x7f07002a
+			public const int Report = 2131165226;
+			
+			// aapt resource value: 0x7f070036
+			public const int Save = 2131165238;
+			
+			// aapt resource value: 0x7f07002d
+			public const int Settings = 2131165229;
 			
 			// aapt resource value: 0x7f070026
 			public const int Tags = 2131165222;
 			
-			// aapt resource value: 0x7f070036
-			public const int Warranty = 2131165238;
+			// aapt resource value: 0x7f070037
+			public const int Warranty = 2131165239;
 			
 			// aapt resource value: 0x7f070000
 			public const int abc_action_bar_home_description = 2131165184;
