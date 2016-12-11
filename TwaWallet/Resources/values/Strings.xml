@@ -29,4 +29,8 @@
   <string name="Warranty">Záruka</string>
   
   
+  <string name="DateFrom">Datum od</string>
+  <string name="DateTo">Datum do</string>
+  
+  
 </resources>

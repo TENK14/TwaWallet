@@ -228,10 +228,12 @@ namespace TwaWallet.Fragments
                     warranty = 0;
                 }
 
+                float cost = float.Parse(this.cost_editText.Text);
+
                 var record = new Record
                 {
                     CategoryId = cId, // lstCategory?.First()?.Id ?? 0, //this.category_button.Text,
-                    Cost = int.Parse(this.cost_editText.Text),
+                    Cost = this.earnings_checkBox.Checked ? 0f - cost : cost,
                     Date = DateTime.Now,
                     Description = this.description_editText.Text,
                     OwnerId = oId, //lstOwner?.First()?.Id ?? 0, //this.owner_button.Text,
