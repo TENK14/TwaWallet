@@ -19,6 +19,7 @@ namespace TwaWallet
     [Android.App.Activity(Label = "TwaWallet_Xam", 
         MainLauncher = true, 
         Icon = "@drawable/icon",
+        ScreenOrientation = Android.Content.PM.ScreenOrientation.Portrait,
         WindowSoftInputMode = Android.Views.SoftInput.AdjustPan)]
     public class MainActivity : AppCompatActivity
     {

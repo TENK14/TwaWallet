@@ -21,7 +21,7 @@ namespace Database.POCO
         /// ForingKey
         /// </summary>
         public int CategoryId { get; set; }        
-        public DateTime DateCreated { get; set; } = DateTime.Now;
+        public DateTime Date { get; set; } = DateTime.Now;
         public int Warranty { get; set; }
         /// <summary>
         /// ForingKey
@@ -37,6 +37,12 @@ namespace Database.POCO
         /// </summary>
         public string Tag { get; set; }
 
+        /// <summary>
+        /// true - pøíjem
+        /// false - výdej
+        /// </summary>
+        public bool Earnings { get; set; } = false;
+
         public override string ToString()
         {
             //return string.Format("[Person: ID={0}, FirstName={1}, LastName={2}]", ID, FirstName, LastName);
@@ -48,7 +54,7 @@ namespace Database.POCO
                     + $"{ nameof(OwnerId)}: {OwnerId}, \r"
                     + $"{ nameof(PaymantTypeId)}: {PaymantTypeId}, \r"
                     + $"{ nameof(Tag)}: {Tag}, \r"
-                    + $"{ nameof(DateCreated)}: {DateCreated.ToString()}\r"
+                    + $"{ nameof(Date)}: {Date.ToString()}\r"
                     ;
         }
     }

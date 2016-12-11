@@ -1,0 +1,13 @@
+
+HistoryListView - RowLayout::
+
+PaymantTypeId - obrazek v leve casti
+Earnings - barva ceny (podminene formatovani)
+
+-----------------------------------------
+  IMG	|CategoryId			Cost		|
+--------|Description		Date		|
+OwnerId	|Tag				Warranty	|
+-----------------------------------------
+
+=============================================================

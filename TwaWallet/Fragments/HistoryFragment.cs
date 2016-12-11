@@ -25,18 +25,19 @@ namespace TwaWallet.Fragments
 
         ListView listView;
 
-        List<string> listData = new List<string>
-            {
-                "Line 1",
-                "Line 2",
-                "Line 3",
-                "Line 4",
-                "Line 5",
-                "Line 6",
-                "Line 7",
-                "Line 8",
-                "Line 9"
-            };
+        //List<string> listData = new List<string>
+        //    {
+        //        "Line 1",
+        //        "Line 2",
+        //        "Line 3",
+        //        "Line 4",
+        //        "Line 5",
+        //        "Line 6",
+        //        "Line 7",
+        //        "Line 8",
+        //        "Line 9"
+        //    };
+        List<Record> listData;// = new List<Record>();
 
         public override void OnCreate(Bundle savedInstanceState)
         {
@@ -70,7 +71,7 @@ namespace TwaWallet.Fragments
             Log.Debug(TAG, nameof(LoadData));
 
             var r = db.Select<Record, int>((o) => o.Id > 0, (o) => o.Id, false).Result;
-            listData = r.Select(p => $"{p.Description}, {p.Cost}, {p.DateCreated}").ToList();
+            listData = r.ToList();//r.Select(p => $"{p.Description}, {p.Cost}, {p.Date}").ToList();
         }
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
@@ -107,9 +108,10 @@ namespace TwaWallet.Fragments
             Log.Debug(TAG, nameof(OnListItemClick));
 
             //string item = result.posts.ElementAt(e.Position);
-            string item = listData.ElementAt(e.Position);
+            //string item = listData.ElementAt(e.Position);
+            var item = listData.ElementAt(e.Position);
             // Do whatever you like here
-            Toast.MakeText(this.Activity, $"You press: {item}", ToastLength.Short).Show();
+            Toast.MakeText(this.Activity, $"You press: {item.Description}", ToastLength.Short).Show();
         }
     }
 }

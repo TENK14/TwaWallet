@@ -174,25 +174,25 @@
             android:id="@+id/warranty_textView"
             android:gravity="left"
             android:layout_weight="1" />
-        <!--<Button
+    <!--<Button
             style="@style/ButtonStyle"
             android:id="@+id/warranty_button"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_margin="1dp"
             android:layout_weight="4" />-->
-      <LinearLayout
+        <LinearLayout
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
             android:layout_weight="4">
-        <EditText
-            style="@style/EditTextStyle"
-            android:id="@+id/warranty_editText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"            
-            android:inputType="number"
-            android:layout_weight="1" />
-      </LinearLayout>
+            <EditText
+                style="@style/EditTextStyle"
+                android:id="@+id/warranty_editText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:layout_weight="1" />
+        </LinearLayout>
     </LinearLayout>
     <LinearLayout
         android:id="@+id/seventhRow"

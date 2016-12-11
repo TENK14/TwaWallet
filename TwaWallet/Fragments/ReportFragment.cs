@@ -215,12 +215,7 @@ namespace TwaWallet.Fragments
         private void Save_button_Click(object sender, EventArgs e)
         {
             Log.Debug(TAG, nameof(Save_button_Click));
-
-            //this.Activity.RunOnUiThread(() =>
-            //{
-            //Toast.MakeText(this.Activity, "You clicked on me!", ToastLength.Short).Show();
-            //});
-
+            
             try
             {
                 int cId = ((JavaLangObjectWrapper<Category>)category_button.Tag).Value.Id;
@@ -237,33 +232,31 @@ namespace TwaWallet.Fragments
                 {
                     CategoryId = cId, // lstCategory?.First()?.Id ?? 0, //this.category_button.Text,
                     Cost = int.Parse(this.cost_editText.Text),
-                    DateCreated = DateTime.Now,
+                    Date = DateTime.Now,
                     Description = this.description_editText.Text,
                     OwnerId = oId, //lstOwner?.First()?.Id ?? 0, //this.owner_button.Text,
                     PaymantTypeId = pId, //lstPaymentType?.First()?.Id ?? 0, //this.paymentType_button.Text,
                     Tag = this.tags_editText.Text,
-                    Warranty = warranty // 0, //int.Parse(this.warranty_button.Text),
+                    Warranty = warranty, // 0, //int.Parse(this.warranty_button.Text),
+                    Earnings = this.earnings_checkBox.Checked
                 };
 
                 if (db.Insert(record).Result)
                 {
                     Toast.MakeText(this.Activity, record.ToString(), ToastLength.Short).Show();
+                    InitLayout();
                 }
                 else
                 {
                     Toast.MakeText(this.Activity, "Wasnt saved", ToastLength.Short).Show();
                 }
-
-                InitLayout();
+                               
             }
             catch (Exception ex)
             {
                 Log.Error(TAG, nameof(Save_button_Click), ex.Message);
                 Toast.MakeText(this.Activity, ex.Message, ToastLength.Short).Show();
             }
-
-            //Toast.MakeText(this.Activity, db.Insert<Record>(record).Result,ToastLength.Short); //.RunSynchronously();
-
 
         }
 
