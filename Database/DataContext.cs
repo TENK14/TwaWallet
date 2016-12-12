@@ -17,7 +17,7 @@ using System.Linq.Expressions;
 
 namespace Database
 {
-    public class DataContext
+    public class DataContext : IDataContext
     {
         private const string TAG = "X:" + nameof(DataContext);
 
@@ -315,7 +315,7 @@ namespace Database
 
             var db = new SQLiteAsyncConnection(path);
             //string command = $"SELECT * FROM {nameof(T)} WHERE {whereClause} ORDER BY {orderClause}";
-            string command = $"SELECT * FROM {typeof(T).Name} WHERE {whereClause} ORDER BY {orderClause}";
+            //string command = $"SELECT * FROM {typeof(T).Name} WHERE {whereClause} ORDER BY {orderClause}";
             //var result = await db.ExecuteScalarAsync<IEnumerable<T>>(command);
             //var result = db.ExecuteScalarAsync<IEnumerable<T>>(command);
 
@@ -329,7 +329,7 @@ namespace Database
             {
                 result = db.Table<T>().Where(whereClause).OrderByDescending(orderClause).ToListAsync();
             }
-
+            
             return result;
         }
     }

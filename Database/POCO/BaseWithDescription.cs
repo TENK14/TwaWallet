@@ -12,7 +12,7 @@ using Android.Widget;
 
 namespace Database.POCO
 {
-    public class BaseWithDescriptionAndDefault : Base
+    public abstract class BaseWithDescriptionAndDefault : Base
     {
         public string Description { get; set; }
         public bool Default { get; set; } = false;

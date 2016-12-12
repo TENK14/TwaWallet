@@ -13,7 +13,7 @@ using SQLite;
 
 namespace Database.POCO
 {
-    public class Base
+    public abstract class Base
     {
         [PrimaryKey, AutoIncrement]
         public int Id { get; set; }

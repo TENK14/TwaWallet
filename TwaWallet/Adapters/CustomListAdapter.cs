@@ -21,7 +21,7 @@ namespace TwaWallet.Adapters
 
         Activity context;
         List<Record> list;
-        DataContext db;
+        IDataContext db;
 
         List<Category> lstCategory;
         List<Owner> lstOwner;
@@ -91,7 +91,7 @@ namespace TwaWallet.Adapters
                 view.FindViewById<TextView>(Resource.Id.cost_textView).SetTextColor(Android.Graphics.Color.Red);
             }
 
-            var paymentType = lstPaymentType.Where(p => p.Id == item.PaymantTypeId).FirstOrDefault();
+            var paymentType = lstPaymentType.Where(p => p.Id == item.PaymentTypeId).FirstOrDefault();
 
             //if (paymentType.Description ==  constant from some dictionary .... feel seed from this source as well)
             //{

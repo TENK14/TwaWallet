@@ -17,5 +17,6 @@ namespace Database.POCO
     {
         public string Name { get; set; }
         public bool Default { get; set; } = false;
+        
     }
 }

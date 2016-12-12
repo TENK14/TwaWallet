@@ -20,7 +20,7 @@ namespace Database
     {
         private const string TAG = "X:" + nameof(Seed);
 
-        public async Task<bool> FillDBAsync(DataContext database, string path)
+        public async Task<bool> FillDBAsync(IDataContext database, string path)
         {
             Log.Debug(TAG, $"{nameof(FillDBAsync)} - {nameof(database)}:{database}, {nameof(path)}:{path}");
 
@@ -70,7 +70,7 @@ namespace Database
             }
         }
 
-        public Task<bool> FillDB(DataContext database, string path)
+        public Task<bool> FillDB(IDataContext database, string path)
         {
             Log.Debug(TAG, $"{nameof(FillDB)} - {nameof(database)}:{database}, {nameof(path)}:{path}");
 

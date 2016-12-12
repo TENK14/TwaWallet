@@ -24,7 +24,7 @@ namespace TwaWallet.Fragments
         #region Members
         private const string TAG = "X:" + nameof(ReportFragment);
 
-        private DataContext db;
+        private IDataContext db;
 
         List<Owner> lstOwner;
         List<PaymentType> lstPaymentType;
@@ -154,9 +154,10 @@ namespace TwaWallet.Fragments
             this.description_editText.Text = string.Empty;
             this.warranty_editText.Text = string.Empty;
             this.tags_editText.Text = string.Empty;
-                        
-            this.date_button.Text = DateTime.Now.ToString(Resources.GetString(Resource.String.DateFormat));
-            
+
+            var date = DateTime.Now;
+            this.date_button.Text = date.ToString(Resources.GetString(Resource.String.DateFormat));
+            this.date_button.Tag = new JavaLangObjectWrapper<DateTime>(date);
         }
 
 
@@ -208,6 +209,7 @@ namespace TwaWallet.Fragments
             DatePickerFragment frag = DatePickerFragment.NewInstance(delegate (DateTime date)
             {
                 date_button.Text = date.ToString(Resources.GetString(Resource.String.DateFormat)); //.ToLongDateString();
+                date_button.Tag = new JavaLangObjectWrapper<DateTime>(date);
             });
             frag.Show(this.Activity.FragmentManager, DatePickerFragment.TAG);
         }
@@ -233,11 +235,11 @@ namespace TwaWallet.Fragments
                 var record = new Record
                 {
                     CategoryId = cId, // lstCategory?.First()?.Id ?? 0, //this.category_button.Text,
-                    Cost = this.earnings_checkBox.Checked ? 0f - cost : cost,
-                    Date = DateTime.Now,
+                    Cost = this.earnings_checkBox.Checked ? cost : 0f - cost,
+                    Date = ((JavaLangObjectWrapper<DateTime>)this.date_button.Tag).Value, // DateTime.Now,
                     Description = this.description_editText.Text,
                     OwnerId = oId, //lstOwner?.First()?.Id ?? 0, //this.owner_button.Text,
-                    PaymantTypeId = pId, //lstPaymentType?.First()?.Id ?? 0, //this.paymentType_button.Text,
+                    PaymentTypeId = pId, //lstPaymentType?.First()?.Id ?? 0, //this.paymentType_button.Text,
                     Tag = this.tags_editText.Text,
                     Warranty = warranty, // 0, //int.Parse(this.warranty_button.Text),
                     Earnings = this.earnings_checkBox.Checked

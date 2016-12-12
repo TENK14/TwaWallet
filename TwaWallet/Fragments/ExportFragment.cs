@@ -22,7 +22,7 @@ namespace TwaWallet.Fragments
     {
         private const string TAG = "X:" + nameof(ExportFragment);
 
-        private DataContext db;
+        private IDataContext db;
 
         #region GUI
         Button dateFrom_button;
@@ -115,19 +115,39 @@ namespace TwaWallet.Fragments
             DateTime dateFrom = ((JavaLangObjectWrapper<DateTime>)dateFrom_button.Tag).Value;
             DateTime dateTo = ((JavaLangObjectWrapper<DateTime>)dateTo_button.Tag).Value;
 
-            var lstRecord = db.Select<Record, int>((o) => o.Date >= dateFrom && o.Date <= dateTo, (o) => o.Id, false).Result;
+            var lstRecord = db.Select<Record, DateTime>((o) => o.Date >= dateFrom && o.Date <= dateTo, (o) => o.Date, true).Result;
 
             // TODO: make csv file
+            #region Make CSV file
+            string pathCsvFile = DeviceInfo.GetFileFinallPath(Resources.GetString(Resource.String.CSVfilename));
+
+            using (var streamWriter = new StreamWriter(pathCsvFile, false))
+            {
+                foreach (var item in lstRecord)
+                {
+                    streamWriter.WriteLine(item.IncludeObjects(db).ToString(';', Resources.GetString(Resource.String.DateFormat)));
+                }
+            }
+            #endregion
+
+
 
             // TODO: send email with csv attachement
-            //http://stackoverflow.com/questions/9974987/how-to-send-an-email-with-a-file-attachment-in-android
-            //https://developer.xamarin.com/recipes/android/networking/email/send_an_email/
-            String filename = "contacts_sid.vcf";
+
+
             //File filelocation = new File(Environment.GetExternalStoragePublicDirectory().getAbsolutePath(), filename);
-            string pathToDatabase = DeviceInfo.GetFileFinallPath(Resources.GetString(Resource.String.DBfilename));
-            
-            //File filelocation = new File(pathToDatabase, filename);
-            //Uri path = Uri.fromFile(filelocation);
+            //string pathToDatabase = DeviceInfo.GetFileFinallPath(Resources.GetString(Resource.String.DBfilename));
+            SendMail(pathCsvFile);
+        }
+
+        //http://stackoverflow.com/questions/9974987/how-to-send-an-email-with-a-file-attachment-in-android
+        //https://developer.xamarin.com/recipes/android/networking/email/send_an_email/
+        private void SendMail(string filePath)
+        {
+            var file = new Java.IO.File(filePath);
+            var uri = Android.Net.Uri.FromFile(file);
+
+            file.SetReadable(true, false);
             Intent emailIntent = new Intent(Intent.ActionSend);//.ACTION_SEND);
             // set the type to 'email'
             //sendIntent.setType("text/html");
@@ -135,10 +155,11 @@ namespace TwaWallet.Fragments
             //String to[] = { "asd@gmail.com" };
             //emailIntent.putExtra(Intent.EXTRA_EMAIL, to);
             // the attachment
-            //emailIntent.PutExtra(Intent.ExtraStream, path); //.EXTRA_STREAM, path);
+            emailIntent.PutExtra(Intent.ExtraStream, uri); //.EXTRA_STREAM, path);
             // the mail subject
             emailIntent.PutExtra(Intent.ExtraSubject, Resources.GetString(Resource.String.ApplicationName)); //.EXTRA_SUBJECT, "Subject");
             StartActivity(Intent.CreateChooser(emailIntent, "Send email..."));
         }
+
     }
 }

@@ -44,6 +44,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataContext.cs" />
+    <Compile Include="IDataContext.cs" />
     <Compile Include="POCO\Base.cs" />
     <Compile Include="POCO\BaseWithDescription.cs" />
     <Compile Include="POCO\Category.cs" />

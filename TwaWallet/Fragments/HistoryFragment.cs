@@ -21,7 +21,7 @@ namespace TwaWallet.Fragments
     {
         private const string TAG = "X:" + nameof(HistoryFragment);
 
-        private DataContext db;
+        private IDataContext db;
 
         ListView listView;
 

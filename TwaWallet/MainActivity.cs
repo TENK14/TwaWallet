@@ -142,7 +142,7 @@ namespace TwaWallet
 
             if (!File.Exists(pathToDatabase))
             {
-                DataContext db = new DataContext(pathToDatabase);
+                IDataContext db = new DataContext(pathToDatabase);
                 var result = db.CreateDatabase().Result;
                 //Toast.MakeText(this,result,ToastLength.Short).Show();// (pathToDatabase);
                 Log.Debug(TAG, $"DB was created!:: {result}");
