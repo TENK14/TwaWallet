@@ -43,6 +43,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Constants\CategoryConst.cs" />
+    <Compile Include="Constants\OwnerConst.cs" />
+    <Compile Include="Constants\PaymentTypeConst.cs" />
     <Compile Include="DataContext.cs" />
     <Compile Include="IDataContext.cs" />
     <Compile Include="POCO\Base.cs" />

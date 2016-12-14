@@ -7,7 +7,7 @@
 <!-- Image -->
     <LinearLayout
         android:layout_height="match_parent"
-        android:layout_width="32dp"
+        android:layout_width="wrap_content"
         android:orientation="vertical">
     <!--android:background="@color/blue"-->
     <!--<ImageView
@@ -18,17 +18,27 @@
       android:layout_alignParentLeft="true"
       android:layout_centerVertical="true"
       android:src="@drawable/Placeholder" />-->
+        <ImageView
+            android:id="@+id/paymentType_imageView"
+            android:layout_width="40dip"
+            android:layout_height="40dip"
+            android:src="@drawable/credit_card"
+            android:layout_marginLeft="5dp"
+            android:layout_gravity="center" />
         <TextView
             android:id="@+id/owner_textView"
             android:text="owner"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:lineSpacingExtra="3dp"
             android:paddingLeft="10dp"
-            android:paddingTop="5dp"
             android:textColor="#ffffff"
             android:textStyle="bold"
-            android:typeface="sans" />
+            android:typeface="sans"
+            android:textAlignment="center"
+            
+            android:gravity="center" />
+      <!--android:textAppearance="@android:style/TextAppearance.Small"-->
     </LinearLayout>
 <!-- Data -->
     <LinearLayout
@@ -48,7 +58,6 @@
                 android:layout_height="wrap_content"
                 android:lineSpacingExtra="3dp"
                 android:paddingLeft="10dp"
-                android:paddingTop="5dp"
                 android:textColor="#ffffff"
                 android:textStyle="bold"
                 android:typeface="sans"
@@ -60,7 +69,6 @@
                 android:layout_height="wrap_content"
                 android:lineSpacingExtra="3dp"
                 android:paddingLeft="10dp"
-                android:paddingTop="5dp"
                 android:textColor="#ffffff"
                 android:textStyle="bold"
                 android:typeface="sans"
@@ -80,19 +88,19 @@
                 android:layout_height="wrap_content"
                 android:lineSpacingExtra="3dp"
                 android:paddingLeft="10dp"
-                android:paddingTop="5dp"
                 android:textColor="#ffffff"
                 android:textStyle="bold"
                 android:typeface="sans"
+                
                 android:layout_weight="1" />
-            <TextView
+          <!--android:textAppearance="@android:style/TextAppearance.Small"-->
+          <TextView
                 android:id="@+id/date_textView"
                 android:text="date"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:lineSpacingExtra="3dp"
                 android:paddingLeft="10dp"
-                android:paddingTop="5dp"
                 android:textColor="#ffffff"
                 android:textStyle="bold"
                 android:typeface="sans"
@@ -112,7 +120,6 @@
                 android:layout_height="wrap_content"
                 android:lineSpacingExtra="3dp"
                 android:paddingLeft="10dp"
-                android:paddingTop="5dp"
                 android:textColor="#ffffff"
                 android:textStyle="bold"
                 android:typeface="sans"
@@ -124,7 +131,6 @@
                 android:layout_height="wrap_content"
                 android:lineSpacingExtra="3dp"
                 android:paddingLeft="10dp"
-                android:paddingTop="5dp"
                 android:textColor="#ffffff"
                 android:textStyle="bold"
                 android:typeface="sans"

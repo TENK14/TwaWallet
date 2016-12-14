@@ -14,30 +14,30 @@ using Android.Support.V4.App;
 using TwaWallet.Adapters;
 using Database;
 using Database.POCO;
+using TwaWallet.Classes;
 
 namespace TwaWallet.Fragments
 {
     public class HistoryFragment : Fragment
     {
+        #region Members
         private const string TAG = "X:" + nameof(HistoryFragment);
 
         private IDataContext db;
 
         ListView listView;
+        
+        List<Record> listData;
 
-        //List<string> listData = new List<string>
-        //    {
-        //        "Line 1",
-        //        "Line 2",
-        //        "Line 3",
-        //        "Line 4",
-        //        "Line 5",
-        //        "Line 6",
-        //        "Line 7",
-        //        "Line 8",
-        //        "Line 9"
-        //    };
-        List<Record> listData;// = new List<Record>();
+        #region GUI
+        TextView count_value;
+        TextView monthCost_value;
+        TextView filterCost_value;
+        Button dateFrom_button;
+        Button dateTo_button;
+        #endregion
+
+        #endregion
 
         public override void OnCreate(Bundle savedInstanceState)
         {
@@ -70,8 +70,24 @@ namespace TwaWallet.Fragments
         {
             Log.Debug(TAG, nameof(LoadData));
 
-            var r = db.Select<Record, int>((o) => o.Id > 0, (o) => o.Id, false).Result;
+            var r = db.Select<Record, DateTime>((o) => o.Id > 0, (o) => o.Date, false).Result;
             listData = r.ToList();//r.Select(p => $"{p.Description}, {p.Cost}, {p.Date}").ToList();
+        }
+
+        private void LoadData(DateTime dateFrom, DateTime dateTo)
+        {
+            Log.Debug(TAG, nameof(LoadData));
+
+            var r = db.Select<Record, DateTime>((o) => o.Date >= dateFrom && o.Date <= dateTo, (o) => o.Date, false).Result;
+            listData = r.ToList();//r.Select(p => $"{p.Description}, {p.Cost}, {p.Date}").ToList();
+
+            if (listData != null && listData.Count > 0)
+            {
+                this.count_value.Text = listData.Count.ToString();
+                this.filterCost_value.Text = listData.Select(p => p.Cost).Sum().ToString();
+            }
+
+            listView.Adapter = new CustomListAdapter(this.Activity, listData);
         }
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
@@ -84,16 +100,58 @@ namespace TwaWallet.Fragments
             //return base.OnCreateView(inflater, container, savedInstanceState);
             //return inflater.Inflate(Resource.Layout.History, container, false);
 
-            View view = inflater.Inflate(Resource.Layout.History, container, false);
+            View v = inflater.Inflate(Resource.Layout.History, container, false);
 
-            listView = view.FindViewById<ListView>(Resource.Id.history_listView);
+            listView = v.FindViewById<ListView>(Resource.Id.history_listView);
             listView.ItemClick += OnListItemClick;
 
+            count_value = v.FindViewById<TextView>(Resource.Id.count_value);
+            filterCost_value = v.FindViewById<TextView>(Resource.Id.filterCost_value);
+            monthCost_value = v.FindViewById<TextView>(Resource.Id.monthCost_value);
+            
+
+            dateFrom_button = v.FindViewById<Button>(Resource.Id.dateFrom_button);
+            dateFrom_button.Click += DateFrom_button_Click;
+            dateTo_button = v.FindViewById<Button>(Resource.Id.dateTo_button);
+            dateTo_button.Click += DateTo_button_Click;
+
+
             LoadData();
-            //listView.Adapter = new CustomListAdapter(this.Activity, listData);
+            
             InitLayout();
 
-            return view;
+            return v;
+        }
+
+        private void DateTo_button_Click(object sender, EventArgs e)
+        {
+            Log.Debug(TAG, nameof(DateTo_button_Click));
+
+            DatePickerFragment frag = DatePickerFragment.NewInstance(delegate (DateTime date)
+            {
+                dateTo_button.Text = date.ToString(Resources.GetString(Resource.String.DateFormat)); //.ToLongDateString();
+                dateTo_button.Tag = new JavaLangObjectWrapper<DateTime>(date);
+
+                LoadData(((JavaLangObjectWrapper<DateTime>)dateFrom_button.Tag).Value, ((JavaLangObjectWrapper<DateTime>)dateTo_button.Tag).Value);
+            });
+            frag.Show(this.Activity.FragmentManager, DatePickerFragment.TAG);
+
+        }
+
+        private void DateFrom_button_Click(object sender, EventArgs e)
+        {
+            Log.Debug(TAG, nameof(DateTo_button_Click));
+
+            DatePickerFragment frag = DatePickerFragment.NewInstance(delegate (DateTime date)
+            {
+                dateFrom_button.Text = date.ToString(Resources.GetString(Resource.String.DateFormat)); //.ToLongDateString();
+                dateFrom_button.Tag = new JavaLangObjectWrapper<DateTime>(date);
+
+                LoadData(((JavaLangObjectWrapper<DateTime>)dateFrom_button.Tag).Value, ((JavaLangObjectWrapper<DateTime>)dateTo_button.Tag).Value);
+            });
+            frag.Show(this.Activity.FragmentManager, DatePickerFragment.TAG);
+
+            
         }
 
         private void InitLayout()
@@ -101,6 +159,21 @@ namespace TwaWallet.Fragments
             Log.Debug(TAG, nameof(InitLayout));
 
             listView.Adapter = new CustomListAdapter(this.Activity, listData);
+            
+            if (listData != null && listData.Count > 0)
+            {
+                var date = listData.LastOrDefault().Date;
+                dateFrom_button.Text = date.ToString(Resources.GetString(Resource.String.DateFormat));
+                dateFrom_button.Tag = new JavaLangObjectWrapper<DateTime>(date);
+
+                date = listData.FirstOrDefault().Date;
+                dateTo_button.Text = date.ToString(Resources.GetString(Resource.String.DateFormat));
+                dateTo_button.Tag = new JavaLangObjectWrapper<DateTime>(date);
+
+                this.count_value.Text = listData.Count.ToString();
+                this.monthCost_value.Text = listData.Where(p => p.Date.Month == DateTime.Now.Month && p.Date.Year == DateTime.Now.Year).Select(p => p.Cost).Sum().ToString();
+                this.filterCost_value.Text = listData.Select(p => p.Cost).Sum().ToString();
+            }
         }
 
         void OnListItemClick(object sender, AdapterView.ItemClickEventArgs e)

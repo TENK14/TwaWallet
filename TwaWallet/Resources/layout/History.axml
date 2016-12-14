@@ -6,10 +6,98 @@
     android:background="@color/orange">
     <LinearLayout
         android:id="@+id/filter_linearLayout"
+        android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@drawable/my_button"
-        android:layout_weight="3" />
+        android:layout_weight="3">
+        <LinearLayout
+            android:id="@+id/overview_linearLayout"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/my_button"
+            android:layout_weight="1">
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+                android:layout_weight="1">
+                <TextView
+                    android:id="@+id/count_label"
+                    android:text="Count:"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+                <TextView
+                    android:id="@+id/count_value"
+                    android:text="270"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+            </LinearLayout>
+          <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+                android:layout_weight="1">
+            <TextView
+                android:id="@+id/filterCost_label"
+                android:text="Filter cost:"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+            <TextView
+                android:id="@+id/filterCost_value"
+                android:text="132456"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+          </LinearLayout>
+          <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+                android:layout_weight="1">
+            <TextView
+                android:id="@+id/monthCost_label"
+                android:text="Month cost:"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+            <TextView
+                android:id="@+id/monthCost_value"
+                android:text="12000"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+          </LinearLayout>
+          
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/my_button"
+            android:layout_weight="3">
+            <Button
+                style="@style/ButtonStyle"
+                android:id="@+id/dateFrom_button"
+                android:text="DATUM OD"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="1dp"
+                android:layout_weight="1" />
+            <Button
+                style="@style/ButtonStyle"
+                android:id="@+id/dateTo_button"
+                android:text="DATUM DO"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="1dp"
+                android:layout_weight="1" />
+        </LinearLayout>
+    </LinearLayout>
     <LinearLayout
         android:id="@+id/listView_linearLayout"
         android:layout_width="match_parent"

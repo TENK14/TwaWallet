@@ -3,66 +3,66 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/blue" >
-  <LinearLayout
+    android:background="@color/blue">
+    <LinearLayout
         android:id="@+id/firstRow"
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin=" 5dp">
-    <TextView
-        style="@style/TextViewStyle"
-        android:text="@string/DateFrom"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/date_textView"
-        android:gravity="left"
-        android:layout_weight="1" />
-    <Button
-        style="@style/ButtonStyle"
-        android:id="@+id/dateFrom_button"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_margin="1dp"
-        android:layout_weight="4" />
+        <TextView
+            style="@style/TextViewStyle"
+            android:text="@string/DateFrom"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/date_textView"
+            android:gravity="left"
+            android:layout_weight="1" />
+        <Button
+            style="@style/ButtonStyle"
+            android:id="@+id/dateFrom_button"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_margin="1dp"
+            android:layout_weight="4" />
     <!--android:padding="3dp"-->
-  </LinearLayout>
-  <LinearLayout
+    </LinearLayout>
+    <LinearLayout
         android:id="@+id/secondRow"
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin=" 5dp"
         android:layout_below="@id/firstRow">
-    <TextView
-        style="@style/TextViewStyle"
-        android:text="@string/DateTo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/date_textView"
-        android:gravity="left"
-        android:layout_weight="1" />
-    <Button
-        style="@style/ButtonStyle"
-        android:id="@+id/dateTo_button"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_margin="1dp"
-        android:layout_weight="4" />
+        <TextView
+            style="@style/TextViewStyle"
+            android:text="@string/DateTo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/date_textView"
+            android:gravity="left"
+            android:layout_weight="1" />
+        <Button
+            style="@style/ButtonStyle"
+            android:id="@+id/dateTo_button"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_margin="1dp"
+            android:layout_weight="4" />
     <!--android:padding="3dp"-->
-  </LinearLayout>
-  <LinearLayout
+    </LinearLayout>
+    <LinearLayout
         android:id="@+id/bottomRow"
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true">
-    <Button
-        style="@style/ButtonStyle"
-        android:text="@string/Export"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:id="@+id/export_button"
-        android:layout_weight="1" />
-  </LinearLayout>
+        <Button
+            style="@style/ButtonStyle"
+            android:text="@string/Export"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:id="@+id/export_button"
+            android:layout_weight="1" />
+    </LinearLayout>
 </RelativeLayout>

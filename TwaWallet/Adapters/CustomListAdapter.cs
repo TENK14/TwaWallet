@@ -12,6 +12,7 @@ using Android.Widget;
 using Database.POCO;
 using Database;
 using Android.Util;
+using Database.Constants;
 
 namespace TwaWallet.Adapters
 {
@@ -73,7 +74,20 @@ namespace TwaWallet.Adapters
             }
 
             Record item = this[position];
+
             
+
+            var img = view.FindViewById<ImageView>(Resource.Id.paymentType_imageView);
+
+            if (item.PaymentTypeId == lstPaymentType.Where(p => p.Description == PaymentTypeConst.Card).FirstOrDefault().Id)
+            {
+                img.SetImageResource(Resource.Drawable.credit_card);
+            }
+            else
+            {
+                img.SetImageResource(Resource.Drawable.money);
+            }
+
             view.FindViewById<TextView>(Resource.Id.description_textView).Text = item.Description;
             view.FindViewById<TextView>(Resource.Id.owner_textView).Text = lstOwner.Where(p => p.Id == item.OwnerId).FirstOrDefault().Name;
             view.FindViewById<TextView>(Resource.Id.category_textView).Text = lstCategory.Where(p => p.Id == item.CategoryId).FirstOrDefault().Description;

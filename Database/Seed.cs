@@ -13,6 +13,7 @@ using System.Threading.Tasks;
 using SQLite;
 using Database.POCO;
 using Android.Util;
+using Database.Constants;
 
 namespace Database
 {
@@ -82,8 +83,8 @@ namespace Database
                 {
                     result = database.InsertAll<Owner>(new List<Owner>()
                     {
-                        new Owner {Name = "Tom", Default = true },
-                        new Owner {Name = "Eli", Default = false }
+                        new Owner {Name = OwnerConst.Tom, Default = true },
+                        new Owner {Name = OwnerConst.Eli, Default = false }
                     },
                     path).Result;
 
@@ -94,8 +95,8 @@ namespace Database
 
                     result = database.InsertAll<PaymentType>(new List<PaymentType>()
                     {
-                        new PaymentType {Description = "Hotovost", Default = true },
-                        new PaymentType {Description = "Karta", Default = false }
+                        new PaymentType {Description = PaymentTypeConst.Money /*"Hotovost"*/, Default = true },
+                        new PaymentType {Description = PaymentTypeConst.Card /*"Karta"*/, Default = false }
                     },
                     path).Result;
 
