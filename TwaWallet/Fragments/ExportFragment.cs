@@ -117,33 +117,69 @@ namespace TwaWallet.Fragments
 
             var lstRecord = db.Select<Record, DateTime>((o) => o.Date >= dateFrom && o.Date <= dateTo, (o) => o.Date, true).Result;
 
-            // TODO: make csv file
-            #region Make CSV file
-            string pathCsvFile = DeviceInfo.GetFileFinallPath(Resources.GetString(Resource.String.CSVfilename));
 
-            using (var streamWriter = new StreamWriter(pathCsvFile, false))
+            //https://forums.xamarin.com/discussion/32531/permission-denied-for-the-attachment-when-creating-email-on-android
+            //        Update: Found solution -
+            //Need to copy file to External storage and add it as an attachment from there!
+            //var externalPath = global::Android.OS.Environment.ExternalStorageDirectory.AbsolutePath;
+            //            externalPath = Path.Combine(externalPath, filename);
+            //            File.WriteAllBytes(externalPath, bytes);
+
+            List<string> lstStr = new List<string>();
+            foreach (var item in lstRecord)
             {
-                foreach (var item in lstRecord)
-                {
-                    streamWriter.WriteLine(item.IncludeObjects(db).ToString(';', Resources.GetString(Resource.String.DateFormat)));
-                }
+                lstStr.Add(item.IncludeObjects(db).ToString(';', Resources.GetString(Resource.String.DateFormat)));
             }
+
+            #region Ask for permission
+            //const int REQUEST_CODE_ASK_PERMISSIONS = 123;
+            //const string permission = Android.Manifest.Permission.WriteExternalStorage;
+            //var hasWriteContactsPermission = Android.Content.ContextWrapper.CheckSelfPermission(permission);
+
+            //if (hasWriteContactsPermission != Android.Content.PM.Permission.Granted)
+            //{
+            //    RequestPermissions(new string[] { Android.Manifest.Permission.WriteExternalStorage },
+            //            REQUEST_CODE_ASK_PERMISSIONS);
+            //    return;
+            //}
             #endregion
+
+            var externalPath = global::Android.OS.Environment.ExternalStorageDirectory.AbsolutePath;
+            externalPath = Path.Combine(externalPath, Resources.GetString(Resource.String.CSVfilename));
+            File.WriteAllLines(externalPath, lstStr.ToArray());
+            //File.WriteAllBytes(externalPath, bytes);
+            SendMail(externalPath);
+
+            #region OLD - doesnt function on API 23 and higher
+            // TODO: make csv file
+            //#region Make CSV file
+            //string pathCsvFile = DeviceInfo.GetFileFinallPath(Resources.GetString(Resource.String.CSVfilename));
+
+            //using (var streamWriter = new StreamWriter(pathCsvFile, false))
+            //{
+            //    foreach (var item in lstRecord)
+            //    {
+            //        streamWriter.WriteLine(item.IncludeObjects(db).ToString(';', Resources.GetString(Resource.String.DateFormat)));
+            //    }
+            //}
+            //#endregion
 
 
 
             // TODO: send email with csv attachement
-
-
             //File filelocation = new File(Environment.GetExternalStoragePublicDirectory().getAbsolutePath(), filename);
             //string pathToDatabase = DeviceInfo.GetFileFinallPath(Resources.GetString(Resource.String.DBfilename));
-            SendMail(pathCsvFile);
+            //SendMail(pathCsvFile);
+            #endregion
+
         }
 
         //http://stackoverflow.com/questions/9974987/how-to-send-an-email-with-a-file-attachment-in-android
         //https://developer.xamarin.com/recipes/android/networking/email/send_an_email/
         private void SendMail(string filePath)
         {
+            Log.Debug(TAG, $"{nameof(SendMail)} - {nameof(filePath)}:{filePath}");
+
             var file = new Java.IO.File(filePath);
             var uri = Android.Net.Uri.FromFile(file);
 
@@ -158,7 +194,25 @@ namespace TwaWallet.Fragments
             emailIntent.PutExtra(Intent.ExtraStream, uri); //.EXTRA_STREAM, path);
             // the mail subject
             emailIntent.PutExtra(Intent.ExtraSubject, Resources.GetString(Resource.String.ApplicationName)); //.EXTRA_SUBJECT, "Subject");
-            StartActivity(Intent.CreateChooser(emailIntent, "Send email..."));
+                                                                                                             
+            //StartActivity(Intent.CreateChooser(emailIntent, "Send email..."));
+        
+            //http://stackoverflow.com/questions/26883259/gmail-5-0-app-fails-with-permission-denied-for-the-attachment-when-it-receives
+            StartActivityForResult(Intent.CreateChooser(emailIntent, "Send email..."),10);
+
+            // http://stackoverflow.com/questions/18311597/android-attach-image-to-email-doesnt-work
+        }
+
+        public override void OnActivityResult(int requestCode, int resultCode, Intent data)
+        {
+            string msg = $"{nameof(OnActivityResult)} - {nameof(requestCode)}:{requestCode},{nameof(resultCode)}:{resultCode}";
+            Log.Debug(TAG, msg);
+            base.OnActivityResult(requestCode, resultCode, data);
+
+            if (requestCode == 10)
+            {
+                Toast.MakeText(this.Activity, msg, ToastLength.Short).Show();
+            }
         }
 
     }

@@ -8,6 +8,7 @@
     <LinearLayout
         android:layout_height="match_parent"
         android:layout_width="wrap_content"
+        android:layout_marginLeft="5dp"
         android:orientation="vertical">
     <!--android:background="@color/blue"-->
     <!--<ImageView
@@ -23,7 +24,7 @@
             android:layout_width="40dip"
             android:layout_height="40dip"
             android:src="@drawable/credit_card"
-            android:layout_marginLeft="5dp"
+            
             android:layout_gravity="center" />
         <TextView
             android:id="@+id/owner_textView"

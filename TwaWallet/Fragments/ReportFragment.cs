@@ -245,6 +245,19 @@ namespace TwaWallet.Fragments
                     Earnings = this.earnings_checkBox.Checked
                 };
 
+                #region Ask for permission
+                //const int REQUEST_CODE_ASK_PERMISSIONS = 123;
+                //const string permission = Android.Manifest.Permission.WriteExternalStorage;
+                //var hasWriteContactsPermission = Android.Content.ContextWrapper.CheckSelfPermission(permission);
+
+                //if (hasWriteContactsPermission != Android.Content.PM.Permission.Granted)
+                //{
+                //    RequestPermissions(new string[] { Android.Manifest.Permission.WriteExternalStorage },
+                //            REQUEST_CODE_ASK_PERMISSIONS);
+                //    return;
+                //} 
+                #endregion
+
                 if (db.Insert(record).Result)
                 {
                     Toast.MakeText(this.Activity, record.ToString(), ToastLength.Short).Show();

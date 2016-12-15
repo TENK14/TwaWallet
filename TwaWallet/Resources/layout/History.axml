@@ -17,7 +17,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@drawable/my_button"
-            android:layout_weight="1">
+            android:layout_weight="2">
             <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
@@ -83,7 +83,7 @@
             <Button
                 style="@style/ButtonStyle"
                 android:id="@+id/dateFrom_button"
-                android:text="DATUM OD"
+                android:text="01.01.2016"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_margin="1dp"
@@ -91,7 +91,7 @@
             <Button
                 style="@style/ButtonStyle"
                 android:id="@+id/dateTo_button"
-                android:text="DATUM DO"
+                android:text="31.12.2016"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_margin="1dp"

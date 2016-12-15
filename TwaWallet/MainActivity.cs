@@ -23,6 +23,9 @@ namespace TwaWallet
         WindowSoftInputMode = Android.Views.SoftInput.AdjustPan)]
     public class MainActivity : AppCompatActivity
     {
+        private const int REQUEST_CODE_ASK_PERMISSIONS = 123;
+
+
         private const string TAG = "X:" + nameof(MainActivity);
 
         Fragment[] fragments = new Fragment[]
@@ -77,9 +80,12 @@ namespace TwaWallet
             //var adapter = new CustomPagerAdapter(this, SupportFragmentManager, fragments, titles);
             var toolbar = FindViewById<Android.Support.V7.Widget.Toolbar>(Resource.Id.my_toolbar);
 
+            var code = ApplicationContext.PackageManager.GetPackageInfo(ApplicationContext.PackageName, 0).VersionCode;
+            var name = this.ApplicationContext.PackageManager.GetPackageInfo(ApplicationContext.PackageName, 0).VersionName;
+
             // Setup Toolbar
             SetSupportActionBar(toolbar);
-            SupportActionBar.Title = Resources.GetString(Resource.String.ApplicationName);
+            SupportActionBar.Title = $"{Resources.GetString(Resource.String.ApplicationName)} ({code}-{name})";
 
             // Set adapter to view pager
             //pager.Adapter = adapter;
@@ -99,16 +105,26 @@ namespace TwaWallet
 
             #region Show Version
             /**/
-            string version = System.Reflection.Assembly.GetExecutingAssembly()
-                                           .GetName()
-                                           .Version
-                                           .ToString();
+            //string version = System.Reflection.Assembly.GetExecutingAssembly()
+            //                               .GetName()
+            //                               .Version
+            //                               .ToString();
 
-            RunOnUiThread(() =>
-            {
-                string s = "test";
-                Android.Widget.Toast.MakeText(this, version, Android.Widget.ToastLength.Short).Show();
-            });
+            //string versionCompatibility = System.Reflection.Assembly.GetExecutingAssembly()
+            //                               .GetName()
+            //                               .VersionCompatibility
+            //                               .ToString();
+
+            //var code = ApplicationContext.PackageManager.GetPackageInfo(ApplicationContext.PackageName, 0).VersionCode;
+            //var name = this.ApplicationContext.PackageManager.GetPackageInfo(ApplicationContext.PackageName, 0).VersionName;
+
+
+            //RunOnUiThread(() =>
+            //{
+            //    string s = "test";
+            //    Android.Widget.Toast.MakeText(this, $"{version}-{versionCompatibility}", Android.Widget.ToastLength.Short).Show();
+            //    Android.Widget.Toast.MakeText(this, $"{name}-{code}", Android.Widget.ToastLength.Short).Show();
+            //});
             /**/
             #endregion Show Version
 
@@ -142,6 +158,19 @@ namespace TwaWallet
 
             if (!File.Exists(pathToDatabase))
             {
+                #region Ask for permission
+                const string permission = Android.Manifest.Permission.WriteExternalStorage;
+                var hasWriteContactsPermission = CheckSelfPermission(permission);
+
+                if (hasWriteContactsPermission != Android.Content.PM.Permission.Granted)
+                {
+                    RequestPermissions(new string[] { Android.Manifest.Permission.WriteExternalStorage },
+                            REQUEST_CODE_ASK_PERMISSIONS);
+                    return;
+                } 
+                #endregion
+
+
                 IDataContext db = new DataContext(pathToDatabase);
                 var result = db.CreateDatabase().Result;
                 //Toast.MakeText(this,result,ToastLength.Short).Show();// (pathToDatabase);
