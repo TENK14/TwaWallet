@@ -25,5 +25,9 @@ namespace Database
         Task<bool> Update<T>(T data, string path);
         Task<bool> UpdateAll<T>(IEnumerable<T> data);
         Task<bool> UpdateAll<T>(IEnumerable<T> data, string path);
+        Task<bool> Delete<T>(T data);
+        Task<bool> Delete<T>(T data, string path);
+        Task<bool> SetAllDefault<T>(bool isDefault);
+        Task<bool> SetAllDefault<T>(bool isDefault, string path);
     }
 }

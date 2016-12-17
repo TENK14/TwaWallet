@@ -106,7 +106,8 @@ namespace TwaWallet.Fragments
             //var pathToDatabase = System.IO.Path.Combine(dbPath, Resources.GetString(Resource.String.DBfilename));// "db_sqlcompnet.db");
 
             string pathToDatabase = DeviceInfo.GetFileFinallPath(Resources.GetString(Resource.String.DBfilename));
-            db = new DataContext(pathToDatabase);
+            //db = new DataContext(pathToDatabase);
+            db = DataContextFactory.GetDataContext(pathToDatabase);
 
             LoadData();
 
@@ -167,19 +168,15 @@ namespace TwaWallet.Fragments
 
             //Task.Run(() =>
             //{
-            Log.Debug(TAG, $"{nameof(LoadData)}-1");
-            //var r = db.Select<Owner>($"{nameof(Owner.Id)} > 0", $"{nameof(Owner.Id)}").Result;
+
             var r = db.Select<Owner,int>((o) => o.Id > 0, (o) => o.Id).Result;
             lstOwner = r.ToList();
-            Log.Debug(TAG, $"{nameof(LoadData)}-2");
-            //lstPaymentType = db.Select<PaymentType>($"{nameof(PaymentType.Id)} > 0", $"{nameof(PaymentType.Id)}").Result.ToList();
+
             var r2 = db.Select<PaymentType, int>((o) => o.Id > 0, (o) => o.Id).Result;
             lstPaymentType = r2.ToList();
-            Log.Debug(TAG, $"{nameof(LoadData)}-3");
-            //lstCategory = db.Select<Category>($"{nameof(Category.Id)} > 0", $"{nameof(Category.Id)}").Result.ToList();
+
             var r3 = db.Select<Category, int>((o) => o.Id > 0, (o) => o.Id).Result;
             lstCategory = r3.ToList();
-            Log.Debug(TAG, $"{nameof(LoadData)}-4");
 
             this.Activity.RunOnUiThread(() =>
                 {
@@ -194,12 +191,17 @@ namespace TwaWallet.Fragments
 
             if (SelectedItem == null) // Show Empty ReportFragment
             {
-                this.category_button.Text = lstCategory.FirstOrDefault().Description;
-                this.category_button.Tag = new JavaLangObjectWrapper<Category>(lstCategory.FirstOrDefault());
-                this.paymentType_button.Text = lstPaymentType.FirstOrDefault().Description;
-                this.paymentType_button.Tag = new JavaLangObjectWrapper<PaymentType>(lstPaymentType.FirstOrDefault());
-                this.owner_button.Text = lstOwner.FirstOrDefault().Name;
-                this.owner_button.Tag = new JavaLangObjectWrapper<Owner>(lstOwner.FirstOrDefault());
+                var category = lstCategory.Where(p => p.Default).FirstOrDefault();
+                this.category_button.Text = category.Description;
+                this.category_button.Tag = new JavaLangObjectWrapper<Category>(category);
+
+                var paymentType = lstPaymentType.Where(p => p.Default).FirstOrDefault();
+                this.paymentType_button.Text = paymentType.Description;
+                this.paymentType_button.Tag = new JavaLangObjectWrapper<PaymentType>(paymentType);
+
+                var owner = lstOwner.Where(p => p.Default).FirstOrDefault();
+                this.owner_button.Text = owner.Name;
+                this.owner_button.Tag = new JavaLangObjectWrapper<Owner>(owner);
 
                 this.earnings_checkBox.Checked = false;
 
@@ -326,7 +328,8 @@ namespace TwaWallet.Fragments
                     PaymentTypeId = pId, //lstPaymentType?.First()?.Id ?? 0, //this.paymentType_button.Text,
                     Tag = this.tags_editText.Text,
                     Warranty = warranty, // 0, //int.Parse(this.warranty_button.Text),
-                    Earnings = this.earnings_checkBox.Checked
+                    Earnings = this.earnings_checkBox.Checked,
+                    //DateCreated = new Java.Sql.Timestamp(Tools.ConvertToTimestamp(DateTime.Now))
                 };
 
                 #region Ask for permission

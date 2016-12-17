@@ -22,12 +22,18 @@
   <string name="Category">Kategorie</string>
   <string name="Cost">Cena</string>
   <string name="Date">Datum</string>
+  <string name="Delete">Smazat</string>
+  <string name="Deleted">Smazáno</string>
   <string name="Description">Popis</string>
   <string name="Earnings">Příjem</string>
+  <string name="Edit">Editovat</string>
   <string name="PaymentType">Typ platby</string>
   <string name="Owner">Vlastník</string>
   <string name="Save">Uložit</string>
+  <string name="Saved">Uloženo</string>
   <string name="Warranty">Záruka</string>
+  <string name="WasntDeleted">Nebylo smazáno</string>
+  <string name="WasntSaved">Nebylo uloženo</string>
   
   
   <string name="DateFrom">Datum od</string>

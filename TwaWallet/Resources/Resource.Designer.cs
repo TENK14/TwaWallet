@@ -2844,17 +2844,26 @@ namespace TwaWallet
 			// aapt resource value: 0x7f070027
 			public const int DateFormat = 2131165223;
 			
-			// aapt resource value: 0x7f070039
-			public const int DateFrom = 2131165241;
+			// aapt resource value: 0x7f07003f
+			public const int DateFrom = 2131165247;
 			
-			// aapt resource value: 0x7f07003a
-			public const int DateTo = 2131165242;
+			// aapt resource value: 0x7f070040
+			public const int DateTo = 2131165248;
 			
 			// aapt resource value: 0x7f070033
-			public const int Description = 2131165235;
+			public const int Delete = 2131165235;
 			
 			// aapt resource value: 0x7f070034
-			public const int Earnings = 2131165236;
+			public const int Deleted = 2131165236;
+			
+			// aapt resource value: 0x7f070035
+			public const int Description = 2131165237;
+			
+			// aapt resource value: 0x7f070036
+			public const int Earnings = 2131165238;
+			
+			// aapt resource value: 0x7f070037
+			public const int Edit = 2131165239;
 			
 			// aapt resource value: 0x7f07002d
 			public const int Export = 2131165229;
@@ -2865,11 +2874,11 @@ namespace TwaWallet
 			// aapt resource value: 0x7f07002c
 			public const int History = 2131165228;
 			
-			// aapt resource value: 0x7f070036
-			public const int Owner = 2131165238;
+			// aapt resource value: 0x7f070039
+			public const int Owner = 2131165241;
 			
-			// aapt resource value: 0x7f070035
-			public const int PaymentType = 2131165237;
+			// aapt resource value: 0x7f070038
+			public const int PaymentType = 2131165240;
 			
 			// aapt resource value: 0x7f07002f
 			public const int RegularPayments = 2131165231;
@@ -2877,8 +2886,11 @@ namespace TwaWallet
 			// aapt resource value: 0x7f07002b
 			public const int Report = 2131165227;
 			
-			// aapt resource value: 0x7f070037
-			public const int Save = 2131165239;
+			// aapt resource value: 0x7f07003a
+			public const int Save = 2131165242;
+			
+			// aapt resource value: 0x7f07003b
+			public const int Saved = 2131165243;
 			
 			// aapt resource value: 0x7f07002e
 			public const int Settings = 2131165230;
@@ -2886,8 +2898,14 @@ namespace TwaWallet
 			// aapt resource value: 0x7f070026
 			public const int Tags = 2131165222;
 			
-			// aapt resource value: 0x7f070038
-			public const int Warranty = 2131165240;
+			// aapt resource value: 0x7f07003c
+			public const int Warranty = 2131165244;
+			
+			// aapt resource value: 0x7f07003d
+			public const int WasntDeleted = 2131165245;
+			
+			// aapt resource value: 0x7f07003e
+			public const int WasntSaved = 2131165246;
 			
 			// aapt resource value: 0x7f070000
 			public const int abc_action_bar_home_description = 2131165184;

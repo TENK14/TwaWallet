@@ -156,8 +156,8 @@ namespace TwaWallet
             //dbAdapter.CreateOrUpdateDatabase();
             //#endregion
 
-            if (!File.Exists(pathToDatabase))
-            {
+            //if (!File.Exists(pathToDatabase))
+            //{
                 #region Ask for permission
                 //const string permission = Android.Manifest.Permission.WriteExternalStorage;
                 //var hasWriteContactsPermission = CheckSelfPermission(permission);
@@ -171,16 +171,17 @@ namespace TwaWallet
                 #endregion
 
                 Log.Debug(TAG, $"DB will be created!");
-                IDataContext db = new DataContext(pathToDatabase);
+                //IDataContext db = new DataContext(pathToDatabase);
+                IDataContext db = DataContextFactory.GetDataContext(pathToDatabase);
                 var result = db.CreateDatabase().Result;
                 //Toast.MakeText(this,result,ToastLength.Short).Show();// (pathToDatabase);
                 Log.Debug(TAG, $"DB was created!:: {result}");
-            }
-            else
-            {
-                //Toast.MakeText(this, "DB soubor již existuje.", ToastLength.Short).Show();
-                Log.Debug(TAG, "DB exists!");
-            }
+            //}
+            //else
+            //{
+            //    //Toast.MakeText(this, "DB soubor již existuje.", ToastLength.Short).Show();
+            //    Log.Debug(TAG, "DB exists!");
+            //}
 
 
         }

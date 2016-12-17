@@ -61,7 +61,8 @@ namespace TwaWallet.Fragments
             export_button.Click += Export_button_Click;
 
             string pathToDatabase = DeviceInfo.GetFileFinallPath(Resources.GetString(Resource.String.DBfilename));
-            db = new DataContext(pathToDatabase);
+            //db = new DataContext(pathToDatabase);
+            db = DataContextFactory.GetDataContext(pathToDatabase);
 
             InitLayout();
 

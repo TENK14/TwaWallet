@@ -53,14 +53,14 @@
         android:layout_below="@id/firstRow">
         <Button
             style="@style/ButtonStyle"
-            android:text="@string/Owner"
+            android:text="@string/Category"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/category_button"
             android:layout_weight="1" />
         <Button
             style="@style/ButtonStyle"
-            android:text="@string/Owner"
+            android:text="@string/PaymentType"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/paymentType_button"

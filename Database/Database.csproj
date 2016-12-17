@@ -47,6 +47,7 @@
     <Compile Include="Constants\OwnerConst.cs" />
     <Compile Include="Constants\PaymentTypeConst.cs" />
     <Compile Include="DataContext.cs" />
+    <Compile Include="DataContextFactory.cs" />
     <Compile Include="IDataContext.cs" />
     <Compile Include="POCO\Base.cs" />
     <Compile Include="POCO\BaseWithDescription.cs" />

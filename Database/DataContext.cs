@@ -58,16 +58,24 @@ namespace Database
                     var r = /*await*/ connection.CreateTablesAsync(typeof(Owner), typeof(Category), typeof(PaymentType), typeof(Record), typeof(RecurringPayment)).Result;
 
                     //if (r.Results.ContainsValue())
-                    var r2 = /*await*/ (new Seed()).FillDB(this, path);
-                    if (r2.Result)
+                    if (this.Select<Category, int>(p => p.Id > 0, p => p.Id).Result.Count <= 0)
                     {
+                        var r2 = /*await*/ (new Seed()).FillDB(this, path);
+                        if (r2.Result)
+                        {
 
-                        return true;
+                            return true;
+                        }
+                        else
+                        {
+                            return false;
+                        }
                     }
                     else
                     {
-                        return false;
+                        return true;
                     }
+
                 }
                 catch (SQLiteException ex)
                 {
@@ -130,7 +138,7 @@ namespace Database
                 {
                     var db = new SQLiteAsyncConnection(path);
                     if (/*await*/ db.InsertAllAsync(data).Result != 0)
-                    {
+                    {                        
                         if (/*await*/ db.UpdateAllAsync(data).Result != 0)
                         {
                             return true; // "List of data inserted or updated";
@@ -324,6 +332,70 @@ namespace Database
             }
             
             return result;
+        }
+
+        public Task<bool> Delete<T> (T data)
+        {
+            Log.Debug(TAG, $"{nameof(Delete)} - {nameof(data)}:{data}");
+
+            return Delete(data, Path);
+        }
+
+        public Task<bool> Delete<T>(T data, string path)
+        {
+            Log.Debug(TAG, $"{nameof(Delete)} - {nameof(data)}:{data}, {nameof(path)}:{path}");
+
+            return Task.Factory.StartNew(/*async*/ () =>
+            {
+                try
+                {
+                    var db = new SQLiteAsyncConnection(path);
+                    if (/*await*/ db.DeleteAsync(data).Result != 0)
+                    {
+                        return true;  //"Single data file updated";
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+                catch (SQLiteException ex)
+                {
+                    Log.Error(TAG, $"{nameof(Delete)} - {nameof(ex)}:{ex.Message}");
+                    throw;
+                    //return ex.Message;
+                }
+            });
+        }
+
+        public Task<bool> SetAllDefault<T>(bool isDefault)
+        {
+            Log.Debug(TAG, $"{nameof(SetAllDefault)} - {nameof(isDefault)}:{isDefault}");
+
+            return SetAllDefault<T>(isDefault, Path);
+        }
+
+        public Task<bool> SetAllDefault<T>(bool isDefault, string path)
+        {
+            Log.Debug(TAG, $"{nameof(SetAllDefault)} - {nameof(isDefault)}:{isDefault}, {nameof(path)}:{path}");
+
+            return Task.Factory.StartNew(/*async*/ () =>
+            {
+                try
+                {
+                    var db = new SQLiteAsyncConnection(path);
+
+                    db.ExecuteAsync($"UPDATE {typeof(T)} SET Default = {isDefault.ToString()}");
+                                        
+                    return true;
+                }
+                catch (SQLiteException ex)
+                {
+                    Log.Error(TAG, $"{nameof(InsertUpdateAllData)} - {nameof(ex)}:{ex.Message}");
+                    throw;
+                    //return ex.Message;
+                }
+            });
         }
     }
 }

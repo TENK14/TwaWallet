@@ -11,6 +11,7 @@ using Android.Views;
 using Android.Widget;
 using SQLite;
 using Android.Util;
+using Java.Sql;
 
 namespace Database.POCO
 {
@@ -53,6 +54,8 @@ namespace Database.POCO
         /// false - výdej
         /// </summary>
         public bool Earnings { get; set; } = false;
+
+        //public Timestamp DateCreated { get; set; }
 
 
         public Record IncludeObjects(IDataContext db)

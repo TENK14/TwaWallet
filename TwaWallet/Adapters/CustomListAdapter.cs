@@ -28,7 +28,7 @@ namespace TwaWallet.Adapters
         List<Owner> lstOwner;
         List<PaymentType> lstPaymentType;
 
-        public CustomListAdapter(Activity _context, List<Record> _list)
+        public CustomListAdapter(Activity _context, List<Record> _list, IDataContext db)
             : base()
         {
             Log.Debug(TAG, nameof(CustomListAdapter));
@@ -36,8 +36,10 @@ namespace TwaWallet.Adapters
             this.context = _context;
             this.list = _list;
 
-            string pathToDatabase = DeviceInfo.GetFileFinallPath(this.context.Resources.GetString(Resource.String.DBfilename));
-            db = new DataContext(pathToDatabase);
+            //string pathToDatabase = DeviceInfo.GetFileFinallPath(this.context.Resources.GetString(Resource.String.DBfilename));
+            //db = new DataContext(pathToDatabase);
+            //db = DataContextFactory.GetDataContext(pathToDatabase);
+            this.db = db;
 
             var r = db.Select<Owner, int>((o) => o.Id > 0, (o) => o.Id).Result;
             lstOwner = r.ToList();
