@@ -19,7 +19,7 @@ using TwaWallet.Classes;
 
 namespace TwaWallet.Fragments
 {
-    public class ReportFragment : Fragment
+    public class ReportFragment : DialogFragment
     {
         #region Members
         private const string TAG = "X:" + nameof(ReportFragment);
@@ -29,6 +29,9 @@ namespace TwaWallet.Fragments
         List<Owner> lstOwner;
         List<PaymentType> lstPaymentType;
         List<Category> lstCategory;
+
+        // Initialize this value to prevent NullReferenceExceptions.
+        //Action<Record> itemSelectedHandler = delegate { };
 
         #region GUI
         Button category_button;
@@ -43,6 +46,53 @@ namespace TwaWallet.Fragments
         EditText tags_editText;
         Button save_button;
         #endregion
+        #endregion
+
+        #region Properties
+        public Record SelectedItem { get; set; } = null;
+        #endregion
+
+        //public static DatePickerFragment NewInstance(Action<DateTime> onDateSelected)
+        //{
+        //    DatePickerFragment frag = new DatePickerFragment();
+        //    frag._dateSelectedHandler = onDateSelected;
+        //    return frag;
+        //}
+
+        #region DialogFragment
+        // Initialize this value to prevent NullReferenceExceptions.
+        Action onContinueWithHandler = delegate { };
+
+        public static ReportFragment NewInstance(Record selectedItem, Action onContinueWith)
+        {
+            Log.Debug(TAG, $"{nameof(NewInstance)} - {nameof(selectedItem)}:{selectedItem.ToString()}");
+
+            var frag = new ReportFragment();
+            //frag.itemSelectedHandler = onItemSelected;
+            frag.SelectedItem = selectedItem;
+            frag.onContinueWithHandler = onContinueWith;
+            return frag;
+        }
+
+        //public override Dialog OnCreateDialog(Bundle savedInstanceState)
+        //{
+        //    DateTime currently = DateTime.Now;
+        //    DatePickerDialog dialog = new DatePickerDialog(Activity,
+        //                                                   this,
+        //                                                   currently.Year,
+        //                                                   //currently.Month,
+        //                                                   currently.Month - 1,
+        //                                                   currently.Day);
+        //    return dialog;
+        //}
+
+        //public void OnDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth)
+        //{
+        //    // Note: monthOfYear is a value between 0 and 11, not 1 and 12!
+        //    DateTime selectedDate = new DateTime(year, monthOfYear + 1, dayOfMonth);
+        //    Log.Debug(TAG, $"{nameof(OnDateSet)} - selectedDate:{selectedDate.ToLongDateString()}");
+        //    _dateSelectedHandler(selectedDate);
+        //}
         #endregion
 
         public override void OnCreate(Bundle savedInstanceState)
@@ -61,6 +111,52 @@ namespace TwaWallet.Fragments
             LoadData();
 
             // Create your fragment here
+        }
+
+        public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
+        {
+            Log.Debug(TAG, nameof(OnCreateView));
+
+            // Use this to return your custom view for this Fragment
+            // return inflater.Inflate(Resource.Layout.YourFragment, container, false);
+
+            //return base.OnCreateView(inflater, container, savedInstanceState);
+            //return inflater.Inflate(Resource.Layout.Report, container, false);
+
+            View v = inflater.Inflate(Resource.Layout.Report, container, false);
+
+            category_button = v.FindViewById<Button>(Resource.Id.category_button);
+            //category_button.Text = lstCategory?.First()?.Description ?? "nic";            
+            category_button.Click += Category_button_Click;
+
+            paymentType_button = v.FindViewById<Button>(Resource.Id.paymentType_button);
+            //paymentType_button.Text = lstPaymentType?.First()?.Description ?? "nic";            
+            paymentType_button.Click += PaymentType_button_Click;
+
+            owner_button = v.FindViewById<Button>(Resource.Id.owner_button);
+            //owner_button.Text = lstOwner?.First()?.Name ?? "nic";            
+            owner_button.Click += Owner_button_Click;
+
+            cost_editText = v.FindViewById<EditText>(Resource.Id.cost_editText);
+            
+            earnings_checkBox = v.FindViewById<CheckBox>(Resource.Id.earnings_checkBox);
+            
+            description_editText = v.FindViewById<EditText>(Resource.Id.description_editText);
+            
+            date_button = v.FindViewById<Button>(Resource.Id.date_button);            
+            date_button.Click += Date_button_Click;
+
+            //warranty_button = v.FindViewById<Button>(Resource.Id.warranty_button);
+            warranty_editText = v.FindViewById<EditText>(Resource.Id.warranty_editText);
+
+            tags_editText = v.FindViewById<EditText>(Resource.Id.tags_editText);
+
+            save_button = v.FindViewById<Button>(Resource.Id.save_button);
+            save_button.Click += Save_button_Click;
+
+            InitLayout();
+
+            return v;
         }
 
         private void LoadData()
@@ -92,72 +188,59 @@ namespace TwaWallet.Fragments
             //});
         }
 
-        public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
-        {
-            Log.Debug(TAG, nameof(OnCreateView));
-
-            // Use this to return your custom view for this Fragment
-            // return inflater.Inflate(Resource.Layout.YourFragment, container, false);
-
-            //return base.OnCreateView(inflater, container, savedInstanceState);
-            //return inflater.Inflate(Resource.Layout.Report, container, false);
-
-            View v = inflater.Inflate(Resource.Layout.Report, container, false);
-
-            category_button = v.FindViewById<Button>(Resource.Id.category_button);
-            //category_button.Text = lstCategory?.First()?.Description ?? "nic";
-            category_button.Click += Category_button_Click;
-
-            paymentType_button = v.FindViewById<Button>(Resource.Id.paymentType_button);
-            //paymentType_button.Text = lstPaymentType?.First()?.Description ?? "nic";
-            paymentType_button.Click += PaymentType_button_Click;
-
-            owner_button = v.FindViewById<Button>(Resource.Id.owner_button);
-            //owner_button.Text = lstOwner?.First()?.Name ?? "nic";
-            owner_button.Click += Owner_button_Click;
-
-            cost_editText = v.FindViewById<EditText>(Resource.Id.cost_editText);
-            earnings_checkBox = v.FindViewById<CheckBox>(Resource.Id.earnings_checkBox);
-
-            description_editText = v.FindViewById<EditText>(Resource.Id.description_editText);
-
-            date_button = v.FindViewById<Button>(Resource.Id.date_button);
-            date_button.Click += Date_button_Click;
-
-            //warranty_button = v.FindViewById<Button>(Resource.Id.warranty_button);
-            warranty_editText = v.FindViewById<EditText>(Resource.Id.warranty_editText);
-
-            tags_editText = v.FindViewById<EditText>(Resource.Id.tags_editText);
-
-            save_button = v.FindViewById<Button>(Resource.Id.save_button);
-            save_button.Click += Save_button_Click;
-
-            InitLayout();
-
-            return v; 
-        }
-
         private void InitLayout()
         {
             Log.Debug(TAG, nameof(InitLayout));
 
-            this.category_button.Text = lstCategory.FirstOrDefault().Description;
-            this.category_button.Tag = new JavaLangObjectWrapper<Category>(lstCategory.FirstOrDefault());
-            this.paymentType_button.Text = lstPaymentType.FirstOrDefault().Description;
-            this.paymentType_button.Tag = new JavaLangObjectWrapper<PaymentType>(lstPaymentType.FirstOrDefault());
-            this.owner_button.Text = lstOwner.FirstOrDefault().Name;
-            this.owner_button.Tag = new JavaLangObjectWrapper<Owner>(lstOwner.FirstOrDefault());
+            if (SelectedItem == null) // Show Empty ReportFragment
+            {
+                this.category_button.Text = lstCategory.FirstOrDefault().Description;
+                this.category_button.Tag = new JavaLangObjectWrapper<Category>(lstCategory.FirstOrDefault());
+                this.paymentType_button.Text = lstPaymentType.FirstOrDefault().Description;
+                this.paymentType_button.Tag = new JavaLangObjectWrapper<PaymentType>(lstPaymentType.FirstOrDefault());
+                this.owner_button.Text = lstOwner.FirstOrDefault().Name;
+                this.owner_button.Tag = new JavaLangObjectWrapper<Owner>(lstOwner.FirstOrDefault());
 
-            this.earnings_checkBox.Checked = false;
+                this.earnings_checkBox.Checked = false;
 
-            this.cost_editText.Text = string.Empty;
-            this.description_editText.Text = string.Empty;
-            this.warranty_editText.Text = string.Empty;
-            this.tags_editText.Text = string.Empty;
+                this.cost_editText.Text = string.Empty;
+                this.description_editText.Text = string.Empty;
+                this.warranty_editText.Text = string.Empty;
+                this.tags_editText.Text = string.Empty;
 
-            var date = DateTime.Now;
-            this.date_button.Text = date.ToString(Resources.GetString(Resource.String.DateFormat));
-            this.date_button.Tag = new JavaLangObjectWrapper<DateTime>(date);
+                var date = DateTime.Now;
+                this.date_button.Text = date.ToString(Resources.GetString(Resource.String.DateFormat));
+                this.date_button.Tag = new JavaLangObjectWrapper<DateTime>(date);
+            }
+            else // Show details about some history item
+            {
+                this.category_button.Text = SelectedItem?.Category?.Description ?? string.Empty;
+                this.category_button.Tag = SelectedItem != null ? new JavaLangObjectWrapper<Category>(SelectedItem.Category) : null;
+                this.paymentType_button.Text = SelectedItem?.PaymentType?.Description ?? string.Empty;
+                this.paymentType_button.Tag = SelectedItem != null ? new JavaLangObjectWrapper<PaymentType>(SelectedItem.PaymentType) : null;
+                this.owner_button.Text = SelectedItem?.Owner?.Name ?? string.Empty;
+                this.owner_button.Tag = SelectedItem != null ? new JavaLangObjectWrapper<Owner>(SelectedItem.Owner) : null;
+
+
+                this.earnings_checkBox.Checked = SelectedItem?.Earnings ?? false;
+
+                if (this.earnings_checkBox.Checked)
+                {
+                    this.cost_editText.Text = (SelectedItem?.Cost).ToString() ?? string.Empty;
+                }
+                else
+                {
+                    this.cost_editText.Text = (0 - SelectedItem?.Cost).ToString() ?? string.Empty;
+                }
+                this.description_editText.Text = SelectedItem?.Description ?? string.Empty;
+                this.warranty_editText.Text = SelectedItem?.Warranty.ToString() ?? string.Empty;
+                this.tags_editText.Text = SelectedItem?.Tag ?? string.Empty;
+
+                var date = DateTime.Now;
+                this.date_button.Text = SelectedItem?.Date.ToString(Resources.GetString(Resource.String.DateFormat)) ?? string.Empty;
+                this.date_button.Tag = SelectedItem != null ? new JavaLangObjectWrapper<DateTime>(SelectedItem.Date) : null;
+                
+            }
         }
 
 
@@ -220,7 +303,8 @@ namespace TwaWallet.Fragments
             
             try
             {
-                int cId = ((JavaLangObjectWrapper<Category>)category_button.Tag).Value.Id;
+                // earnings cant have category
+                int cId = this.earnings_checkBox.Checked ? 0 : ((JavaLangObjectWrapper<Category>)category_button.Tag).Value.Id;
                 int oId = ((JavaLangObjectWrapper<Owner>)owner_button.Tag).Value.Id;
                 int pId = ((JavaLangObjectWrapper<PaymentType>)paymentType_button.Tag).Value.Id;
 
@@ -258,7 +342,24 @@ namespace TwaWallet.Fragments
                 //} 
                 #endregion
 
-                if (db.Insert(record).Result)
+                if (SelectedItem != null) // update existing item
+                {
+                    record.Id = SelectedItem.Id;
+                    if (db.Update(record).Result)
+                    {
+                        Toast.MakeText(this.Activity, record.ToString(), ToastLength.Short).Show();
+
+                        if (onContinueWithHandler != null)
+                        {
+                            onContinueWithHandler();
+                        }
+                        Dismiss();
+                        
+                        //SelectedItem = null;
+                        //InitLayout();
+                    }
+                }
+                else if (db.Insert(record).Result) // inser new item
                 {
                     Toast.MakeText(this.Activity, record.ToString(), ToastLength.Short).Show();
                     InitLayout();

@@ -18,7 +18,7 @@ using TwaWallet.Classes;
 
 namespace TwaWallet.Fragments
 {
-    public class HistoryFragment : Fragment
+    public class HistoryFragment : DialogFragment //Fragment
     {
         #region Members
         private const string TAG = "X:" + nameof(HistoryFragment);
@@ -56,6 +56,39 @@ namespace TwaWallet.Fragments
             //LoadData();
         }
 
+        public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
+        {
+            Log.Debug(TAG, nameof(OnCreateView));
+
+            // Use this to return your custom view for this Fragment
+            // return inflater.Inflate(Resource.Layout.YourFragment, container, false);
+
+            //return base.OnCreateView(inflater, container, savedInstanceState);
+            //return inflater.Inflate(Resource.Layout.History, container, false);
+
+            View v = inflater.Inflate(Resource.Layout.History, container, false);
+
+            listView = v.FindViewById<ListView>(Resource.Id.history_listView);
+            listView.ItemClick += OnListItemClick;
+
+            count_value = v.FindViewById<TextView>(Resource.Id.count_value);
+            filterCost_value = v.FindViewById<TextView>(Resource.Id.filterCost_value);
+            monthCost_value = v.FindViewById<TextView>(Resource.Id.monthCost_value);
+
+
+            dateFrom_button = v.FindViewById<Button>(Resource.Id.dateFrom_button);
+            dateFrom_button.Click += DateFrom_button_Click;
+            dateTo_button = v.FindViewById<Button>(Resource.Id.dateTo_button);
+            dateTo_button.Click += DateTo_button_Click;
+
+
+            LoadData();
+
+            InitLayout();
+
+            return v;
+        }
+        
         public override void OnResume()
         {
             Log.Debug(TAG, nameof(OnResume));
@@ -90,38 +123,7 @@ namespace TwaWallet.Fragments
             listView.Adapter = new CustomListAdapter(this.Activity, listData);
         }
 
-        public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
-        {
-            Log.Debug(TAG, nameof(OnCreateView));
-
-            // Use this to return your custom view for this Fragment
-            // return inflater.Inflate(Resource.Layout.YourFragment, container, false);
-
-            //return base.OnCreateView(inflater, container, savedInstanceState);
-            //return inflater.Inflate(Resource.Layout.History, container, false);
-
-            View v = inflater.Inflate(Resource.Layout.History, container, false);
-
-            listView = v.FindViewById<ListView>(Resource.Id.history_listView);
-            listView.ItemClick += OnListItemClick;
-
-            count_value = v.FindViewById<TextView>(Resource.Id.count_value);
-            filterCost_value = v.FindViewById<TextView>(Resource.Id.filterCost_value);
-            monthCost_value = v.FindViewById<TextView>(Resource.Id.monthCost_value);
-            
-
-            dateFrom_button = v.FindViewById<Button>(Resource.Id.dateFrom_button);
-            dateFrom_button.Click += DateFrom_button_Click;
-            dateTo_button = v.FindViewById<Button>(Resource.Id.dateTo_button);
-            dateTo_button.Click += DateTo_button_Click;
-
-
-            LoadData();
-            
-            InitLayout();
-
-            return v;
-        }
+        
 
         private void DateTo_button_Click(object sender, EventArgs e)
         {
@@ -176,7 +178,7 @@ namespace TwaWallet.Fragments
             }
         }
 
-        void OnListItemClick(object sender, AdapterView.ItemClickEventArgs e)
+        private void OnListItemClick(object sender, AdapterView.ItemClickEventArgs e)
         {
             Log.Debug(TAG, nameof(OnListItemClick));
 
@@ -185,6 +187,29 @@ namespace TwaWallet.Fragments
             var item = listData.ElementAt(e.Position);
             // Do whatever you like here
             Toast.MakeText(this.Activity, $"You press: {item.Description}", ToastLength.Short).Show();
+
+            // DialogFragment.show() will take care of adding the fragment
+            // in a transaction.  We also want to remove any currently showing
+            // dialog, so make our own transaction and take care of that here.
+            FragmentTransaction ft = FragmentManager.BeginTransaction();
+            Fragment prev = FragmentManager.FindFragmentByTag("dialog");
+            if (prev != null)
+            {
+                ft.Remove(prev);
+            }
+            ft.AddToBackStack(null);
+
+            Log.Debug(TAG, $"{nameof(OnListItemClick)} - try to show ReportFragment like dialog - START");
+            // Create and show the dialog.
+            DialogFragment newFragment = ReportFragment.NewInstance(item.IncludeObjects(db), delegate()
+            {
+                LoadData(((JavaLangObjectWrapper<DateTime>)dateFrom_button.Tag).Value, ((JavaLangObjectWrapper<DateTime>)dateTo_button.Tag).Value);
+            });
+            
+
+            newFragment.Show(ft, "dialog");
+            Log.Debug(TAG, $"{nameof(OnListItemClick)} - try to show ReportFragment like dialog - END");
+
         }
     }
 }

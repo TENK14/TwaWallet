@@ -36,8 +36,7 @@ namespace Database
             Log.Debug(TAG, $"{nameof(CreateDatabase)}");
             return CreateDatabase(Path);
         }
-
-        //public async Task<string> CreateDatabase(string path)
+        
         public /*async*/ Task<bool> CreateDatabase(string path)
         {
             Log.Debug(TAG, $"{nameof(CreateDatabase)} - {nameof(path)}:{path}");
@@ -182,40 +181,6 @@ namespace Database
             });
         }
 
-        public /*async*/ Task<bool> Update<T>(T data)
-        {
-            Log.Debug(TAG, $"{nameof(Update)} - {nameof(data)}:{data}");
-
-            return /*await*/ Update(data, Path);
-        }
-
-        public /*async*/ Task<bool> Update<T>(T data, string path)
-        {
-            Log.Debug(TAG, $"{nameof(Update)} - {nameof(data)}:{data}, {nameof(path)}:{path}");
-
-            return Task.Factory.StartNew(/*async*/ () =>
-            {
-                try
-                {
-                    var db = new SQLiteAsyncConnection(path);
-                    if (/*await*/ db.InsertAsync(data).Result != 0)
-                    {
-                        return true;  //"Single data file updated";
-                    }
-                    else
-                    {
-                        return false;
-                    }
-                }
-                catch (SQLiteException ex)
-                {
-                    Log.Error(TAG, $"{nameof(Update)} - {nameof(ex)}:{ex.Message}");
-                    throw;
-                    //return ex.Message;
-                }
-            });
-        }
-
         public /*async*/ Task<bool> InsertAll<T>(IEnumerable<T> data)
         {
             Log.Debug(TAG, $"{nameof(InsertAll)} - {nameof(data)}.Count:{data.Count()}");
@@ -224,7 +189,7 @@ namespace Database
         }
 
         public /*async*/ Task<bool> InsertAll<T>(IEnumerable<T> data, string path)
-        { 
+        {
             Log.Debug(TAG, $"{nameof(InsertAll)} - {nameof(data)}.Count:{data.Count()}, {nameof(path)}:{path}");
 
             return Task.Factory.StartNew(/*async*/ () =>
@@ -251,6 +216,40 @@ namespace Database
                 catch (SQLiteException ex)
                 {
                     Log.Error(TAG, $"{nameof(InsertAll)} - {nameof(ex)}:{ex.Message}");
+                    throw;
+                    //return ex.Message;
+                }
+            });
+        }
+
+        public /*async*/ Task<bool> Update<T>(T data)
+        {
+            Log.Debug(TAG, $"{nameof(Update)} - {nameof(data)}:{data}");
+
+            return /*await*/ Update(data, Path);
+        }
+
+        public /*async*/ Task<bool> Update<T>(T data, string path)
+        {
+            Log.Debug(TAG, $"{nameof(Update)} - {nameof(data)}:{data}, {nameof(path)}:{path}");
+
+            return Task.Factory.StartNew(/*async*/ () =>
+            {
+                try
+                {
+                    var db = new SQLiteAsyncConnection(path);
+                    if (/*await*/ db.UpdateAsync(data).Result != 0)
+                    {
+                        return true;  //"Single data file updated";
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+                catch (SQLiteException ex)
+                {
+                    Log.Error(TAG, $"{nameof(Update)} - {nameof(ex)}:{ex.Message}");
                     throw;
                     //return ex.Message;
                 }
@@ -291,9 +290,7 @@ namespace Database
                 }
             });
         }
-
-        //public async Task<IEnumerable<T>> Select<T>(string whereClause, string orderClause)
-        //public Task<IEnumerable<T>> Select<T>(string whereClause, string orderClause)
+                        
         public Task<List<T>> Select<T, U>(Expression<Func<T, bool>> whereClause, Expression<Func<T, U>> orderClause, bool ascending=true) where T : new()
         {
             Log.Debug(TAG, $"{nameof(Select)} - {nameof(whereClause)}:{whereClause}, {nameof(orderClause)}:{orderClause}");
@@ -302,11 +299,7 @@ namespace Database
             var result = Select<T, U>(whereClause, orderClause, ascending, Path);
             return result;
         }
-
-
-
-        //public async Task<IEnumerable<T>> Select<T>(string whereClause, string orderClause, string path)
-        //public Task<IEnumerable<T>> Select<T>(string whereClause, string orderClause, string path) where T:new()
+        
         public Task<List<T>> Select<T,U>(Expression<Func<T, bool>> whereClause, Expression<Func<T, U>> orderClause, bool ascending, string path) where T:new()
         {
             Log.Debug(TAG, $"{nameof(Select)} - {nameof(whereClause)}:{whereClause}, {nameof(orderClause)}:{orderClause}, {nameof(path)}:{path}");

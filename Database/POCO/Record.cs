@@ -22,6 +22,7 @@ namespace Database.POCO
         /// <summary>
         /// ForingKey
         /// </summary>
+        [Indexed]
         public int CategoryId { get; set; }   
         [Ignore]
         public Category Category { get; set; }
@@ -30,12 +31,14 @@ namespace Database.POCO
         /// <summary>
         /// ForingKey
         /// </summary>
+        [Indexed]
         public int OwnerId { get; set; }
         [Ignore]
         public Owner Owner { get; set; }
         /// <summary>
         /// ForingKey
         /// </summary>
+        [Indexed]
         public int PaymentTypeId { get; set; }
         [Ignore]
         public PaymentType PaymentType { get; set; }
@@ -79,7 +82,7 @@ namespace Database.POCO
 
         public string ToString(char delimiter, string dateFormat)
         {
-            Log.Debug(TAG, $"{nameof(ToString)} - {nameof(delimiter)}:{delimiter}");
+            Log.Debug(TAG, $"{nameof(ToString)} - {nameof(delimiter)}:{delimiter}, {nameof(dateFormat)}:{dateFormat}");
 
             //"01.10.2016"; "-170.0"; "obcerstveni"; "Vylety"; "0"; "Hotovost"; "Tom"
             return 
@@ -87,7 +90,7 @@ namespace Database.POCO
                 + $"{Cost}{delimiter}"
                 + $"{Description}{delimiter}"
                 //+ $"{CategoryId}{delimiter}"
-                + $"{Category.Description}{delimiter}"
+                + $"{Category?.Description ?? string.Empty}{delimiter}"
                 + $"{Warranty}{delimiter}"
                 //+ $"{PaymentTypeId}{delimiter}"
                 + $"{PaymentType.Description}{delimiter}"

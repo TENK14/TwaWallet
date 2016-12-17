@@ -159,18 +159,18 @@ namespace TwaWallet
             if (!File.Exists(pathToDatabase))
             {
                 #region Ask for permission
-                const string permission = Android.Manifest.Permission.WriteExternalStorage;
-                var hasWriteContactsPermission = CheckSelfPermission(permission);
+                //const string permission = Android.Manifest.Permission.WriteExternalStorage;
+                //var hasWriteContactsPermission = CheckSelfPermission(permission);
 
-                if (hasWriteContactsPermission != Android.Content.PM.Permission.Granted)
-                {
-                    RequestPermissions(new string[] { Android.Manifest.Permission.WriteExternalStorage },
-                            REQUEST_CODE_ASK_PERMISSIONS);
-                    return;
-                } 
+                //if (hasWriteContactsPermission != Android.Content.PM.Permission.Granted)
+                //{
+                //    RequestPermissions(new string[] { Android.Manifest.Permission.WriteExternalStorage },
+                //            REQUEST_CODE_ASK_PERMISSIONS);
+                //    return;
+                //} 
                 #endregion
 
-
+                Log.Debug(TAG, $"DB will be created!");
                 IDataContext db = new DataContext(pathToDatabase);
                 var result = db.CreateDatabase().Result;
                 //Toast.MakeText(this,result,ToastLength.Short).Show();// (pathToDatabase);

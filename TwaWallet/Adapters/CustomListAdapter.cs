@@ -90,7 +90,8 @@ namespace TwaWallet.Adapters
 
             view.FindViewById<TextView>(Resource.Id.description_textView).Text = item.Description;
             view.FindViewById<TextView>(Resource.Id.owner_textView).Text = lstOwner.Where(p => p.Id == item.OwnerId).FirstOrDefault().Name;
-            view.FindViewById<TextView>(Resource.Id.category_textView).Text = lstCategory.Where(p => p.Id == item.CategoryId).FirstOrDefault().Description;
+            // earnings cant have category
+            view.FindViewById<TextView>(Resource.Id.category_textView).Text = lstCategory.Where(p => p.Id == item.CategoryId).FirstOrDefault()?.Description ?? string.Empty;
             view.FindViewById<TextView>(Resource.Id.cost_textView).Text = item.Cost.ToString();
             view.FindViewById<TextView>(Resource.Id.date_textView).Text = item.Date.ToString(this.context.Resources.GetString(Resource.String.DateFormat));
             view.FindViewById<TextView>(Resource.Id.tag_textView).Text = item.Tag;

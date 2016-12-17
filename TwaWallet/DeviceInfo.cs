@@ -227,20 +227,26 @@ namespace TwaWallet
             return result;
         }
 
-        
+        // /data/user/0/TwaWallet.TwaWallet/files/
         public static string GetFilesStorage()
         {
             Log.Debug(TAG, nameof(GetFilesStorage));
+
+            string result = string.Empty;
+
             // "/storage/emulated/0/TWA"
-            //return Android.OS.Environment.ExternalStorageDirectory.AbsolutePath;
+            //result = Android.OS.Environment.ExternalStorageDirectory.AbsolutePath;
 
             // "/data/user/0/TwaWallet.TwaWallet/files/TWA/TwaWallet/TwaWalletDB.db"
-            string result = System.Environment.GetFolderPath(System.Environment.SpecialFolder.MyDocuments);
+            result = System.Environment.GetFolderPath(System.Environment.SpecialFolder.MyDocuments);
+
+
             Log.Debug(TAG, $"{nameof(GetFilesPath)} - {nameof(result)}:{result}");
 
             return result;
         }
 
+        // /TWA/TwaWallet/
         public static string GetFilesPath()
         {
             Log.Debug(TAG, nameof(GetFilesPath));

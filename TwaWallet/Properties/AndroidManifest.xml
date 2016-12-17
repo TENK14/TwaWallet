@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="TwaWallet.TwaWallet" android:versionCode="6" android:versionName="2016.12.15" android:installLocation="auto">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="TwaWallet.TwaWallet" android:versionCode="6" android:versionName="2016.12.16" android:installLocation="auto">
 	<uses-sdk android:minSdkVersion="15" android:targetSdkVersion="24" />
 	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-	<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+	<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" maxSdkVersion='18'/>
 	<!--<application android:label="TwaWallet_xamarin" android:icon="@drawable/Icon" android:theme="@style/Theme.AppCompat.Light.NoActionBar">-->
 	<!--<application android:label="@string/ApplicationName" android:icon="@drawable/Icon" android:theme="@style/AppTheme">-->
 	<application android:label="TwaWallet_xamarin" android:icon="@drawable/Icon" android:theme="@style/AppTheme"></application>
