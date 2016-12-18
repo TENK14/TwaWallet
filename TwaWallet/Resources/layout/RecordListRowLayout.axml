@@ -24,7 +24,6 @@
             android:layout_width="40dip"
             android:layout_height="40dip"
             android:src="@drawable/credit_card"
-            
             android:layout_gravity="center" />
         <TextView
             android:id="@+id/owner_textView"
@@ -37,9 +36,8 @@
             android:textStyle="bold"
             android:typeface="sans"
             android:textAlignment="center"
-            
             android:gravity="center" />
-      <!--android:textAppearance="@android:style/TextAppearance.Small"-->
+    <!--android:textAppearance="@android:style/TextAppearance.Small"-->
     </LinearLayout>
 <!-- Data -->
     <LinearLayout
@@ -92,10 +90,9 @@
                 android:textColor="#ffffff"
                 android:textStyle="bold"
                 android:typeface="sans"
-                
                 android:layout_weight="1" />
-          <!--android:textAppearance="@android:style/TextAppearance.Small"-->
-          <TextView
+        <!--android:textAppearance="@android:style/TextAppearance.Small"-->
+            <TextView
                 android:id="@+id/date_textView"
                 android:text="date"
                 android:layout_width="match_parent"

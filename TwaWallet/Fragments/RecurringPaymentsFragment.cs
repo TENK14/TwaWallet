@@ -14,9 +14,9 @@ using Android.Support.V4.App;
 
 namespace TwaWallet.Fragments
 {
-    public class RegularPaymentsFragment : Fragment
+    public class RecurringPaymentsFragment : Fragment
     {
-        private const string TAG = "X:" + nameof(RegularPaymentsFragment);
+        private const string TAG = "X:" + nameof(RecurringPaymentsFragment);
         
 
         public override void OnCreate(Bundle savedInstanceState)
@@ -36,7 +36,17 @@ namespace TwaWallet.Fragments
             // return inflater.Inflate(Resource.Layout.YourFragment, container, false);
 
             //return base.OnCreateView(inflater, container, savedInstanceState);
-            return inflater.Inflate(Resource.Layout.RegularPayments, container, false);
+            return inflater.Inflate(Resource.Layout.RecurringPayments, container, false);
+        }
+
+        public override void OnResume()
+        {
+            Log.Debug(TAG, nameof(OnResume));
+
+            base.OnResume();
+
+            //LoadData();
+            //InitLayout();
         }
     }
 }

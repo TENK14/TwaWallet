@@ -29,35 +29,35 @@ namespace Database
             {                
                 await database.InsertAll<Owner>(new List<Owner>()
                 {
-                    new Owner {Name = "Tom", Default = true },
-                    new Owner {Name = "Eli", Default = false }
+                    new Owner {Name = "Tom", IsDefault = true },
+                    new Owner {Name = "Eli", IsDefault = false }
                 },
                 path);
 
                 await database.InsertAll<PaymentType>(new List<PaymentType>()
                 {
-                    new PaymentType {Description = "Hotovost", Default = true },
-                    new PaymentType {Description = "Karta", Default = false }
+                    new PaymentType {Description = "Hotovost", IsDefault = true },
+                    new PaymentType {Description = "Karta", IsDefault = false }
                 },
                 path);
 
                 await database.InsertAll<Category>(new List<Category>()
                 {
-                    new Category {Description = "Obìdy", Default = true },
-                    new Category {Description = "Výlety", Default = false },
-                    new Category {Description = "Potraviny", Default = false },
-                    new Category {Description = "Nezaøazené", Default = false },
-                    new Category {Description = "Restaurace,Bary", Default = false },
-                    new Category {Description = "Domácnost", Default = false },
-                    new Category {Description = "Obleèení,obuv", Default = false },
-                    new Category {Description = "Pohonné hmoty", Default = false },
-                    new Category {Description = "Služby", Default = false },
-                    new Category {Description = "Drogerie", Default = false },
-                    new Category {Description = "Mzda", Default = false },
-                    new Category {Description = "Léky", Default = false },
-                    new Category {Description = "Zábava,kultura", Default = false },
-                    new Category {Description = "Sport", Default = false },
-                    new Category {Description = "Doprava", Default = false },
+                    new Category {Description = "Obìdy", IsDefault = true },
+                    new Category {Description = "Výlety", IsDefault = false },
+                    new Category {Description = "Potraviny", IsDefault = false },
+                    new Category {Description = "Nezaøazené", IsDefault = false },
+                    new Category {Description = "Restaurace,Bary", IsDefault = false },
+                    new Category {Description = "Domácnost", IsDefault = false },
+                    new Category {Description = "Obleèení,obuv", IsDefault = false },
+                    new Category {Description = "Pohonné hmoty", IsDefault = false },
+                    new Category {Description = "Služby", IsDefault = false },
+                    new Category {Description = "Drogerie", IsDefault = false },
+                    new Category {Description = "Mzda", IsDefault = false },
+                    new Category {Description = "Léky", IsDefault = false },
+                    new Category {Description = "Zábava,kultura", IsDefault = false },
+                    new Category {Description = "Sport", IsDefault = false },
+                    new Category {Description = "Doprava", IsDefault = false },
                 },
                 path);
 
@@ -83,8 +83,8 @@ namespace Database
                 {
                     result = database.InsertAll<Owner>(new List<Owner>()
                     {
-                        new Owner {Name = OwnerConst.Tom, Default = true },
-                        new Owner {Name = OwnerConst.Eli, Default = false }
+                        new Owner {Name = OwnerConst.Tom, IsDefault = true },
+                        new Owner {Name = OwnerConst.Eli, IsDefault = false }
                     },
                     path).Result;
 
@@ -95,8 +95,8 @@ namespace Database
 
                     result = database.InsertAll<PaymentType>(new List<PaymentType>()
                     {
-                        new PaymentType {Description = PaymentTypeConst.Money /*"Hotovost"*/, Default = true },
-                        new PaymentType {Description = PaymentTypeConst.Card /*"Karta"*/, Default = false }
+                        new PaymentType {Description = PaymentTypeConst.Money /*"Hotovost"*/, IsDefault = true },
+                        new PaymentType {Description = PaymentTypeConst.Card /*"Karta"*/, IsDefault = false }
                     },
                     path).Result;
 
@@ -107,21 +107,21 @@ namespace Database
 
                     result = database.InsertAll<Category>(new List<Category>()
                     {
-                        new Category {Description = "Obìdy", Default = true },
-                        new Category {Description = "Výlety", Default = false },
-                        new Category {Description = "Potraviny", Default = false },
-                        new Category {Description = "Nezaøazené", Default = false },
-                        new Category {Description = "Restaurace,Bary", Default = false },
-                        new Category {Description = "Domácnost", Default = false },
-                        new Category {Description = "Obleèení,obuv", Default = false },
-                        new Category {Description = "Pohonné hmoty", Default = false },
-                        new Category {Description = "Služby", Default = false },
-                        new Category {Description = "Drogerie", Default = false },
-                        new Category {Description = "Mzda", Default = false },
-                        new Category {Description = "Léky", Default = false },
-                        new Category {Description = "Zábava,kultura", Default = false },
-                        new Category {Description = "Sport", Default = false },
-                        new Category {Description = "Doprava", Default = false },
+                        new Category {Description = "Obìdy", IsDefault = true },
+                        new Category {Description = "Výlety", IsDefault = false },
+                        new Category {Description = "Potraviny", IsDefault = false },
+                        new Category {Description = "Nezaøazené", IsDefault = false },
+                        new Category {Description = "Restaurace,Bary", IsDefault = false },
+                        new Category {Description = "Domácnost", IsDefault = false },
+                        new Category {Description = "Obleèení,obuv", IsDefault = false },
+                        new Category {Description = "Pohonné hmoty", IsDefault = false },
+                        new Category {Description = "Služby", IsDefault = false },
+                        new Category {Description = "Drogerie", IsDefault = false },
+                        new Category {Description = "Mzda", IsDefault = false },
+                        new Category {Description = "Léky", IsDefault = false },
+                        new Category {Description = "Zábava,kultura", IsDefault = false },
+                        new Category {Description = "Sport", IsDefault = false },
+                        new Category {Description = "Doprava", IsDefault = false },
                     },
                     path).Result;
 

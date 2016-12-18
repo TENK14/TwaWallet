@@ -385,8 +385,30 @@ namespace Database
                 {
                     var db = new SQLiteAsyncConnection(path);
 
-                    db.ExecuteAsync($"UPDATE {typeof(T)} SET Default = {isDefault.ToString()}");
-                                        
+                    string query = $"UPDATE {typeof(T).Name} SET {nameof(BaseWithDescriptionAndDefault.IsDefault)} = {(isDefault ? 1 : 0)}";
+                    //string query = $"UPDATE {typeof(T).Name} SET Name='Tom'";
+                    //string query = $"UPDATE {typeof(T).Name} SET Default = 0";
+                    //string query = $"UPDATE {typeof(T).Name} SET IsDefault=0";
+                    //query = "UPDATE RECORD SET Warranty = 12";
+                    var r = db.ExecuteAsync(query).Result;
+                    if (r != 0)
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                    //.ContinueWith(t =>
+                    //{
+                    //    #region DEBUG
+                    //    var items = Select<Owner, int>(p => p.Id > 0, p => p.Id).Result;
+                    //    foreach (Owner item in items)
+                    //    {
+                    //        Log.Debug(TAG, $"{item.ToString()}");
+                    //    }
+                    //    #endregion
+                    //});
                     return true;
                 }
                 catch (SQLiteException ex)

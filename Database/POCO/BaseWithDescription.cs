@@ -15,6 +15,6 @@ namespace Database.POCO
     public abstract class BaseWithDescriptionAndDefault : Base
     {
         public string Description { get; set; }
-        public bool Default { get; set; } = false;
+        public bool IsDefault { get; set; } = false;
     }
 }

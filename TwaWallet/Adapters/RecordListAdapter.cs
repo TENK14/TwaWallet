@@ -16,9 +16,9 @@ using Database.Constants;
 
 namespace TwaWallet.Adapters
 {
-    public class CustomListAdapter : BaseAdapter<Record>
+    public class RecordListAdapter : BaseAdapter<Record>
     {
-        private const string TAG = "X:" + nameof(CustomListAdapter);
+        private const string TAG = "X:" + nameof(RecordListAdapter);
 
         Activity context;
         List<Record> list;
@@ -28,10 +28,10 @@ namespace TwaWallet.Adapters
         List<Owner> lstOwner;
         List<PaymentType> lstPaymentType;
 
-        public CustomListAdapter(Activity _context, List<Record> _list, IDataContext db)
+        public RecordListAdapter(Activity _context, List<Record> _list, IDataContext db)
             : base()
         {
-            Log.Debug(TAG, nameof(CustomListAdapter));
+            Log.Debug(TAG, nameof(RecordListAdapter));
 
             this.context = _context;
             this.list = _list;
@@ -72,7 +72,7 @@ namespace TwaWallet.Adapters
             // otherwise create a new one
             if (view == null)
             {
-                view = context.LayoutInflater.Inflate(Resource.Layout.ListRowLayout, parent, false);
+                view = context.LayoutInflater.Inflate(Resource.Layout.RecordListRowLayout, parent, false);
             }
 
             Record item = this[position];

@@ -10,11 +10,22 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using SQLite;
+using Android.Util;
 
 namespace Database.POCO
 {
     public class Category : BaseWithDescriptionAndDefault
     {
-        
+        private const string TAG = "X:" + nameof(Category);
+
+        public override string ToString()
+        {
+            Log.Debug(TAG, nameof(ToString));
+
+            return $"{nameof(Id)}: {Id}, \r"
+                    + $"{nameof(Description)}: {Description}, \r"
+                    + $"{ nameof(IsDefault)}: {IsDefault.ToString()}\r"
+                    ;
+        }
     }
 }

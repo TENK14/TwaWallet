@@ -18,6 +18,7 @@ namespace Database.POCO
     public class Record : Base
     {
         private const string TAG = "X:" + nameof(Record);
+
         public float Cost { get; set; }
         public string Description { get; set; }
         /// <summary>
@@ -72,7 +73,8 @@ namespace Database.POCO
         {
             Log.Debug(TAG, nameof(ToString));
 
-            return $"{nameof(Description)}: {Description}, \r"
+            return $"{nameof(Id)}: {Id}, \r"
+                    + $"{nameof(Description)}: {Description}, \r"
                     + $"{nameof(Cost)}: {Cost}, \r"
                     + $"{ nameof(CategoryId)}: {CategoryId}, \r"
                     + $"{ nameof(Warranty)}: {Warranty}, \r"

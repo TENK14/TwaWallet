@@ -18,10 +18,24 @@
         android:minHeight="25px">-->
 <!-- ListViews description -->
     <LinearLayout
-        android:id="@+id/firstRow"
+        android:id="@+id/eighthRow"
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+        <Button
+            style="@style/ButtonStyle"
+            android:text="@string/Save"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:id="@+id/save_button"
+            android:layout_weight="1" />
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/firstRow"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/eighthRow">
         <TextView
             style="@style/TextViewStyle"
             android:id="@+id/category_textView"
@@ -227,7 +241,7 @@
         android:layout_weight="4" />-->
         </LinearLayout>
     </LinearLayout>
-    <LinearLayout
+<!--<LinearLayout
         android:id="@+id/eighthRow"
         android:orientation="horizontal"
         android:layout_width="match_parent"
@@ -240,7 +254,7 @@
             android:layout_height="match_parent"
             android:id="@+id/save_button"
             android:layout_weight="1" />
-    </LinearLayout>
+    </LinearLayout>-->
 <!--</RelativeLayout>-->
 <!--</ScrollView>-->
 </RelativeLayout>

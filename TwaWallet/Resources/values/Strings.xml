@@ -19,6 +19,7 @@
   <string name="RegularPayments">PRAVIDELNE PLATBY</string>
   
   <!--  -->
+  <string name="AddRegularPayment">Přidat pravidelnou platbu</string>
   <string name="Category">Kategorie</string>
   <string name="Cost">Cena</string>
   <string name="Date">Datum</string>

@@ -103,15 +103,15 @@ namespace TwaWallet.Fragments
         {
             Log.Debug(TAG, nameof(InitLayout));
 
-            var category = lstCategory.Where(p => p.Default).FirstOrDefault();
+            var category = lstCategory.Where(p => p.IsDefault).FirstOrDefault();
             this.category_button.Text = category.Description;
             this.category_button.Tag = new JavaLangObjectWrapper<Category>(category);
 
-            var paymentType = lstPaymentType.Where(p => p.Default).FirstOrDefault();
+            var paymentType = lstPaymentType.Where(p => p.IsDefault).FirstOrDefault();
             this.paymentType_button.Text = paymentType.Description;
             this.paymentType_button.Tag = new JavaLangObjectWrapper<PaymentType>(paymentType);
 
-            var owner = lstOwner.Where(p => p.Default).FirstOrDefault();
+            var owner = lstOwner.Where(p => p.IsDefault).FirstOrDefault();
             this.owner_button.Text = owner.Name;
             this.owner_button.Tag = new JavaLangObjectWrapper<Owner>(owner);
         }
@@ -125,22 +125,22 @@ namespace TwaWallet.Fragments
                 category_button.Text = selectedItem.Description;
                 category_button.Tag = new JavaLangObjectWrapper<Category>(selectedItem);
 
-                db.SetAllDefault<Category>(false);
+                var r = db.SetAllDefault<Category>(false).Result;
 
-                selectedItem.Default = true;
+                selectedItem.IsDefault = true;
 
                 if (db.Update(selectedItem).Result)
                 {
-                    Toast.MakeText(this.Activity, Resource.String.Saved, ToastLength.Short);
+                    Toast.MakeText(this.Activity, Resource.String.Saved, ToastLength.Short).Show();
                 }
                 else
                 {
-                    Toast.MakeText(this.Activity, Resource.String.WasntSaved, ToastLength.Short);
+                    Toast.MakeText(this.Activity, Resource.String.WasntSaved, ToastLength.Short).Show();
                 }
 
-                var item = db.Select<Category, int>(p => p.Default, p => p.Id).Result.FirstOrDefault();
+                //var item = db.Select<Category, int>(p => p.IsDefault, p => p.Id).Result.FirstOrDefault();
 
-                Toast.MakeText(this.Activity, $"default: {item.Description}", ToastLength.Short);
+                //Toast.MakeText(this.Activity, $"default: {item.Description}", ToastLength.Short).Show();
 
             });
             fr.Show(this.Activity.FragmentManager, SimpleListViewDialogFragment<Category>.TAG);
@@ -155,22 +155,34 @@ namespace TwaWallet.Fragments
                 owner_button.Text = selectedItem.Name;
                 owner_button.Tag = new JavaLangObjectWrapper<Owner>(selectedItem);
 
-                db.SetAllDefault<Owner>(false);
+                var r = db.SetAllDefault<Owner>(false).Result;
+                //if (db.SetAllDefault<Owner>(false).Result)
+                //{
+                //    Toast.MakeText(this.Activity, "Inicializovano", ToastLength.Short).Show();
+                //}
+                //else
+                //{
+                //    Toast.MakeText(this.Activity, "Neinicializovano", ToastLength.Short).Show();
+                //}
 
-                selectedItem.Default = true;
+                selectedItem.IsDefault = true;
 
                 if (db.Update(selectedItem).Result)
                 {
-                    Toast.MakeText(this.Activity, Resource.String.Saved, ToastLength.Short);
+                    Toast.MakeText(this.Activity, Resource.String.Saved, ToastLength.Short).Show();
                 }
                 else
                 {
-                    Toast.MakeText(this.Activity, Resource.String.WasntSaved, ToastLength.Short);
+                    Toast.MakeText(this.Activity, Resource.String.WasntSaved, ToastLength.Short).Show();
                 }
 
-                var item = db.Select<Owner, int>(p => p.Default, p => p.Id).Result.FirstOrDefault();
+                //var item = db.Select<Owner, int>(p => p.IsDefault, p => p.Id).Result.FirstOrDefault();
 
-                Toast.MakeText(this.Activity, $"default: {item.Name}", ToastLength.Short);
+                //Toast.MakeText(this.Activity, $"default: {item.Name}", ToastLength.Short).Show();
+
+                //item = db.Select<Owner, int>(p => p.IsDefault, p => p.Id).Result.LastOrDefault();
+
+                //Toast.MakeText(this.Activity, $"default: {item.Name}", ToastLength.Short).Show();
 
             });
             fr.Show(this.Activity.FragmentManager, SimpleListViewDialogFragment<Owner>.TAG);
@@ -185,21 +197,21 @@ namespace TwaWallet.Fragments
                 paymentType_button.Text = selectedItem.Description;
                 paymentType_button.Tag = new JavaLangObjectWrapper<PaymentType>(selectedItem);
 
-                db.SetAllDefault<PaymentType>(false);
+                var r = db.SetAllDefault<PaymentType>(false).Result;
 
-                selectedItem.Default = true;
+                selectedItem.IsDefault = true;
                 if (db.Update(selectedItem).Result)
                 {
-                    Toast.MakeText(this.Activity, Resource.String.Saved, ToastLength.Short);
+                    Toast.MakeText(this.Activity, Resource.String.Saved, ToastLength.Short).Show();
                 }
                 else
                 {
-                    Toast.MakeText(this.Activity, Resource.String.WasntSaved, ToastLength.Short);
+                    Toast.MakeText(this.Activity, Resource.String.WasntSaved, ToastLength.Short).Show();
                 }
 
-                var item = db.Select<PaymentType, int>(p => p.Default, p => p.Id).Result.FirstOrDefault();
+                //var item = db.Select<PaymentType, int>(p => p.IsDefault, p => p.Id).Result.FirstOrDefault();
 
-                Toast.MakeText(this.Activity, $"default: {item.Description}", ToastLength.Short);
+                //Toast.MakeText(this.Activity, $"default: {item.Description}", ToastLength.Short).Show();
 
             });
             fr.Show(this.Activity.FragmentManager, SimpleListViewDialogFragment<PaymentType>.TAG);

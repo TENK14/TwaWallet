@@ -5,9 +5,39 @@ PaymantTypeId - obrazek v leve casti
 Earnings - barva ceny (podminene formatovani)
 
 -----------------------------------------
-  IMG	|CategoryId			Cost		|
+  IMG	|Category			Cost		|
 --------|Description		Date		|
 OwnerId	|Tag				Warranty	|
 -----------------------------------------
 
 =============================================================
+
+PaymantTypeId - obrazek v leve casti
+Earnings - barva ceny (podminene formatovani)
+IsActive - podbarveni celeho radku
+-----------------------------------------------------
+  IMG	|Category			Cost		Frequency	|
+--------|Description		Date		LastUpdate	|
+OwnerId	|Tag				Warranty	EndDate		|
+-----------------------------------------------------
+
+x		public string Description { get; set; }
+x        public int CategoryId { get; set; }
+x        public int PaymentTypeId { get; set; }
+x        public int OwnerId { get; set; }
+x        public float Cost { get; set; }
+
+        /// <summary>
+        /// Pøíjem
+        /// </summary>
+x        public bool Earnings { get; set; } = false;
+x        public int Warranty { get; set; }
+        public DateTime DateCreated  { get; set; }
+        public string Frequency { get; set; }
+        public DateTime LastUpdate { get; set; }
+        public bool IsActive { get; set; } = false;
+
+        /// <summary>
+        /// Do kdy se budou trvalé platby generovat
+        /// </summary>
+        public DateTime EndDate { get; set; }

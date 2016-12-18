@@ -145,7 +145,7 @@ namespace TwaWallet.Fragments
             this.count_value.Text = listData.Count.ToString();
             this.filterCost_value.Text = listData.Select(p => p.Cost).Sum().ToString();
 
-            listView.Adapter = new CustomListAdapter(this.Activity, listData, db);
+            listView.Adapter = new RecordListAdapter(this.Activity, listData, db);
         }
 
         
@@ -185,7 +185,7 @@ namespace TwaWallet.Fragments
         {
             Log.Debug(TAG, nameof(InitLayout));
 
-            listView.Adapter = new CustomListAdapter(this.Activity, listData, this.db);
+            listView.Adapter = new RecordListAdapter(this.Activity, listData, this.db);
             
             if (listData != null && listData.Count > 0)
             {

@@ -34,7 +34,7 @@ namespace TwaWallet
                 new HistoryFragment(),
                 new ExportFragment(),
                 new SettingsFragment(),
-                new RegularPaymentsFragment()
+                new RecurringPaymentsFragment()
             };
 
 

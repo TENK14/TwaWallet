@@ -69,6 +69,16 @@ namespace TwaWallet.Fragments
             return v;
         }
 
+        public override void OnResume()
+        {
+            Log.Debug(TAG, nameof(OnResume));
+
+            base.OnResume();
+
+            //LoadData();
+            InitLayout();
+        }
+
         private void InitLayout()
         {
             Log.Debug(TAG, nameof(InitLayout));

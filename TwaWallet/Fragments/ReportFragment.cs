@@ -160,6 +160,16 @@ namespace TwaWallet.Fragments
             return v;
         }
 
+        public override void OnResume()
+        {
+            Log.Debug(TAG, nameof(OnResume));
+
+            base.OnResume();
+
+            LoadData();
+            InitLayout();
+        }
+
         private void LoadData()
         {
             Log.Debug(TAG, nameof(LoadData));
@@ -191,15 +201,15 @@ namespace TwaWallet.Fragments
 
             if (SelectedItem == null) // Show Empty ReportFragment
             {
-                var category = lstCategory.Where(p => p.Default).FirstOrDefault();
+                var category = lstCategory.Where(p => p.IsDefault).FirstOrDefault();
                 this.category_button.Text = category.Description;
                 this.category_button.Tag = new JavaLangObjectWrapper<Category>(category);
 
-                var paymentType = lstPaymentType.Where(p => p.Default).FirstOrDefault();
+                var paymentType = lstPaymentType.Where(p => p.IsDefault).FirstOrDefault();
                 this.paymentType_button.Text = paymentType.Description;
                 this.paymentType_button.Tag = new JavaLangObjectWrapper<PaymentType>(paymentType);
 
-                var owner = lstOwner.Where(p => p.Default).FirstOrDefault();
+                var owner = lstOwner.Where(p => p.IsDefault).FirstOrDefault();
                 this.owner_button.Text = owner.Name;
                 this.owner_button.Tag = new JavaLangObjectWrapper<Owner>(owner);
 
