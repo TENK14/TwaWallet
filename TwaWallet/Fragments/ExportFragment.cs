@@ -15,6 +15,8 @@ using Database;
 using Database.POCO;
 using TwaWallet.Classes;
 using System.IO;
+using Android;
+using Android.Content.PM;
 
 namespace TwaWallet.Fragments
 {
@@ -143,23 +145,47 @@ namespace TwaWallet.Fragments
             }
 
             #region Ask for permission
-            //const int REQUEST_CODE_ASK_PERMISSIONS = 123;
-            //const string permission = Android.Manifest.Permission.WriteExternalStorage;
-            //var hasWriteContactsPermission = Android.Content.ContextWrapper.CheckSelfPermission(permission);
+            //https://github.com/xamarin/monodroid-samples/blob/master/android-m/RuntimePermissions/MainActivity.cs
+            const int REQUEST_CODE_ASK_PERMISSIONS = 123;
+            const string permission = Android.Manifest.Permission.WriteExternalStorage;
+            
+            var hasWriteContactsPermission = ActivityCompat.CheckSelfPermission(this.Activity, permission);
 
-            //if (hasWriteContactsPermission != Android.Content.PM.Permission.Granted)
+            if (hasWriteContactsPermission != Android.Content.PM.Permission.Granted)
+            {
+                RequestPermissions(new string[] { Android.Manifest.Permission.WriteExternalStorage },
+                        REQUEST_CODE_ASK_PERMISSIONS);
+                return;
+            }
+
+
+
+            //if ((int)Build.VERSION.SdkInt >= 23)
             //{
-            //    RequestPermissions(new string[] { Android.Manifest.Permission.WriteExternalStorage },
-            //            REQUEST_CODE_ASK_PERMISSIONS);
-            //    return;
+            //    if (ActivityCompat.CheckSelfPermission(this.Activity,Manifest.Permission.Camera) != Permission.Granted)
+            //    {
+            //        requestCameraPermission();
+            //    }
+            //    if (CheckSelfPermission(Manifest.Permission.AccessFineLocation) != Permission.Granted)
+            //    {
+            //        requestLocationPermission();
+            //    }
             //}
             #endregion
 
-            var externalPath = global::Android.OS.Environment.ExternalStorageDirectory.AbsolutePath;
-            externalPath = Path.Combine(externalPath, Resources.GetString(Resource.String.CSVfilename));
-            File.WriteAllLines(externalPath, lstStr.ToArray());
-            //File.WriteAllBytes(externalPath, bytes);
-            SendMail(externalPath);
+            try
+            {
+                var externalPath = global::Android.OS.Environment.ExternalStorageDirectory.AbsolutePath;
+                externalPath = Path.Combine(externalPath, Resources.GetString(Resource.String.CSVfilename));
+                File.WriteAllLines(externalPath, lstStr.ToArray());
+                //File.WriteAllBytes(externalPath, bytes);
+                SendMail(externalPath);
+            }
+            catch (Exception ex)
+            {
+                Log.Error(TAG, ex.Message);
+                Toast.MakeText(this.Activity, ex.Message, ToastLength.Short).Show();
+            }
 
             #region OLD - doesnt function on API 23 and higher
             // TODO: make csv file
