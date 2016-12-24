@@ -18,7 +18,7 @@
         android:minHeight="25px">-->
 <!-- ListViews description -->
     <LinearLayout
-        android:id="@+id/eighthRow"
+        android:id="@+id/savehRow"
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -35,7 +35,7 @@
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/eighthRow">
+        android:layout_below="@id/saveRow">
         <TextView
             style="@style/TextViewStyle"
             android:id="@+id/category_textView"

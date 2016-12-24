@@ -102,6 +102,7 @@
     <Compile Include="Fragments\DatePickerFragment.cs" />
     <Compile Include="Fragments\ExportFragment.cs" />
     <Compile Include="Fragments\HistoryFragment.cs" />
+    <Compile Include="Fragments\RecurringPaymentFragment.cs" />
     <Compile Include="Fragments\SimpleListViewDialogFragment.cs" />
     <Compile Include="Fragments\MyListFragment.cs" />
     <Compile Include="Fragments\RecurringPaymentsFragment.cs" />

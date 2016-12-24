@@ -10,6 +10,7 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Android.Util;
+using SQLite;
 
 namespace Database.POCO
 {
@@ -19,8 +20,17 @@ namespace Database.POCO
 
         public string Description { get; set; }
         public int CategoryId { get; set; }
+        [Ignore]
+        public Category Category { get; set; }
+
         public int PaymentTypeId { get; set; }
+        [Ignore]
+        public PaymentType PaymentType { get; set; }
+        
         public int OwnerId { get; set; }
+        [Ignore]
+        public Owner Owner { get; set; }
+
         public float Cost { get; set; }
 
         /// <summary>

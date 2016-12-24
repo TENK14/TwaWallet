@@ -2,4 +2,223 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" />
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:id="@+id/saveRow"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <Button
+            style="@style/ButtonStyle"
+            android:text="@string/Save"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:id="@+id/save_button"
+            android:layout_weight="1" />
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/firstRow"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/saveRow">
+        <TextView
+            style="@style/TextViewStyle"
+            android:id="@+id/category_textView"
+            android:text="@string/Category"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+        <TextView
+            style="@style/TextViewStyle"
+            android:id="@+id/paymentType_textView"
+            android:text="@string/PaymentType"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+        <TextView
+            style="@style/TextViewStyle"
+            android:id="@+id/owner_textView"
+            android:text="@string/Owner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+    </LinearLayout>
+<!-- ListViews (buttons) -->
+    <LinearLayout
+        android:id="@+id/secondRow"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/firstRow">
+        <Button
+            style="@style/ButtonStyle"
+            android:text="@string/Category"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/category_button"
+            android:layout_weight="1" />
+        <Button
+            style="@style/ButtonStyle"
+            android:text="@string/PaymentType"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/paymentType_button"
+            android:layout_weight="1" />
+        <Button
+            style="@style/ButtonStyle"
+            android:text="@string/Owner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/owner_button"
+            android:layout_weight="1" />
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/thirdRow"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/secondRow">
+        <TextView
+            style="@style/TextViewStyle"
+            android:text="@string/Cost"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/cost_textView"
+            android:gravity="left"
+            android:layout_weight="1" />
+        <LinearLayout
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_weight="2">
+            <EditText
+                style="@style/EditTextStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/cost_editText"
+                android:inputType="phone"
+                android:layout_weight="1" />
+        </LinearLayout>
+        <CheckBox
+            style="@style/CheckBoxStyle"
+            android:text="@string/Earnings"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:id="@+id/earnings_checkBox"
+            android:layout_weight="1" />
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/fourthRow"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/thirdRow">
+        <TextView
+            style="@style/TextViewStyle"
+            android:text="@string/Description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/description_textView"
+            android:gravity="left"
+            android:layout_weight="1" />
+        <LinearLayout
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_weight="4">
+            <EditText
+                style="@style/EditTextStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/description_editText"
+                android:inputType="text"
+                android:layout_weight="1" />
+        </LinearLayout>
+    </LinearLayout>
+  <LinearLayout
+      android:id="@+id/fifthRow"
+      android:orientation="horizontal"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_below="@id/thirdRow">
+    <TextView
+        style="@style/TextViewStyle"
+        android:text="@string/Frequency"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/frequency_textView"
+        android:gravity="left"
+        android:layout_weight="1" />
+    <Button
+          style="@style/ButtonStyle"
+          android:id="@+id/frequency_button"
+          android:layout_width="wrap_content"
+          android:layout_height="match_parent"
+          android:layout_margin="1dp"
+          android:layout_weight="4" />
+  </LinearLayout>
+  <LinearLayout
+        android:id="@+id/fifthRow"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin=" 5dp"
+        android:layout_below="@id/fourthRow">
+        <TextView
+            style="@style/TextViewStyle"
+            android:text="@string/EndDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/date_textView"
+            android:gravity="left"
+            android:layout_weight="1" />
+        <Button
+            style="@style/ButtonStyle"
+            android:id="@+id/endDate_button"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_margin="1dp"
+            android:layout_weight="4" />
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/sixthRow"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin=" 5dp"
+        android:layout_below="@id/fifthRow">
+        <TextView
+            style="@style/TextViewStyle"
+            android:text="@string/Warranty"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/warranty_textView"
+            android:gravity="left"
+            android:layout_weight="1" />
+        <LinearLayout
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_weight="4">
+            <EditText
+                style="@style/EditTextStyle"
+                android:id="@+id/warranty_editText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:layout_weight="1" />
+        </LinearLayout>
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/seventhRow"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/sixthRow">
+        <CheckBox
+            style="@style/CheckBoxStyle"
+            android:text="@string/IsActive"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:id="@+id/isActive_checkBox"
+            android:layout_weight="1" />
+    </LinearLayout>
+</LinearLayout>

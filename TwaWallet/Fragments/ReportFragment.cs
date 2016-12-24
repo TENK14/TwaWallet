@@ -316,7 +316,8 @@ namespace TwaWallet.Fragments
             try
             {
                 // earnings cant have category
-                int cId = this.earnings_checkBox.Checked ? 0 : ((JavaLangObjectWrapper<Category>)category_button.Tag).Value.Id;
+                //int cId = this.earnings_checkBox.Checked ? 0 : ((JavaLangObjectWrapper<Category>)category_button.Tag).Value.Id;
+                int cId = ((JavaLangObjectWrapper<Category>)category_button.Tag).Value.Id;
                 int oId = ((JavaLangObjectWrapper<Owner>)owner_button.Tag).Value.Id;
                 int pId = ((JavaLangObjectWrapper<PaymentType>)paymentType_button.Tag).Value.Id;
 
