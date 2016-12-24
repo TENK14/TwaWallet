@@ -158,19 +158,34 @@ namespace TwaWallet
 
             //if (!File.Exists(pathToDatabase))
             //{
-                #region Ask for permission
-                //const string permission = Android.Manifest.Permission.WriteExternalStorage;
-                //var hasWriteContactsPermission = CheckSelfPermission(permission);
+            #region Ask for permission
+            //const string permission = Android.Manifest.Permission.WriteExternalStorage;
+            //var hasWriteContactsPermission = CheckSelfPermission(permission);
 
-                //if (hasWriteContactsPermission != Android.Content.PM.Permission.Granted)
-                //{
-                //    RequestPermissions(new string[] { Android.Manifest.Permission.WriteExternalStorage },
-                //            REQUEST_CODE_ASK_PERMISSIONS);
-                //    return;
-                //} 
-                #endregion
+            //if (hasWriteContactsPermission != Android.Content.PM.Permission.Granted)
+            //{
+            //    RequestPermissions(new string[] { Android.Manifest.Permission.WriteExternalStorage },
+            //            REQUEST_CODE_ASK_PERMISSIONS);
+            //    return;
+            //}
+            #endregion
 
-                Log.Debug(TAG, $"DB will be created!");
+            #region Ask for permission
+            //https://github.com/xamarin/monodroid-samples/blob/master/android-m/RuntimePermissions/MainActivity.cs
+            const int REQUEST_CODE_ASK_PERMISSIONS = 123;
+            const string permission = Android.Manifest.Permission.WriteExternalStorage;
+
+            var hasWriteContactsPermission = ActivityCompat.CheckSelfPermission(this, permission);
+
+            if (hasWriteContactsPermission != Android.Content.PM.Permission.Granted)
+            {
+                RequestPermissions(new string[] { Android.Manifest.Permission.WriteExternalStorage },
+                        REQUEST_CODE_ASK_PERMISSIONS);
+                return;
+            }
+            #endregion
+
+            Log.Debug(TAG, $"DB will be created!");
                 //IDataContext db = new DataContext(pathToDatabase);
                 IDataContext db = DataContextFactory.GetDataContext(pathToDatabase);
                 var result = db.CreateDatabase().Result;

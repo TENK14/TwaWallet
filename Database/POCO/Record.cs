@@ -69,20 +69,27 @@ namespace Database.POCO
             return this;
         }
 
+        //public override string ToString()
+        //{
+        //    Log.Debug(TAG, nameof(ToString));
+
+        //    return $"{nameof(Id)}: {Id}, \r"
+        //            + $"{nameof(Description)}: {Description}, \r"
+        //            + $"{nameof(Cost)}: {Cost}, \r"
+        //            + $"{ nameof(CategoryId)}: {CategoryId}, \r"
+        //            + $"{ nameof(Warranty)}: {Warranty}, \r"
+        //            + $"{ nameof(OwnerId)}: {OwnerId}, \r"
+        //            + $"{ nameof(PaymentTypeId)}: {PaymentTypeId}, \r"
+        //            + $"{ nameof(Tag)}: {Tag}, \r"
+        //            + $"{ nameof(Date)}: {Date.ToString()}\r"
+        //            ;
+        //}
+
         public override string ToString()
         {
             Log.Debug(TAG, nameof(ToString));
 
-            return $"{nameof(Id)}: {Id}, \r"
-                    + $"{nameof(Description)}: {Description}, \r"
-                    + $"{nameof(Cost)}: {Cost}, \r"
-                    + $"{ nameof(CategoryId)}: {CategoryId}, \r"
-                    + $"{ nameof(Warranty)}: {Warranty}, \r"
-                    + $"{ nameof(OwnerId)}: {OwnerId}, \r"
-                    + $"{ nameof(PaymentTypeId)}: {PaymentTypeId}, \r"
-                    + $"{ nameof(Tag)}: {Tag}, \r"
-                    + $"{ nameof(Date)}: {Date.ToString()}\r"
-                    ;
+            return Description;
         }
 
         public string ToString(char delimiter, string dateFormat)

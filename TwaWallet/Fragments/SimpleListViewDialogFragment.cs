@@ -48,7 +48,10 @@ namespace TwaWallet.Fragments
             try
             { 
                 List<string> list;
+                list = _lst.Select(p => p.ToString()).ToList();
 
+                #region OLD
+                /**
                 //if (typeof(T) == typeof(BaseWithDescriptionAndDefault))
                 if ( (typeof(T) == typeof(Category))
                     || (typeof(T) == typeof(PaymentType)) )
@@ -72,6 +75,8 @@ namespace TwaWallet.Fragments
                 {
                     list = _lst.Select(p => p.ToString()).ToList();
                 }
+                /**/
+                #endregion
 
                 var adapter = new ArrayAdapter<string>(Activity, Android.Resource.Layout.SimpleExpandableListItem1, list);
 

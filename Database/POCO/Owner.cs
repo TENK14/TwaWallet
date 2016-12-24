@@ -21,14 +21,21 @@ namespace Database.POCO
         public string Name { get; set; }
         public bool IsDefault { get; set; } = false;
 
+        //public override string ToString()
+        //{
+        //    Log.Debug(TAG, nameof(ToString));
+
+        //    return $"{nameof(Id)}: {Id}, \r"
+        //            + $"{nameof(Name)}: {Name}, \r"
+        //            + $"{nameof(IsDefault)}: {IsDefault}, \r"
+        //            ;
+        //}
+
         public override string ToString()
         {
             Log.Debug(TAG, nameof(ToString));
 
-            return $"{nameof(Id)}: {Id}, \r"
-                    + $"{nameof(Name)}: {Name}, \r"
-                    + $"{nameof(IsDefault)}: {IsDefault}, \r"
-                    ;
+            return Name;
         }
 
     }

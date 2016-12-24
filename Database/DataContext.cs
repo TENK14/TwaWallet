@@ -55,7 +55,7 @@ namespace Database
                     //await connection.CreateTableAsync<RecurringPayment>();
 
                     //connection.CreateTables(typeof(Owner), typeof(Category), typeof(PaymentType), typeof(Record), typeof(RecurringPayment));
-                    var r = /*await*/ connection.CreateTablesAsync(typeof(Owner), typeof(Category), typeof(PaymentType), typeof(Record), typeof(RecurringPayment)).Result;
+                    var r = /*await*/ connection.CreateTablesAsync(typeof(Owner), typeof(Category), typeof(PaymentType), typeof(Interval), typeof(Record), typeof(RecurringPayment)).Result;
 
                     //if (r.Results.ContainsValue())
                     if (this.Select<Category, int>(p => p.Id > 0, p => p.Id).Result.Count <= 0)

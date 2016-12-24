@@ -346,15 +346,31 @@ namespace TwaWallet.Fragments
                 #region Ask for permission
                 //const int REQUEST_CODE_ASK_PERMISSIONS = 123;
                 //const string permission = Android.Manifest.Permission.WriteExternalStorage;
-                //var hasWriteContactsPermission = Android.Content.ContextWrapper.CheckSelfPermission(permission);
+                //var hasWriteContactsPermission = /*Android.Content.ContextWrapper.*/CheckSelfPermission(permission);
 
                 //if (hasWriteContactsPermission != Android.Content.PM.Permission.Granted)
                 //{
                 //    RequestPermissions(new string[] { Android.Manifest.Permission.WriteExternalStorage },
                 //            REQUEST_CODE_ASK_PERMISSIONS);
                 //    return;
-                //} 
+                //}
                 #endregion
+
+                #region Ask for permission
+                //https://github.com/xamarin/monodroid-samples/blob/master/android-m/RuntimePermissions/MainActivity.cs
+                const int REQUEST_CODE_ASK_PERMISSIONS = 123;
+                const string permission = Android.Manifest.Permission.WriteExternalStorage;
+
+                var hasWriteContactsPermission = ActivityCompat.CheckSelfPermission(this.Activity, permission);
+
+                if (hasWriteContactsPermission != Android.Content.PM.Permission.Granted)
+                {
+                    RequestPermissions(new string[] { Android.Manifest.Permission.WriteExternalStorage },
+                            REQUEST_CODE_ASK_PERMISSIONS);
+                    return;
+                }
+                #endregion
+
 
                 if (SelectedItem != null) // update existing item
                 {

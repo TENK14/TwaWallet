@@ -27,6 +27,7 @@ namespace TwaWallet.Fragments
         List<Owner> lstOwner;
         List<PaymentType> lstPaymentType;
         List<Category> lstCategory;
+        List<Interval> lstInterval;
 
         #region GUI
         Button category_button;
@@ -122,36 +123,116 @@ namespace TwaWallet.Fragments
 
 
         }
-
-        private void Interval_button_Click(object sender, EventArgs e)
-        {
-            throw new NotImplementedException();
-        }
-
-        private void Save_button_Click(object sender, EventArgs e)
-        {
-            throw new NotImplementedException();
-        }
-
-        private void EndDate_button_Click(object sender, EventArgs e)
-        {
-            throw new NotImplementedException();
-        }
+        
+        #region Button click
 
         private void Owner_button_Click(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            Log.Debug(TAG, nameof(Owner_button_Click));
+
+            var fr = SimpleListViewDialogFragment<Owner>.NewInstance(lstOwner, delegate (Owner selectedItem)
+            {
+                owner_button.Text = selectedItem.Name;
+                owner_button.Tag = new JavaLangObjectWrapper<Owner>(selectedItem);
+            });
+            fr.Show(this.Activity.FragmentManager, SimpleListViewDialogFragment<Owner>.TAG);
         }
 
         private void PaymentType_button_Click(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            Log.Debug(TAG, nameof(PaymentType_button_Click));
+
+            var fr = SimpleListViewDialogFragment<PaymentType>.NewInstance(lstPaymentType, delegate (PaymentType selectedItem)
+            {
+                paymentType_button.Text = selectedItem.Description;
+                paymentType_button.Tag = new JavaLangObjectWrapper<PaymentType>(selectedItem);
+            });
+            fr.Show(this.Activity.FragmentManager, SimpleListViewDialogFragment<PaymentType>.TAG);
         }
 
         private void Category_button_Click(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            Log.Debug(TAG, nameof(Category_button_Click));
+
+            var fr = SimpleListViewDialogFragment<Category>.NewInstance(lstCategory, delegate (Category selectedItem)
+            {
+                category_button.Text = selectedItem.Description;
+                //category_button.SetFlags();
+                //category_button.Tag = /*"str";//*/ // (Java.Lang.Object)c;
+                category_button.Tag = new JavaLangObjectWrapper<Category>(selectedItem);
+            });
+            fr.Show(this.Activity.FragmentManager, SimpleListViewDialogFragment<Category>.TAG);
+
         }
+
+        private void EndDate_button_Click(object sender, EventArgs e)
+        {
+            Log.Debug(TAG, nameof(EndDate_button_Click));
+
+            DatePickerFragment frag = DatePickerFragment.NewInstance(delegate (DateTime date)
+            {
+                endDate_button.Text = date.ToString(Resources.GetString(Resource.String.DateFormat)); //.ToLongDateString();
+                endDate_button.Tag = new JavaLangObjectWrapper<DateTime>(date);
+            });
+            frag.Show(this.Activity.FragmentManager, DatePickerFragment.TAG);
+        }
+
+        private void Interval_button_Click(object sender, EventArgs e)
+        {
+            Log.Debug(TAG, nameof(Interval_button_Click));
+
+            var fr = SimpleListViewDialogFragment<Interval>.NewInstance(lstInterval, delegate (Interval selectedItem)
+            {
+                interval_button.Text = selectedItem.Description;
+                interval_button.Tag = new JavaLangObjectWrapper<Interval>(selectedItem);
+            });
+            fr.Show(this.Activity.FragmentManager, SimpleListViewDialogFragment<Interval>.TAG);
+        }
+
+        private void Save_button_Click(object sender, EventArgs e)
+        {
+            Log.Debug(TAG, nameof(Save_button_Click));
+
+            try
+            {
+                // earnings cant have category
+                //int cId = this.earnings_checkBox.Checked ? 0 : ((JavaLangObjectWrapper<Category>)category_button.Tag).Value.Id;
+                int cId = ((JavaLangObjectWrapper<Category>)category_button.Tag).Value.Id;
+                int oId = ((JavaLangObjectWrapper<Owner>)owner_button.Tag).Value.Id;
+                int pId = ((JavaLangObjectWrapper<PaymentType>)paymentType_button.Tag).Value.Id;
+
+                int warranty;
+                if (!int.TryParse(warranty_editText.Text, out warranty))
+                {
+                    warranty = 0;
+                }
+
+                float cost = float.Parse(this.cost_editText.Text);
+
+                RecurringPayment item = new RecurringPayment()
+                {
+                    ....
+                };
+
+                #region Ask for permission
+                //https://github.com/xamarin/monodroid-samples/blob/master/android-m/RuntimePermissions/MainActivity.cs
+                const int REQUEST_CODE_ASK_PERMISSIONS = 123;
+                const string permission = Android.Manifest.Permission.WriteExternalStorage;
+
+                var hasWriteContactsPermission = ActivityCompat.CheckSelfPermission(this.Activity, permission);
+
+                if (hasWriteContactsPermission != Android.Content.PM.Permission.Granted)
+                {
+                    RequestPermissions(new string[] { Android.Manifest.Permission.WriteExternalStorage },
+                            REQUEST_CODE_ASK_PERMISSIONS);
+                    return;
+                }
+                #endregion
+
+            }
+        }
+
+        #endregion
 
         public override void OnResume()
         {
@@ -176,6 +257,9 @@ namespace TwaWallet.Fragments
             var r3 = db.Select<Category, int>((o) => o.Id > 0, (o) => o.Id).Result;
             lstCategory = r3.ToList();
 
+            var r4 = db.Select<Interval, int>((o) => o.Id > 0, (o) => o.Id).Result;
+            lstInterval = r4.ToList();
+
             Log.Debug(TAG, $"{nameof(LoadData)} - END");
         }
 
@@ -196,6 +280,10 @@ namespace TwaWallet.Fragments
                 var owner = lstOwner.Where(p => p.IsDefault).FirstOrDefault();
                 this.owner_button.Text = owner.Name;
                 this.owner_button.Tag = new JavaLangObjectWrapper<Owner>(owner);
+
+                var interval = lstInterval.Where(p => p.IsDefault).FirstOrDefault();
+                this.interval_button.Text = interval.Description;
+                this.interval_button.Tag = new JavaLangObjectWrapper<Interval>(interval);
 
                 this.earnings_checkBox.Checked = false;
 

@@ -140,6 +140,21 @@ namespace Database
                         return result;
                     }
 
+                    result = database.InsertAll<Interval>(new List<Interval>()
+                    {
+                        new Interval {Description = "Dennì", IntervalCode = "000001" , IsDefault = false },
+                        new Interval {Description = "Týdnì", IntervalCode = "000007" ,IsDefault = false },
+                        new Interval {Description = "Mìsíènì", IntervalCode = "000100" ,IsDefault = true },
+                        new Interval {Description = "Ètvrtletnì", IntervalCode = "000300" ,IsDefault = false },
+                        new Interval {Description = "Roènì", IntervalCode = "010000" ,IsDefault = false },
+                    },
+                    path).Result;
+
+                    if (!result)
+                    {
+                        return result;
+                    }
+
                     Log.Debug(TAG, $"{nameof(FillDB)} - {nameof(result)}:{result}");
                     
                     return result; //"Single data file inserted or updated";
