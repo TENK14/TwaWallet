@@ -52,7 +52,7 @@
     <Compile Include="POCO\Base.cs" />
     <Compile Include="POCO\BaseWithDescription.cs" />
     <Compile Include="POCO\Category.cs" />
-    <Compile Include="POCO\Frequency.cs" />
+    <Compile Include="POCO\Interval.cs" />
     <Compile Include="POCO\Owner.cs" />
     <Compile Include="POCO\PaymentType.cs" />
     <Compile Include="POCO\Record.cs" />

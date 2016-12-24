@@ -35,7 +35,7 @@ namespace TwaWallet.Fragments
         EditText cost_editText;
         CheckBox earnings_checkBox;
         EditText description_editText;
-        Button frequency_button;
+        Button interval_button;
         Button endDate_button;
         EditText warranty_editText;
         //EditText tags_editText;
@@ -54,7 +54,7 @@ namespace TwaWallet.Fragments
 
         public static RecurringPaymentFragment NewInstance(RecurringPayment selectedItem, Action onContinueWith)
         {
-            Log.Debug(TAG, $"{nameof(NewInstance)} - {nameof(selectedItem)}:{selectedItem.ToString()}");
+            Log.Debug(TAG, $"{nameof(NewInstance)} - {nameof(selectedItem)}:{selectedItem?.ToString() ?? "is null"}");
 
             var frag = new RecurringPaymentFragment();
             frag.SelectedItem = selectedItem;
@@ -78,6 +78,8 @@ namespace TwaWallet.Fragments
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
+            Log.Debug(TAG, nameof(OnCreateView));
+
             // Use this to return your custom view for this Fragment
             // return inflater.Inflate(Resource.Layout.YourFragment, container, false);
 
@@ -98,10 +100,10 @@ namespace TwaWallet.Fragments
 
             description_editText = v.FindViewById<EditText>(Resource.Id.description_editText);
 
-            this.frequency_button = v.FindViewById<Button>(Resource.Id.frequency_button);
-            this.frequency_button.Click += Frequency_button_Click;
+            this.interval_button = v.FindViewById<Button>(Resource.Id.interval_button);
+            this.interval_button.Click += Interval_button_Click;
 
-            endDate_button = v.FindViewById<Button>(Resource.Id.date_button);
+            endDate_button = v.FindViewById<Button>(Resource.Id.endDate_button);
             endDate_button.Click += EndDate_button_Click;
 
             //warranty_button = v.FindViewById<Button>(Resource.Id.warranty_button);
@@ -121,7 +123,7 @@ namespace TwaWallet.Fragments
 
         }
 
-        private void Frequency_button_Click(object sender, EventArgs e)
+        private void Interval_button_Click(object sender, EventArgs e)
         {
             throw new NotImplementedException();
         }
@@ -174,6 +176,7 @@ namespace TwaWallet.Fragments
             var r3 = db.Select<Category, int>((o) => o.Id > 0, (o) => o.Id).Result;
             lstCategory = r3.ToList();
 
+            Log.Debug(TAG, $"{nameof(LoadData)} - END");
         }
 
         private void InitLayout()
@@ -201,8 +204,8 @@ namespace TwaWallet.Fragments
                 this.warranty_editText.Text = string.Empty;
                 //this.tags_editText.Text = string.Empty;
 
-                // TODO: vyres frequency button 
-                //this.frequency_button = 
+                // TODO: vyres interval button 
+                //this.interval_button = 
 
                 var date = DateTime.Now;
                 this.endDate_button.Text = date.ToString(Resources.GetString(Resource.String.DateFormat));
@@ -234,8 +237,8 @@ namespace TwaWallet.Fragments
                 this.warranty_editText.Text = SelectedItem?.Warranty.ToString() ?? string.Empty;
                 //this.tags_editText.Text = SelectedItem?.Tag ?? string.Empty;
 
-                // TODO: vyres frequency button 
-                //this.frequency_button = 
+                // TODO: vyres interval button 
+                //this.interval_button = 
 
                 this.endDate_button.Text = SelectedItem?.EndDate.ToString(Resources.GetString(Resource.String.DateFormat)) ?? string.Empty;
                 this.endDate_button.Tag = SelectedItem != null ? new JavaLangObjectWrapper<DateTime>(SelectedItem.EndDate) : null;

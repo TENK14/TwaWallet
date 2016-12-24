@@ -11,8 +11,8 @@
         android:background="@drawable/my_button"
         android:layout_weight="10">
         <Button
-            android:id="@+id/addRegularPayment_button"
-            android:text="@string/AddRegularPayment"
+            android:id="@+id/addRecurringPayment_button"
+            android:text="@string/AddRecurringPayment"
             android:layout_height="match_parent"
             android:layout_width="match_parent"
             android:background="@drawable/my_button" />

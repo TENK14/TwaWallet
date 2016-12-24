@@ -2088,8 +2088,8 @@ namespace TwaWallet
 		public partial class Id
 		{
 			
-			// aapt resource value: 0x7f0600b9
-			public const int DataListView = 2131099833;
+			// aapt resource value: 0x7f0600b8
+			public const int DataListView = 2131099832;
 			
 			// aapt resource value: 0x7f06008b
 			public const int action0 = 2131099787;
@@ -2143,7 +2143,7 @@ namespace TwaWallet
 			public const int add = 2131099669;
 			
 			// aapt resource value: 0x7f0600b4
-			public const int addRegularPayment_button = 2131099828;
+			public const int addRecurringPayment_button = 2131099828;
 			
 			// aapt resource value: 0x7f06004c
 			public const int alertTitle = 2131099724;
@@ -2229,8 +2229,8 @@ namespace TwaWallet
 			// aapt resource value: 0x7f06007d
 			public const int dateTo_button = 2131099773;
 			
-			// aapt resource value: 0x7f0600b7
-			public const int date_button = 2131099831;
+			// aapt resource value: 0x7f0600b6
+			public const int date_button = 2131099830;
 			
 			// aapt resource value: 0x7f06007a
 			public const int date_textView = 2131099770;
@@ -2331,12 +2331,6 @@ namespace TwaWallet
 			// aapt resource value: 0x7f0600a8
 			public const int fourthRow = 2131099816;
 			
-			// aapt resource value: 0x7f0600ac
-			public const int frequency_button = 2131099820;
-			
-			// aapt resource value: 0x7f0600ab
-			public const int frequency_textView = 2131099819;
-			
 			// aapt resource value: 0x7f060087
 			public const int history_listView = 2131099783;
 			
@@ -2357,6 +2351,12 @@ namespace TwaWallet
 			
 			// aapt resource value: 0x7f060096
 			public const int info = 2131099798;
+			
+			// aapt resource value: 0x7f0600ac
+			public const int interval_button = 2131099820;
+			
+			// aapt resource value: 0x7f0600ab
+			public const int interval_textView = 2131099819;
 			
 			// aapt resource value: 0x7f0600b1
 			public const int isActive_checkBox = 2131099825;
@@ -2468,9 +2468,6 @@ namespace TwaWallet
 			
 			// aapt resource value: 0x7f0600a0
 			public const int save_button = 2131099808;
-			
-			// aapt resource value: 0x7f0600b6
-			public const int savehRow = 2131099830;
 			
 			// aapt resource value: 0x7f060017
 			public const int screen = 2131099671;
@@ -2589,8 +2586,8 @@ namespace TwaWallet
 			// aapt resource value: 0x7f06009d
 			public const int tag_textView = 2131099805;
 			
-			// aapt resource value: 0x7f0600b8
-			public const int tags_editText = 2131099832;
+			// aapt resource value: 0x7f0600b7
+			public const int tags_editText = 2131099831;
 			
 			// aapt resource value: 0x7f060095
 			public const int text = 2131099797;
@@ -2896,7 +2893,7 @@ namespace TwaWallet
 		{
 			
 			// aapt resource value: 0x7f070030
-			public const int AddRegularPayment = 2131165232;
+			public const int AddRecurringPayment = 2131165232;
 			
 			// aapt resource value: 0x7f070025
 			public const int ApplicationName = 2131165221;
@@ -2949,14 +2946,14 @@ namespace TwaWallet
 			// aapt resource value: 0x7f07002d
 			public const int Export = 2131165229;
 			
-			// aapt resource value: 0x7f07003a
-			public const int Frequency = 2131165242;
-			
 			// aapt resource value: 0x7f070024
 			public const int Hello = 2131165220;
 			
 			// aapt resource value: 0x7f07002c
 			public const int History = 2131165228;
+			
+			// aapt resource value: 0x7f07003a
+			public const int Interval = 2131165242;
 			
 			// aapt resource value: 0x7f07003b
 			public const int IsActive = 2131165243;

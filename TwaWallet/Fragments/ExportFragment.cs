@@ -183,7 +183,7 @@ namespace TwaWallet.Fragments
             }
             catch (Exception ex)
             {
-                Log.Error(TAG, ex.Message);
+                Log.Error(TAG, nameof(Export_button_Click), ex.Message);
                 Toast.MakeText(this.Activity, ex.Message, ToastLength.Short).Show();
             }
 

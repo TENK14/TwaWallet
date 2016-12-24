@@ -24,7 +24,7 @@ namespace TwaWallet.Fragments
 
         List<RecurringPayment> listData;
         #region GUI
-        Button addRegularPayment_button;
+        Button addRecurringPayment_button;
         ListView listView;
         #endregion
         #endregion
@@ -52,17 +52,17 @@ namespace TwaWallet.Fragments
             //return base.OnCreateView(inflater, container, savedInstanceState);
             View v = inflater.Inflate(Resource.Layout.RecurringPayments, container, false);
 
-            addRegularPayment_button = v.FindViewById<Button>(Resource.Id.addRegularPayment_button);
-            addRegularPayment_button.Click += AddRegularPayment_button_Click;
+            addRecurringPayment_button = v.FindViewById<Button>(Resource.Id.addRecurringPayment_button);
+            addRecurringPayment_button.Click += AddRecurringPayment_button_Click;
 
             listView = v.FindViewById<ListView>(Resource.Id.regularPayments_listView);
 
             return v;
         }
 
-        private void AddRegularPayment_button_Click(object sender, EventArgs e)
+        private void AddRecurringPayment_button_Click(object sender, EventArgs e)
         {
-            Log.Debug(TAG, nameof(AddRegularPayment_button_Click));
+            Log.Debug(TAG, nameof(AddRecurringPayment_button_Click));
 
             FragmentTransaction ft = FragmentManager.BeginTransaction();
             Fragment prev = FragmentManager.FindFragmentByTag("dialog");
@@ -72,16 +72,16 @@ namespace TwaWallet.Fragments
             }
             ft.AddToBackStack(null);
 
-            Log.Debug(TAG, $"{nameof(AddRegularPayment_button_Click)} - try to show ReportFragment like dialog - START");
+            Log.Debug(TAG, $"{nameof(AddRecurringPayment_button_Click)} - try to show RecurringPaymentFragment like dialog - START");
             // Create and show the dialog.
             DialogFragment newFragment = RecurringPaymentFragment.NewInstance(null, delegate ()
             {
                 LoadData();
             });
-
+            Log.Debug(TAG, $"{nameof(AddRecurringPayment_button_Click)} - 1");
 
             newFragment.Show(ft, "dialog");
-            Log.Debug(TAG, $"{nameof(AddRegularPayment_button_Click)} - try to show ReportFragment like dialog - END");
+            Log.Debug(TAG, $"{nameof(AddRecurringPayment_button_Click)} - try to show ReportFragment like dialog - END");
         }
 
         public override void OnResume()

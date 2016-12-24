@@ -19,7 +19,7 @@
   <string name="RegularPayments">PRAVIDELNE PLATBY</string>
   
   <!--  -->
-  <string name="AddRegularPayment">Přidat pravidelnou platbu</string>
+  <string name="AddRecurringPayment">Přidat pravidelnou platbu</string>
   <string name="Category">Kategorie</string>
   <string name="Cost">Cena</string>
   <string name="Date">Datum</string>
@@ -29,7 +29,7 @@
   <string name="Earnings">Příjem</string>
   <string name="Edit">Editovat</string>
   <string name="EndDate">Do data</string>
-  <string name="Frequency">Frekvence</string>
+  <string name="Interval">Interval</string>
   <string name="IsActive">Aktivní</string>
   <string name="PaymentType">Typ platby</string>
   <string name="Owner">Vlastník</string>

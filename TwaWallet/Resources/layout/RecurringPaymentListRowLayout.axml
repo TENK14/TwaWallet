@@ -73,8 +73,8 @@
                 android:typeface="sans"
                 android:layout_weight="2" />
             <TextView
-                android:id="@+id/frequency_textView"
-                android:text="frequency"
+                android:id="@+id/interval_textView"
+                android:text="interval"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:lineSpacingExtra="3dp"

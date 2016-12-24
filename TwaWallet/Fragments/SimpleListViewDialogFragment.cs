@@ -104,7 +104,7 @@ namespace TwaWallet.Fragments
             }
             catch (Exception ex)
             {
-                Log.Error(TAG, ex.GetBaseException().Message);
+                Log.Error(TAG, nameof(OnCreateView), ex.GetBaseException().Message);
             }
             return view;
 

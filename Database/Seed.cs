@@ -61,6 +61,16 @@ namespace Database
                 },
                 path);
 
+                await database.InsertAll<Interval>(new List<Interval>()
+                {
+                    new Interval {Description = "Dennì", IntervalCode = "000001" , IsDefault = false },
+                    new Interval {Description = "Týdnì", IntervalCode = "000007" ,IsDefault = false },
+                    new Interval {Description = "Mìsíènì", IntervalCode = "000100" ,IsDefault = true },
+                    new Interval {Description = "Ètvrtletnì", IntervalCode = "000300" ,IsDefault = false },
+                    new Interval {Description = "Roènì", IntervalCode = "010000" ,IsDefault = false },
+                },
+                path);
+
 
                 return true; //"Single data file inserted or updated";
             }
