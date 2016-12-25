@@ -34,6 +34,7 @@ namespace TwaWallet.Fragments
         TextView count_value;
         TextView monthCost_value;
         TextView filterCost_value;
+        CheckBox earnings_checkBox;
         Button dateFrom_button;
         Button dateTo_button;
         #endregion
@@ -77,6 +78,8 @@ namespace TwaWallet.Fragments
             count_value = v.FindViewById<TextView>(Resource.Id.count_value);
             filterCost_value = v.FindViewById<TextView>(Resource.Id.filterCost_value);
             monthCost_value = v.FindViewById<TextView>(Resource.Id.monthCost_value);
+            earnings_checkBox = v.FindViewById<CheckBox>(Resource.Id.earnings_checkBox);
+            earnings_checkBox.CheckedChange += Earnings_checkBox_CheckedChange;
 
 
             dateFrom_button = v.FindViewById<Button>(Resource.Id.dateFrom_button);
@@ -91,7 +94,14 @@ namespace TwaWallet.Fragments
 
             return v;
         }
-        
+
+        private void Earnings_checkBox_CheckedChange(object sender, CompoundButton.CheckedChangeEventArgs e)
+        {
+            Log.Debug(TAG, nameof(Earnings_checkBox_CheckedChange));
+
+
+        }
+
         public override void OnResume()
         {
             Log.Debug(TAG, nameof(OnResume));
@@ -110,9 +120,11 @@ namespace TwaWallet.Fragments
             listData = r.ToList();//r.Select(p => $"{p.Description}, {p.Cost}, {p.Date}").ToList();
         }
 
-        private void LoadData(DateTime dateFrom, DateTime dateTo)
+        private void LoadData(DateTime dateFrom, DateTime dateTo, bool includeEarnings)
         {
             Log.Debug(TAG, nameof(LoadData));
+
+
 
             // Refresh review
             var rAll = db.Select<Record, DateTime>((o) => o.Id > 0, (o) => o.Date, false).Result;
@@ -124,10 +136,10 @@ namespace TwaWallet.Fragments
             if ( listAll != null && listAll.Count > 0)
             {
                 // Month values
-                this.monthCost_value.Text = listAll.Where(p => p.Date.Month == DateTime.Now.Month && p.Date.Year == DateTime.Now.Year).Select(p => p.Cost).Sum().ToString();
+                this.monthCost_value.Text = listAll.Where(p => p.Date.Month == DateTime.Now.Month && p.Date.Year == DateTime.Now.Year && p.Earnings == includeEarnings).Select(p => p.Cost).Sum().ToString();
 
                 // Filtered values
-                listData = listAll.Where((o) => o.Date >= dateFrom && o.Date <= dateTo).OrderByDescending(o => o.Date).ToList();
+                listData = listAll.Where((o) => o.Date >= dateFrom && o.Date <= dateTo && o.Earnings == includeEarnings).OrderByDescending(o => o.Date).ToList();
 
                 if (listData != null && listData.Count > 0)
                 {
@@ -159,7 +171,7 @@ namespace TwaWallet.Fragments
                 dateTo_button.Text = date.ToString(Resources.GetString(Resource.String.DateFormat)); //.ToLongDateString();
                 dateTo_button.Tag = new JavaLangObjectWrapper<DateTime>(date);
 
-                LoadData(((JavaLangObjectWrapper<DateTime>)dateFrom_button.Tag).Value, ((JavaLangObjectWrapper<DateTime>)dateTo_button.Tag).Value);
+                LoadData(((JavaLangObjectWrapper<DateTime>)dateFrom_button.Tag).Value, ((JavaLangObjectWrapper<DateTime>)dateTo_button.Tag).Value, earnings_checkBox.Checked);
             });
             frag.Show(this.Activity.FragmentManager, DatePickerFragment.TAG);
 
@@ -174,7 +186,7 @@ namespace TwaWallet.Fragments
                 dateFrom_button.Text = date.ToString(Resources.GetString(Resource.String.DateFormat)); //.ToLongDateString();
                 dateFrom_button.Tag = new JavaLangObjectWrapper<DateTime>(date);
 
-                LoadData(((JavaLangObjectWrapper<DateTime>)dateFrom_button.Tag).Value, ((JavaLangObjectWrapper<DateTime>)dateTo_button.Tag).Value);
+                LoadData(((JavaLangObjectWrapper<DateTime>)dateFrom_button.Tag).Value, ((JavaLangObjectWrapper<DateTime>)dateTo_button.Tag).Value, earnings_checkBox.Checked);
             });
             frag.Show(this.Activity.FragmentManager, DatePickerFragment.TAG);
 
@@ -228,7 +240,7 @@ namespace TwaWallet.Fragments
             // Create and show the dialog.
             DialogFragment newFragment = ReportFragment.NewInstance(item.IncludeObjects(db), delegate()
             {
-                LoadData(((JavaLangObjectWrapper<DateTime>)dateFrom_button.Tag).Value, ((JavaLangObjectWrapper<DateTime>)dateTo_button.Tag).Value);
+                LoadData(((JavaLangObjectWrapper<DateTime>)dateFrom_button.Tag).Value, ((JavaLangObjectWrapper<DateTime>)dateTo_button.Tag).Value, earnings_checkBox.Checked);
             });
             
 
@@ -259,16 +271,16 @@ namespace TwaWallet.Fragments
                     }
                     ft.AddToBackStack(null);
 
-                    Log.Debug(TAG, $"{nameof(OnListItemClick)} - try to show ReportFragment like dialog - START");
+                    Log.Debug(TAG, $"{nameof(OnListItemLongClick)} - try to show ReportFragment like dialog - START");
                     // Create and show the dialog.
                     DialogFragment newFragment = ReportFragment.NewInstance(item.IncludeObjects(db), delegate ()
                     {
-                        LoadData(((JavaLangObjectWrapper<DateTime>)dateFrom_button.Tag).Value, ((JavaLangObjectWrapper<DateTime>)dateTo_button.Tag).Value);
+                        LoadData(((JavaLangObjectWrapper<DateTime>)dateFrom_button.Tag).Value, ((JavaLangObjectWrapper<DateTime>)dateTo_button.Tag).Value, earnings_checkBox.Checked);
                     });
 
 
                     newFragment.Show(ft, "dialog");
-                    Log.Debug(TAG, $"{nameof(OnListItemClick)} - try to show ReportFragment like dialog - END");
+                    Log.Debug(TAG, $"{nameof(OnListItemLongClick)} - try to show ReportFragment like dialog - END");
                 })
                 //.SetNegativeButton("No", dialogClickListener)
                 .SetNegativeButton(this.Activity.Resources.GetString(Resource.String.Delete), (s, args) =>
@@ -277,7 +289,7 @@ namespace TwaWallet.Fragments
                     {
                         Toast.MakeText(this.Activity, Resources.GetString(Resource.String.Deleted), ToastLength.Short).Show();
 
-                        LoadData(((JavaLangObjectWrapper<DateTime>)dateFrom_button.Tag).Value, ((JavaLangObjectWrapper<DateTime>)dateTo_button.Tag).Value);
+                        LoadData(((JavaLangObjectWrapper<DateTime>)dateFrom_button.Tag).Value, ((JavaLangObjectWrapper<DateTime>)dateTo_button.Tag).Value, earnings_checkBox.Checked);
                     }
                     else
                     {

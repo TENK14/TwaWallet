@@ -33,13 +33,21 @@ namespace Database.POCO
 
         public float Cost { get; set; }
 
+        public int IntervalId { get; set; }
+        /// <summary>
+        /// YYMMDD
+        /// </summary>
+        [Ignore]
+        public Interval Interval { get; set; }
+
         /// <summary>
         /// Pøíjem
-        /// </summary>
+        /// </summary>        
         public bool Earnings { get; set; } = false;
         public int Warranty { get; set; }
-        public DateTime DateCreated  { get; set; }
-        public string Frequency { get; set; }
+        public string Tag { get; set; }
+        public DateTime DateCreated  { get; set; } = DateTime.Now;
+        
         public DateTime LastUpdate { get; set; }
         public bool IsActive { get; set; } = false;
 
@@ -47,6 +55,17 @@ namespace Database.POCO
         /// Do kdy se budou trvalé platby generovat
         /// </summary>
         public DateTime EndDate { get; set; }
+
+        public RecurringPayment IncludeObjects(IDataContext db)
+        {
+            Log.Debug(TAG, nameof(IncludeObjects));
+
+            this.Owner = db.Select<Owner, int>((o) => o.Id == this.OwnerId, (o) => o.Id).Result.FirstOrDefault();
+            this.PaymentType = db.Select<PaymentType, int>((o) => o.Id == this.PaymentTypeId, (o) => o.Id).Result.FirstOrDefault();
+            this.Category = db.Select<Category, int>((o) => o.Id == this.CategoryId, (o) => o.Id).Result.FirstOrDefault();
+            this.Interval = db.Select<Interval, int>((o) => o.Id == this.IntervalId, (o) => o.Id).Result.FirstOrDefault();
+            return this;
+        }
 
         public string ToString(string dateFormat)
         {
@@ -60,7 +79,7 @@ namespace Database.POCO
                     + $"{ nameof(PaymentTypeId)}: {PaymentTypeId}, \r"
                     + $"{ nameof(Earnings)}: {Earnings}, \r"
                     + $"{ nameof(DateCreated)}: {DateCreated.ToString(dateFormat)}\r"
-                    + $"{ nameof(Frequency)}: {Frequency}, \r"                    
+                    + $"{ nameof(IntervalId)}: {IntervalId}, \r"                    
                     + $"{ nameof(EndDate)}: {EndDate.ToString(dateFormat)}\r"
                     + $"{ nameof(LastUpdate)}: {LastUpdate.ToString(dateFormat)}\r"
                     + $"{ nameof(IsActive)}: {IsActive.ToString()}\r"

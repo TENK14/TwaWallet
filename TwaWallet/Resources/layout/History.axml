@@ -21,7 +21,7 @@
             <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
-              android:layout_height="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_weight="1">
                 <TextView
                     android:id="@+id/count_label"
@@ -36,43 +36,54 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1" />
             </LinearLayout>
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+                <TextView
+                    android:id="@+id/filterCost_label"
+                    android:text="Filter cost:"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+                <TextView
+                    android:id="@+id/filterCost_value"
+                    android:text="132456"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+            </LinearLayout>
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+                <TextView
+                    android:id="@+id/monthCost_label"
+                    android:text="Month cost:"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+                <TextView
+                    android:id="@+id/monthCost_value"
+                    android:text="12000"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+            </LinearLayout>
           <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-                android:layout_weight="1">
-            <TextView
-                android:id="@+id/filterCost_label"
-                android:text="Filter cost:"
-                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1" />
-            <TextView
-                android:id="@+id/filterCost_value"
-                android:text="132456"
+                android:layout_weight="1">
+            <CheckBox
+                android:id="@+id/earnings_checkBox"
+                android:text="@string/Earnings"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1" />
           </LinearLayout>
-          <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-                android:layout_weight="1">
-            <TextView
-                android:id="@+id/monthCost_label"
-                android:text="Month cost:"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1" />
-            <TextView
-                android:id="@+id/monthCost_value"
-                android:text="12000"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1" />
-          </LinearLayout>
-          
         </LinearLayout>
         <LinearLayout
             android:orientation="vertical"

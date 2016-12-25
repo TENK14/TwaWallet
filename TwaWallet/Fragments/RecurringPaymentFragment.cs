@@ -39,7 +39,7 @@ namespace TwaWallet.Fragments
         Button interval_button;
         Button endDate_button;
         EditText warranty_editText;
-        //EditText tags_editText;
+        EditText tags_editText;
         CheckBox isActive_checkBox;
         Button save_button;
         #endregion
@@ -110,7 +110,7 @@ namespace TwaWallet.Fragments
             //warranty_button = v.FindViewById<Button>(Resource.Id.warranty_button);
             warranty_editText = v.FindViewById<EditText>(Resource.Id.warranty_editText);
 
-            //tags_editText = v.FindViewById<EditText>(Resource.Id.tags_editText);
+            tags_editText = v.FindViewById<EditText>(Resource.Id.tags_editText);
 
             isActive_checkBox = v.FindViewById<CheckBox>(Resource.Id.isActive_checkBox);
 
@@ -200,6 +200,7 @@ namespace TwaWallet.Fragments
                 int cId = ((JavaLangObjectWrapper<Category>)category_button.Tag).Value.Id;
                 int oId = ((JavaLangObjectWrapper<Owner>)owner_button.Tag).Value.Id;
                 int pId = ((JavaLangObjectWrapper<PaymentType>)paymentType_button.Tag).Value.Id;
+                int iId = ((JavaLangObjectWrapper<Interval>)interval_button.Tag).Value.Id;
 
                 int warranty;
                 if (!int.TryParse(warranty_editText.Text, out warranty))
@@ -211,7 +212,20 @@ namespace TwaWallet.Fragments
 
                 RecurringPayment item = new RecurringPayment()
                 {
-                    ....
+                    //TODO: napln RecurringPayment obsah ....
+                    CategoryId = cId, // lstCategory?.First()?.Id ?? 0, //this.category_button.Text,
+                    Cost = this.earnings_checkBox.Checked ? cost : 0f - cost,
+                    EndDate = ((JavaLangObjectWrapper<DateTime>)this.endDate_button.Tag).Value, // DateTime.Now,
+                    Description = this.description_editText.Text,
+                    OwnerId = oId, //lstOwner?.First()?.Id ?? 0, //this.owner_button.Text,
+                    PaymentTypeId = pId, //lstPaymentType?.First()?.Id ?? 0, //this.paymentType_button.Text,
+                    IntervalId = iId,
+                    //Interval = ((JavaLangObjectWrapper<Interval>)interval_button.Tag).Value,                    
+                    //Tag = this.tags_editText.Text,
+                    Warranty = warranty, // 0, //int.Parse(this.warranty_button.Text),
+                    Earnings = this.earnings_checkBox.Checked,
+                    Tag = this.tags_editText.Text,
+                    //DateCreated = new Java.Sql.Timestamp(Tools.ConvertToTimestamp(DateTime.Now))
                 };
 
                 #region Ask for permission
@@ -229,6 +243,43 @@ namespace TwaWallet.Fragments
                 }
                 #endregion
 
+                if (SelectedItem != null) // update existing item
+                {
+                    item.Id = SelectedItem.Id;
+                    if (db.Update(item).Result)
+                    {
+                        Toast.MakeText(this.Activity, item.ToString(), ToastLength.Short).Show();
+
+                        if (onContinueWithHandler != null)
+                        {
+                            onContinueWithHandler();
+                        }
+                        Dismiss();
+
+                        //SelectedItem = null;
+                        //InitLayout();
+                    }
+                }
+                else if (db.Insert(item).Result) // inser new item
+                {
+                    Toast.MakeText(this.Activity, item.ToString(), ToastLength.Short).Show();
+                    //InitLayout();
+
+                    if (onContinueWithHandler != null)
+                    {
+                        onContinueWithHandler();
+                    }
+                    Dismiss();
+                }
+                else
+                {
+                    Toast.MakeText(this.Activity, "Wasnt saved", ToastLength.Short).Show();
+                }
+
+            }
+            catch (Exception ex)
+            {
+                Log.Error(TAG, nameof(Save_button_Click),ex.Message);
             }
         }
 
@@ -323,10 +374,11 @@ namespace TwaWallet.Fragments
                 }
                 this.description_editText.Text = SelectedItem?.Description ?? string.Empty;
                 this.warranty_editText.Text = SelectedItem?.Warranty.ToString() ?? string.Empty;
-                //this.tags_editText.Text = SelectedItem?.Tag ?? string.Empty;
+                this.tags_editText.Text = SelectedItem?.Tag ?? string.Empty;
 
                 // TODO: vyres interval button 
-                //this.interval_button = 
+                this.interval_button.Text = SelectedItem?.Interval.Description;
+                this.interval_button.Tag = SelectedItem != null ? new JavaLangObjectWrapper<Interval>(SelectedItem.Interval) : null;
 
                 this.endDate_button.Text = SelectedItem?.EndDate.ToString(Resources.GetString(Resource.String.DateFormat)) ?? string.Empty;
                 this.endDate_button.Tag = SelectedItem != null ? new JavaLangObjectWrapper<DateTime>(SelectedItem.EndDate) : null;

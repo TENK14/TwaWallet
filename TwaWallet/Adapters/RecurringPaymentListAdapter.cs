@@ -12,6 +12,7 @@ using Android.Widget;
 using Database.POCO;
 using Database;
 using Android.Util;
+using Database.Constants;
 
 namespace TwaWallet.Adapters
 {
@@ -26,6 +27,7 @@ namespace TwaWallet.Adapters
         List<Category> lstCategory;
         List<Owner> lstOwner;
         List<PaymentType> lstPaymentType;
+        List<Interval> lstInterval;
 
         public RecurringPaymentListAdapter(Activity _context, List<RecurringPayment> _list, IDataContext db)
             : base()
@@ -43,6 +45,8 @@ namespace TwaWallet.Adapters
             lstPaymentType = r2.ToList();
             var r3 = db.Select<Category, int>((o) => o.Id > 0, (o) => o.Id).Result;
             lstCategory = r3.ToList();
+            var r4 = db.Select<Interval, int>((o) => o.Id > 0, (o) => o.Id).Result; ;
+            lstInterval = r4.ToList();
         }
 
         public override int Count
@@ -75,25 +79,29 @@ namespace TwaWallet.Adapters
 
 
 
-            //var img = view.FindViewById<ImageView>(Resource.Id.paymentType_imageView);
+            var img = view.FindViewById<ImageView>(Resource.Id.paymentType_imageView);
 
-            //if (item.PaymentTypeId == lstPaymentType.Where(p => p.Description == PaymentTypeConst.Card).FirstOrDefault().Id)
-            //{
-            //    img.SetImageResource(Resource.Drawable.credit_card);
-            //}
-            //else
-            //{
-            //    img.SetImageResource(Resource.Drawable.money);
-            //}
+            if (item.PaymentTypeId == lstPaymentType.Where(p => p.Description == PaymentTypeConst.Card).FirstOrDefault().Id)
+            {
+                img.SetImageResource(Resource.Drawable.credit_card);
+            }
+            else
+            {
+                img.SetImageResource(Resource.Drawable.money);
+            }
 
             view.FindViewById<TextView>(Resource.Id.description_textView).Text = item.Description;
             view.FindViewById<TextView>(Resource.Id.owner_textView).Text = lstOwner.Where(p => p.Id == item.OwnerId).FirstOrDefault().Name;
             // earnings cant have category
             view.FindViewById<TextView>(Resource.Id.category_textView).Text = lstCategory.Where(p => p.Id == item.CategoryId).FirstOrDefault()?.Description ?? string.Empty;
             view.FindViewById<TextView>(Resource.Id.cost_textView).Text = item.Cost.ToString();
-            //view.FindViewById<TextView>(Resource.Id.date_textView).Text = item.Date.ToString(this.context.Resources.GetString(Resource.String.DateFormat));
-            //view.FindViewById<TextView>(Resource.Id.tag_textView).Text = item.Tag;
+            view.FindViewById<TextView>(Resource.Id.date_textView).Text = item.DateCreated.ToString(this.context.Resources.GetString(Resource.String.DateFormat));
+            view.FindViewById<TextView>(Resource.Id.endDate_textView).Text = item.EndDate.ToString(this.context.Resources.GetString(Resource.String.DateFormat));
+            view.FindViewById<TextView>(Resource.Id.tag_textView).Text = item.Tag;
             view.FindViewById<TextView>(Resource.Id.warranty_textView).Text = item.Warranty.ToString();
+            view.FindViewById<TextView>(Resource.Id.lastUpdate_textView).Text = item?.LastUpdate.ToString(this.context.Resources.GetString(Resource.String.DateFormat)) ?? string.Empty;
+            //view.FindViewById<TextView>(Resource.Id.interval_textView).Text = item?.Interval?.Description ?? string.Empty;
+            view.FindViewById<TextView>(Resource.Id.interval_textView).Text = lstInterval.Where(p => p.Id == item.IntervalId).FirstOrDefault()?.Description ?? string.Empty;
 
             if (item.Earnings)
             {
