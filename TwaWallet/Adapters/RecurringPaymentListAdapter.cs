@@ -112,6 +112,16 @@ namespace TwaWallet.Adapters
                 view.FindViewById<TextView>(Resource.Id.cost_textView).SetTextColor(Android.Graphics.Color.Red);
             }
 
+            if (!item.IsActive)
+            {
+                view.SetBackgroundColor(context.Resources.GetColor(Resource.Color.material_grey_600));
+            }
+            else
+            {
+                //view.SetBackgroundColor(context.Resources.GetColor(Resource.Color.yellow));
+                view.SetBackgroundColor(Android.Graphics.Color.Transparent);
+            }
+
             var paymentType = lstPaymentType.Where(p => p.Id == item.PaymentTypeId).FirstOrDefault();
 
             return view;

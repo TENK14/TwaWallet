@@ -48,8 +48,8 @@ namespace Database.POCO
         public string Tag { get; set; }
         public DateTime DateCreated  { get; set; } = DateTime.Now;
         
-        public DateTime LastUpdate { get; set; }
-        public bool IsActive { get; set; } = false;
+        public DateTime LastUpdate { get; set; } = DateTime.Now.AddDays(-60);
+        public bool IsActive { get; set; } = true;
 
         /// <summary>
         /// Do kdy se budou trvalé platby generovat

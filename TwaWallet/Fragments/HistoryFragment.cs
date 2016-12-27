@@ -80,6 +80,7 @@ namespace TwaWallet.Fragments
             monthCost_value = v.FindViewById<TextView>(Resource.Id.monthCost_value);
             earnings_checkBox = v.FindViewById<CheckBox>(Resource.Id.earnings_checkBox);
             earnings_checkBox.CheckedChange += Earnings_checkBox_CheckedChange;
+            earnings_checkBox.Checked = false;
 
 
             dateFrom_button = v.FindViewById<Button>(Resource.Id.dateFrom_button);
@@ -99,6 +100,15 @@ namespace TwaWallet.Fragments
         {
             Log.Debug(TAG, nameof(Earnings_checkBox_CheckedChange));
 
+            
+            if (dateFrom_button?.Tag != null)
+            {
+                LoadData(((JavaLangObjectWrapper<DateTime>)dateFrom_button.Tag).Value, ((JavaLangObjectWrapper<DateTime>)dateTo_button.Tag).Value, earnings_checkBox.Checked);
+            }
+            else
+            {
+                LoadData();
+            }
 
         }
 
@@ -116,15 +126,16 @@ namespace TwaWallet.Fragments
         {
             Log.Debug(TAG, nameof(LoadData));
 
-            var r = db.Select<Record, DateTime>((o) => o.Id > 0, (o) => o.Date, false).Result;
+            //var r = db.Select<Record, DateTime>((o) => o.Id > 0, (o) => o.Date, false).Result;
+            var r = db.Select<Record, DateTime>((o) => o.Id > 0 && o.Earnings == false, (o) => o.Date, false).Result;
             listData = r.ToList();//r.Select(p => $"{p.Description}, {p.Cost}, {p.Date}").ToList();
+
+            
         }
 
         private void LoadData(DateTime dateFrom, DateTime dateTo, bool includeEarnings)
         {
             Log.Debug(TAG, nameof(LoadData));
-
-
 
             // Refresh review
             var rAll = db.Select<Record, DateTime>((o) => o.Id > 0, (o) => o.Date, false).Result;

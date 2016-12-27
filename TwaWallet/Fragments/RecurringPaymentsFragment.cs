@@ -17,7 +17,7 @@ using TwaWallet.Adapters;
 
 namespace TwaWallet.Fragments
 {
-    public class RecurringPaymentsFragment : Fragment
+    public class RecurringPaymentsFragment : DialogFragment
     {
         #region Members
         private const string TAG = "X:" + nameof(RecurringPaymentsFragment);

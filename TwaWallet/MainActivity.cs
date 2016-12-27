@@ -8,10 +8,12 @@ using Android.Support.V7.Widget;
 using Android.Runtime;
 using TwaWallet.Fragments;
 using Android.Util;
-using Java.Lang;
+//using Java.Lang;
 using System.IO;
 using Database;
 using Android.Widget;
+using Database.POCO;
+using System;
 //using Org.Apache.Commons.Logging;
 
 namespace TwaWallet
@@ -128,77 +130,121 @@ namespace TwaWallet
             /**/
             #endregion Show Version
 
-
-            // create DB path
-            //var docsFolder = System.Environment.GetFolderPath(System.Environment.SpecialFolder.MyDocuments);
-            //var dbPath = Resources.GetString(Resource.String.DBPath);
-            //var pathToDatabase = System.IO.Path.Combine(dbPath, Resources.GetString(Resource.String.DBfilename));// "db_sqlcompnet.db");
-
-            //Directory.CreateDirectory(directoryPath);            
-            //Directory.CreateDirectory(dbPath);
-
-            string directoryPath = DeviceInfo.GetDirectoryFinallPath();
-            Directory.CreateDirectory(directoryPath);
-
-            #region DB
-            string pathToDatabase = DeviceInfo.GetFileFinallPath(Resources.GetString(Resource.String.DBfilename));
-            //var dbAdapter = new kCollect2.Data.Database.StateMachineDataAdapter(new SQLite_Android(new LogWrapper()), dbPath);
-            //dbAdapter.CreateOrUpdateDatabase();
-
-            #endregion
-
-            Android.Widget.Toast.MakeText(this, pathToDatabase, Android.Widget.ToastLength.Short).Show();
-            Log.Debug(TAG, $"directory: {directoryPath}, pathToDB: {pathToDatabase}");
-
-            //#region DB
-            //string dbPath = DeviceInfo.GetFileFinallPath(Resources.GetString(Resource.String.DBfilename));
-            //var dbAdapter = new kCollect2.Data.Database.StateMachineDataAdapter(new SQLite_Android(new LogWrapper()), dbPath);
-            //dbAdapter.CreateOrUpdateDatabase();
-            //#endregion
-
-            //if (!File.Exists(pathToDatabase))
-            //{
-            #region Ask for permission
-            //const string permission = Android.Manifest.Permission.WriteExternalStorage;
-            //var hasWriteContactsPermission = CheckSelfPermission(permission);
-
-            //if (hasWriteContactsPermission != Android.Content.PM.Permission.Granted)
-            //{
-            //    RequestPermissions(new string[] { Android.Manifest.Permission.WriteExternalStorage },
-            //            REQUEST_CODE_ASK_PERMISSIONS);
-            //    return;
-            //}
-            #endregion
-
-            #region Ask for permission
-            //https://github.com/xamarin/monodroid-samples/blob/master/android-m/RuntimePermissions/MainActivity.cs
-            const int REQUEST_CODE_ASK_PERMISSIONS = 123;
-            const string permission = Android.Manifest.Permission.WriteExternalStorage;
-
-            var hasWriteContactsPermission = ActivityCompat.CheckSelfPermission(this, permission);
-
-            if (hasWriteContactsPermission != Android.Content.PM.Permission.Granted)
+            try
             {
-                RequestPermissions(new string[] { Android.Manifest.Permission.WriteExternalStorage },
-                        REQUEST_CODE_ASK_PERMISSIONS);
-                return;
-            }
-            #endregion
 
-            Log.Debug(TAG, $"DB will be created!");
+                // create DB path
+                //var docsFolder = System.Environment.GetFolderPath(System.Environment.SpecialFolder.MyDocuments);
+                //var dbPath = Resources.GetString(Resource.String.DBPath);
+                //var pathToDatabase = System.IO.Path.Combine(dbPath, Resources.GetString(Resource.String.DBfilename));// "db_sqlcompnet.db");
+
+                //Directory.CreateDirectory(directoryPath);            
+                //Directory.CreateDirectory(dbPath);
+
+                string directoryPath = DeviceInfo.GetDirectoryFinallPath();
+                Directory.CreateDirectory(directoryPath);
+
+                #region DB
+                string pathToDatabase = DeviceInfo.GetFileFinallPath(Resources.GetString(Resource.String.DBfilename));
+                #endregion
+
+                Android.Widget.Toast.MakeText(this, pathToDatabase, Android.Widget.ToastLength.Short).Show();
+                Log.Debug(TAG, $"directory: {directoryPath}, pathToDB: {pathToDatabase}");
+
+                //if (!File.Exists(pathToDatabase))
+                //{
+                #region Ask for permission
+                //const string permission = Android.Manifest.Permission.WriteExternalStorage;
+                //var hasWriteContactsPermission = CheckSelfPermission(permission);
+
+                //if (hasWriteContactsPermission != Android.Content.PM.Permission.Granted)
+                //{
+                //    RequestPermissions(new string[] { Android.Manifest.Permission.WriteExternalStorage },
+                //            REQUEST_CODE_ASK_PERMISSIONS);
+                //    return;
+                //}
+                #endregion
+
+                #region Ask for permission
+                //https://github.com/xamarin/monodroid-samples/blob/master/android-m/RuntimePermissions/MainActivity.cs
+                const int REQUEST_CODE_ASK_PERMISSIONS = 123;
+                const string permission = Android.Manifest.Permission.WriteExternalStorage;
+
+                var hasWriteContactsPermission = ActivityCompat.CheckSelfPermission(this, permission);
+
+                if (hasWriteContactsPermission != Android.Content.PM.Permission.Granted)
+                {
+                    RequestPermissions(new string[] { Android.Manifest.Permission.WriteExternalStorage },
+                            REQUEST_CODE_ASK_PERMISSIONS);
+                    return;
+                }
+                #endregion
+
+                Log.Debug(TAG, $"DB will be created!");
                 //IDataContext db = new DataContext(pathToDatabase);
                 IDataContext db = DataContextFactory.GetDataContext(pathToDatabase);
                 var result = db.CreateDatabase().Result;
                 //Toast.MakeText(this,result,ToastLength.Short).Show();// (pathToDatabase);
                 Log.Debug(TAG, $"DB was created!:: {result}");
-            //}
-            //else
-            //{
-            //    //Toast.MakeText(this, "DB soubor již existuje.", ToastLength.Short).Show();
-            //    Log.Debug(TAG, "DB exists!");
-            //}
+                //}
+                //else
+                //{
+                //    //Toast.MakeText(this, "DB soubor již existuje.", ToastLength.Short).Show();
+                //    Log.Debug(TAG, "DB exists!");
+                //}
 
 
+                #region RecurringPayments
+                /**/
+                var lstAll = db.Select<RecurringPayment, int>(p => p.Id > 0, p => p.Id, false).Result;
+
+                var lstRecurringPayment = db.Select<RecurringPayment, int>(p => p.IsActive, p => p.Id, false).Result;
+
+                if (lstRecurringPayment != null && lstRecurringPayment.Count > 0)
+                {
+                    var dtNow = DateTime.Now.Date;
+                    foreach (var item in lstRecurringPayment)
+                    {
+                        var i = item.IncludeObjects(db);
+
+                        DateTime dt = i.Interval.NextDateTime(i.LastUpdate).Date;
+
+                        while (dt <= dtNow)
+                        {
+                            Record record = new Record()
+                            {
+                                CategoryId = i.CategoryId,
+                                Cost = i.Cost,
+                                Date = dt, //dtNow,
+                                Description = i.Description,
+                                Earnings = i.Earnings,
+                                OwnerId = i.OwnerId,
+                                PaymentTypeId = i.PaymentTypeId,
+                                Tag = i.Tag,
+                                Warranty = i.Warranty,
+                                
+                            };
+                            db.Insert(record);
+
+                            i.LastUpdate = dt;
+                            db.Update(i);
+
+                            dt = i.Interval.NextDateTime(i.LastUpdate).Date;
+
+                            //using (var ts = new TransactionScope())
+                            //{
+
+                            //}
+                        }
+                    }
+                }
+                /**/
+                #endregion
+            }
+            catch (Exception ex)
+            {
+                Log.Error(TAG, ex.Message);
+            }
         }
 
         private void InitialFragment()

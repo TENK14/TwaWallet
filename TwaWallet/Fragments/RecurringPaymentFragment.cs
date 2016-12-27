@@ -226,6 +226,7 @@ namespace TwaWallet.Fragments
                     Earnings = this.earnings_checkBox.Checked,
                     Tag = this.tags_editText.Text,
                     //DateCreated = new Java.Sql.Timestamp(Tools.ConvertToTimestamp(DateTime.Now))
+                    IsActive = this.isActive_checkBox.Checked,
                 };
 
                 #region Ask for permission
