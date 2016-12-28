@@ -220,7 +220,7 @@ namespace TwaWallet.Fragments
                 this.warranty_editText.Text = string.Empty;
                 this.tags_editText.Text = string.Empty;
 
-                var date = DateTime.Now;
+                var date = DateTime.Now.Date;
                 this.date_button.Text = date.ToString(Resources.GetString(Resource.String.DateFormat));
                 this.date_button.Tag = new JavaLangObjectWrapper<DateTime>(date);
             }

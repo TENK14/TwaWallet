@@ -30,6 +30,8 @@ namespace TwaWallet.Fragments
         Button dateFrom_button;
         Button dateTo_button;
         Button export_button;
+        CheckBox earnings_checkBox;
+        CheckBox costs_checkBox;
         #endregion
 
 
@@ -62,6 +64,10 @@ namespace TwaWallet.Fragments
             export_button = v.FindViewById<Button>(Resource.Id.export_button);
             export_button.Click += Export_button_Click;
 
+            earnings_checkBox = v.FindViewById<CheckBox>(Resource.Id.earnings_checkBox);            
+
+            costs_checkBox = v.FindViewById<CheckBox>(Resource.Id.costs_checkBox);
+
             string pathToDatabase = DeviceInfo.GetFileFinallPath(Resources.GetString(Resource.String.DBfilename));
             //db = new DataContext(pathToDatabase);
             db = DataContextFactory.GetDataContext(pathToDatabase);
@@ -93,6 +99,9 @@ namespace TwaWallet.Fragments
             date = DateTime.Now;
             dateTo_button.Text = date.ToString(Resources.GetString(Resource.String.DateFormat));
             dateTo_button.Tag = new JavaLangObjectWrapper<DateTime>(date);
+
+            costs_checkBox.Checked = true;
+            earnings_checkBox.Checked = false;
         }
 
         private void DateTo_button_Click(object sender, EventArgs e)
@@ -128,7 +137,26 @@ namespace TwaWallet.Fragments
             DateTime dateFrom = ((JavaLangObjectWrapper<DateTime>)dateFrom_button.Tag).Value;
             DateTime dateTo = ((JavaLangObjectWrapper<DateTime>)dateTo_button.Tag).Value;
 
-            var lstRecord = db.Select<Record, DateTime>((o) => o.Date >= dateFrom && o.Date <= dateTo, (o) => o.Date, true).Result;
+            //List<Record> lstRecord = db.Select<Record, DateTime>((o) => o.Date >= dateFrom && o.Date <= dateTo, (o) => o.Date, true).Result;
+
+            List<Record> lstRecord = null;
+
+            if (costs_checkBox.Checked == false && earnings_checkBox.Checked == false)
+            {
+                lstRecord = new List<Record>();
+            }
+            else if (costs_checkBox.Checked == false && earnings_checkBox.Checked == true)
+            {
+                lstRecord = db.Select<Record, DateTime>(o => o.Date >= dateFrom.Date && o.Date <= dateTo.Date && o.Earnings == true,o => o.Date,false).Result;
+            }
+            else if (costs_checkBox.Checked == true && earnings_checkBox.Checked == false)
+            {
+                lstRecord = db.Select<Record, DateTime>(o => o.Date >= dateFrom.Date && o.Date <= dateTo.Date && o.Earnings == false, o => o.Date, false).Result;
+            }
+            else if (costs_checkBox.Checked == true && earnings_checkBox.Checked == true)
+            {
+                lstRecord = db.Select<Record, DateTime>(o => o.Date >= dateFrom.Date && o.Date <= dateTo.Date, o => o.Date, false).Result;
+            }
 
 
             //https://forums.xamarin.com/discussion/32531/permission-denied-for-the-attachment-when-creating-email-on-android

@@ -65,6 +65,25 @@
             android:layout_weight="4" />
     <!--android:padding="3dp"-->
     </LinearLayout>
+  <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_below="@id/secondRow">
+    <CheckBox
+        android:id="@+id/costs_checkBox"
+        android:text="@string/Costs"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1" />
+    <CheckBox
+        android:id="@+id/earnings_checkBox"
+        android:text="@string/Earnings"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1" />
+  </LinearLayout>
 <!--<LinearLayout
         android:id="@+id/bottomRow"
         android:orientation="horizontal"

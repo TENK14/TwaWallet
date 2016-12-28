@@ -35,6 +35,7 @@ namespace TwaWallet.Fragments
         TextView monthCost_value;
         TextView filterCost_value;
         CheckBox earnings_checkBox;
+        CheckBox costs_checkBox;
         Button dateFrom_button;
         Button dateTo_button;
         #endregion
@@ -82,6 +83,10 @@ namespace TwaWallet.Fragments
             earnings_checkBox.CheckedChange += Earnings_checkBox_CheckedChange;
             earnings_checkBox.Checked = false;
 
+            costs_checkBox = v.FindViewById<CheckBox>(Resource.Id.costs_checkBox);
+            costs_checkBox.CheckedChange += Costs_checkBox_CheckedChange;
+            costs_checkBox.Checked = true;
+
 
             dateFrom_button = v.FindViewById<Button>(Resource.Id.dateFrom_button);
             dateFrom_button.Click += DateFrom_button_Click;
@@ -96,6 +101,20 @@ namespace TwaWallet.Fragments
             return v;
         }
 
+        private void Costs_checkBox_CheckedChange(object sender, CompoundButton.CheckedChangeEventArgs e)
+        {
+            Log.Debug(TAG, nameof(Costs_checkBox_CheckedChange));
+
+            if (dateFrom_button?.Tag != null)
+            {
+                LoadData(((JavaLangObjectWrapper<DateTime>)dateFrom_button.Tag).Value, ((JavaLangObjectWrapper<DateTime>)dateTo_button.Tag).Value, costs_checkBox.Checked, earnings_checkBox.Checked);
+            }
+            else
+            {
+                LoadData();
+            }
+        }
+
         private void Earnings_checkBox_CheckedChange(object sender, CompoundButton.CheckedChangeEventArgs e)
         {
             Log.Debug(TAG, nameof(Earnings_checkBox_CheckedChange));
@@ -103,7 +122,7 @@ namespace TwaWallet.Fragments
             
             if (dateFrom_button?.Tag != null)
             {
-                LoadData(((JavaLangObjectWrapper<DateTime>)dateFrom_button.Tag).Value, ((JavaLangObjectWrapper<DateTime>)dateTo_button.Tag).Value, earnings_checkBox.Checked);
+                LoadData(((JavaLangObjectWrapper<DateTime>)dateFrom_button.Tag).Value, ((JavaLangObjectWrapper<DateTime>)dateTo_button.Tag).Value, costs_checkBox.Checked, earnings_checkBox.Checked);
             }
             else
             {
@@ -133,7 +152,7 @@ namespace TwaWallet.Fragments
             
         }
 
-        private void LoadData(DateTime dateFrom, DateTime dateTo, bool includeEarnings)
+        private void LoadData(DateTime dateFrom, DateTime dateTo, bool includeCosts, bool includeEarnings)
         {
             Log.Debug(TAG, nameof(LoadData));
 
@@ -146,11 +165,33 @@ namespace TwaWallet.Fragments
 
             if ( listAll != null && listAll.Count > 0)
             {
-                // Month values
-                this.monthCost_value.Text = listAll.Where(p => p.Date.Month == DateTime.Now.Month && p.Date.Year == DateTime.Now.Year && p.Earnings == includeEarnings).Select(p => p.Cost).Sum().ToString();
+                
 
                 // Filtered values
-                listData = listAll.Where((o) => o.Date >= dateFrom && o.Date <= dateTo && o.Earnings == includeEarnings).OrderByDescending(o => o.Date).ToList();
+                if (includeCosts == false && includeEarnings == false)
+                {
+                    listData = new List<Record>();
+                    // Month values
+                    this.monthCost_value.Text = Convert.ToString(0);
+                }
+                else if (includeCosts == false && includeEarnings == true)
+                {
+                    listData = listAll.Where((o) => o.Date.Date >= dateFrom.Date && o.Date.Date <= dateTo.Date && o.Earnings == true).OrderByDescending(o => o.Date).ToList();
+                    // Month values
+                    this.monthCost_value.Text = listAll.Where(p => p.Date.Month == DateTime.Now.Month && p.Date.Year == DateTime.Now.Year && p.Earnings == true).Select(p => p.Cost).Sum().ToString();
+                }
+                else if (includeCosts == true && includeEarnings == false)
+                {
+                    listData = listAll.Where((o) => o.Date.Date >= dateFrom.Date && o.Date.Date <= dateTo.Date && o.Earnings == false).OrderByDescending(o => o.Date).ToList();
+                    // Month values
+                    this.monthCost_value.Text = listAll.Where(p => p.Date.Month == DateTime.Now.Month && p.Date.Year == DateTime.Now.Year && p.Earnings == false).Select(p => p.Cost).Sum().ToString();
+                }
+                else if (includeCosts == true && includeEarnings == true)
+                {
+                    listData = listAll.Where((o) => o.Date.Date >= dateFrom.Date && o.Date.Date <= dateTo.Date).OrderByDescending(o => o.Date).ToList();
+                    // Month values
+                    this.monthCost_value.Text = listAll.Where(p => p.Date.Month == DateTime.Now.Month && p.Date.Year == DateTime.Now.Year).Select(p => p.Cost).Sum().ToString();
+                }
 
                 if (listData != null && listData.Count > 0)
                 {
@@ -182,7 +223,7 @@ namespace TwaWallet.Fragments
                 dateTo_button.Text = date.ToString(Resources.GetString(Resource.String.DateFormat)); //.ToLongDateString();
                 dateTo_button.Tag = new JavaLangObjectWrapper<DateTime>(date);
 
-                LoadData(((JavaLangObjectWrapper<DateTime>)dateFrom_button.Tag).Value, ((JavaLangObjectWrapper<DateTime>)dateTo_button.Tag).Value, earnings_checkBox.Checked);
+                LoadData(((JavaLangObjectWrapper<DateTime>)dateFrom_button.Tag).Value, ((JavaLangObjectWrapper<DateTime>)dateTo_button.Tag).Value, costs_checkBox.Checked, earnings_checkBox.Checked);
             });
             frag.Show(this.Activity.FragmentManager, DatePickerFragment.TAG);
 
@@ -197,7 +238,7 @@ namespace TwaWallet.Fragments
                 dateFrom_button.Text = date.ToString(Resources.GetString(Resource.String.DateFormat)); //.ToLongDateString();
                 dateFrom_button.Tag = new JavaLangObjectWrapper<DateTime>(date);
 
-                LoadData(((JavaLangObjectWrapper<DateTime>)dateFrom_button.Tag).Value, ((JavaLangObjectWrapper<DateTime>)dateTo_button.Tag).Value, earnings_checkBox.Checked);
+                LoadData(((JavaLangObjectWrapper<DateTime>)dateFrom_button.Tag).Value, ((JavaLangObjectWrapper<DateTime>)dateTo_button.Tag).Value, costs_checkBox.Checked, earnings_checkBox.Checked);
             });
             frag.Show(this.Activity.FragmentManager, DatePickerFragment.TAG);
 
@@ -251,7 +292,7 @@ namespace TwaWallet.Fragments
             // Create and show the dialog.
             DialogFragment newFragment = ReportFragment.NewInstance(item.IncludeObjects(db), delegate()
             {
-                LoadData(((JavaLangObjectWrapper<DateTime>)dateFrom_button.Tag).Value, ((JavaLangObjectWrapper<DateTime>)dateTo_button.Tag).Value, earnings_checkBox.Checked);
+                LoadData(((JavaLangObjectWrapper<DateTime>)dateFrom_button.Tag).Value, ((JavaLangObjectWrapper<DateTime>)dateTo_button.Tag).Value, costs_checkBox.Checked, earnings_checkBox.Checked);
             });
             
 
@@ -286,7 +327,7 @@ namespace TwaWallet.Fragments
                     // Create and show the dialog.
                     DialogFragment newFragment = ReportFragment.NewInstance(item.IncludeObjects(db), delegate ()
                     {
-                        LoadData(((JavaLangObjectWrapper<DateTime>)dateFrom_button.Tag).Value, ((JavaLangObjectWrapper<DateTime>)dateTo_button.Tag).Value, earnings_checkBox.Checked);
+                        LoadData(((JavaLangObjectWrapper<DateTime>)dateFrom_button.Tag).Value, ((JavaLangObjectWrapper<DateTime>)dateTo_button.Tag).Value, costs_checkBox.Checked, earnings_checkBox.Checked);
                     });
 
 
@@ -300,7 +341,7 @@ namespace TwaWallet.Fragments
                     {
                         Toast.MakeText(this.Activity, Resources.GetString(Resource.String.Deleted), ToastLength.Short).Show();
 
-                        LoadData(((JavaLangObjectWrapper<DateTime>)dateFrom_button.Tag).Value, ((JavaLangObjectWrapper<DateTime>)dateTo_button.Tag).Value, earnings_checkBox.Checked);
+                        LoadData(((JavaLangObjectWrapper<DateTime>)dateFrom_button.Tag).Value, ((JavaLangObjectWrapper<DateTime>)dateTo_button.Tag).Value, costs_checkBox.Checked, earnings_checkBox.Checked);
                     }
                     else
                     {
