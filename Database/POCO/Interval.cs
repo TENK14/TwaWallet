@@ -25,6 +25,52 @@ namespace Database.POCO
         //[StringLength(6)]
         public string IntervalCode { get; set; }
 
+        public DateTime BeforeDateTime(DateTime startDateTime)
+        {
+            Log.Debug(TAG, $"{nameof(NextDateTime)} - {nameof(startDateTime)}:{startDateTime.ToShortDateString()}");
+
+            DateTime result = startDateTime;
+
+            try
+            {
+                int years, months, days;
+
+                if (int.TryParse(IntervalCode.Substring(0, 2), out years))
+                {
+                    result = result.AddYears(-years);
+                }
+                else
+                {
+                    throw new FormatException("Years couldn't be parsed.");
+                }
+
+                if (int.TryParse(IntervalCode.Substring(2, 2), out months))
+                {
+                    result = result.AddMonths(-months);
+                }
+                else
+                {
+                    throw new FormatException("Months couldn't be parsed.");
+                }
+
+                if (int.TryParse(IntervalCode.Substring(4, 2), out days))
+                {
+                    result = result.AddDays(-days);
+                }
+                else
+                {
+                    throw new FormatException("Days couldn't be parsed.");
+                }
+            }
+            catch (Exception ex)
+            {
+                Log.Error(TAG, nameof(NextDateTime), ex.Message);
+                throw;
+            }
+
+            return result;
+        }
+
         public DateTime NextDateTime(DateTime startDateTime)
         {
             Log.Debug(TAG, $"{nameof(NextDateTime)} - {nameof(startDateTime)}:{startDateTime.ToShortDateString()}");

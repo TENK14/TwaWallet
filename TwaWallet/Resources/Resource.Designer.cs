@@ -2088,8 +2088,8 @@ namespace TwaWallet
 		public partial class Id
 		{
 			
-			// aapt resource value: 0x7f0600ba
-			public const int DataListView = 2131099834;
+			// aapt resource value: 0x7f0600bd
+			public const int DataListView = 2131099837;
 			
 			// aapt resource value: 0x7f06008d
 			public const int action0 = 2131099789;
@@ -2142,8 +2142,8 @@ namespace TwaWallet
 			// aapt resource value: 0x7f060015
 			public const int add = 2131099669;
 			
-			// aapt resource value: 0x7f0600b7
-			public const int addRecurringPayment_button = 2131099831;
+			// aapt resource value: 0x7f0600ba
+			public const int addRecurringPayment_button = 2131099834;
 			
 			// aapt resource value: 0x7f06004c
 			public const int alertTitle = 2131099724;
@@ -2232,8 +2232,8 @@ namespace TwaWallet
 			// aapt resource value: 0x7f06007d
 			public const int dateTo_button = 2131099773;
 			
-			// aapt resource value: 0x7f0600b9
-			public const int date_button = 2131099833;
+			// aapt resource value: 0x7f0600bc
+			public const int date_button = 2131099836;
 			
 			// aapt resource value: 0x7f06007a
 			public const int date_textView = 2131099770;
@@ -2274,17 +2274,17 @@ namespace TwaWallet
 			// aapt resource value: 0x7f060060
 			public const int edit_query = 2131099744;
 			
-			// aapt resource value: 0x7f0600b3
-			public const int eigthRow = 2131099827;
+			// aapt resource value: 0x7f0600b5
+			public const int eighthRow = 2131099829;
 			
 			// aapt resource value: 0x7f06001d
 			public const int end = 2131099677;
 			
-			// aapt resource value: 0x7f0600ae
-			public const int endDate_button = 2131099822;
+			// aapt resource value: 0x7f0600b2
+			public const int endDate_button = 2131099826;
 			
-			// aapt resource value: 0x7f0600b6
-			public const int endDate_textView = 2131099830;
+			// aapt resource value: 0x7f0600b1
+			public const int endDate_textView = 2131099825;
 			
 			// aapt resource value: 0x7f060099
 			public const int end_padder = 2131099801;
@@ -2364,14 +2364,14 @@ namespace TwaWallet
 			// aapt resource value: 0x7f0600ac
 			public const int interval_textView = 2131099820;
 			
-			// aapt resource value: 0x7f0600b4
-			public const int isActive_checkBox = 2131099828;
+			// aapt resource value: 0x7f0600b8
+			public const int isActive_checkBox = 2131099832;
 			
 			// aapt resource value: 0x7f060000
 			public const int item_touch_helper_previous_elevation = 2131099648;
 			
-			// aapt resource value: 0x7f0600b5
-			public const int lastUpdate_textView = 2131099829;
+			// aapt resource value: 0x7f0600b9
+			public const int lastUpdate_textView = 2131099833;
 			
 			// aapt resource value: 0x7f060030
 			public const int left = 2131099696;
@@ -2418,6 +2418,9 @@ namespace TwaWallet
 			// aapt resource value: 0x7f060022
 			public const int never = 2131099682;
 			
+			// aapt resource value: 0x7f0600b7
+			public const int ninethRow = 2131099831;
+			
 			// aapt resource value: 0x7f060010
 			public const int none = 2131099664;
 			
@@ -2463,8 +2466,8 @@ namespace TwaWallet
 			// aapt resource value: 0x7f060057
 			public const int radio = 2131099735;
 			
-			// aapt resource value: 0x7f0600b8
-			public const int regularPayments_listView = 2131099832;
+			// aapt resource value: 0x7f0600bb
+			public const int regularPayments_listView = 2131099835;
 			
 			// aapt resource value: 0x7f060031
 			public const int right = 2131099697;
@@ -2529,8 +2532,8 @@ namespace TwaWallet
 			// aapt resource value: 0x7f06006c
 			public const int select_dialog_listview = 2131099756;
 			
-			// aapt resource value: 0x7f0600b1
-			public const int seventhRow = 2131099825;
+			// aapt resource value: 0x7f0600b3
+			public const int seventhRow = 2131099827;
 			
 			// aapt resource value: 0x7f060056
 			public const int shortcut = 2131099734;
@@ -2544,8 +2547,8 @@ namespace TwaWallet
 			// aapt resource value: 0x7f060013
 			public const int showTitle = 2131099667;
 			
-			// aapt resource value: 0x7f0600af
-			public const int sixthRow = 2131099823;
+			// aapt resource value: 0x7f0600b0
+			public const int sixthRow = 2131099824;
 			
 			// aapt resource value: 0x7f06008b
 			public const int sliding_tabs = 2131099787;
@@ -2574,8 +2577,14 @@ namespace TwaWallet
 			// aapt resource value: 0x7f06001a
 			public const int src_over = 2131099674;
 			
+			// aapt resource value: 0x7f0600ae
+			public const int starDate_textView = 2131099822;
+			
 			// aapt resource value: 0x7f060032
 			public const int start = 2131099698;
+			
+			// aapt resource value: 0x7f0600af
+			public const int startDate_button = 2131099823;
 			
 			// aapt resource value: 0x7f06008f
 			public const int status_bar_latest_event_content = 2131099791;
@@ -2592,8 +2601,8 @@ namespace TwaWallet
 			// aapt resource value: 0x7f06009f
 			public const int tag_textView = 2131099807;
 			
-			// aapt resource value: 0x7f0600b2
-			public const int tags_editText = 2131099826;
+			// aapt resource value: 0x7f0600b6
+			public const int tags_editText = 2131099830;
 			
 			// aapt resource value: 0x7f060097
 			public const int text = 2131099799;
@@ -2637,8 +2646,8 @@ namespace TwaWallet
 			// aapt resource value: 0x7f06000a
 			public const int view_offset_helper = 2131099658;
 			
-			// aapt resource value: 0x7f0600b0
-			public const int warranty_editText = 2131099824;
+			// aapt resource value: 0x7f0600b4
+			public const int warranty_editText = 2131099828;
 			
 			// aapt resource value: 0x7f0600a0
 			public const int warranty_textView = 2131099808;
@@ -2928,11 +2937,11 @@ namespace TwaWallet
 			// aapt resource value: 0x7f070027
 			public const int DateFormat = 2131165223;
 			
-			// aapt resource value: 0x7f070044
-			public const int DateFrom = 2131165252;
-			
 			// aapt resource value: 0x7f070045
-			public const int DateTo = 2131165253;
+			public const int DateFrom = 2131165253;
+			
+			// aapt resource value: 0x7f070046
+			public const int DateTo = 2131165254;
 			
 			// aapt resource value: 0x7f070034
 			public const int Delete = 2131165236;
@@ -2988,17 +2997,20 @@ namespace TwaWallet
 			// aapt resource value: 0x7f07002e
 			public const int Settings = 2131165230;
 			
+			// aapt resource value: 0x7f070041
+			public const int StartDate = 2131165249;
+			
 			// aapt resource value: 0x7f070026
 			public const int Tags = 2131165222;
 			
-			// aapt resource value: 0x7f070041
-			public const int Warranty = 2131165249;
-			
 			// aapt resource value: 0x7f070042
-			public const int WasntDeleted = 2131165250;
+			public const int Warranty = 2131165250;
 			
 			// aapt resource value: 0x7f070043
-			public const int WasntSaved = 2131165251;
+			public const int WasntDeleted = 2131165251;
+			
+			// aapt resource value: 0x7f070044
+			public const int WasntSaved = 2131165252;
 			
 			// aapt resource value: 0x7f070000
 			public const int abc_action_bar_home_description = 2131165184;

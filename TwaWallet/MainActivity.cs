@@ -196,8 +196,6 @@ namespace TwaWallet
 
                 #region RecurringPayments
                 /**/
-                var lstAll = db.Select<RecurringPayment, int>(p => p.Id > 0, p => p.Id, false).Result;
-
                 var lstRecurringPayment = db.Select<RecurringPayment, int>(p => p.IsActive, p => p.Id, false).Result;
 
                 if (lstRecurringPayment != null && lstRecurringPayment.Count > 0)

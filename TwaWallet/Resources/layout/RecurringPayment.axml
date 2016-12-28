@@ -165,10 +165,33 @@
         android:layout_below="@id/fourthRow">
         <TextView
             style="@style/TextViewStyle"
+            android:text="@string/StartDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/starDate_textView"
+            android:gravity="left"
+            android:layout_weight="1" />
+        <Button
+            style="@style/ButtonStyle"
+            android:id="@+id/startDate_button"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_margin="1dp"
+            android:layout_weight="4" />
+    </LinearLayout>
+  <LinearLayout
+        android:id="@+id/sixthRow"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin=" 5dp"
+        android:layout_below="@id/fifthRow">
+        <TextView
+            style="@style/TextViewStyle"
             android:text="@string/EndDate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/date_textView"
+            android:id="@+id/endDate_textView"
             android:gravity="left"
             android:layout_weight="1" />
         <Button
@@ -180,12 +203,12 @@
             android:layout_weight="4" />
     </LinearLayout>
     <LinearLayout
-        android:id="@+id/sixthRow"
+        android:id="@+id/seventhRow"
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin=" 5dp"
-        android:layout_below="@id/fifthRow">
+        android:layout_below="@id/sixthRow">
         <TextView
             style="@style/TextViewStyle"
             android:text="@string/Warranty"
@@ -208,11 +231,11 @@
         </LinearLayout>
     </LinearLayout>
   <LinearLayout
-      android:id="@+id/seventhRow"
+      android:id="@+id/eighthRow"
       android:orientation="horizontal"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
-      android:layout_below="@id/sixthRow">
+      android:layout_below="@id/seventhRow">
     <TextView
         style="@style/TextViewStyle"
         android:text="@string/Tags"
@@ -241,11 +264,11 @@
     </LinearLayout>
   </LinearLayout>
     <LinearLayout
-        android:id="@+id/eigthRow"
+        android:id="@+id/ninethRow"
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/seventhRow">
+        android:layout_below="@id/eighthRow">
         <CheckBox
             style="@style/CheckBoxStyle"
             android:text="@string/IsActive"

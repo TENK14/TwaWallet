@@ -37,6 +37,7 @@ namespace TwaWallet.Fragments
         CheckBox earnings_checkBox;
         EditText description_editText;
         Button interval_button;
+        Button startDate_button;
         Button endDate_button;
         EditText warranty_editText;
         EditText tags_editText;
@@ -104,6 +105,9 @@ namespace TwaWallet.Fragments
             this.interval_button = v.FindViewById<Button>(Resource.Id.interval_button);
             this.interval_button.Click += Interval_button_Click;
 
+            startDate_button = v.FindViewById<Button>(Resource.Id.startDate_button);
+            startDate_button.Click += StartDate_button_Click;
+
             endDate_button = v.FindViewById<Button>(Resource.Id.endDate_button);
             endDate_button.Click += EndDate_button_Click;
 
@@ -123,7 +127,19 @@ namespace TwaWallet.Fragments
 
 
         }
-        
+
+        private void StartDate_button_Click(object sender, EventArgs e)
+        {
+            Log.Debug(TAG, nameof(StartDate_button_Click));
+
+            DatePickerFragment frag = DatePickerFragment.NewInstance(delegate (DateTime date)
+            {
+                startDate_button.Text = date.ToString(Resources.GetString(Resource.String.DateFormat)); //.ToLongDateString();
+                startDate_button.Tag = new JavaLangObjectWrapper<DateTime>(date);
+            });
+            frag.Show(this.Activity.FragmentManager, DatePickerFragment.TAG);
+        }
+
         #region Button click
 
         private void Owner_button_Click(object sender, EventArgs e)
@@ -216,6 +232,7 @@ namespace TwaWallet.Fragments
                     CategoryId = cId, // lstCategory?.First()?.Id ?? 0, //this.category_button.Text,
                     Cost = this.earnings_checkBox.Checked ? cost : 0f - cost,
                     EndDate = ((JavaLangObjectWrapper<DateTime>)this.endDate_button.Tag).Value, // DateTime.Now,
+                    LastUpdate = ((JavaLangObjectWrapper<Interval>)interval_button.Tag).Value.BeforeDateTime(((JavaLangObjectWrapper<DateTime>)this.startDate_button.Tag).Value),
                     Description = this.description_editText.Text,
                     OwnerId = oId, //lstOwner?.First()?.Id ?? 0, //this.owner_button.Text,
                     PaymentTypeId = pId, //lstPaymentType?.First()?.Id ?? 0, //this.paymentType_button.Text,
@@ -347,7 +364,11 @@ namespace TwaWallet.Fragments
                 // TODO: vyres interval button 
                 //this.interval_button = 
 
-                var date = DateTime.Now;
+                var date = DateTime.Now.Date;
+
+                this.startDate_button.Text = date.ToString(Resources.GetString(Resource.String.DateFormat));
+                this.startDate_button.Tag = new JavaLangObjectWrapper<DateTime>(date);
+
                 this.endDate_button.Text = date.ToString(Resources.GetString(Resource.String.DateFormat));
                 this.endDate_button.Tag = new JavaLangObjectWrapper<DateTime>(date);
 
