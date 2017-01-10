@@ -9,7 +9,8 @@
 
 
   <!--K.collect 2 modra barva pozadi titulkoveho pruhu-->
-  <color name="primary">#00024C</color>
+  <!--<color name="primary">#00024C</color>-->
+  <color name="primary">#000000</color>
   
   <!--K.collect 2 temne modra barva-->
   <color name="primaryDark">#ff0126</color>

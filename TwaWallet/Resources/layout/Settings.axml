@@ -9,59 +9,83 @@
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-        <TextView
-            style="@style/TextViewStyle"
-            android:id="@+id/category_textView"
-            android:text="@string/Category"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1" />
-        <Button
-            style="@style/ButtonStyle"
-            android:id="@+id/category_button"
-            android:text="@string/Category"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"            
-            android:layout_weight="1" />
+        <LinearLayout
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:layout_weight="1">
+            <TextView
+                style="@style/TextViewStyle"
+                android:id="@+id/category_textView"
+                android:text="@string/Category"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:layout_weight="1">
+            <Button
+                style="@style/ButtonStyle"
+                android:id="@+id/category_button"
+                android:text="@string/Category"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
     </LinearLayout>
     <LinearLayout
         android:id="@+id/secondRow"
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-        <TextView
-            style="@style/TextViewStyle"
-            android:id="@+id/paymentType_textView"
-            android:text="@string/PaymentType"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1" />
-      <Button
-            style="@style/ButtonStyle"
-            android:id="@+id/paymentType_button"            
-            android:text="@string/PaymentType"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"            
-            android:layout_weight="1" />
+        <LinearLayout
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:layout_weight="1">
+            <TextView
+                style="@style/TextViewStyle"
+                android:id="@+id/paymentType_textView"
+                android:text="@string/PaymentType"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:layout_weight="1">
+            <Button
+                style="@style/ButtonStyle"
+                android:id="@+id/paymentType_button"
+                android:text="@string/PaymentType"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </LinearLayout>
     </LinearLayout>
     <LinearLayout
         android:id="@+id/thirdRow"
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-        <TextView
-            style="@style/TextViewStyle"
-            android:id="@+id/owner_textView"
-            android:text="@string/Owner"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1" />
-        <Button
-            style="@style/ButtonStyle"
-            android:id="@+id/owner_button"
-            android:text="@string/Owner"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"            
-            android:layout_weight="1" />
+        <LinearLayout
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:layout_weight="1">
+            <TextView
+                style="@style/TextViewStyle"
+                android:id="@+id/owner_textView"
+                android:text="@string/Owner"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:layout_weight="1">
+            <Button
+                style="@style/ButtonStyle"
+                android:id="@+id/owner_button"
+                android:text="@string/Owner"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </LinearLayout>
     </LinearLayout>
 </LinearLayout>

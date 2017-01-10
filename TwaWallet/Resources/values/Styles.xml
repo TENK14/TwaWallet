@@ -24,14 +24,29 @@
     <!-- Used to for the title of the Toolbar when parent is Theme.AppCompat.Light -->
     <item name="android:textColorPrimaryInverse">#fff</item>
     <!-- Used to color the text of the action menu icons -->
-    <item name="android:textColorSecondary">#fff</item>
+    <item name="android:textColorSecondary">#000</item>
     <!-- Used to color the overflow menu icon -->
-    <item name="actionMenuTextColor">#fff</item>
+    <item name="actionMenuTextColor">#000</item>
+  </style>
+
+  
+  <style name="TabLayoutTheme"  parent="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+    <item name="android:background">@color/black</item>
+    <!-- Used to for the title of the Toolbar -->
+    <item name="android:textColorPrimary">#fff</item>
+    <!-- Used to for the title of the Toolbar when parent is Theme.AppCompat.Light -->
+    <item name="android:textColorPrimaryInverse">#fff</item>
+    <!-- Used to color the text of the action menu icons -->
+    <item name="android:textColorSecondary">#555</item>
+    <!-- Used to color the overflow menu icon -->
+    <item name="actionMenuTextColor">#000</item>
   </style>
 
   <style name="TextViewStyle" parent="@style/CodeFont">
     <!--<item name="android:textAppearance">?android:attr/textAppearanceSmall</item>-->
-    <item name="android:textAppearance">@android:style/TextAppearance.Medium</item>
+    <item name="android:textAppearance">@android:style/TextAppearance.Small</item>
+    <!--<item name="android:textAppearance">@android:style/TextAppearance.Medium</item>-->
+    <!--<item name="android:textAppearance">@android:style/TextAppearance.Large</item>-->
     <!--<item name="textAppearanceSmall">@android:style/TextAppearance.Small</item>-->
     <item name="android:gravity">center</item>
   </style>
@@ -88,6 +103,9 @@
     <item name="android:windowNoTitle">true</item>
     <item name="colorPrimary">@color/primary</item>
     <item name="colorPrimaryDark">@color/primaryDark</item>
+    <item name="android:textViewStyle">@style/TextViewStyle</item>
+    <item name="android:toolbarStyle">@style/ToolbarTheme</item>
+    <!--<item name="android:tabLayoutStyle">@style/TabLayoutTheme</item>-->
   </style>
 
   <style name="MyTheme" parent="MyTheme.Base">

@@ -3148,8 +3148,8 @@ namespace TwaWallet
 			// aapt resource value: 0x7f08014d
 			public const int Animation_Design_BottomSheetDialog = 2131231053;
 			
-			// aapt resource value: 0x7f08016d
-			public const int AppTheme = 2131231085;
+			// aapt resource value: 0x7f08016e
+			public const int AppTheme = 2131231086;
 			
 			// aapt resource value: 0x7f08008e
 			public const int Base_AlertDialog_AppCompat = 2131230862;
@@ -3607,23 +3607,23 @@ namespace TwaWallet
 			// aapt resource value: 0x7f08014f
 			public const int Base_Widget_Design_TabLayout = 2131231055;
 			
-			// aapt resource value: 0x7f08016a
-			public const int ButtonStyle = 2131231082;
-			
 			// aapt resource value: 0x7f08016b
-			public const int CheckBoxStyle = 2131231083;
+			public const int ButtonStyle = 2131231083;
+			
+			// aapt resource value: 0x7f08016c
+			public const int CheckBoxStyle = 2131231084;
 			
 			// aapt resource value: 0x7f080165
 			public const int CodeFont = 2131231077;
 			
-			// aapt resource value: 0x7f080169
-			public const int EditTextStyle = 2131231081;
+			// aapt resource value: 0x7f08016a
+			public const int EditTextStyle = 2131231082;
 			
-			// aapt resource value: 0x7f08016e
-			public const int MyTheme = 2131231086;
+			// aapt resource value: 0x7f08016f
+			public const int MyTheme = 2131231087;
 			
-			// aapt resource value: 0x7f08016c
-			public const int MyTheme_Base = 2131231084;
+			// aapt resource value: 0x7f08016d
+			public const int MyTheme_Base = 2131231085;
 			
 			// aapt resource value: 0x7f080019
 			public const int Platform_AppCompat = 2131230745;
@@ -3696,6 +3696,9 @@ namespace TwaWallet
 			
 			// aapt resource value: 0x7f080037
 			public const int RtlUnderlay_Widget_AppCompat_ActionButton_Overflow = 2131230775;
+			
+			// aapt resource value: 0x7f080168
+			public const int TabLayoutTheme = 2131231080;
 			
 			// aapt resource value: 0x7f0800be
 			public const int TextAppearance_AppCompat = 2131230910;
@@ -3877,8 +3880,8 @@ namespace TwaWallet
 			// aapt resource value: 0x7f0800ed
 			public const int TextAppearance_Widget_AppCompat_Toolbar_Title = 2131230957;
 			
-			// aapt resource value: 0x7f080168
-			public const int TextViewStyle = 2131231080;
+			// aapt resource value: 0x7f080169
+			public const int TextViewStyle = 2131231081;
 			
 			// aapt resource value: 0x7f0800ee
 			public const int Theme_AppCompat = 2131230958;

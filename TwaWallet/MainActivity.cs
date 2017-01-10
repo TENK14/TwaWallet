@@ -14,6 +14,7 @@ using Database;
 using Android.Widget;
 using Database.POCO;
 using System;
+using Android.Support.V4.Widget;
 //using Org.Apache.Commons.Logging;
 
 namespace TwaWallet
@@ -26,6 +27,9 @@ namespace TwaWallet
     public class MainActivity : AppCompatActivity
     {
         private const int REQUEST_CODE_ASK_PERMISSIONS = 123;
+
+        private DrawerLayout mDrawerLayout;
+        private ListView mDrawerList;
 
 
         private const string TAG = "X:" + nameof(MainActivity);
