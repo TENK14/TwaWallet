@@ -8,6 +8,18 @@
   <item name="yellow" type="color">#FFCC00</item>
 
 
+  <color name="fragmentBackground">@color/green</color>
+  <color name="fragmentListBackground">@color/fragmentBackground</color>
+
+  <color name="reportBackground">@color/fragmentBackground</color>
+  <color name="historyBackground">@color/fragmentBackground</color>
+  <!--android:background="@color/yellow"-->
+  <color name="exportBackground">@color/fragmentBackground</color>
+  <color name="settingsBackground">@color/fragmentBackground</color>
+  <color name="recurringPaymentBackground">@color/fragmentBackground</color>
+  <color name="recurringPaymentsBackground">@color/fragmentBackground</color>
+
+
   <!--K.collect 2 modra barva pozadi titulkoveho pruhu-->
   <!--<color name="primary">#00024C</color>-->
   <color name="primary">#000000</color>

@@ -49,6 +49,8 @@
     <!--<item name="android:textAppearance">@android:style/TextAppearance.Large</item>-->
     <!--<item name="textAppearanceSmall">@android:style/TextAppearance.Small</item>-->
     <item name="android:gravity">center</item>
+    <item name="android:padding">0dp</item>
+    <item name="android:layout_margin">0dp</item>
   </style>
 
   <style name="EditTextStyle" parent="@style/CodeFont">

@@ -213,6 +213,7 @@ namespace TwaWallet.Fragments
                 this.owner_button.Text = owner.Name;
                 this.owner_button.Tag = new JavaLangObjectWrapper<Owner>(owner);
 
+                //TODO:odpoznamkuj
                 this.earnings_checkBox.Checked = false;
 
                 this.cost_editText.Text = string.Empty;

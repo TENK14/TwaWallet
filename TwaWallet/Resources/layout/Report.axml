@@ -3,7 +3,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/yellow"
+    android:background="@color/reportBackground"
     android:minWidth="25px"
     android:minHeight="25px">
 <!--<ScrollView
@@ -38,39 +38,27 @@
         android:layout_height="wrap_content"
         android:layout_margin=" 5dp"
         android:layout_below="@id/saveRow">
-        <LinearLayout
-            android:layout_height="match_parent"
+        <TextView
+            style="@style/TextViewStyle"
+            android:id="@+id/category_textView"
+            android:text="@string/Category"
             android:layout_width="match_parent"
-            android:layout_weight="1">
-            <TextView
-                style="@style/TextViewStyle"
-                android:id="@+id/category_textView"
-                android:text="@string/Category"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
-        </LinearLayout>
-        <LinearLayout
             android:layout_height="match_parent"
+            android:layout_weight="1" />
+        <TextView
+            style="@style/TextViewStyle"
+            android:id="@+id/paymentType_textView"
+            android:text="@string/PaymentType"
             android:layout_width="match_parent"
-            android:layout_weight="1">
-            <TextView
-                style="@style/TextViewStyle"
-                android:id="@+id/paymentType_textView"
-                android:text="@string/PaymentType"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
-        </LinearLayout>
-        <LinearLayout
             android:layout_height="match_parent"
+            android:layout_weight="1" />
+        <TextView
+            style="@style/TextViewStyle"
+            android:id="@+id/owner_textView"
+            android:text="@string/Owner"
             android:layout_width="match_parent"
-            android:layout_weight="1">
-            <TextView
-                style="@style/TextViewStyle"
-                android:id="@+id/owner_textView"
-                android:text="@string/Owner"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
-        </LinearLayout>
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
     </LinearLayout>
 <!-- ListViews (buttons) -->
     <LinearLayout
@@ -80,39 +68,27 @@
         android:layout_height="wrap_content"
         android:layout_margin=" 5dp"
         android:layout_below="@id/firstRow">
-        <LinearLayout
-            android:layout_height="match_parent"
+        <Button
+            style="@style/ButtonStyle"
+            android:text="@string/Category"
             android:layout_width="match_parent"
-            android:layout_weight="1">
-            <Button
-                style="@style/ButtonStyle"
-                android:text="@string/Category"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:id="@+id/category_button" />
-        </LinearLayout>
-        <LinearLayout
             android:layout_height="match_parent"
+            android:id="@+id/category_button"
+            android:layout_weight="1" />
+        <Button
+            style="@style/ButtonStyle"
+            android:text="@string/PaymentType"
             android:layout_width="match_parent"
-            android:layout_weight="1">
-            <Button
-                style="@style/ButtonStyle"
-                android:text="@string/PaymentType"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:id="@+id/paymentType_button" />
-        </LinearLayout>
-        <LinearLayout
+            android:layout_height="match_parent"
+            android:id="@+id/paymentType_button"
+            android:layout_weight="1" />
+        <Button
+            style="@style/ButtonStyle"
+            android:text="@string/Owner"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_width="match_parent"
-            android:layout_weight="1">
-            <Button
-                style="@style/ButtonStyle"
-                android:text="@string/Owner"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/owner_button" />
-        </LinearLayout>
+            android:id="@+id/owner_button"
+            android:layout_weight="1" />
     </LinearLayout>
     <LinearLayout
         android:id="@+id/thirdRow"
@@ -121,46 +97,35 @@
         android:layout_height="wrap_content"
         android:layout_margin=" 5dp"
         android:layout_below="@id/secondRow">
-        <LinearLayout
-            android:layout_height="match_parent"
+        <TextView
+            style="@style/TextViewStyle"
+            android:text="@string/Cost"
             android:layout_width="match_parent"
-            android:layout_weight="3">
-            <TextView
-                style="@style/TextViewStyle"
-                android:text="@string/Cost"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:id="@+id/cost_textView"
-                android:gravity="center_vertical" />
-        </LinearLayout>
+            android:layout_height="match_parent"
+            android:id="@+id/cost_textView"
+            android:gravity="center_vertical"
+            android:layout_weight="3" />
         <LinearLayout
             android:layout_height="match_parent"
             android:layout_width="match_parent"
             android:layout_weight="1">
-            <LinearLayout
+            <EditText
+                style="@style/EditTextStyle"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:id="@+id/cost_editText"
+                android:inputType="phone"
+                android:layout_weight="2" />
+        <!--android:inputType="numberDecimal"-->
+            <CheckBox
+                android:id="@+id/earnings_checkBox"
+                style="@style/CheckBoxStyle"
+                android:text="@string/Earnings"
                 android:layout_width="match_parent"
-                android:layout_weight="1">
-                <EditText
-                    style="@style/EditTextStyle"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:id="@+id/cost_editText"
-                    android:inputType="phone" />
-            <!--android:inputType="numberDecimal"-->
-            </LinearLayout>
-            <LinearLayout
-                android:layout_height="wrap_content"
-                android:layout_width="match_parent"
-                android:layout_weight="2">
-                <CheckBox
-                    style="@style/CheckBoxStyle"
-                    android:text="@string/Earnings"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:id="@+id/earnings_checkBox"
-                    android:gravity="center_vertical|right" />
-            </LinearLayout>
+                android:layout_height="match_parent"
+                android:gravity="center_vertical|right"
+                android:layout_weight="2" />
+        <!--android:layout_weight="2"-->
         </LinearLayout>
     </LinearLayout>
     <LinearLayout
@@ -170,29 +135,21 @@
         android:layout_height="wrap_content"
         android:layout_margin=" 5dp"
         android:layout_below="@id/thirdRow">
-        <LinearLayout
-            android:layout_height="match_parent"
+        <TextView
+            style="@style/TextViewStyle"
+            android:text="@string/Description"
             android:layout_width="match_parent"
-            android:layout_weight="3">
-            <TextView
-                style="@style/TextViewStyle"
-                android:text="@string/Description"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:id="@+id/description_textView"
-                android:gravity="center_vertical" />
-        </LinearLayout>
-        <LinearLayout
             android:layout_height="match_parent"
+            android:id="@+id/description_textView"
+            android:gravity="center_vertical"
+            android:layout_weight="3" />
+        <EditText
+            style="@style/EditTextStyle"
             android:layout_width="match_parent"
-            android:layout_weight="1">
-            <EditText
-                style="@style/EditTextStyle"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:id="@+id/description_editText"
-                android:inputType="text" />
-        </LinearLayout>
+            android:layout_height="match_parent"
+            android:id="@+id/description_editText"
+            android:inputType="text"
+            android:layout_weight="1" />
     </LinearLayout>
     <LinearLayout
         android:id="@+id/fifthRow"
@@ -201,29 +158,21 @@
         android:layout_height="wrap_content"
         android:layout_margin=" 5dp"
         android:layout_below="@id/fourthRow">
-        <LinearLayout
-            android:layout_height="match_parent"
+        <TextView
+            style="@style/TextViewStyle"
+            android:text="@string/Date"
             android:layout_width="match_parent"
-            android:layout_weight="3">
-            <TextView
-                style="@style/TextViewStyle"
-                android:text="@string/Date"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:id="@+id/date_textView"
-                android:gravity="center_vertical" />
-        </LinearLayout>
-        <LinearLayout
             android:layout_height="match_parent"
+            android:id="@+id/date_textView"
+            android:gravity="center_vertical"
+            android:layout_weight="3" />
+        <Button
+            style="@style/ButtonStyle"
+            android:id="@+id/date_button"
             android:layout_width="match_parent"
-            android:layout_weight="1">
-            <Button
-                style="@style/ButtonStyle"
-                android:id="@+id/date_button"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_margin="1dp" />
-        </LinearLayout>
+            android:layout_height="match_parent"
+            android:layout_margin="1dp"
+            android:layout_weight="1" />
     </LinearLayout>
 <!--android:padding="3dp"-->
     <LinearLayout
@@ -233,29 +182,21 @@
         android:layout_height="wrap_content"
         android:layout_margin=" 5dp"
         android:layout_below="@id/fifthRow">
-        <LinearLayout
-            android:layout_height="match_parent"
+        <TextView
+            style="@style/TextViewStyle"
+            android:text="@string/Warranty"
             android:layout_width="match_parent"
-            android:layout_weight="3">
-            <TextView
-                style="@style/TextViewStyle"
-                android:text="@string/Warranty"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:id="@+id/warranty_textView"
-                android:gravity="center_vertical" />
-        </LinearLayout>
-        <LinearLayout
             android:layout_height="match_parent"
+            android:id="@+id/warranty_textView"
+            android:gravity="center_vertical"
+            android:layout_weight="3" />
+        <EditText
+            style="@style/EditTextStyle"
+            android:id="@+id/warranty_editText"
             android:layout_width="match_parent"
-            android:layout_weight="1">
-            <EditText
-                style="@style/EditTextStyle"
-                android:id="@+id/warranty_editText"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:inputType="number" />
-        </LinearLayout>
+            android:layout_height="match_parent"
+            android:inputType="number"
+            android:layout_weight="1" />
     </LinearLayout>
     <LinearLayout
         android:id="@+id/seventhRow"
@@ -264,29 +205,21 @@
         android:layout_height="wrap_content"
         android:layout_margin=" 5dp"
         android:layout_below="@id/sixthRow">
-        <LinearLayout
-            android:layout_height="match_parent"
+        <TextView
+            style="@style/TextViewStyle"
+            android:text="@string/Tags"
             android:layout_width="match_parent"
-            android:layout_weight="3">
-            <TextView
-                style="@style/TextViewStyle"
-                android:text="@string/Tags"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:id="@+id/warranty_textView"
-                android:gravity="center_vertical" />
-        </LinearLayout>
-        <LinearLayout
             android:layout_height="match_parent"
+            android:id="@+id/warranty_textView"
+            android:gravity="center_vertical"
+            android:layout_weight="3" />
+        <EditText
+            style="@style/EditTextStyle"
             android:layout_width="match_parent"
-            android:layout_weight="1">
-            <EditText
-                style="@style/EditTextStyle"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:id="@+id/tags_editText"
-                android:inputType="text" />
-        </LinearLayout>
+            android:layout_height="match_parent"
+            android:id="@+id/tags_editText"
+            android:inputType="text"
+            android:layout_weight="1" />
     </LinearLayout>
 <!--<LinearLayout
         android:id="@+id/eighthRow"

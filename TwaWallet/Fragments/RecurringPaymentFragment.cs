@@ -402,6 +402,9 @@ namespace TwaWallet.Fragments
                 this.interval_button.Text = SelectedItem?.Interval.Description;
                 this.interval_button.Tag = SelectedItem != null ? new JavaLangObjectWrapper<Interval>(SelectedItem.Interval) : null;
 
+                this.startDate_button.Text = SelectedItem?.Interval?.NextDateTime(SelectedItem.LastUpdate).ToString(Resources.GetString(Resource.String.DateFormat)) ?? string.Empty;
+                this.startDate_button.Tag = SelectedItem != null ? new JavaLangObjectWrapper<DateTime>(SelectedItem.Interval.NextDateTime(SelectedItem.LastUpdate)) : null;
+
                 this.endDate_button.Text = SelectedItem?.EndDate.ToString(Resources.GetString(Resource.String.DateFormat)) ?? string.Empty;
                 this.endDate_button.Tag = SelectedItem != null ? new JavaLangObjectWrapper<DateTime>(SelectedItem.EndDate) : null;
 

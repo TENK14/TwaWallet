@@ -6,6 +6,7 @@
     android:orientation="horizontal">
 <!-- Image -->
     <LinearLayout
+        android:id="@+id/image_linearLayout"
         android:layout_height="match_parent"
         android:layout_width="wrap_content"
         android:layout_marginLeft="5dp"
@@ -28,11 +29,9 @@
         <TextView
             android:id="@+id/owner_textView"
             android:text="owner"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:lineSpacingExtra="3dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:paddingLeft="10dp"
-            android:textColor="#ffffff"
             android:textStyle="bold"
             android:typeface="sans"
             android:textAlignment="center"
@@ -43,7 +42,8 @@
     <LinearLayout
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:layout_below="@id/image_linearLayout">
     <!--android:background="@color/red"-->
     <!-- first row -->
         <LinearLayout
@@ -54,37 +54,31 @@
                 android:id="@+id/category_textView"
                 android:text="category"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:lineSpacingExtra="3dp"
+                android:layout_height="match_parent"
                 android:paddingLeft="10dp"
-                android:textColor="#ffffff"
                 android:textStyle="bold"
                 android:typeface="sans"
                 android:layout_weight="3" />
             <TextView
-                android:id="@+id/cost_textView"
-                android:text="cost"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:lineSpacingExtra="3dp"
-                android:paddingLeft="10dp"
-                android:textColor="#ffffff"
-                android:textStyle="bold"
-                android:typeface="sans"
-                android:layout_weight="2" />
-            <TextView
                 android:id="@+id/interval_textView"
                 android:text="interval"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:lineSpacingExtra="3dp"
+                android:layout_height="match_parent"
                 android:paddingLeft="10dp"
-                android:textColor="#ffffff"
                 android:textStyle="bold"
                 android:typeface="sans"
-                android:layout_weight="1"
                 android:layout_marginRight="5dp"
-                android:gravity="right" />
+                android:gravity="right"
+                android:layout_weight="2" />
+            <TextView
+                android:id="@+id/cost_textView"
+                android:text="cost"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:paddingLeft="10dp"
+                android:textStyle="bold"
+                android:typeface="sans"
+                android:layout_weight="1" />
         </LinearLayout>
     <!-- second row -->
         <LinearLayout
@@ -95,10 +89,8 @@
                 android:id="@+id/description_textView"
                 android:text="description"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:lineSpacingExtra="3dp"
+                android:layout_height="match_parent"
                 android:paddingLeft="10dp"
-                android:textColor="#ffffff"
                 android:textStyle="bold"
                 android:typeface="sans"
                 android:layout_weight="3" />
@@ -107,10 +99,8 @@
                 android:id="@+id/date_textView"
                 android:text="date"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:lineSpacingExtra="3dp"
+                android:layout_height="match_parent"
                 android:paddingLeft="10dp"
-                android:textColor="#ffffff"
                 android:textStyle="bold"
                 android:typeface="sans"
                 android:layout_marginRight="5dp"
@@ -119,10 +109,8 @@
                 android:id="@+id/lastUpdate_textView"
                 android:text="last update"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:lineSpacingExtra="3dp"
+                android:layout_height="match_parent"
                 android:paddingLeft="10dp"
-                android:textColor="#ffffff"
                 android:textStyle="bold"
                 android:typeface="sans"
                 android:layout_marginRight="5dp"
@@ -138,10 +126,8 @@
                 android:id="@+id/tag_textView"
                 android:text="tag"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:lineSpacingExtra="3dp"
+                android:layout_height="match_parent"
                 android:paddingLeft="10dp"
-                android:textColor="#ffffff"
                 android:textStyle="bold"
                 android:typeface="sans"
                 android:layout_weight="3" />
@@ -149,10 +135,8 @@
                 android:id="@+id/warranty_textView"
                 android:text="warranty"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:lineSpacingExtra="3dp"
+                android:layout_height="match_parent"
                 android:paddingLeft="10dp"
-                android:textColor="#ffffff"
                 android:textStyle="bold"
                 android:typeface="sans"
                 android:layout_marginRight="5dp"
@@ -161,10 +145,8 @@
                 android:id="@+id/endDate_textView"
                 android:text="end date"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:lineSpacingExtra="3dp"
+                android:layout_height="match_parent"
                 android:paddingLeft="10dp"
-                android:textColor="#ffffff"
                 android:textStyle="bold"
                 android:typeface="sans"
                 android:layout_marginRight="5dp"

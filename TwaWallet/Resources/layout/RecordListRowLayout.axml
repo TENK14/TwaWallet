@@ -30,13 +30,13 @@
             android:text="owner"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:lineSpacingExtra="3dp"
-            android:paddingLeft="10dp"
-            android:textColor="#ffffff"
-            android:textStyle="bold"
-            android:typeface="sans"
-            android:textAlignment="center"
             android:gravity="center" />
+    <!--android:lineSpacingExtra="3dp"
+      android:paddingLeft="10dp"
+      android:textColor="#ffffff"
+      android:textStyle="bold"
+      android:typeface="sans"
+      android:textAlignment="center"-->
     <!--android:textAppearance="@android:style/TextAppearance.Small"-->
     </LinearLayout>
 <!-- Data -->
@@ -54,26 +54,28 @@
                 android:id="@+id/category_textView"
                 android:text="category"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:lineSpacingExtra="3dp"
+                android:layout_height="match_parent"
                 android:paddingLeft="10dp"
-                android:textColor="#ffffff"
-                android:textStyle="bold"
-                android:typeface="sans"
                 android:layout_weight="1" />
+        <!--android:lineSpacingExtra="3dp"
+          android:paddingLeft="10dp"
+          android:textColor="#ffffff"
+          android:textStyle="bold"
+          android:typeface="sans"-->
             <TextView
                 android:id="@+id/cost_textView"
                 android:text="cost"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:lineSpacingExtra="3dp"
+                android:layout_height="match_parent"
                 android:paddingLeft="10dp"
-                android:textColor="#ffffff"
-                android:textStyle="bold"
-                android:typeface="sans"
                 android:layout_weight="2"
                 android:layout_marginRight="5dp"
                 android:gravity="right" />
+        <!--android:lineSpacingExtra="3dp"
+          android:paddingLeft="10dp"
+          android:textColor="#ffffff"
+          android:textStyle="bold"
+          android:typeface="sans"-->
         </LinearLayout>
     <!-- second row -->
         <LinearLayout
@@ -84,27 +86,29 @@
                 android:id="@+id/description_textView"
                 android:text="description"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:lineSpacingExtra="3dp"
+                android:layout_height="match_parent"
                 android:paddingLeft="10dp"
-                android:textColor="#ffffff"
-                android:textStyle="bold"
-                android:typeface="sans"
                 android:layout_weight="1" />
-        <!--android:textAppearance="@android:style/TextAppearance.Small"-->
+          <!--android:lineSpacingExtra="3dp"
+          android:paddingLeft="10dp"
+          android:textColor="#ffffff"
+          android:textStyle="bold"
+          android:typeface="sans"-->
+          <!--android:textAppearance="@android:style/TextAppearance.Small"-->
             <TextView
                 android:id="@+id/date_textView"
                 android:text="date"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:lineSpacingExtra="3dp"
+                android:layout_height="match_parent"
                 android:paddingLeft="10dp"
-                android:textColor="#ffffff"
-                android:textStyle="bold"
-                android:typeface="sans"
                 android:layout_marginRight="5dp"
                 android:layout_weight="2"
                 android:gravity="right" />
+          <!--android:lineSpacingExtra="3dp"
+          android:paddingLeft="10dp"
+          android:textColor="#ffffff"
+          android:textStyle="bold"
+          android:typeface="sans"-->
         </LinearLayout>
     <!-- third row -->
         <LinearLayout
@@ -115,26 +119,27 @@
                 android:id="@+id/tag_textView"
                 android:text="tag"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:lineSpacingExtra="3dp"
+                android:layout_height="match_parent"
                 android:paddingLeft="10dp"
-                android:textColor="#ffffff"
-                android:textStyle="bold"
-                android:typeface="sans"
+                
                 android:layout_weight="1" />
-            <TextView
+          <!--android:lineSpacingExtra="3dp"
+          android:textColor="#ffffff"
+          android:textStyle="bold"
+          android:typeface="sans"-->
+          <TextView
                 android:id="@+id/warranty_textView"
                 android:text="warranty"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:lineSpacingExtra="3dp"
-                android:paddingLeft="10dp"
-                android:textColor="#ffffff"
-                android:textStyle="bold"
-                android:typeface="sans"
+                android:layout_height="match_parent"
+                android:paddingLeft="10dp"                
                 android:layout_marginRight="5dp"
                 android:layout_weight="2"
                 android:gravity="right" />
+          <!--android:lineSpacingExtra="3dp"
+          android:textColor="#ffffff"
+          android:textStyle="bold"
+          android:typeface="sans"-->
         </LinearLayout>
     <!--<ImageView
       android:id="@+id/Thumbnail"
