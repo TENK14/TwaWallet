@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <resources>
+  <item name="white" type="color">#FFFFFF</item>
   <item name="black" type="color">#000000</item>
   <item name="blue" type="color">#294F6D</item>
   <item name="green" type="color">#0D6332</item>
@@ -8,7 +9,7 @@
   <item name="yellow" type="color">#FFCC00</item>
 
 
-  <color name="fragmentBackground">@color/green</color>
+  <color name="fragmentBackground">@color/yellow</color>
   <color name="fragmentListBackground">@color/fragmentBackground</color>
 
   <color name="reportBackground">@color/fragmentBackground</color>

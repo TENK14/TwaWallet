@@ -63,6 +63,8 @@ namespace TwaWallet
             // Set our view from the "main" layout resource
             SetContentView(Resource.Layout.main);
 
+            // finally change the color            
+            //window.setStatusBarColor(activity.getResources().getColor(R.color.my_statusbar_color));
 
             int minWorker, minIOC;
             // Get the current settings.
