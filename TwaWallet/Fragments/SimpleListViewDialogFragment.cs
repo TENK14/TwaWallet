@@ -44,7 +44,7 @@ namespace TwaWallet.Fragments
 
             View view = inflater.Inflate(Resource.Layout.SimpleListView, container, false);
             ListView listView = (Android.Widget.ListView)view.FindViewById(Resource.Id.DataListView);
-
+            listView.SetPadding(5, 5, 5, 5);
             try
             { 
                 List<string> list;

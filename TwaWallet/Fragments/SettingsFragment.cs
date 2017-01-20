@@ -44,7 +44,6 @@ namespace TwaWallet.Fragments
 
             // Create your fragment here
             string pathToDatabase = DeviceInfo.GetFileFinallPath(Resources.GetString(Resource.String.DBfilename));
-            //db = new DataContext(pathToDatabase);
             db = DataContextFactory.GetDataContext(pathToDatabase);
 
             
@@ -137,11 +136,7 @@ namespace TwaWallet.Fragments
                 {
                     Toast.MakeText(this.Activity, Resource.String.WasntSaved, ToastLength.Short).Show();
                 }
-
-                //var item = db.Select<Category, int>(p => p.IsDefault, p => p.Id).Result.FirstOrDefault();
-
-                //Toast.MakeText(this.Activity, $"default: {item.Description}", ToastLength.Short).Show();
-
+                
             });
             fr.Show(this.Activity.FragmentManager, SimpleListViewDialogFragment<Category>.TAG);
         }
@@ -156,15 +151,7 @@ namespace TwaWallet.Fragments
                 owner_button.Tag = new JavaLangObjectWrapper<Owner>(selectedItem);
 
                 var r = db.SetAllDefault<Owner>(false).Result;
-                //if (db.SetAllDefault<Owner>(false).Result)
-                //{
-                //    Toast.MakeText(this.Activity, "Inicializovano", ToastLength.Short).Show();
-                //}
-                //else
-                //{
-                //    Toast.MakeText(this.Activity, "Neinicializovano", ToastLength.Short).Show();
-                //}
-
+                
                 selectedItem.IsDefault = true;
 
                 if (db.Update(selectedItem).Result)
@@ -175,15 +162,7 @@ namespace TwaWallet.Fragments
                 {
                     Toast.MakeText(this.Activity, Resource.String.WasntSaved, ToastLength.Short).Show();
                 }
-
-                //var item = db.Select<Owner, int>(p => p.IsDefault, p => p.Id).Result.FirstOrDefault();
-
-                //Toast.MakeText(this.Activity, $"default: {item.Name}", ToastLength.Short).Show();
-
-                //item = db.Select<Owner, int>(p => p.IsDefault, p => p.Id).Result.LastOrDefault();
-
-                //Toast.MakeText(this.Activity, $"default: {item.Name}", ToastLength.Short).Show();
-
+                
             });
             fr.Show(this.Activity.FragmentManager, SimpleListViewDialogFragment<Owner>.TAG);
         }
@@ -208,11 +187,7 @@ namespace TwaWallet.Fragments
                 {
                     Toast.MakeText(this.Activity, Resource.String.WasntSaved, ToastLength.Short).Show();
                 }
-
-                //var item = db.Select<PaymentType, int>(p => p.IsDefault, p => p.Id).Result.FirstOrDefault();
-
-                //Toast.MakeText(this.Activity, $"default: {item.Description}", ToastLength.Short).Show();
-
+                
             });
             fr.Show(this.Activity.FragmentManager, SimpleListViewDialogFragment<PaymentType>.TAG);
         }

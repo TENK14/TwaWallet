@@ -48,9 +48,6 @@ namespace TwaWallet.Fragments
             Log.Debug(TAG, nameof(OnCreateView));
 
             // Use this to return your custom view for this Fragment
-            // return inflater.Inflate(Resource.Layout.YourFragment, container, false);
-
-            //return base.OnCreateView(inflater, container, savedInstanceState);
             View v = inflater.Inflate(Resource.Layout.RecurringPayments, container, false);
 
             addRecurringPayment_button = v.FindViewById<Button>(Resource.Id.addRecurringPayment_button);
@@ -111,21 +108,6 @@ namespace TwaWallet.Fragments
             Log.Debug(TAG, nameof(InitLayout));
 
             listView.Adapter = new RecurringPaymentListAdapter(this.Activity, listData, this.db);
-
-            //if (listData != null && listData.Count > 0)
-            //{
-            //    var date = listData.LastOrDefault().Date;
-            //    dateFrom_button.Text = date.ToString(Resources.GetString(Resource.String.DateFormat));
-            //    dateFrom_button.Tag = new JavaLangObjectWrapper<DateTime>(date);
-
-            //    date = listData.FirstOrDefault().Date;
-            //    dateTo_button.Text = date.ToString(Resources.GetString(Resource.String.DateFormat));
-            //    dateTo_button.Tag = new JavaLangObjectWrapper<DateTime>(date);
-
-            //    this.count_value.Text = listData.Count.ToString();
-            //    this.monthCost_value.Text = listData.Where(p => p.Date.Month == DateTime.Now.Month && p.Date.Year == DateTime.Now.Year).Select(p => p.Cost).Sum().ToString();
-            //    this.filterCost_value.Text = listData.Select(p => p.Cost).Sum().ToString();
-            //}
         }
 
         private void OnListItemLongClick(object sender, AdapterView.ItemLongClickEventArgs e)

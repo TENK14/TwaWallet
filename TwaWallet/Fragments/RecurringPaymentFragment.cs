@@ -266,7 +266,8 @@ namespace TwaWallet.Fragments
                     item.Id = SelectedItem.Id;
                     if (db.Update(item).Result)
                     {
-                        Toast.MakeText(this.Activity, item.ToString(), ToastLength.Short).Show();
+                        //Toast.MakeText(this.Activity, item.ToString(), ToastLength.Short).Show();
+                        Toast.MakeText(this.Activity, Resources.GetString(Resource.String.Saved), ToastLength.Short).Show();
 
                         if (onContinueWithHandler != null)
                         {
@@ -280,7 +281,8 @@ namespace TwaWallet.Fragments
                 }
                 else if (db.Insert(item).Result) // inser new item
                 {
-                    Toast.MakeText(this.Activity, item.ToString(), ToastLength.Short).Show();
+                    //Toast.MakeText(this.Activity, item.ToString(), ToastLength.Short).Show();
+                    Toast.MakeText(this.Activity, Resources.GetString(Resource.String.Saved), ToastLength.Short).Show();
                     //InitLayout();
 
                     if (onContinueWithHandler != null)
@@ -291,7 +293,7 @@ namespace TwaWallet.Fragments
                 }
                 else
                 {
-                    Toast.MakeText(this.Activity, "Wasnt saved", ToastLength.Short).Show();
+                    Toast.MakeText(this.Activity, Resources.GetString(Resource.String.WasntSaved), ToastLength.Short).Show();
                 }
 
             }

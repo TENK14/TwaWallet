@@ -20,7 +20,7 @@ using Android.Support.V4.Widget;
 namespace TwaWallet
 {
     [Android.App.Activity(Label = "TwaWallet_Xam", 
-        MainLauncher = true, 
+        //MainLauncher = true, 
         Icon = "@drawable/icon",
         ScreenOrientation = Android.Content.PM.ScreenOrientation.Portrait,
         WindowSoftInputMode = Android.Views.SoftInput.AdjustPan)]
@@ -36,24 +36,13 @@ namespace TwaWallet
 
         Fragment[] fragments = new Fragment[]
             {
-                new ReportFragment(),
+                //new ReportFragment(),
                 new HistoryFragment(),
                 new ExportFragment(),
                 new SettingsFragment(),
                 new RecurringPaymentsFragment()
             };
-
-
-        //ICharSequence[] titles = CharSequence.ArrayFromStringArray(new[]
-        //    {
-        //            Resources.GetString(Resource.String.Report),//"REPORT",
-        //            "HISTORIE",
-        //            "EXPORT",
-        //            "NASTAVENI",
-        //            "PRAVIDELNE PLATBY"
-        //        });
-
-
+        
         protected override void OnCreate(Bundle bundle)
         {
             Log.Debug(TAG,nameof(OnCreate));
@@ -136,6 +125,9 @@ namespace TwaWallet
             /**/
             #endregion Show Version
 
+            #region OLD
+
+            /**
             try
             {
 
@@ -201,7 +193,6 @@ namespace TwaWallet
 
 
                 #region RecurringPayments
-                /**/
                 var lstRecurringPayment = db.Select<RecurringPayment, int>(p => p.IsActive, p => p.Id, false).Result;
 
                 if (lstRecurringPayment != null && lstRecurringPayment.Count > 0)
@@ -226,7 +217,7 @@ namespace TwaWallet
                                 PaymentTypeId = i.PaymentTypeId,
                                 Tag = i.Tag,
                                 Warranty = i.Warranty,
-                                
+
                             };
                             db.Insert(record);
 
@@ -242,14 +233,17 @@ namespace TwaWallet
                         }
                     }
                 }
-                /**/
                 #endregion
             }
             catch (Exception ex)
             {
                 Log.Error(TAG, ex.Message);
             }
-        }
+    /**/
+
+#endregion
+
+}
 
         private void InitialFragment()
         {
@@ -274,7 +268,7 @@ namespace TwaWallet
 
             var titles = new[]
             {
-                Resources.GetString(Resource.String.Report),
+                //Resources.GetString(Resource.String.Report),
                 Resources.GetString(Resource.String.History),
                 Resources.GetString(Resource.String.Export),
                 Resources.GetString(Resource.String.Settings),

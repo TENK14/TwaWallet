@@ -65,7 +65,7 @@ namespace TwaWallet.Fragments
 
         public static ReportFragment NewInstance(Record selectedItem, Action onContinueWith)
         {
-            Log.Debug(TAG, $"{nameof(NewInstance)} - {nameof(selectedItem)}:{selectedItem.ToString()}");
+            Log.Debug(TAG, $"{nameof(NewInstance)} - {nameof(selectedItem)}:{selectedItem?.ToString()}");
 
             var frag = new ReportFragment();
             //frag.itemSelectedHandler = onItemSelected;
@@ -188,10 +188,10 @@ namespace TwaWallet.Fragments
             var r3 = db.Select<Category, int>((o) => o.Id > 0, (o) => o.Id).Result;
             lstCategory = r3.ToList();
 
-            this.Activity.RunOnUiThread(() =>
-                {
-                    Toast.MakeText(this.Activity, $"owners: {lstOwner.Count}, paymentTypes: {lstPaymentType.Count}, categories: {lstCategory.Count}", ToastLength.Short);
-                });
+            //this.Activity.RunOnUiThread(() =>
+            //    {
+            //        Toast.MakeText(this.Activity, $"owners: {lstOwner.Count}, paymentTypes: {lstPaymentType.Count}, categories: {lstCategory.Count}", ToastLength.Short);
+            //    });
             //});
         }
 
@@ -378,7 +378,8 @@ namespace TwaWallet.Fragments
                     record.Id = SelectedItem.Id;
                     if (db.Update(record).Result)
                     {
-                        Toast.MakeText(this.Activity, record.ToString(), ToastLength.Short).Show();
+                        //Toast.MakeText(this.Activity, record.ToString(), ToastLength.Short).Show();
+                        Toast.MakeText(this.Activity, Resources.GetString(Resource.String.Saved), ToastLength.Short).Show();
 
                         if (onContinueWithHandler != null)
                         {
@@ -392,12 +393,19 @@ namespace TwaWallet.Fragments
                 }
                 else if (db.Insert(record).Result) // inser new item
                 {
-                    Toast.MakeText(this.Activity, record.ToString(), ToastLength.Short).Show();
-                    InitLayout();
+                    //Toast.MakeText(this.Activity, record.ToString(), ToastLength.Short).Show();
+                    Toast.MakeText(this.Activity,Resources.GetString(Resource.String.Saved), ToastLength.Short).Show();
+                    //InitLayout();
+
+                    if (onContinueWithHandler != null)
+                    {
+                        onContinueWithHandler();
+                    }
+                    Dismiss();
                 }
                 else
                 {
-                    Toast.MakeText(this.Activity, "Wasnt saved", ToastLength.Short).Show();
+                    Toast.MakeText(this.Activity, Resources.GetString(Resource.String.WasntSaved), ToastLength.Short).Show();
                 }
                                
             }

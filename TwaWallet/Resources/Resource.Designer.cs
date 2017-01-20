@@ -28,6 +28,29 @@ namespace TwaWallet
 		{
 			global::Database.Resource.String.ApplicationName = global::TwaWallet.Resource.String.ApplicationName;
 			global::Database.Resource.String.Hello = global::TwaWallet.Resource.String.Hello;
+			global::com.refractored.fab.Resource.Attribute.fab_colorDisabled = global::TwaWallet.Resource.Attribute.fab_colorDisabled;
+			global::com.refractored.fab.Resource.Attribute.fab_colorNormal = global::TwaWallet.Resource.Attribute.fab_colorNormal;
+			global::com.refractored.fab.Resource.Attribute.fab_colorPressed = global::TwaWallet.Resource.Attribute.fab_colorPressed;
+			global::com.refractored.fab.Resource.Attribute.fab_colorRipple = global::TwaWallet.Resource.Attribute.fab_colorRipple;
+			global::com.refractored.fab.Resource.Attribute.fab_shadow = global::TwaWallet.Resource.Attribute.fab_shadow;
+			global::com.refractored.fab.Resource.Attribute.fab_size = global::TwaWallet.Resource.Attribute.fab_size;
+			global::com.refractored.fab.Resource.Color.fab_material_blue_500 = global::TwaWallet.Resource.Color.fab_material_blue_500;
+			global::com.refractored.fab.Resource.Dimension.fab_elevation_lollipop = global::TwaWallet.Resource.Dimension.fab_elevation_lollipop;
+			global::com.refractored.fab.Resource.Dimension.fab_scroll_threshold = global::TwaWallet.Resource.Dimension.fab_scroll_threshold;
+			global::com.refractored.fab.Resource.Dimension.fab_shadow_size = global::TwaWallet.Resource.Dimension.fab_shadow_size;
+			global::com.refractored.fab.Resource.Dimension.fab_size_mini = global::TwaWallet.Resource.Dimension.fab_size_mini;
+			global::com.refractored.fab.Resource.Dimension.fab_size_normal = global::TwaWallet.Resource.Dimension.fab_size_normal;
+			global::com.refractored.fab.Resource.Drawable.fab_shadow = global::TwaWallet.Resource.Drawable.fab_shadow;
+			global::com.refractored.fab.Resource.Drawable.fab_shadow_mini = global::TwaWallet.Resource.Drawable.fab_shadow_mini;
+			global::com.refractored.fab.Resource.Id.mini = global::TwaWallet.Resource.Id.mini;
+			global::com.refractored.fab.Resource.Id.normal = global::TwaWallet.Resource.Id.normal;
+			global::com.refractored.fab.Resource.Styleable.FloatingActionButton = global::TwaWallet.Resource.Styleable.FloatingActionButton;
+			global::com.refractored.fab.Resource.Styleable.FloatingActionButton_fab_colorDisabled = global::TwaWallet.Resource.Styleable.FloatingActionButton_fab_colorDisabled;
+			global::com.refractored.fab.Resource.Styleable.FloatingActionButton_fab_colorNormal = global::TwaWallet.Resource.Styleable.FloatingActionButton_fab_colorNormal;
+			global::com.refractored.fab.Resource.Styleable.FloatingActionButton_fab_colorPressed = global::TwaWallet.Resource.Styleable.FloatingActionButton_fab_colorPressed;
+			global::com.refractored.fab.Resource.Styleable.FloatingActionButton_fab_colorRipple = global::TwaWallet.Resource.Styleable.FloatingActionButton_fab_colorRipple;
+			global::com.refractored.fab.Resource.Styleable.FloatingActionButton_fab_shadow = global::TwaWallet.Resource.Styleable.FloatingActionButton_fab_shadow;
+			global::com.refractored.fab.Resource.Styleable.FloatingActionButton_fab_size = global::TwaWallet.Resource.Styleable.FloatingActionButton_fab_size;
 		}
 		
 		public partial class Animation
@@ -483,6 +506,24 @@ namespace TwaWallet
 			
 			// aapt resource value: 0x7f01010a
 			public const int fabSize = 2130772234;
+			
+			// aapt resource value: 0x7f010139
+			public const int fab_colorDisabled = 2130772281;
+			
+			// aapt resource value: 0x7f010138
+			public const int fab_colorNormal = 2130772280;
+			
+			// aapt resource value: 0x7f010137
+			public const int fab_colorPressed = 2130772279;
+			
+			// aapt resource value: 0x7f01013a
+			public const int fab_colorRipple = 2130772282;
+			
+			// aapt resource value: 0x7f01013b
+			public const int fab_shadow = 2130772283;
+			
+			// aapt resource value: 0x7f01013c
+			public const int fab_size = 2130772284;
 			
 			// aapt resource value: 0x7f01010f
 			public const int foregroundInsidePadding = 2130772239;
@@ -1071,35 +1112,35 @@ namespace TwaWallet
 		public partial class Color
 		{
 			
-			// aapt resource value: 0x7f0a005d
-			public const int abc_background_cache_hint_selector_material_dark = 2131361885;
+			// aapt resource value: 0x7f0a0061
+			public const int abc_background_cache_hint_selector_material_dark = 2131361889;
 			
-			// aapt resource value: 0x7f0a005e
-			public const int abc_background_cache_hint_selector_material_light = 2131361886;
+			// aapt resource value: 0x7f0a0062
+			public const int abc_background_cache_hint_selector_material_light = 2131361890;
 			
-			// aapt resource value: 0x7f0a005f
-			public const int abc_btn_colored_borderless_text_material = 2131361887;
+			// aapt resource value: 0x7f0a0063
+			public const int abc_btn_colored_borderless_text_material = 2131361891;
 			
-			// aapt resource value: 0x7f0a0060
-			public const int abc_color_highlight_material = 2131361888;
+			// aapt resource value: 0x7f0a0064
+			public const int abc_color_highlight_material = 2131361892;
 			
 			// aapt resource value: 0x7f0a0000
 			public const int abc_input_method_navigation_guard = 2131361792;
 			
-			// aapt resource value: 0x7f0a0061
-			public const int abc_primary_text_disable_only_material_dark = 2131361889;
-			
-			// aapt resource value: 0x7f0a0062
-			public const int abc_primary_text_disable_only_material_light = 2131361890;
-			
-			// aapt resource value: 0x7f0a0063
-			public const int abc_primary_text_material_dark = 2131361891;
-			
-			// aapt resource value: 0x7f0a0064
-			public const int abc_primary_text_material_light = 2131361892;
-			
 			// aapt resource value: 0x7f0a0065
-			public const int abc_search_url_text = 2131361893;
+			public const int abc_primary_text_disable_only_material_dark = 2131361893;
+			
+			// aapt resource value: 0x7f0a0066
+			public const int abc_primary_text_disable_only_material_light = 2131361894;
+			
+			// aapt resource value: 0x7f0a0067
+			public const int abc_primary_text_material_dark = 2131361895;
+			
+			// aapt resource value: 0x7f0a0068
+			public const int abc_primary_text_material_light = 2131361896;
+			
+			// aapt resource value: 0x7f0a0069
+			public const int abc_search_url_text = 2131361897;
 			
 			// aapt resource value: 0x7f0a0001
 			public const int abc_search_url_text_normal = 2131361793;
@@ -1110,38 +1151,44 @@ namespace TwaWallet
 			// aapt resource value: 0x7f0a0003
 			public const int abc_search_url_text_selected = 2131361795;
 			
-			// aapt resource value: 0x7f0a0066
-			public const int abc_secondary_text_material_dark = 2131361894;
-			
-			// aapt resource value: 0x7f0a0067
-			public const int abc_secondary_text_material_light = 2131361895;
-			
-			// aapt resource value: 0x7f0a0068
-			public const int abc_tint_btn_checkable = 2131361896;
-			
-			// aapt resource value: 0x7f0a0069
-			public const int abc_tint_default = 2131361897;
-			
 			// aapt resource value: 0x7f0a006a
-			public const int abc_tint_edittext = 2131361898;
+			public const int abc_secondary_text_material_dark = 2131361898;
 			
 			// aapt resource value: 0x7f0a006b
-			public const int abc_tint_seek_thumb = 2131361899;
+			public const int abc_secondary_text_material_light = 2131361899;
 			
 			// aapt resource value: 0x7f0a006c
-			public const int abc_tint_spinner = 2131361900;
+			public const int abc_tint_btn_checkable = 2131361900;
 			
 			// aapt resource value: 0x7f0a006d
-			public const int abc_tint_switch_thumb = 2131361901;
+			public const int abc_tint_default = 2131361901;
 			
 			// aapt resource value: 0x7f0a006e
-			public const int abc_tint_switch_track = 2131361902;
+			public const int abc_tint_edittext = 2131361902;
+			
+			// aapt resource value: 0x7f0a006f
+			public const int abc_tint_seek_thumb = 2131361903;
+			
+			// aapt resource value: 0x7f0a0070
+			public const int abc_tint_spinner = 2131361904;
+			
+			// aapt resource value: 0x7f0a0071
+			public const int abc_tint_switch_thumb = 2131361905;
+			
+			// aapt resource value: 0x7f0a0072
+			public const int abc_tint_switch_track = 2131361906;
+			
+			// aapt resource value: 0x7f0a004d
+			public const int accent = 2131361869;
 			
 			// aapt resource value: 0x7f0a0004
 			public const int accent_material_dark = 2131361796;
 			
 			// aapt resource value: 0x7f0a0005
 			public const int accent_material_light = 2131361797;
+			
+			// aapt resource value: 0x7f0a004e
+			public const int accent_pressed = 2131361870;
 			
 			// aapt resource value: 0x7f0a0006
 			public const int background_floating_material_dark = 2131361798;
@@ -1155,11 +1202,11 @@ namespace TwaWallet
 			// aapt resource value: 0x7f0a0009
 			public const int background_material_light = 2131361801;
 			
-			// aapt resource value: 0x7f0a0045
-			public const int black = 2131361861;
-			
 			// aapt resource value: 0x7f0a0046
-			public const int blue = 2131361862;
+			public const int black = 2131361862;
+			
+			// aapt resource value: 0x7f0a0047
+			public const int blue = 2131361863;
 			
 			// aapt resource value: 0x7f0a000a
 			public const int bright_foreground_disabled_material_dark = 2131361802;
@@ -1185,8 +1232,8 @@ namespace TwaWallet
 			// aapt resource value: 0x7f0a0011
 			public const int button_material_light = 2131361809;
 			
-			// aapt resource value: 0x7f0a006f
-			public const int design_error = 2131361903;
+			// aapt resource value: 0x7f0a0073
+			public const int design_error = 2131361907;
 			
 			// aapt resource value: 0x7f0a003a
 			public const int design_fab_shadow_end_color = 2131361850;
@@ -1218,8 +1265,8 @@ namespace TwaWallet
 			// aapt resource value: 0x7f0a0043
 			public const int design_textinput_error_color_light = 2131361859;
 			
-			// aapt resource value: 0x7f0a0070
-			public const int design_tint_password_toggle = 2131361904;
+			// aapt resource value: 0x7f0a0074
+			public const int design_tint_password_toggle = 2131361908;
 			
 			// aapt resource value: 0x7f0a0012
 			public const int dim_foreground_disabled_material_dark = 2131361810;
@@ -1233,20 +1280,23 @@ namespace TwaWallet
 			// aapt resource value: 0x7f0a0015
 			public const int dim_foreground_material_light = 2131361813;
 			
-			// aapt resource value: 0x7f0a004f
-			public const int exportBackground = 2131361871;
+			// aapt resource value: 0x7f0a0053
+			public const int exportBackground = 2131361875;
 			
-			// aapt resource value: 0x7f0a0059
-			public const int fab_color_1 = 2131361881;
+			// aapt resource value: 0x7f0a005d
+			public const int fab_color_1 = 2131361885;
 			
-			// aapt resource value: 0x7f0a005a
-			public const int fab_color_1_muted = 2131361882;
+			// aapt resource value: 0x7f0a005e
+			public const int fab_color_1_muted = 2131361886;
 			
-			// aapt resource value: 0x7f0a005b
-			public const int fab_color_2 = 2131361883;
+			// aapt resource value: 0x7f0a005f
+			public const int fab_color_2 = 2131361887;
 			
-			// aapt resource value: 0x7f0a005c
-			public const int fab_color_2_muted = 2131361884;
+			// aapt resource value: 0x7f0a0060
+			public const int fab_color_2_muted = 2131361888;
+			
+			// aapt resource value: 0x7f0a0044
+			public const int fab_material_blue_500 = 2131361860;
 			
 			// aapt resource value: 0x7f0a0016
 			public const int foreground_material_dark = 2131361814;
@@ -1254,14 +1304,14 @@ namespace TwaWallet
 			// aapt resource value: 0x7f0a0017
 			public const int foreground_material_light = 2131361815;
 			
-			// aapt resource value: 0x7f0a004b
-			public const int fragmentBackground = 2131361867;
+			// aapt resource value: 0x7f0a004f
+			public const int fragmentBackground = 2131361871;
 			
-			// aapt resource value: 0x7f0a004c
-			public const int fragmentListBackground = 2131361868;
+			// aapt resource value: 0x7f0a0050
+			public const int fragmentListBackground = 2131361872;
 			
-			// aapt resource value: 0x7f0a0047
-			public const int green = 2131361863;
+			// aapt resource value: 0x7f0a0048
+			public const int green = 2131361864;
 			
 			// aapt resource value: 0x7f0a0018
 			public const int highlighted_text_material_dark = 2131361816;
@@ -1275,8 +1325,8 @@ namespace TwaWallet
 			// aapt resource value: 0x7f0a001b
 			public const int hint_foreground_material_light = 2131361819;
 			
-			// aapt resource value: 0x7f0a004e
-			public const int historyBackground = 2131361870;
+			// aapt resource value: 0x7f0a0052
+			public const int historyBackground = 2131361874;
 			
 			// aapt resource value: 0x7f0a001c
 			public const int material_blue_grey_800 = 2131361820;
@@ -1314,17 +1364,17 @@ namespace TwaWallet
 			// aapt resource value: 0x7f0a0027
 			public const int material_grey_900 = 2131361831;
 			
-			// aapt resource value: 0x7f0a0056
-			public const int normalText = 2131361878;
+			// aapt resource value: 0x7f0a005a
+			public const int normalText = 2131361882;
 			
-			// aapt resource value: 0x7f0a0048
-			public const int orange = 2131361864;
+			// aapt resource value: 0x7f0a0049
+			public const int orange = 2131361865;
 			
-			// aapt resource value: 0x7f0a0053
-			public const int primary = 2131361875;
+			// aapt resource value: 0x7f0a0057
+			public const int primary = 2131361879;
 			
-			// aapt resource value: 0x7f0a0054
-			public const int primaryDark = 2131361876;
+			// aapt resource value: 0x7f0a0058
+			public const int primaryDark = 2131361880;
 			
 			// aapt resource value: 0x7f0a0028
 			public const int primary_dark_material_dark = 2131361832;
@@ -1350,17 +1400,20 @@ namespace TwaWallet
 			// aapt resource value: 0x7f0a002f
 			public const int primary_text_disabled_material_light = 2131361839;
 			
+			// aapt resource value: 0x7f0a0055
+			public const int recurringPaymentBackground = 2131361877;
+			
+			// aapt resource value: 0x7f0a0056
+			public const int recurringPaymentsBackground = 2131361878;
+			
+			// aapt resource value: 0x7f0a004a
+			public const int red = 2131361866;
+			
 			// aapt resource value: 0x7f0a0051
-			public const int recurringPaymentBackground = 2131361873;
+			public const int reportBackground = 2131361873;
 			
-			// aapt resource value: 0x7f0a0052
-			public const int recurringPaymentsBackground = 2131361874;
-			
-			// aapt resource value: 0x7f0a0049
-			public const int red = 2131361865;
-			
-			// aapt resource value: 0x7f0a004d
-			public const int reportBackground = 2131361869;
+			// aapt resource value: 0x7f0a004c
+			public const int ripple = 2131361868;
 			
 			// aapt resource value: 0x7f0a0030
 			public const int ripple_material_dark = 2131361840;
@@ -1380,11 +1433,11 @@ namespace TwaWallet
 			// aapt resource value: 0x7f0a0035
 			public const int secondary_text_disabled_material_light = 2131361845;
 			
-			// aapt resource value: 0x7f0a0050
-			public const int settingsBackground = 2131361872;
+			// aapt resource value: 0x7f0a0054
+			public const int settingsBackground = 2131361876;
 			
-			// aapt resource value: 0x7f0a0058
-			public const int splash_background = 2131361880;
+			// aapt resource value: 0x7f0a005c
+			public const int splash_background = 2131361884;
 			
 			// aapt resource value: 0x7f0a0036
 			public const int switch_thumb_disabled_material_dark = 2131361846;
@@ -1392,11 +1445,11 @@ namespace TwaWallet
 			// aapt resource value: 0x7f0a0037
 			public const int switch_thumb_disabled_material_light = 2131361847;
 			
-			// aapt resource value: 0x7f0a0071
-			public const int switch_thumb_material_dark = 2131361905;
+			// aapt resource value: 0x7f0a0075
+			public const int switch_thumb_material_dark = 2131361909;
 			
-			// aapt resource value: 0x7f0a0072
-			public const int switch_thumb_material_light = 2131361906;
+			// aapt resource value: 0x7f0a0076
+			public const int switch_thumb_material_light = 2131361910;
 			
 			// aapt resource value: 0x7f0a0038
 			public const int switch_thumb_normal_material_dark = 2131361848;
@@ -1404,17 +1457,17 @@ namespace TwaWallet
 			// aapt resource value: 0x7f0a0039
 			public const int switch_thumb_normal_material_light = 2131361849;
 			
-			// aapt resource value: 0x7f0a0055
-			public const int textOnPrimary = 2131361877;
+			// aapt resource value: 0x7f0a0059
+			public const int textOnPrimary = 2131361881;
 			
-			// aapt resource value: 0x7f0a0044
-			public const int white = 2131361860;
+			// aapt resource value: 0x7f0a0045
+			public const int white = 2131361861;
 			
-			// aapt resource value: 0x7f0a0057
-			public const int window_background = 2131361879;
+			// aapt resource value: 0x7f0a005b
+			public const int window_background = 2131361883;
 			
-			// aapt resource value: 0x7f0a004a
-			public const int yellow = 2131361866;
+			// aapt resource value: 0x7f0a004b
+			public const int yellow = 2131361867;
 			
 			static Color()
 			{
@@ -1645,11 +1698,11 @@ namespace TwaWallet
 			// aapt resource value: 0x7f050007
 			public const int abc_text_size_title_material_toolbar = 2131034119;
 			
-			// aapt resource value: 0x7f050076
-			public const int activity_horizontal_margin = 2131034230;
+			// aapt resource value: 0x7f05007b
+			public const int activity_horizontal_margin = 2131034235;
 			
-			// aapt resource value: 0x7f050077
-			public const int activity_vertical_margin = 2131034231;
+			// aapt resource value: 0x7f05007c
+			public const int activity_vertical_margin = 2131034236;
 			
 			// aapt resource value: 0x7f05005b
 			public const int design_appbar_elevation = 2131034203;
@@ -1762,23 +1815,38 @@ namespace TwaWallet
 			// aapt resource value: 0x7f05004c
 			public const int disabled_alpha_material_light = 2131034188;
 			
-			// aapt resource value: 0x7f050079
-			public const int fab_elevation = 2131034233;
-			
-			// aapt resource value: 0x7f05007d
-			public const int fab_icon_size = 2131034237;
-			
-			// aapt resource value: 0x7f050078
-			public const int fab_margin = 2131034232;
+			// aapt resource value: 0x7f05007e
+			public const int fab_elevation = 2131034238;
 			
 			// aapt resource value: 0x7f05007a
-			public const int fab_press_translation_z = 2131034234;
+			public const int fab_elevation_lollipop = 2131034234;
 			
-			// aapt resource value: 0x7f05007b
-			public const int fab_size = 2131034235;
+			// aapt resource value: 0x7f050082
+			public const int fab_icon_size = 2131034242;
 			
-			// aapt resource value: 0x7f05007c
-			public const int fab_size_small = 2131034236;
+			// aapt resource value: 0x7f05007d
+			public const int fab_margin = 2131034237;
+			
+			// aapt resource value: 0x7f05007f
+			public const int fab_press_translation_z = 2131034239;
+			
+			// aapt resource value: 0x7f050079
+			public const int fab_scroll_threshold = 2131034233;
+			
+			// aapt resource value: 0x7f050078
+			public const int fab_shadow_size = 2131034232;
+			
+			// aapt resource value: 0x7f050080
+			public const int fab_size = 2131034240;
+			
+			// aapt resource value: 0x7f050077
+			public const int fab_size_mini = 2131034231;
+			
+			// aapt resource value: 0x7f050076
+			public const int fab_size_normal = 2131034230;
+			
+			// aapt resource value: 0x7f050081
+			public const int fab_size_small = 2131034241;
 			
 			// aapt resource value: 0x7f05004d
 			public const int highlight_alpha_material_colored = 2131034189;
@@ -2088,19 +2156,37 @@ namespace TwaWallet
 			public const int fab_icons = 2130837592;
 			
 			// aapt resource value: 0x7f020059
-			public const int Icon = 2130837593;
+			public const int fab_shadow = 2130837593;
 			
 			// aapt resource value: 0x7f02005a
-			public const int money = 2130837594;
+			public const int fab_shadow_mini = 2130837594;
 			
 			// aapt resource value: 0x7f02005b
-			public const int my_button = 2130837595;
+			public const int ic_add_white_24dp = 2130837595;
 			
 			// aapt resource value: 0x7f02005c
-			public const int navigation_empty_icon = 2130837596;
+			public const int ic_launcher = 2130837596;
 			
 			// aapt resource value: 0x7f02005d
-			public const int notification_template_icon_bg = 2130837597;
+			public const int Icon = 2130837597;
+			
+			// aapt resource value: 0x7f02005e
+			public const int money = 2130837598;
+			
+			// aapt resource value: 0x7f02005f
+			public const int my_button = 2130837599;
+			
+			// aapt resource value: 0x7f020060
+			public const int navigation_empty_icon = 2130837600;
+			
+			// aapt resource value: 0x7f020063
+			public const int notification_template_icon_bg = 2130837603;
+			
+			// aapt resource value: 0x7f020061
+			public const int splash_screen = 2130837601;
+			
+			// aapt resource value: 0x7f020062
+			public const int TwaWallet_logo = 2130837602;
 			
 			static Drawable()
 			{
@@ -2115,11 +2201,11 @@ namespace TwaWallet
 		public partial class Id
 		{
 			
-			// aapt resource value: 0x7f0600be
-			public const int DataListView = 2131099838;
+			// aapt resource value: 0x7f0600bf
+			public const int DataListView = 2131099839;
 			
-			// aapt resource value: 0x7f06008d
-			public const int action0 = 2131099789;
+			// aapt resource value: 0x7f06008e
+			public const int action0 = 2131099790;
 			
 			// aapt resource value: 0x7f06005e
 			public const int action_bar = 2131099742;
@@ -2145,8 +2231,8 @@ namespace TwaWallet
 			// aapt resource value: 0x7f06005f
 			public const int action_context_bar = 2131099743;
 			
-			// aapt resource value: 0x7f060091
-			public const int action_divider = 2131099793;
+			// aapt resource value: 0x7f060092
+			public const int action_divider = 2131099794;
 			
 			// aapt resource value: 0x7f060003
 			public const int action_menu_divider = 2131099651;
@@ -2169,8 +2255,8 @@ namespace TwaWallet
 			// aapt resource value: 0x7f060015
 			public const int add = 2131099669;
 			
-			// aapt resource value: 0x7f0600bb
-			public const int addRecurringPayment_button = 2131099835;
+			// aapt resource value: 0x7f0600bc
+			public const int addRecurringPayment_button = 2131099836;
 			
 			// aapt resource value: 0x7f06004c
 			public const int alertTitle = 2131099724;
@@ -2196,14 +2282,14 @@ namespace TwaWallet
 			// aapt resource value: 0x7f060047
 			public const int buttonPanel = 2131099719;
 			
-			// aapt resource value: 0x7f06008e
-			public const int cancel_action = 2131099790;
+			// aapt resource value: 0x7f06008f
+			public const int cancel_action = 2131099791;
 			
-			// aapt resource value: 0x7f0600a4
-			public const int category_button = 2131099812;
+			// aapt resource value: 0x7f0600a5
+			public const int category_button = 2131099813;
 			
-			// aapt resource value: 0x7f06009c
-			public const int category_textView = 2131099804;
+			// aapt resource value: 0x7f06009d
+			public const int category_textView = 2131099805;
 			
 			// aapt resource value: 0x7f06002c
 			public const int center = 2131099692;
@@ -2217,8 +2303,8 @@ namespace TwaWallet
 			// aapt resource value: 0x7f060055
 			public const int checkbox = 2131099733;
 			
-			// aapt resource value: 0x7f060094
-			public const int chronometer = 2131099796;
+			// aapt resource value: 0x7f060095
+			public const int chronometer = 2131099797;
 			
 			// aapt resource value: 0x7f060035
 			public const int clip_horizontal = 2131099701;
@@ -2232,11 +2318,11 @@ namespace TwaWallet
 			// aapt resource value: 0x7f06004d
 			public const int contentPanel = 2131099725;
 			
-			// aapt resource value: 0x7f0600a8
-			public const int cost_editText = 2131099816;
+			// aapt resource value: 0x7f0600a9
+			public const int cost_editText = 2131099817;
 			
-			// aapt resource value: 0x7f06009d
-			public const int cost_textView = 2131099805;
+			// aapt resource value: 0x7f06009e
+			public const int cost_textView = 2131099806;
 			
 			// aapt resource value: 0x7f06007e
 			public const int costs_checkBox = 2131099774;
@@ -2259,8 +2345,8 @@ namespace TwaWallet
 			// aapt resource value: 0x7f06007d
 			public const int dateTo_button = 2131099773;
 			
-			// aapt resource value: 0x7f0600bd
-			public const int date_button = 2131099837;
+			// aapt resource value: 0x7f0600be
+			public const int date_button = 2131099838;
 			
 			// aapt resource value: 0x7f06007a
 			public const int date_textView = 2131099770;
@@ -2271,11 +2357,11 @@ namespace TwaWallet
 			// aapt resource value: 0x7f060043
 			public const int default_activity_button = 2131099715;
 			
-			// aapt resource value: 0x7f0600aa
-			public const int description_editText = 2131099818;
+			// aapt resource value: 0x7f0600ab
+			public const int description_editText = 2131099819;
 			
-			// aapt resource value: 0x7f06009e
-			public const int description_textView = 2131099806;
+			// aapt resource value: 0x7f06009f
+			public const int description_textView = 2131099807;
 			
 			// aapt resource value: 0x7f06006e
 			public const int design_bottom_sheet = 2131099758;
@@ -2301,20 +2387,20 @@ namespace TwaWallet
 			// aapt resource value: 0x7f060060
 			public const int edit_query = 2131099744;
 			
-			// aapt resource value: 0x7f0600b5
-			public const int eighthRow = 2131099829;
+			// aapt resource value: 0x7f0600b6
+			public const int eighthRow = 2131099830;
 			
 			// aapt resource value: 0x7f06001d
 			public const int end = 2131099677;
 			
+			// aapt resource value: 0x7f0600b3
+			public const int endDate_button = 2131099827;
+			
 			// aapt resource value: 0x7f0600b2
-			public const int endDate_button = 2131099826;
+			public const int endDate_textView = 2131099826;
 			
-			// aapt resource value: 0x7f0600b1
-			public const int endDate_textView = 2131099825;
-			
-			// aapt resource value: 0x7f060099
-			public const int end_padder = 2131099801;
+			// aapt resource value: 0x7f06009a
+			public const int end_padder = 2131099802;
 			
 			// aapt resource value: 0x7f060026
 			public const int enterAlways = 2131099686;
@@ -2334,8 +2420,11 @@ namespace TwaWallet
 			// aapt resource value: 0x7f060078
 			public const int export_button = 2131099768;
 			
-			// aapt resource value: 0x7f0600ab
-			public const int fifthRow = 2131099819;
+			// aapt resource value: 0x7f06008a
+			public const int fab = 2131099786;
+			
+			// aapt resource value: 0x7f0600ac
+			public const int fifthRow = 2131099820;
 			
 			// aapt resource value: 0x7f060037
 			public const int fill = 2131099703;
@@ -2361,8 +2450,8 @@ namespace TwaWallet
 			// aapt resource value: 0x7f06003b
 			public const int @fixed = 2131099707;
 			
-			// aapt resource value: 0x7f0600a9
-			public const int fourthRow = 2131099817;
+			// aapt resource value: 0x7f0600aa
+			public const int fourthRow = 2131099818;
 			
 			// aapt resource value: 0x7f060089
 			public const int history_listView = 2131099785;
@@ -2382,35 +2471,35 @@ namespace TwaWallet
 			// aapt resource value: 0x7f060042
 			public const int image = 2131099714;
 			
-			// aapt resource value: 0x7f0600b9
-			public const int image_linearLayout = 2131099833;
+			// aapt resource value: 0x7f0600ba
+			public const int image_linearLayout = 2131099834;
 			
-			// aapt resource value: 0x7f060098
-			public const int info = 2131099800;
+			// aapt resource value: 0x7f060099
+			public const int info = 2131099801;
+			
+			// aapt resource value: 0x7f0600ae
+			public const int interval_button = 2131099822;
 			
 			// aapt resource value: 0x7f0600ad
-			public const int interval_button = 2131099821;
+			public const int interval_textView = 2131099821;
 			
-			// aapt resource value: 0x7f0600ac
-			public const int interval_textView = 2131099820;
-			
-			// aapt resource value: 0x7f0600b8
-			public const int isActive_checkBox = 2131099832;
+			// aapt resource value: 0x7f0600b9
+			public const int isActive_checkBox = 2131099833;
 			
 			// aapt resource value: 0x7f060000
 			public const int item_touch_helper_previous_elevation = 2131099648;
 			
-			// aapt resource value: 0x7f0600ba
-			public const int lastUpdate_textView = 2131099834;
+			// aapt resource value: 0x7f0600bb
+			public const int lastUpdate_textView = 2131099835;
 			
 			// aapt resource value: 0x7f060030
 			public const int left = 2131099696;
 			
-			// aapt resource value: 0x7f060092
-			public const int line1 = 2131099794;
+			// aapt resource value: 0x7f060093
+			public const int line1 = 2131099795;
 			
-			// aapt resource value: 0x7f060096
-			public const int line3 = 2131099798;
+			// aapt resource value: 0x7f060097
+			public const int line3 = 2131099799;
 			
 			// aapt resource value: 0x7f06000b
 			public const int listMode = 2131099659;
@@ -2421,8 +2510,8 @@ namespace TwaWallet
 			// aapt resource value: 0x7f060044
 			public const int list_item = 2131099716;
 			
-			// aapt resource value: 0x7f060090
-			public const int media_actions = 2131099792;
+			// aapt resource value: 0x7f060091
+			public const int media_actions = 2131099793;
 			
 			// aapt resource value: 0x7f06001e
 			public const int middle = 2131099678;
@@ -2439,8 +2528,8 @@ namespace TwaWallet
 			// aapt resource value: 0x7f060016
 			public const int multiply = 2131099670;
 			
-			// aapt resource value: 0x7f06008a
-			public const int my_toolbar = 2131099786;
+			// aapt resource value: 0x7f06008b
+			public const int my_toolbar = 2131099787;
 			
 			// aapt resource value: 0x7f060071
 			public const int navigation_header_container = 2131099761;
@@ -2448,8 +2537,8 @@ namespace TwaWallet
 			// aapt resource value: 0x7f060022
 			public const int never = 2131099682;
 			
-			// aapt resource value: 0x7f0600b7
-			public const int ninethRow = 2131099831;
+			// aapt resource value: 0x7f0600b8
+			public const int ninethRow = 2131099832;
 			
 			// aapt resource value: 0x7f060010
 			public const int none = 2131099664;
@@ -2460,14 +2549,14 @@ namespace TwaWallet
 			// aapt resource value: 0x7f060081
 			public const int overview_linearLayout = 2131099777;
 			
-			// aapt resource value: 0x7f0600a6
-			public const int owner_button = 2131099814;
+			// aapt resource value: 0x7f0600a7
+			public const int owner_button = 2131099815;
 			
-			// aapt resource value: 0x7f06009b
-			public const int owner_textView = 2131099803;
+			// aapt resource value: 0x7f06009c
+			public const int owner_textView = 2131099804;
 			
-			// aapt resource value: 0x7f06008c
-			public const int pager = 2131099788;
+			// aapt resource value: 0x7f06008d
+			public const int pager = 2131099789;
 			
 			// aapt resource value: 0x7f060033
 			public const int parallax = 2131099699;
@@ -2475,14 +2564,14 @@ namespace TwaWallet
 			// aapt resource value: 0x7f060049
 			public const int parentPanel = 2131099721;
 			
-			// aapt resource value: 0x7f0600a5
-			public const int paymentType_button = 2131099813;
+			// aapt resource value: 0x7f0600a6
+			public const int paymentType_button = 2131099814;
 			
-			// aapt resource value: 0x7f06009a
-			public const int paymentType_imageView = 2131099802;
+			// aapt resource value: 0x7f06009b
+			public const int paymentType_imageView = 2131099803;
 			
-			// aapt resource value: 0x7f0600a3
-			public const int paymentType_textView = 2131099811;
+			// aapt resource value: 0x7f0600a4
+			public const int paymentType_textView = 2131099812;
 			
 			// aapt resource value: 0x7f060034
 			public const int pin = 2131099700;
@@ -2496,17 +2585,17 @@ namespace TwaWallet
 			// aapt resource value: 0x7f060057
 			public const int radio = 2131099735;
 			
-			// aapt resource value: 0x7f0600bc
-			public const int regularPayments_listView = 2131099836;
+			// aapt resource value: 0x7f0600bd
+			public const int regularPayments_listView = 2131099837;
 			
 			// aapt resource value: 0x7f060031
 			public const int right = 2131099697;
 			
-			// aapt resource value: 0x7f0600a1
-			public const int saveRow = 2131099809;
-			
 			// aapt resource value: 0x7f0600a2
-			public const int save_button = 2131099810;
+			public const int saveRow = 2131099810;
+			
+			// aapt resource value: 0x7f0600a3
+			public const int save_button = 2131099811;
 			
 			// aapt resource value: 0x7f060017
 			public const int screen = 2131099671;
@@ -2562,8 +2651,8 @@ namespace TwaWallet
 			// aapt resource value: 0x7f06006c
 			public const int select_dialog_listview = 2131099756;
 			
-			// aapt resource value: 0x7f0600b3
-			public const int seventhRow = 2131099827;
+			// aapt resource value: 0x7f0600b4
+			public const int seventhRow = 2131099828;
 			
 			// aapt resource value: 0x7f060056
 			public const int shortcut = 2131099734;
@@ -2577,11 +2666,11 @@ namespace TwaWallet
 			// aapt resource value: 0x7f060013
 			public const int showTitle = 2131099667;
 			
-			// aapt resource value: 0x7f0600b0
-			public const int sixthRow = 2131099824;
+			// aapt resource value: 0x7f0600b1
+			public const int sixthRow = 2131099825;
 			
-			// aapt resource value: 0x7f06008b
-			public const int sliding_tabs = 2131099787;
+			// aapt resource value: 0x7f06008c
+			public const int sliding_tabs = 2131099788;
 			
 			// aapt resource value: 0x7f060070
 			public const int snackbar_action = 2131099760;
@@ -2607,17 +2696,17 @@ namespace TwaWallet
 			// aapt resource value: 0x7f06001a
 			public const int src_over = 2131099674;
 			
-			// aapt resource value: 0x7f0600ae
-			public const int starDate_textView = 2131099822;
+			// aapt resource value: 0x7f0600af
+			public const int starDate_textView = 2131099823;
 			
 			// aapt resource value: 0x7f060032
 			public const int start = 2131099698;
 			
-			// aapt resource value: 0x7f0600af
-			public const int startDate_button = 2131099823;
+			// aapt resource value: 0x7f0600b0
+			public const int startDate_button = 2131099824;
 			
-			// aapt resource value: 0x7f06008f
-			public const int status_bar_latest_event_content = 2131099791;
+			// aapt resource value: 0x7f060090
+			public const int status_bar_latest_event_content = 2131099792;
 			
 			// aapt resource value: 0x7f060058
 			public const int submenuarrow = 2131099736;
@@ -2628,17 +2717,17 @@ namespace TwaWallet
 			// aapt resource value: 0x7f06000d
 			public const int tabMode = 2131099661;
 			
-			// aapt resource value: 0x7f06009f
-			public const int tag_textView = 2131099807;
+			// aapt resource value: 0x7f0600a0
+			public const int tag_textView = 2131099808;
 			
-			// aapt resource value: 0x7f0600b6
-			public const int tags_editText = 2131099830;
+			// aapt resource value: 0x7f0600b7
+			public const int tags_editText = 2131099831;
 			
-			// aapt resource value: 0x7f060097
-			public const int text = 2131099799;
+			// aapt resource value: 0x7f060098
+			public const int text = 2131099800;
 			
-			// aapt resource value: 0x7f060095
-			public const int text2 = 2131099797;
+			// aapt resource value: 0x7f060096
+			public const int text2 = 2131099798;
 			
 			// aapt resource value: 0x7f060050
 			public const int textSpacerNoButtons = 2131099728;
@@ -2646,11 +2735,11 @@ namespace TwaWallet
 			// aapt resource value: 0x7f060076
 			public const int text_input_password_toggle = 2131099766;
 			
-			// aapt resource value: 0x7f0600a7
-			public const int thirdRow = 2131099815;
+			// aapt resource value: 0x7f0600a8
+			public const int thirdRow = 2131099816;
 			
-			// aapt resource value: 0x7f060093
-			public const int time = 2131099795;
+			// aapt resource value: 0x7f060094
+			public const int time = 2131099796;
 			
 			// aapt resource value: 0x7f060046
 			public const int title = 2131099718;
@@ -2676,11 +2765,11 @@ namespace TwaWallet
 			// aapt resource value: 0x7f06000a
 			public const int view_offset_helper = 2131099658;
 			
-			// aapt resource value: 0x7f0600b4
-			public const int warranty_editText = 2131099828;
+			// aapt resource value: 0x7f0600b5
+			public const int warranty_editText = 2131099829;
 			
-			// aapt resource value: 0x7f0600a0
-			public const int warranty_textView = 2131099808;
+			// aapt resource value: 0x7f0600a1
+			public const int warranty_textView = 2131099809;
 			
 			// aapt resource value: 0x7f060023
 			public const int withText = 2131099683;
@@ -2967,11 +3056,11 @@ namespace TwaWallet
 			// aapt resource value: 0x7f070027
 			public const int DateFormat = 2131165223;
 			
-			// aapt resource value: 0x7f070045
-			public const int DateFrom = 2131165253;
-			
 			// aapt resource value: 0x7f070046
-			public const int DateTo = 2131165254;
+			public const int DateFrom = 2131165254;
+			
+			// aapt resource value: 0x7f070047
+			public const int DateTo = 2131165255;
 			
 			// aapt resource value: 0x7f070034
 			public const int Delete = 2131165236;
@@ -3024,23 +3113,26 @@ namespace TwaWallet
 			// aapt resource value: 0x7f070040
 			public const int Saved = 2131165248;
 			
+			// aapt resource value: 0x7f070041
+			public const int Sent = 2131165249;
+			
 			// aapt resource value: 0x7f07002e
 			public const int Settings = 2131165230;
 			
-			// aapt resource value: 0x7f070041
-			public const int StartDate = 2131165249;
+			// aapt resource value: 0x7f070042
+			public const int StartDate = 2131165250;
 			
 			// aapt resource value: 0x7f070026
 			public const int Tags = 2131165222;
 			
-			// aapt resource value: 0x7f070042
-			public const int Warranty = 2131165250;
-			
 			// aapt resource value: 0x7f070043
-			public const int WasntDeleted = 2131165251;
+			public const int Warranty = 2131165251;
 			
 			// aapt resource value: 0x7f070044
-			public const int WasntSaved = 2131165252;
+			public const int WasntDeleted = 2131165252;
+			
+			// aapt resource value: 0x7f070045
+			public const int WasntSaved = 2131165253;
 			
 			// aapt resource value: 0x7f070000
 			public const int abc_action_bar_home_description = 2131165184;
@@ -3726,6 +3818,9 @@ namespace TwaWallet
 			
 			// aapt resource value: 0x7f080037
 			public const int RtlUnderlay_Widget_AppCompat_ActionButton_Overflow = 2131230775;
+			
+			// aapt resource value: 0x7f080171
+			public const int SplashTheme = 2131231089;
 			
 			// aapt resource value: 0x7f080168
 			public const int TabLayoutTheme = 2131231080;
@@ -5261,7 +5356,13 @@ namespace TwaWallet
 					2130772234,
 					2130772235,
 					2130772236,
-					2130772237};
+					2130772237,
+					2130772279,
+					2130772280,
+					2130772281,
+					2130772282,
+					2130772283,
+					2130772284};
 			
 			// aapt resource value: 1
 			public const int FloatingActionButton_backgroundTint = 1;
@@ -5277,6 +5378,24 @@ namespace TwaWallet
 			
 			// aapt resource value: 4
 			public const int FloatingActionButton_fabSize = 4;
+			
+			// aapt resource value: 10
+			public const int FloatingActionButton_fab_colorDisabled = 10;
+			
+			// aapt resource value: 9
+			public const int FloatingActionButton_fab_colorNormal = 9;
+			
+			// aapt resource value: 8
+			public const int FloatingActionButton_fab_colorPressed = 8;
+			
+			// aapt resource value: 11
+			public const int FloatingActionButton_fab_colorRipple = 11;
+			
+			// aapt resource value: 12
+			public const int FloatingActionButton_fab_shadow = 12;
+			
+			// aapt resource value: 13
+			public const int FloatingActionButton_fab_size = 13;
 			
 			// aapt resource value: 5
 			public const int FloatingActionButton_pressedTranslationZ = 5;

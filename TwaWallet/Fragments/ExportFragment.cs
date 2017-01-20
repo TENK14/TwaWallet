@@ -276,7 +276,8 @@ namespace TwaWallet.Fragments
 
             if (requestCode == 10)
             {
-                Toast.MakeText(this.Activity, msg, ToastLength.Short).Show();
+                //Toast.MakeText(this.Activity, msg, ToastLength.Short).Show();
+                Toast.MakeText(this.Activity, Resources.GetString(Resource.String.Sent), ToastLength.Short).Show();
             }
         }
 

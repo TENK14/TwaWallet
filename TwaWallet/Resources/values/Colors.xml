@@ -8,6 +8,11 @@
   <item name="red" type="color">#C40C0A</item>
   <item name="yellow" type="color">#FFCC00</item>
 
+  <!-- Floating Action Button -->
+  <color name="ripple">#ff80ab</color>
+  <color name="accent">#E64A19</color>
+  <color name="accent_pressed">#BF360C</color>
+
 
   <color name="fragmentBackground">@color/yellow</color>
   <color name="fragmentListBackground">@color/fragmentBackground</color>
@@ -37,7 +42,7 @@
 
 
   <color name="window_background">#F5F5F5</color>
-  <color name="splash_background">#FFFFFF</color>
+  <color name="splash_background">#000000</color>
 
   <color name="fab_color_1">#ff5252</color>
   <color name="fab_color_1_muted">#ff8080</color>

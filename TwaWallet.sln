@@ -11,7 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shared", "Shared\Shared.csp
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DOC", "DOC", "{F3064759-67F5-4A11-BB2E-F7773D8FA86E}"
 	ProjectSection(SolutionItems) = preProject
-		Notes.txt = Notes.txt
+		DOC\Notes.txt = DOC\Notes.txt
+		DOC\TwaWallet_logo.psd = DOC\TwaWallet_logo.psd
 	EndProjectSection
 EndProject
 Global

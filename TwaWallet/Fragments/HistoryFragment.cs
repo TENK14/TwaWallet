@@ -15,7 +15,8 @@ using TwaWallet.Adapters;
 using Database;
 using Database.POCO;
 using TwaWallet.Classes;
-//using Android.App;
+using Android.Support.Design.Widget;
+using com.refractored.fab;
 
 namespace TwaWallet.Fragments
 {
@@ -93,12 +94,48 @@ namespace TwaWallet.Fragments
             dateTo_button = v.FindViewById<Button>(Resource.Id.dateTo_button);
             dateTo_button.Click += DateTo_button_Click;
 
+            var fab = v.FindViewById<com.refractored.fab.FloatingActionButton>(Resource.Id.fab);
+            //fab.AttachToListView(listView, this, this);
+            fab.AttachToListView(listView);
+            //fab.Click += (sender, args) =>
+            //{
+            //    Toast.MakeText(Activity, "FAB Clicked!", ToastLength.Short).Show();                
+            //};
+            fab.Click += Fab_Click;
 
             LoadData();
 
             InitLayout();
 
             return v;
+        }
+
+        private void Fab_Click(object sender, EventArgs e)
+        {
+            Log.Debug(TAG, $"{nameof(Fab_Click)} - try to show ReportFragment like dialog - START");
+
+            // DialogFragment.show() will take care of adding the fragment
+            // in a transaction.  We also want to remove any currently showing
+            // dialog, so make our own transaction and take care of that here.
+            FragmentTransaction ft = FragmentManager.BeginTransaction();
+            Fragment prev = FragmentManager.FindFragmentByTag("dialog");
+            if (prev != null)
+            {
+                ft.Remove(prev);
+            }
+            ft.AddToBackStack(null);
+
+            
+            // Create and show the dialog.
+            DialogFragment newFragment = ReportFragment.NewInstance(null, delegate ()
+            {
+                LoadData(((JavaLangObjectWrapper<DateTime>)dateFrom_button.Tag).Value, ((JavaLangObjectWrapper<DateTime>)dateTo_button.Tag).Value, costs_checkBox.Checked, earnings_checkBox.Checked);
+            });
+
+
+            newFragment.Show(ft, "dialog");
+
+            Log.Debug(TAG, $"{nameof(Fab_Click)} - try to show ReportFragment like dialog - END");
         }
 
         private void Costs_checkBox_CheckedChange(object sender, CompoundButton.CheckedChangeEventArgs e)
@@ -275,7 +312,7 @@ namespace TwaWallet.Fragments
             //string item = listData.ElementAt(e.Position);
             var item = listData.ElementAt(e.Position);
             // Do whatever you like here
-            Toast.MakeText(this.Activity, $"You press: {item.Description}", ToastLength.Short).Show();
+            //Toast.MakeText(this.Activity, $"You press: {item.Description}", ToastLength.Short).Show();
 
             // DialogFragment.show() will take care of adding the fragment
             // in a transaction.  We also want to remove any currently showing
