@@ -118,12 +118,8 @@ namespace TwaWallet.Fragments
         {
             Log.Debug(TAG, nameof(OnCreateView));
 
-            // Use this to return your custom view for this Fragment
-            // return inflater.Inflate(Resource.Layout.YourFragment, container, false);
-
-            //return base.OnCreateView(inflater, container, savedInstanceState);
-            //return inflater.Inflate(Resource.Layout.Report, container, false);
-
+            Dialog.Window.RequestFeature(WindowFeatures.NoTitle);
+            
             View v = inflater.Inflate(Resource.Layout.Report, container, false);
 
             category_button = v.FindViewById<Button>(Resource.Id.category_button);

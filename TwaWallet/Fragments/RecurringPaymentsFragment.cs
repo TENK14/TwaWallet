@@ -14,6 +14,7 @@ using Android.Support.V4.App;
 using Database;
 using Database.POCO;
 using TwaWallet.Adapters;
+using com.refractored.fab;
 
 namespace TwaWallet.Fragments
 {
@@ -50,15 +51,22 @@ namespace TwaWallet.Fragments
             // Use this to return your custom view for this Fragment
             View v = inflater.Inflate(Resource.Layout.RecurringPayments, container, false);
 
-            addRecurringPayment_button = v.FindViewById<Button>(Resource.Id.addRecurringPayment_button);
-            addRecurringPayment_button.Click += AddRecurringPayment_button_Click;
+            //addRecurringPayment_button = v.FindViewById<Button>(Resource.Id.addRecurringPayment_button);
+            //addRecurringPayment_button.Click += AddRecurringPayment_button_Click;
 
             listView = v.FindViewById<ListView>(Resource.Id.regularPayments_listView);
             listView.ItemLongClick += OnListItemLongClick;
 
+            var fab = v.FindViewById<com.refractored.fab.FloatingActionButton>(Resource.Id.fab);
+            //fab.AttachToListView(listView, this, this);
+            fab.AttachToListView(listView);
+            fab.Click += AddRecurringPayment_button_Click;
+
+            
+
             return v;
         }
-
+        
         private void AddRecurringPayment_button_Click(object sender, EventArgs e)
         {
             Log.Debug(TAG, nameof(AddRecurringPayment_button_Click));

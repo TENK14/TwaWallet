@@ -2201,8 +2201,8 @@ namespace TwaWallet
 		public partial class Id
 		{
 			
-			// aapt resource value: 0x7f0600bf
-			public const int DataListView = 2131099839;
+			// aapt resource value: 0x7f0600be
+			public const int DataListView = 2131099838;
 			
 			// aapt resource value: 0x7f06008e
 			public const int action0 = 2131099790;
@@ -2254,9 +2254,6 @@ namespace TwaWallet
 			
 			// aapt resource value: 0x7f060015
 			public const int add = 2131099669;
-			
-			// aapt resource value: 0x7f0600bc
-			public const int addRecurringPayment_button = 2131099836;
 			
 			// aapt resource value: 0x7f06004c
 			public const int alertTitle = 2131099724;
@@ -2345,8 +2342,8 @@ namespace TwaWallet
 			// aapt resource value: 0x7f06007d
 			public const int dateTo_button = 2131099773;
 			
-			// aapt resource value: 0x7f0600be
-			public const int date_button = 2131099838;
+			// aapt resource value: 0x7f0600bd
+			public const int date_button = 2131099837;
 			
 			// aapt resource value: 0x7f06007a
 			public const int date_textView = 2131099770;
@@ -2585,8 +2582,8 @@ namespace TwaWallet
 			// aapt resource value: 0x7f060057
 			public const int radio = 2131099735;
 			
-			// aapt resource value: 0x7f0600bd
-			public const int regularPayments_listView = 2131099837;
+			// aapt resource value: 0x7f0600bc
+			public const int regularPayments_listView = 2131099836;
 			
 			// aapt resource value: 0x7f060031
 			public const int right = 2131099697;

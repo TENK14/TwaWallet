@@ -82,6 +82,8 @@ namespace TwaWallet.Fragments
         {
             Log.Debug(TAG, nameof(OnCreateView));
 
+            Dialog.Window.RequestFeature(WindowFeatures.NoTitle);
+
             // Use this to return your custom view for this Fragment
             // return inflater.Inflate(Resource.Layout.YourFragment, container, false);
 

@@ -132,7 +132,8 @@ namespace TwaWallet.Fragments
                 LoadData(((JavaLangObjectWrapper<DateTime>)dateFrom_button.Tag).Value, ((JavaLangObjectWrapper<DateTime>)dateTo_button.Tag).Value, costs_checkBox.Checked, earnings_checkBox.Checked);
             });
 
-
+            //newFragment.SetStyle()
+            //Dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
             newFragment.Show(ft, "dialog");
 
             Log.Debug(TAG, $"{nameof(Fab_Click)} - try to show ReportFragment like dialog - END");
