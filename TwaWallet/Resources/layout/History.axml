@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/historyBackground">
+<!--android:background="@color/historyBackground"-->
     <LinearLayout
         android:id="@+id/filter_linearLayout"
         android:orientation="horizontal"

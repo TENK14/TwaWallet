@@ -91,6 +91,8 @@ namespace Database
             {
                 try
                 {
+                    #region Seed Owners
+                    /**
                     result = database.InsertAll<Owner>(new List<Owner>()
                     {
                         new Owner {Name = OwnerConst.Tom, IsDefault = true },
@@ -102,19 +104,24 @@ namespace Database
                     {
                         return result;
                     }
+                    /**/
+                    #endregion
 
+                    #region Seed PaymentTypes
                     result = database.InsertAll<PaymentType>(new List<PaymentType>()
                     {
                         new PaymentType {Description = PaymentTypeConst.Money /*"Hotovost"*/, IsDefault = true },
                         new PaymentType {Description = PaymentTypeConst.Card /*"Karta"*/, IsDefault = false }
                     },
-                    path).Result;
+                                path).Result;
 
                     if (!result)
                     {
                         return result;
                     }
+                    #endregion
 
+                    #region Seed Categories
                     result = database.InsertAll<Category>(new List<Category>()
                     {
                         new Category {Description = "Obìdy", IsDefault = true },
@@ -133,13 +140,15 @@ namespace Database
                         new Category {Description = "Sport", IsDefault = false },
                         new Category {Description = "Doprava", IsDefault = false },
                     },
-                    path).Result;
+                                path).Result;
 
                     if (!result)
                     {
                         return result;
                     }
+                    #endregion
 
+                    #region Seed Intervals
                     result = database.InsertAll<Interval>(new List<Interval>()
                     {
                         new Interval {Description = "Dennì", IntervalCode = "000001" , IsDefault = false },
@@ -148,12 +157,13 @@ namespace Database
                         new Interval {Description = "Ètvrtletnì", IntervalCode = "000300" ,IsDefault = false },
                         new Interval {Description = "Roènì", IntervalCode = "010000" ,IsDefault = false },
                     },
-                    path).Result;
+                                path).Result;
 
                     if (!result)
                     {
                         return result;
-                    }
+                    } 
+                    #endregion
 
                     Log.Debug(TAG, $"{nameof(FillDB)} - {nameof(result)}:{result}");
                     

@@ -5,39 +5,39 @@
     android:minHeight="50dp"
     android:orientation="horizontal">
 <!-- Image -->
-  <LinearLayout
-    android:id="@+id/image_linearLayout"
-      android:layout_height="match_parent"
-      android:layout_width="wrap_content"
-      android:layout_marginLeft="5dp"
-      android:orientation="vertical">
     <LinearLayout
-        android:id="@+id/paymentType_linearLayout"
-        android:layout_height="wrap_content"
-        android:layout_width="wrap_content">
-      <ImageView
-          android:id="@+id/paymentType_imageView"
-          android:layout_width="40dip"
-          android:layout_height="40dip"
-          android:src="@drawable/credit_card"
-          android:layout_gravity="center" />
-      <TextView
-          style="@style/TextViewRowStyle"
-          android:id="@+id/paymentType_textView"
-          android:text="paymentType"
-          android:layout_width="40dip"
-          android:layout_height="40dip"
-          android:visibility="gone"
-          android:layout_gravity="center_horizontal|center_vertical" />
-    </LinearLayout>
-    <TextView
-        style="@style/TextViewRowStyle"
-        android:id="@+id/owner_textView"
-        android:text="owner"
+        android:id="@+id/image_linearLayout"
+        android:layout_height="match_parent"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal|center_vertical" />
-  </LinearLayout>
+        android:layout_marginLeft="5dp"
+        android:orientation="vertical">
+        <LinearLayout
+            android:id="@+id/paymentType_linearLayout"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content">
+            <ImageView
+                android:id="@+id/paymentType_imageView"
+                android:layout_width="40dip"
+                android:layout_height="40dip"
+                android:src="@drawable/credit_card"
+                android:layout_gravity="center" />
+            <TextView
+                style="@style/TextViewRowStyle"
+                android:id="@+id/paymentType_textView"
+                android:text="paymentType"
+                android:layout_width="40dip"
+                android:layout_height="40dip"
+                android:visibility="gone"
+                android:layout_gravity="center_horizontal|center_vertical" />
+        </LinearLayout>
+        <TextView
+            style="@style/TextViewRowStyle"
+            android:id="@+id/owner_textView"
+            android:text="owner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal|center_vertical" />
+    </LinearLayout>
 <!-- Data -->
     <LinearLayout
         android:layout_height="wrap_content"

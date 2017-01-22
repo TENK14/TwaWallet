@@ -206,7 +206,8 @@ namespace TwaWallet.Fragments
             {
                 interval_button.Text = selectedItem.Description;
                 interval_button.Tag = new JavaLangObjectWrapper<Interval>(selectedItem);
-            });
+            },
+            Resources.GetString(Resource.String.Interval));
             fr.Show(this.Activity.FragmentManager, SimpleListViewDialogFragment<Interval>.TAG);
         }
 

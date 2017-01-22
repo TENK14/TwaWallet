@@ -195,24 +195,30 @@ namespace TwaWallet.Fragments
         private /*async Task<bool>*/ bool LoadData()
         {
             Log.Debug(TAG, nameof(LoadData));
-            
-            //this.Activity.RunOnUiThread(() =>
-            //{
-            //    Log.Debug(TAG, "[1] Starting dialog.");
-            //    dialog = this.Activity.ProgressDialogShow(dialog);
-            //    Log.Debug(TAG, "[2] Dialog started.");
-            //});
+
+            this.Activity.RunOnUiThread(() =>
+            {
+                Log.Debug(TAG, "[1] Starting dialog.");
+                dialog = this.Activity.ProgressDialogShow(dialog);
+                Log.Debug(TAG, "[2] Dialog started.");
+            });
 
             //Task.Run(async () =>
             //await Task.Run(() =>
             //{
-               try
+            // http://www.gregshackles.com/using-background-threads-in-mono-for-android-applications/
+            //Task.Factory
+            //.StartNew(() =>
+            //{
+                try
                 {
+                    //Java.Lang.Thread.Sleep(2000);
                     var r = db.Select<Record, DateTime>((o) => o.Id > 0, (o) => o.Date, false).Result;
                     //var r = await db.Select<Record, DateTime>((o) => o.Id > 0 && o.Earnings == false, (o) => o.Date, false); //.Result;
                     listData = r.ToList();//r.Select(p => $"{p.Description}, {p.Cost}, {p.Date}").ToList();
+                        
 
-                return true;
+                    return true;
                 }
                 catch (Exception ex)
                 {
@@ -221,9 +227,19 @@ namespace TwaWallet.Fragments
                 }
                 finally
                 {
-                    this.Activity.ProgressDialogDismiss(dialog);
+                    this.Activity.RunOnUiThread(() =>
+                    {
+                        this.Activity.ProgressDialogDismiss(dialog);
+                    });
                 }
-           //});
+            //})
+            //.ContinueWith(task =>
+            //this.Activity.RunOnUiThread(() =>
+            //{
+            //    this.Activity.ProgressDialogDismiss(dialog);
+            //}));
+
+            //});
 
             return false;
         }
@@ -232,18 +248,21 @@ namespace TwaWallet.Fragments
         {
             Log.Debug(TAG, $"{nameof(LoadData)} - {nameof(dateFrom)}:{dateFrom.ToString()}, {nameof(dateTo)}:{dateTo.ToString()}, {nameof(includeCosts)}:{includeCosts.ToString()},{nameof(includeEarnings)}:{includeEarnings}");
 
-            //this.Activity.RunOnUiThread(() =>
-            //{
-            //    Log.Debug(TAG, "[1] Starting dialog.");
-            //    dialog = this.Activity.ProgressDialogShow(dialog);
-            //    Log.Debug(TAG, "[2] Dialog started.");
-            //});
+            this.Activity.RunOnUiThread(() =>
+            {
+                Log.Debug(TAG, "[1] Starting dialog.");
+                dialog = this.Activity.ProgressDialogShow(dialog);
+                Log.Debug(TAG, "[2] Dialog started.");
+            });
 
             //await Task.Run(() =>
             //{
+
+            //Task.Factory
+            //.StartNew(() =>
+            //{
                 try
                 {
-
                     // Refresh review
                     var rAll = db.Select<Record, DateTime>((o) => o.Id > 0, (o) => o.Date, false).Result;
                     //var rAll = await db.Select<Record, DateTime>((o) => o.Id > 0, (o) => o.Date, false);//.Result;
@@ -311,6 +330,13 @@ namespace TwaWallet.Fragments
                 {
                     this.Activity.ProgressDialogDismiss(dialog);
                 }
+            //})
+            //.ContinueWith(task =>
+            //this.Activity.RunOnUiThread(() =>
+            //{
+            //    this.Activity.ProgressDialogDismiss(dialog);
+            //}));
+
             //});
 
             return false;

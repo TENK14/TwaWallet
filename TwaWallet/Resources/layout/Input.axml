@@ -2,13 +2,9 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:background="@color/inputDialogBackground">
 <!--android:background="@color/inputDialogBackground"-->
-<!--<TextView
-        android:id="@+id/title_textView"
-        android:text="Title"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />-->
     <EditText
         android:id="@+id/input_editText"
         android:layout_width="match_parent"
@@ -17,5 +13,5 @@
         android:id="@+id/ok_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/OK"/>
+        android:text="@string/OK" />
 </LinearLayout>

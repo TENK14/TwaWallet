@@ -12,9 +12,12 @@
   <color name="ripple">#ff80ab</color>
   <color name="accent">#E64A19</color>
   <color name="accent_pressed">#BF360C</color>
+  <color name="primary_pressed">#2C3E50</color>
 
 
-  <color name="fragmentBackground">@color/yellow</color>
+  <!--<color name="fragmentBackground">@color/yellow</color>-->
+  <color name="fragmentBackground">@color/white</color>
+  <!--<color name="fragmentBackground">?attr/colorPrimary</color>-->
   <color name="fragmentListBackground">@color/fragmentBackground</color>
 
   <color name="reportBackground">@color/fragmentBackground</color>
@@ -29,20 +32,48 @@
 
   <!--K.collect 2 modra barva pozadi titulkoveho pruhu-->
   <!--<color name="primary">#00024C</color>-->
-  <color name="primary">#000000</color>
+  <!--<color name="primary">#000000</color>-->
   
   <!--K.collect 2 temne modra barva-->
-  <color name="primaryDark">#ff0126</color>
+  <!--<color name="primaryDark">#ff0126</color>-->
+  
   
   <!--Bily text-->
   <color name="textOnPrimary">#ffffff</color>
 
   <!--Cerny text-->
   <color name="normalText">#000000</color>
-  
 
 
-  <color name="window_background">#F5F5F5</color>
+  <!-- Material design Lime-BlueGray - START -->
+    <!--<color name="primary">#CDDC39</color>
+    <color name="primary_dark">#AFB42B</color>
+    <color name="primary_light">#F0F4C3</color>
+    <color name="accent">#607D8B</color>
+    <color name="primary_text">#212121</color>
+    <color name="secondary_text">#757575</color>
+    <color name="icons">#212121</color>
+    <color name="divider">#BDBDBD</color>-->
+  <!-- Material design Lime-BlueGray - END -->
+
+  <!-- Material design Red-BlueGray - START -->
+  <color name="primary">#F44336</color>
+  <color name="primary_dark">#D32F2F</color>
+  <color name="primary_light">#FFCDD2</color>
+  <color name="accent">#607D8B</color>
+  <color name="primary_text">#212121</color>
+  <color name="secondary_text">#757575</color>
+  <color name="icons">#FFFFFF</color>
+  <!--<color name="divider">#BDBDBD</color>-->
+  <!-- Material design Red-BlueGray - END -->
+
+
+
+
+
+
+  <!--<color name="window_background">#F5F5F5</color>-->
+  <color name="window_background">#6A3D3D</color>
   <color name="splash_background">#000000</color>
 
   <color name="fab_color_1">#ff5252</color>

@@ -5,26 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/recurringPaymentsBackground">
+<!--android:background="@color/recurringPaymentsBackground"-->
 <!--android:background="@color/green"-->
-<!--<LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@drawable/my_button"
-        android:layout_weight="10">
-        <Button
-            android:id="@+id/addRecurringPayment_button"
-            android:text="@string/AddRecurringPayment"
-            android:layout_height="match_parent"
-            android:layout_width="match_parent"
-            android:background="@drawable/my_button" />
-    </LinearLayout>
-    <LinearLayout
-        android:id="@+id/listView_linearLayout"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@drawable/my_button"
-        android:layout_weight="1">-->
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
