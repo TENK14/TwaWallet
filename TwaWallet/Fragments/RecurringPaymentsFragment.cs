@@ -15,6 +15,8 @@ using Database;
 using Database.POCO;
 using TwaWallet.Adapters;
 using com.refractored.fab;
+using System.Threading.Tasks;
+using TwaWallet.Extensions;
 
 namespace TwaWallet.Fragments
 {
@@ -26,6 +28,7 @@ namespace TwaWallet.Fragments
 
         List<RecurringPayment> listData;
         #region GUI
+        protected Android.App.ProgressDialog dialog = null;
         Button addRecurringPayment_button;
         ListView listView;
         #endregion
@@ -62,11 +65,64 @@ namespace TwaWallet.Fragments
             fab.AttachToListView(listView);
             fab.Click += AddRecurringPayment_button_Click;
 
-            
-
             return v;
         }
         
+        public override /*async*/ void OnResume()
+        {
+            Log.Debug(TAG, nameof(OnResume));
+
+            base.OnResume();
+
+            /*await*/
+            var r = LoadData();//.Result;
+            InitLayout();
+        }
+
+        private /*async Task<bool>*/ bool LoadData()
+        {
+            Log.Debug(TAG, nameof(LoadData));
+
+            this.Activity.RunOnUiThread(() =>
+            {
+                Log.Debug(TAG, "[1] Starting dialog.");
+                dialog = this.Activity.ProgressDialogShow(dialog);
+                Log.Debug(TAG, "[2] Dialog started.");
+            });
+
+            //await Task.Run(() =>
+            //{
+                try
+                {
+                    var r = db.Select<RecurringPayment, int>((o) => o.Id > 0, (o) => o.Id, false).Result;
+                    //var r = await db.Select<RecurringPayment, int>((o) => o.Id > 0, (o) => o.Id, false);
+                    listData = r.ToList();
+
+                    listView.Adapter = new RecurringPaymentListAdapter(this.Activity, listData, this.db);
+
+                    return true;
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(TAG, ex.ToString());
+                    throw;
+                }
+                finally
+                {
+                    this.Activity.ProgressDialogDismiss(dialog);
+                }
+            //});
+
+            return false;
+        }
+
+        private void InitLayout()
+        {
+            Log.Debug(TAG, nameof(InitLayout));
+
+            listView.Adapter = new RecurringPaymentListAdapter(this.Activity, listData, this.db);
+        }
+
         private void AddRecurringPayment_button_Click(object sender, EventArgs e)
         {
             Log.Debug(TAG, nameof(AddRecurringPayment_button_Click));
@@ -83,39 +139,12 @@ namespace TwaWallet.Fragments
             // Create and show the dialog.
             DialogFragment newFragment = RecurringPaymentFragment.NewInstance(null, delegate ()
             {
-                LoadData();
+                var r = LoadData();//.Result;
             });
             Log.Debug(TAG, $"{nameof(AddRecurringPayment_button_Click)} - 1");
 
             newFragment.Show(ft, "dialog");
             Log.Debug(TAG, $"{nameof(AddRecurringPayment_button_Click)} - try to show ReportFragment like dialog - END");
-        }
-
-        public override void OnResume()
-        {
-            Log.Debug(TAG, nameof(OnResume));
-
-            base.OnResume();
-
-            LoadData();
-            InitLayout();
-        }
-
-        private void LoadData()
-        {
-            Log.Debug(TAG, nameof(LoadData));
-
-            var r = db.Select<RecurringPayment, int>((o) => o.Id > 0, (o) => o.Id, false).Result;
-            listData = r.ToList();
-
-            listView.Adapter = new RecurringPaymentListAdapter(this.Activity, listData, this.db);
-        }
-
-        private void InitLayout()
-        {
-            Log.Debug(TAG, nameof(InitLayout));
-
-            listView.Adapter = new RecurringPaymentListAdapter(this.Activity, listData, this.db);
         }
 
         private void OnListItemLongClick(object sender, AdapterView.ItemLongClickEventArgs e)
@@ -144,7 +173,7 @@ namespace TwaWallet.Fragments
                     // Create and show the dialog.
                     DialogFragment newFragment = RecurringPaymentFragment.NewInstance(item.IncludeObjects(db), delegate ()
                     {
-                        LoadData();
+                        var r = LoadData();//.Result;
                     });
 
 
@@ -158,7 +187,7 @@ namespace TwaWallet.Fragments
                     {
                         Toast.MakeText(this.Activity, Resources.GetString(Resource.String.Deleted), ToastLength.Short).Show();
 
-                        LoadData();
+                        var r = LoadData();//.Result;
                     }
                     else
                     {
@@ -169,7 +198,5 @@ namespace TwaWallet.Fragments
                 .Show();
 
         }
-
-
     }
 }

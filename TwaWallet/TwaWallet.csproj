@@ -102,10 +102,12 @@
     <Compile Include="Classes\JavaLangObjectWrapper.cs" />
     <Compile Include="CustomPagerAdapter.cs" />
     <Compile Include="DeviceInfo.cs" />
+    <Compile Include="Extensions\FragmentActivityExtension.cs" />
     <Compile Include="Extensions\ButtonExtension.cs" />
     <Compile Include="Fragments\DatePickerFragment.cs" />
     <Compile Include="Fragments\ExportFragment.cs" />
     <Compile Include="Fragments\HistoryFragment.cs" />
+    <Compile Include="Fragments\InputDialogFragment.cs" />
     <Compile Include="Fragments\RecurringPaymentFragment.cs" />
     <Compile Include="Fragments\SimpleListViewDialogFragment.cs" />
     <Compile Include="Fragments\MyListFragment.cs" />
@@ -155,6 +157,9 @@
       <SubType>Designer</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\layout\RecurringPayment.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\Input.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>
@@ -219,6 +224,9 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\TwaWallet_logo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\ic_rem_white_24dp.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <Import Project="..\packages\Xamarin.Android.Support.Vector.Drawable.24.2.1\build\Xamarin.Android.Support.Vector.Drawable.targets" Condition="Exists('..\packages\Xamarin.Android.Support.Vector.Drawable.24.2.1\build\Xamarin.Android.Support.Vector.Drawable.targets')" />

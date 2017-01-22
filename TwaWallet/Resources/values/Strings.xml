@@ -1,17 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-  <string name="Hello">Hello World, Click Me!</string>
   <string name="ApplicationName">TwaWallet</string>
-  <string name="Tags">Tagy</string>
   
-  <!-- Frames name -->
-
   <string name="DateFormat">dd.MM.yyyy</string>
   <string name="DBPath">TWA/TwaWallet</string>
   <string name="DBfilename">TwaWalletDB.db</string>
   <string name="CSVfilename">TwaWalletDB.csv</string>
   <!--<string name="FilenameDB">TwaWalletDB.db</string>-->
-  
+
+  <!-- Frames name -->
   <string name="Report">REPORT</string>
   <string name="History">HISTORIE</string>
   <string name="Export">EXPORT</string>
@@ -19,10 +16,16 @@
   <string name="RegularPayments">PRAVIDELNE PLATBY</string>
   
   <!--  -->
+  <string name="AddCategory">Přidat kategorii</string>
+  <string name="AddOwner">Přidat vlastníka</string>
+  <string name="AddPaymentType">Přidat typ platby</string>
   <string name="AddRecurringPayment">Přidat pravidelnou platbu</string>
   <string name="Category">Kategorie</string>
   <string name="Cost">Cena</string>
   <string name="Date">Datum</string>
+  <string name="DateFrom">Datum od</string>
+  <string name="DateTo">Datum do</string>
+  <string name="DefaultOption">Defaultní volba</string>
   <string name="Delete">Smazat</string>
   <string name="Deleted">Smazáno</string>
   <string name="Description">Popis</string>
@@ -32,19 +35,17 @@
   <string name="EndDate">Do data</string>
   <string name="Interval">Interval</string>
   <string name="IsActive">Aktivní</string>
+  <string name="IsBussy">Počkej...</string>
   <string name="PaymentType">Typ platby</string>
+  <string name="OK">OK</string>
   <string name="Owner">Vlastník</string>
   <string name="Save">Uložit</string>
   <string name="Saved">Uloženo</string>
   <string name="Sent">Odesláno</string>
   <string name="StartDate">Od data</string>
+  <string name="Tags">Tagy</string>
   <string name="Warranty">Záruka</string>
   <string name="WasntDeleted">Nebylo smazáno</string>
   <string name="WasntSaved">Nebylo uloženo</string>
-  
-  
-  <string name="DateFrom">Datum od</string>
-  <string name="DateTo">Datum do</string>
-  
-  
+    
 </resources>

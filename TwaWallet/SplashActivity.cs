@@ -105,36 +105,35 @@ namespace TwaWallet
                     var dtNow = DateTime.Now.Date;
                     foreach (var item in lstRecurringPayment)
                     {
-                        var i = item.IncludeObjects(db);
-
-                        DateTime dt = i.Interval.NextDateTime(i.LastUpdate).Date;
-
-                        while (dt <= dtNow)
+                        if (item.IsActive)
                         {
-                            Record record = new Record()
+                            var i = item.IncludeObjects(db);
+
+                            DateTime dt = i.Interval.NextDateTime(i.LastUpdate).Date;
+
+                            while (dt <= dtNow)
                             {
-                                CategoryId = i.CategoryId,
-                                Cost = i.Cost,
-                                Date = dt, //dtNow,
-                                Description = i.Description,
-                                Earnings = i.Earnings,
-                                OwnerId = i.OwnerId,
-                                PaymentTypeId = i.PaymentTypeId,
-                                Tag = i.Tag,
-                                Warranty = i.Warranty,
+                                Record record = new Record()
+                                {
+                                    CategoryId = i.CategoryId,
+                                    Cost = i.Cost,
+                                    Date = dt, //dtNow,
+                                    Description = i.Description,
+                                    Earnings = i.Earnings,
+                                    OwnerId = i.OwnerId,
+                                    PaymentTypeId = i.PaymentTypeId,
+                                    Tag = i.Tag,
+                                    Warranty = i.Warranty,
 
-                            };
-                            db.Insert(record);
+                                };
+                                db.Insert(record);
 
-                            i.LastUpdate = dt;
-                            db.Update(i);
+                                i.LastUpdate = dt;
+                                db.Update(i);
 
-                            dt = i.Interval.NextDateTime(i.LastUpdate).Date;
-
-                            //using (var ts = new TransactionScope())
-                            //{
-
-                            //}
+                                dt = i.Interval.NextDateTime(i.LastUpdate).Date;
+                                
+                            }
                         }
                     }
                 }

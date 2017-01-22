@@ -17,6 +17,9 @@ using Database.POCO;
 using TwaWallet.Classes;
 using Android.Support.Design.Widget;
 using com.refractored.fab;
+using TwaWallet.Extensions;
+using System.Threading.Tasks;
+//using Android.App;
 
 namespace TwaWallet.Fragments
 {
@@ -32,6 +35,7 @@ namespace TwaWallet.Fragments
         List<Record> listData;
 
         #region GUI
+        protected Android.App.ProgressDialog dialog = null;
         TextView count_value;
         TextView monthCost_value;
         TextView filterCost_value;
@@ -61,16 +65,10 @@ namespace TwaWallet.Fragments
             //LoadData();
         }
 
-        public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
+        public override /*async*/ View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
             Log.Debug(TAG, nameof(OnCreateView));
-
-            // Use this to return your custom view for this Fragment
-            // return inflater.Inflate(Resource.Layout.YourFragment, container, false);
-
-            //return base.OnCreateView(inflater, container, savedInstanceState);
-            //return inflater.Inflate(Resource.Layout.History, container, false);
-
+            
             View v = inflater.Inflate(Resource.Layout.History, container, false);
 
             listView = v.FindViewById<ListView>(Resource.Id.history_listView);
@@ -103,10 +101,17 @@ namespace TwaWallet.Fragments
             //};
             fab.Click += Fab_Click;
 
-            LoadData();
 
-            InitLayout();
+            Task.Run(() =>
+            {
+                /*await*/
+                var r = LoadData();//.Result;
 
+                this.Activity.RunOnUiThread(() =>
+                {
+                    InitLayout();
+                });
+            });
             return v;
         }
 
@@ -129,7 +134,7 @@ namespace TwaWallet.Fragments
             // Create and show the dialog.
             DialogFragment newFragment = ReportFragment.NewInstance(null, delegate ()
             {
-                LoadData(((JavaLangObjectWrapper<DateTime>)dateFrom_button.Tag).Value, ((JavaLangObjectWrapper<DateTime>)dateTo_button.Tag).Value, costs_checkBox.Checked, earnings_checkBox.Checked);
+                var r = LoadData(((JavaLangObjectWrapper<DateTime>)dateFrom_button.Tag).Value, ((JavaLangObjectWrapper<DateTime>)dateTo_button.Tag).Value, costs_checkBox.Checked, earnings_checkBox.Checked);//.Result;
             });
 
             //newFragment.SetStyle()
@@ -145,11 +150,11 @@ namespace TwaWallet.Fragments
 
             if (dateFrom_button?.Tag != null)
             {
-                LoadData(((JavaLangObjectWrapper<DateTime>)dateFrom_button.Tag).Value, ((JavaLangObjectWrapper<DateTime>)dateTo_button.Tag).Value, costs_checkBox.Checked, earnings_checkBox.Checked);
+                var r = LoadData(((JavaLangObjectWrapper<DateTime>)dateFrom_button.Tag).Value, ((JavaLangObjectWrapper<DateTime>)dateTo_button.Tag).Value, costs_checkBox.Checked, earnings_checkBox.Checked);//.Result;
             }
             else
             {
-                LoadData();
+                var r = LoadData();//.Result;
             }
         }
 
@@ -160,94 +165,155 @@ namespace TwaWallet.Fragments
             
             if (dateFrom_button?.Tag != null)
             {
-                LoadData(((JavaLangObjectWrapper<DateTime>)dateFrom_button.Tag).Value, ((JavaLangObjectWrapper<DateTime>)dateTo_button.Tag).Value, costs_checkBox.Checked, earnings_checkBox.Checked);
+                var r = LoadData(((JavaLangObjectWrapper<DateTime>)dateFrom_button.Tag).Value, ((JavaLangObjectWrapper<DateTime>)dateTo_button.Tag).Value, costs_checkBox.Checked, earnings_checkBox.Checked);//.Result;
             }
             else
             {
-                LoadData();
+                var r = LoadData();//.Result;
             }
 
         }
 
-        public override void OnResume()
+        public override /*async*/ void OnResume()
         {
             Log.Debug(TAG, nameof(OnResume));
 
             base.OnResume();
 
-            LoadData();
-            InitLayout();
-        }
-
-        private void LoadData()
-        {
-            Log.Debug(TAG, nameof(LoadData));
-
-            //var r = db.Select<Record, DateTime>((o) => o.Id > 0, (o) => o.Date, false).Result;
-            var r = db.Select<Record, DateTime>((o) => o.Id > 0 && o.Earnings == false, (o) => o.Date, false).Result;
-            listData = r.ToList();//r.Select(p => $"{p.Description}, {p.Cost}, {p.Date}").ToList();
-
-            
-        }
-
-        private void LoadData(DateTime dateFrom, DateTime dateTo, bool includeCosts, bool includeEarnings)
-        {
-            Log.Debug(TAG, nameof(LoadData));
-
-            // Refresh review
-            var rAll = db.Select<Record, DateTime>((o) => o.Id > 0, (o) => o.Date, false).Result;
-            var listAll = rAll.ToList();
-
-            //var r = db.Select<Record, DateTime>((o) => o.Date >= dateFrom && o.Date <= dateTo, (o) => o.Date, false).Result;
-            //listData = r.ToList();//r.Select(p => $"{p.Description}, {p.Cost}, {p.Date}").ToList();
-
-            if ( listAll != null && listAll.Count > 0)
+            Task.Run(() =>
             {
+                /*await*/
+                var r = LoadData();//.Result;
+
+                this.Activity.RunOnUiThread(() =>
+                {
+                    InitLayout();
+                });
+            });
+        }
+
+        private /*async Task<bool>*/ bool LoadData()
+        {
+            Log.Debug(TAG, nameof(LoadData));
+            
+            //this.Activity.RunOnUiThread(() =>
+            //{
+            //    Log.Debug(TAG, "[1] Starting dialog.");
+            //    dialog = this.Activity.ProgressDialogShow(dialog);
+            //    Log.Debug(TAG, "[2] Dialog started.");
+            //});
+
+            //Task.Run(async () =>
+            //await Task.Run(() =>
+            //{
+               try
+                {
+                    var r = db.Select<Record, DateTime>((o) => o.Id > 0, (o) => o.Date, false).Result;
+                    //var r = await db.Select<Record, DateTime>((o) => o.Id > 0 && o.Earnings == false, (o) => o.Date, false); //.Result;
+                    listData = r.ToList();//r.Select(p => $"{p.Description}, {p.Cost}, {p.Date}").ToList();
+
+                return true;
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(TAG, ex.ToString());
+                    throw;
+                }
+                finally
+                {
+                    this.Activity.ProgressDialogDismiss(dialog);
+                }
+           //});
+
+            return false;
+        }
+        
+        private /*async Task<bool>*/ bool LoadData(DateTime dateFrom, DateTime dateTo, bool includeCosts, bool includeEarnings)
+        {
+            Log.Debug(TAG, $"{nameof(LoadData)} - {nameof(dateFrom)}:{dateFrom.ToString()}, {nameof(dateTo)}:{dateTo.ToString()}, {nameof(includeCosts)}:{includeCosts.ToString()},{nameof(includeEarnings)}:{includeEarnings}");
+
+            //this.Activity.RunOnUiThread(() =>
+            //{
+            //    Log.Debug(TAG, "[1] Starting dialog.");
+            //    dialog = this.Activity.ProgressDialogShow(dialog);
+            //    Log.Debug(TAG, "[2] Dialog started.");
+            //});
+
+            //await Task.Run(() =>
+            //{
+                try
+                {
+
+                    // Refresh review
+                    var rAll = db.Select<Record, DateTime>((o) => o.Id > 0, (o) => o.Date, false).Result;
+                    //var rAll = await db.Select<Record, DateTime>((o) => o.Id > 0, (o) => o.Date, false);//.Result;
+                    var listAll = rAll.ToList();
+
+                    //var r = db.Select<Record, DateTime>((o) => o.Date >= dateFrom && o.Date <= dateTo, (o) => o.Date, false).Result;
+                    //listData = r.ToList();//r.Select(p => $"{p.Description}, {p.Cost}, {p.Date}").ToList();
+
+                    if ( listAll != null && listAll.Count > 0)
+                    {
                 
 
-                // Filtered values
-                if (includeCosts == false && includeEarnings == false)
-                {
-                    listData = new List<Record>();
-                    // Month values
-                    this.monthCost_value.Text = Convert.ToString(0);
-                }
-                else if (includeCosts == false && includeEarnings == true)
-                {
-                    listData = listAll.Where((o) => o.Date.Date >= dateFrom.Date && o.Date.Date <= dateTo.Date && o.Earnings == true).OrderByDescending(o => o.Date).ToList();
-                    // Month values
-                    this.monthCost_value.Text = listAll.Where(p => p.Date.Month == DateTime.Now.Month && p.Date.Year == DateTime.Now.Year && p.Earnings == true).Select(p => p.Cost).Sum().ToString();
-                }
-                else if (includeCosts == true && includeEarnings == false)
-                {
-                    listData = listAll.Where((o) => o.Date.Date >= dateFrom.Date && o.Date.Date <= dateTo.Date && o.Earnings == false).OrderByDescending(o => o.Date).ToList();
-                    // Month values
-                    this.monthCost_value.Text = listAll.Where(p => p.Date.Month == DateTime.Now.Month && p.Date.Year == DateTime.Now.Year && p.Earnings == false).Select(p => p.Cost).Sum().ToString();
-                }
-                else if (includeCosts == true && includeEarnings == true)
-                {
-                    listData = listAll.Where((o) => o.Date.Date >= dateFrom.Date && o.Date.Date <= dateTo.Date).OrderByDescending(o => o.Date).ToList();
-                    // Month values
-                    this.monthCost_value.Text = listAll.Where(p => p.Date.Month == DateTime.Now.Month && p.Date.Year == DateTime.Now.Year).Select(p => p.Cost).Sum().ToString();
-                }
+                        // Filtered values
+                        if (includeCosts == false && includeEarnings == false)
+                        {
+                            listData = new List<Record>();
+                            // Month values
+                            this.monthCost_value.Text = Convert.ToString(0);
+                        }
+                        else if (includeCosts == false && includeEarnings == true)
+                        {
+                            listData = listAll.Where((o) => o.Date.Date >= dateFrom.Date && o.Date.Date <= dateTo.Date && o.Earnings == true).OrderByDescending(o => o.Date).ToList();
+                            // Month values
+                            this.monthCost_value.Text = listAll.Where(p => p.Date.Month == DateTime.Now.Month && p.Date.Year == DateTime.Now.Year && p.Earnings == true).Select(p => p.Cost).Sum().ToString();
+                        }
+                        else if (includeCosts == true && includeEarnings == false)
+                        {
+                            listData = listAll.Where((o) => o.Date.Date >= dateFrom.Date && o.Date.Date <= dateTo.Date && o.Earnings == false).OrderByDescending(o => o.Date).ToList();
+                            // Month values
+                            this.monthCost_value.Text = listAll.Where(p => p.Date.Month == DateTime.Now.Month && p.Date.Year == DateTime.Now.Year && p.Earnings == false).Select(p => p.Cost).Sum().ToString();
+                        }
+                        else if (includeCosts == true && includeEarnings == true)
+                        {
+                            listData = listAll.Where((o) => o.Date.Date >= dateFrom.Date && o.Date.Date <= dateTo.Date).OrderByDescending(o => o.Date).ToList();
+                            // Month values
+                            this.monthCost_value.Text = listAll.Where(p => p.Date.Month == DateTime.Now.Month && p.Date.Year == DateTime.Now.Year).Select(p => p.Cost).Sum().ToString();
+                        }
 
-                if (listData != null && listData.Count > 0)
-                {
+                        if (listData != null && listData.Count > 0)
+                        {
+                            this.count_value.Text = listData.Count.ToString();
+                            this.filterCost_value.Text = listData.Select(p => p.Cost).Sum().ToString();
+                        }
+                    }
+                    else
+                    {
+                        this.monthCost_value.Text = Convert.ToString(0);
+                        listData = new List<Record>();
+                    }
+
+                    // Refresh review
                     this.count_value.Text = listData.Count.ToString();
                     this.filterCost_value.Text = listData.Select(p => p.Cost).Sum().ToString();
+
+                    listView.Adapter = new RecordListAdapter(this.Activity, listData, db);
+
+                    return true;
                 }
-            }
-            else
-            {
-                this.monthCost_value.Text = Convert.ToString(0);
-                listData = new List<Record>();
-            }
+                catch (Exception ex)
+                {
+                    Log.Error(TAG, ex.ToString());
+                    throw;
+                }
+                finally
+                {
+                    this.Activity.ProgressDialogDismiss(dialog);
+                }
+            //});
 
-            // Refresh review
-            this.count_value.Text = listData.Count.ToString();
-            this.filterCost_value.Text = listData.Select(p => p.Cost).Sum().ToString();
-
-            listView.Adapter = new RecordListAdapter(this.Activity, listData, db);
+            return false;
         }
 
         
@@ -261,7 +327,7 @@ namespace TwaWallet.Fragments
                 dateTo_button.Text = date.ToString(Resources.GetString(Resource.String.DateFormat)); //.ToLongDateString();
                 dateTo_button.Tag = new JavaLangObjectWrapper<DateTime>(date);
 
-                LoadData(((JavaLangObjectWrapper<DateTime>)dateFrom_button.Tag).Value, ((JavaLangObjectWrapper<DateTime>)dateTo_button.Tag).Value, costs_checkBox.Checked, earnings_checkBox.Checked);
+                var r = LoadData(((JavaLangObjectWrapper<DateTime>)dateFrom_button.Tag).Value, ((JavaLangObjectWrapper<DateTime>)dateTo_button.Tag).Value, costs_checkBox.Checked, earnings_checkBox.Checked);//.Result;
             });
             frag.Show(this.Activity.FragmentManager, DatePickerFragment.TAG);
 
@@ -276,7 +342,7 @@ namespace TwaWallet.Fragments
                 dateFrom_button.Text = date.ToString(Resources.GetString(Resource.String.DateFormat)); //.ToLongDateString();
                 dateFrom_button.Tag = new JavaLangObjectWrapper<DateTime>(date);
 
-                LoadData(((JavaLangObjectWrapper<DateTime>)dateFrom_button.Tag).Value, ((JavaLangObjectWrapper<DateTime>)dateTo_button.Tag).Value, costs_checkBox.Checked, earnings_checkBox.Checked);
+                var r = LoadData(((JavaLangObjectWrapper<DateTime>)dateFrom_button.Tag).Value, ((JavaLangObjectWrapper<DateTime>)dateTo_button.Tag).Value, costs_checkBox.Checked, earnings_checkBox.Checked);//.Result;
             });
             frag.Show(this.Activity.FragmentManager, DatePickerFragment.TAG);
 
@@ -330,7 +396,7 @@ namespace TwaWallet.Fragments
             // Create and show the dialog.
             DialogFragment newFragment = ReportFragment.NewInstance(item.IncludeObjects(db), delegate()
             {
-                LoadData(((JavaLangObjectWrapper<DateTime>)dateFrom_button.Tag).Value, ((JavaLangObjectWrapper<DateTime>)dateTo_button.Tag).Value, costs_checkBox.Checked, earnings_checkBox.Checked);
+                var r = LoadData(((JavaLangObjectWrapper<DateTime>)dateFrom_button.Tag).Value, ((JavaLangObjectWrapper<DateTime>)dateTo_button.Tag).Value, costs_checkBox.Checked, earnings_checkBox.Checked);//.Result;
             });
             
 
@@ -365,7 +431,7 @@ namespace TwaWallet.Fragments
                     // Create and show the dialog.
                     DialogFragment newFragment = ReportFragment.NewInstance(item.IncludeObjects(db), delegate ()
                     {
-                        LoadData(((JavaLangObjectWrapper<DateTime>)dateFrom_button.Tag).Value, ((JavaLangObjectWrapper<DateTime>)dateTo_button.Tag).Value, costs_checkBox.Checked, earnings_checkBox.Checked);
+                        var r = LoadData(((JavaLangObjectWrapper<DateTime>)dateFrom_button.Tag).Value, ((JavaLangObjectWrapper<DateTime>)dateTo_button.Tag).Value, costs_checkBox.Checked, earnings_checkBox.Checked);//.Result;
                     });
 
 
@@ -379,7 +445,7 @@ namespace TwaWallet.Fragments
                     {
                         Toast.MakeText(this.Activity, Resources.GetString(Resource.String.Deleted), ToastLength.Short).Show();
 
-                        LoadData(((JavaLangObjectWrapper<DateTime>)dateFrom_button.Tag).Value, ((JavaLangObjectWrapper<DateTime>)dateTo_button.Tag).Value, costs_checkBox.Checked, earnings_checkBox.Checked);
+                        var r = LoadData(((JavaLangObjectWrapper<DateTime>)dateFrom_button.Tag).Value, ((JavaLangObjectWrapper<DateTime>)dateTo_button.Tag).Value, costs_checkBox.Checked, earnings_checkBox.Checked);//.Result;
                     }
                     else
                     {

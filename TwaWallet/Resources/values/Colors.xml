@@ -24,6 +24,7 @@
   <color name="settingsBackground">@color/fragmentBackground</color>
   <color name="recurringPaymentBackground">@color/fragmentBackground</color>
   <color name="recurringPaymentsBackground">@color/fragmentBackground</color>
+  <color name="inputDialogBackground">@color/fragmentBackground</color>
 
 
   <!--K.collect 2 modra barva pozadi titulkoveho pruhu-->

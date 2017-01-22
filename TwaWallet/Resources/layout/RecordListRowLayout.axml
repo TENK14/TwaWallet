@@ -10,42 +10,39 @@
         android:layout_width="wrap_content"
         android:layout_marginLeft="5dp"
         android:orientation="vertical">
-    <!--android:background="@color/blue"-->
-    <!--<ImageView
-      android:id="@+id/Thumbnail"
-      android:layout_width="70dp"
-      android:layout_height="70dp"
-      android:paddingLeft="10dp"
-      android:layout_alignParentLeft="true"
-      android:layout_centerVertical="true"
-      android:src="@drawable/Placeholder" />-->
-        <ImageView
-            android:id="@+id/paymentType_imageView"
-            android:layout_width="40dip"
-            android:layout_height="40dip"
-            android:src="@drawable/credit_card"
-            android:layout_gravity="center" />
+        <LinearLayout
+            android:id="@+id/paymentType_linearLayout"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content">
+            <ImageView
+                android:id="@+id/paymentType_imageView"
+                android:layout_width="40dip"
+                android:layout_height="40dip"
+                android:src="@drawable/credit_card"
+                android:layout_gravity="center" />
+            <TextView
+                style="@style/TextViewRowStyle"
+                android:id="@+id/paymentType_textView"
+                android:text="paymentType"
+                android:layout_width="40dip"
+                android:layout_height="40dip"
+                android:visibility="gone"
+                android:layout_gravity="center_horizontal|center_vertical" />
+        </LinearLayout>
         <TextView
-          style="@style/TextViewRowStyle"
+            style="@style/TextViewRowStyle"
             android:id="@+id/owner_textView"
             android:text="owner"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="center" />
-    <!--android:lineSpacingExtra="3dp"
-      android:paddingLeft="10dp"
-      android:textColor="#ffffff"
-      android:textStyle="bold"
-      android:typeface="sans"
-      android:textAlignment="center"-->
-    <!--android:textAppearance="@android:style/TextAppearance.Small"-->
+            android:layout_gravity="center_horizontal|center_vertical" />
     </LinearLayout>
 <!-- Data -->
     <LinearLayout
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
         android:orientation="vertical"
-      android:layout_marginRight="5dp">
+        android:layout_marginRight="5dp">
     <!--android:background="@color/red"-->
     <!-- first row -->
         <LinearLayout
@@ -53,7 +50,7 @@
             android:layout_width="match_parent"
             android:orientation="horizontal">
             <TextView
-              style="@style/TextViewRowStyle"
+                style="@style/TextViewRowStyle"
                 android:id="@+id/category_textView"
                 android:text="category"
                 android:layout_width="match_parent"
@@ -66,7 +63,7 @@
           android:textStyle="bold"
           android:typeface="sans"-->
             <TextView
-              style="@style/TextViewRowStyle"
+                style="@style/TextViewRowStyle"
                 android:id="@+id/cost_textView"
                 android:text="cost"
                 android:layout_width="match_parent"
@@ -87,7 +84,7 @@
             android:layout_width="match_parent"
             android:orientation="horizontal">
             <TextView
-              style="@style/TextViewRowStyle"
+                style="@style/TextViewRowStyle"
                 android:id="@+id/description_textView"
                 android:text="description"
                 android:layout_width="match_parent"
@@ -101,7 +98,7 @@
           android:typeface="sans"-->
         <!--android:textAppearance="@android:style/TextAppearance.Small"-->
             <TextView
-              style="@style/TextViewRowStyle"
+                style="@style/TextViewRowStyle"
                 android:id="@+id/date_textView"
                 android:text="date"
                 android:layout_width="match_parent"
@@ -122,7 +119,7 @@
             android:layout_width="match_parent"
             android:orientation="horizontal">
             <TextView
-              style="@style/TextViewRowStyle"
+                style="@style/TextViewRowStyle"
                 android:id="@+id/tag_textView"
                 android:text="tag"
                 android:layout_width="match_parent"
@@ -134,7 +131,7 @@
           android:textStyle="bold"
           android:typeface="sans"-->
             <TextView
-              style="@style/TextViewRowStyle"
+                style="@style/TextViewRowStyle"
                 android:id="@+id/warranty_textView"
                 android:text="warranty"
                 android:layout_width="match_parent"

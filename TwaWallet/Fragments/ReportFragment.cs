@@ -263,7 +263,8 @@ namespace TwaWallet.Fragments
             {
                 owner_button.Text = selectedItem.Name;
                 owner_button.Tag = new JavaLangObjectWrapper<Owner>(selectedItem);
-            });
+            },
+             Resources.GetString(Resource.String.Owner));
             fr.Show(this.Activity.FragmentManager, SimpleListViewDialogFragment<Owner>.TAG);
         }
 
@@ -275,7 +276,8 @@ namespace TwaWallet.Fragments
             {
                 paymentType_button.Text = selectedItem.Description;
                 paymentType_button.Tag = new JavaLangObjectWrapper<PaymentType>(selectedItem);
-            });
+            },
+             Resources.GetString(Resource.String.PaymentType));
             fr.Show(this.Activity.FragmentManager, SimpleListViewDialogFragment<PaymentType>.TAG);
         }
 
@@ -289,7 +291,8 @@ namespace TwaWallet.Fragments
                 //category_button.SetFlags();
                 //category_button.Tag = /*"str";//*/ // (Java.Lang.Object)c;
                 category_button.Tag = new JavaLangObjectWrapper<Category>(selectedItem);
-             });
+             },
+             Resources.GetString(Resource.String.Category));
             fr.Show(this.Activity.FragmentManager, SimpleListViewDialogFragment<Category>.TAG);
 
         }

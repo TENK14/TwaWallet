@@ -67,7 +67,7 @@ namespace TwaWallet.Adapters
         public override View GetView(int position, View convertView, ViewGroup parent)
         {
             View view = convertView;
-
+                        
             // re-use an existing view, if one is available
             // otherwise create a new one
             if (view == null)
@@ -77,23 +77,39 @@ namespace TwaWallet.Adapters
 
             Record item = this[position];
 
-            
+            item.IncludeObjects(db);
 
             var img = view.FindViewById<ImageView>(Resource.Id.paymentType_imageView);
+            var paymentType_textView = view.FindViewById<TextView>(Resource.Id.paymentType_textView);
 
             if (item.PaymentTypeId == lstPaymentType.Where(p => p.Description == PaymentTypeConst.Card).FirstOrDefault().Id)
             {
+                img.Visibility = ViewStates.Visible;
+                paymentType_textView.Visibility = ViewStates.Gone;
                 img.SetImageResource(Resource.Drawable.credit_card);
+            }
+            else if (item.PaymentTypeId == lstPaymentType.Where(p => p.Description == PaymentTypeConst.Money).FirstOrDefault().Id)
+            {
+                img.Visibility = ViewStates.Visible;
+                paymentType_textView.Visibility = ViewStates.Gone;
+
+                img.SetImageResource(Resource.Drawable.money);
             }
             else
             {
-                img.SetImageResource(Resource.Drawable.money);
+                img.Visibility = ViewStates.Gone;
+                paymentType_textView.Visibility = ViewStates.Visible;
+
+                paymentType_textView.Text = lstPaymentType.Where(p => p.Id == item.PaymentTypeId).FirstOrDefault()?.Description ?? string.Empty;
+                paymentType_textView.Text = item.PaymentType?.Description ?? string.Empty;
             }
 
             view.FindViewById<TextView>(Resource.Id.description_textView).Text = item.Description;
-            view.FindViewById<TextView>(Resource.Id.owner_textView).Text = lstOwner.Where(p => p.Id == item.OwnerId).FirstOrDefault().Name;
+            view.FindViewById<TextView>(Resource.Id.owner_textView).Text = lstOwner.Where(p => p.Id == item.OwnerId).FirstOrDefault()?.Name ?? string.Empty;
+            //view.FindViewById<TextView>(Resource.Id.owner_textView).Text = item.Owner?.Name ?? string.Empty;
             // earnings cant have category
             view.FindViewById<TextView>(Resource.Id.category_textView).Text = lstCategory.Where(p => p.Id == item.CategoryId).FirstOrDefault()?.Description ?? string.Empty;
+            //view.FindViewById<TextView>(Resource.Id.category_textView).Text = item.Category?.Description ?? string.Empty;
             view.FindViewById<TextView>(Resource.Id.cost_textView).Text = item.Cost.ToString();
             view.FindViewById<TextView>(Resource.Id.date_textView).Text = item.Date.ToString(this.context.Resources.GetString(Resource.String.DateFormat));
             view.FindViewById<TextView>(Resource.Id.tag_textView).Text = item.Tag;
@@ -107,29 +123,6 @@ namespace TwaWallet.Adapters
             {
                 view.FindViewById<TextView>(Resource.Id.cost_textView).SetTextColor(Android.Graphics.Color.Red);
             }
-
-            var paymentType = lstPaymentType.Where(p => p.Id == item.PaymentTypeId).FirstOrDefault();
-
-            //if (paymentType.Description ==  constant from some dictionary .... feel seed from this source as well)
-            //{
-            //    // TODO: img money
-            //}
-            //else
-            //{
-            //    // TODO: img banking card
-            //}
-
-            //view.FindViewById<TextView>(Resource.Id.Title).Text = item.title;
-            //view.FindViewById<TextView>(Resource.Id.Description).Text = item.description;
-
-            //using (var imageView = view.FindViewById<ImageView>(Resource.Id.Thumbnail))
-            //{
-            //    string url = Android.Text.Html.FromHtml(item.thumbnail).ToString();
-
-            //    //Download and display image
-            //    Koush.UrlImageViewHelper.SetUrlDrawable(imageView,
-            //        url, Resource.Drawable.Placeholder);
-            //}
             return view;
         }
     }
