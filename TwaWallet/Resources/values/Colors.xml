@@ -8,15 +8,106 @@
   <item name="red" type="color">#C40C0A</item>
   <item name="yellow" type="color">#FFCC00</item>
 
-  <!-- Floating Action Button -->
-  <color name="ripple">#ff80ab</color>
-  <color name="accent">#E64A19</color>
-  <color name="accent_pressed">#BF360C</color>
-  <color name="primary_pressed">#2C3E50</color>
 
+
+
+
+
+
+  <!--K.collect 2 modra barva pozadi titulkoveho pruhu-->
+  <!--<color name="primary">#00024C</color>-->
+  <!--<color name="primary">#000000</color>-->
+
+  <!--K.collect 2 temne modra barva-->
+  <!--<color name="primaryDark">#ff0126</color>-->
+
+
+  <!--Bily text-->
+  <color name="textOnPrimary">#ffffff</color>
+
+  <!--Cerny text-->
+  <color name="normalText">#000000</color>
+  <!--<color name="test">?android:attr/</color>-->
+
+  <!-- Material design Lime-BlueGray - START -->
+  <!--<color name="fragmentBackground">@color/white</color>
+  <color name="ripple">#ff80ab</color>
+  <color name="accent">#607D8B</color>
+  <color name="accent_pressed">#E64A19</color>
+  <color name="primary_pressed">#2C3E50</color>
+  <color name="primary">#CDDC39</color>
+  <color name="primary_dark">#AFB42B</color>
+  <color name="primary_light">#F0F4C3</color>
+  <color name="accent">#607D8B</color>
+  <color name="primary_text">#212121</color>
+  <color name="secondary_text">#757575</color>
+  <color name="icons">#212121</color>
+  <color name="divider">#BDBDBD</color>-->
+  <!-- Material design Lime-BlueGray - END -->
+
+  <!-- Material design Red-BlueGray - START -->
+  <!--<color name="fragmentBackground">@color/white</color>
+  <color name="primary">#DB1C1C</color>
+  --><!--<color name="primary">#2C3E50</color>--><!--
+  <color name="primary_dark">#D32F2F</color>
+  <color name="primary_light">#FFCDD2</color>
+  <color name="primary_text">#212121</color>
+  <color name="secondary_text">#F5F5F5</color>
+  <color name="icons">#FFFFFF</color>
+  --><!--<color name="divider">#BDBDBD</color>--><!--
+  
+  <color name="ripple">#ff80ab</color>
+  <color name="accent">#607D8B</color>
+  <color name="accent_pressed">#E64A19</color>
+  <color name="primary_pressed">#2C3E50</color>-->
+  <!-- Material design Red-BlueGray - END -->
+
+  <!-- Material design Red-BlueGray - START -->
+  <color name="fragmentBackground">@color/white</color>
+
+  <!--<color name="toolbar_text">@color/black</color>-->
+  <color name="toolbar_text">@color/black</color>
+  <!--<color name="toolbarSecondary_text">#292929</color>-->
+  <color name="tablayout_text">@color/white</color>
+  <color name="tablayoutSecondary_text">@color/black</color>
+
+  <color name="primary">#DB1C1C</color>
+  <color name="primary_dark">#D32F2F</color>
+  <color name="primary_light">#FFCDD2</color>
+  <!--<color name="accent">#607D8B</color>-->
+  <color name="primary_text">#212121</color>
+  <color name="secondary_text">#757575</color>
+  <color name="icons">#FFFFFF</color>
+  <color name="divider">#BDBDBD</color>
+  <color name="ripple">#ff80ab</color>
+  <!--<color name="accent">#DB1C1C</color>-->
+  <color name="accent">#BF360C</color>
+  <!--<color name="accent_pressed">#BF360C</color>-->
+  <color name="accent_pressed">#DB1C1C</color>
+  <color name="primary_pressed">#2C3E50</color>
+  <!-- Material design Lime-BlueGray - END -->
+
+  <!-- My yellow - START -->
+  <!--<color name="fragmentBackground">#FFC107</color>
+
+  <color name="toolbar_text">@color/icons</color>
+  <color name="tablayout_text">@color/icons</color>
+  <color name="tablayoutSecondary_text">@color/secondary_text</color>
+  
+  <color name="primary">#212121</color>
+  <color name="primary_text">#212121</color>
+  <color name="secondary_text">#F5F5F5</color>
+  <color name="icons">#FFFFFF</color>
+  <color name="divider">#BDBDBD</color>
+  
+  <color name="ripple">#ff80ab</color>
+  <color name="accent">#BF360C</color>
+  <color name="accent_pressed">#E64A19</color>
+  <color name="primary_pressed">#2C3E50</color>-->
+  <!-- My - END -->
 
   <!--<color name="fragmentBackground">@color/yellow</color>-->
-  <color name="fragmentBackground">@color/white</color>
+  <!--<color name="fragmentBackground">@color/white</color>-->
   <!--<color name="fragmentBackground">?attr/colorPrimary</color>-->
   <color name="fragmentListBackground">@color/fragmentBackground</color>
 
@@ -30,54 +121,22 @@
   <color name="inputDialogBackground">@color/fragmentBackground</color>
 
 
-  <!--K.collect 2 modra barva pozadi titulkoveho pruhu-->
-  <!--<color name="primary">#00024C</color>-->
-  <!--<color name="primary">#000000</color>-->
-  
-  <!--K.collect 2 temne modra barva-->
-  <!--<color name="primaryDark">#ff0126</color>-->
-  
-  
-  <!--Bily text-->
-  <color name="textOnPrimary">#ffffff</color>
-
-  <!--Cerny text-->
-  <color name="normalText">#000000</color>
-
-
-  <!-- Material design Lime-BlueGray - START -->
-    <!--<color name="primary">#CDDC39</color>
-    <color name="primary_dark">#AFB42B</color>
-    <color name="primary_light">#F0F4C3</color>
-    <color name="accent">#607D8B</color>
-    <color name="primary_text">#212121</color>
-    <color name="secondary_text">#757575</color>
-    <color name="icons">#212121</color>
-    <color name="divider">#BDBDBD</color>-->
-  <!-- Material design Lime-BlueGray - END -->
-
-  <!-- Material design Red-BlueGray - START -->
-  <color name="primary">#F44336</color>
-  <color name="primary_dark">#D32F2F</color>
-  <color name="primary_light">#FFCDD2</color>
-  <color name="accent">#607D8B</color>
-  <color name="primary_text">#212121</color>
-  <color name="secondary_text">#757575</color>
-  <color name="icons">#FFFFFF</color>
-  <!--<color name="divider">#BDBDBD</color>-->
-  <!-- Material design Red-BlueGray - END -->
-
-
-
-
-
 
   <!--<color name="window_background">#F5F5F5</color>-->
   <color name="window_background">#6A3D3D</color>
   <color name="splash_background">#000000</color>
 
+  <!-- Floating Action Button -->
+  <!--<color name="ripple">#ff80ab</color>
+  <color name="accent">#E64A19</color>
+  <color name="accent_pressed">#BF360C</color> 
+  <color name="primary_pressed">#2C3E50</color>-->
+
+
   <color name="fab_color_1">#ff5252</color>
   <color name="fab_color_1_muted">#ff8080</color>
   <color name="fab_color_2">#9c27b0</color>
   <color name="fab_color_2_muted">#a56ab0</color>
+
+
 </resources>

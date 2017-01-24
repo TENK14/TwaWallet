@@ -213,12 +213,15 @@ namespace TwaWallet.Fragments
                 try
                 {
                     //Java.Lang.Thread.Sleep(2000);
-                    var r = db.Select<Record, DateTime>((o) => o.Id > 0, (o) => o.Date, false).Result;
-                    //var r = await db.Select<Record, DateTime>((o) => o.Id > 0 && o.Earnings == false, (o) => o.Date, false); //.Result;
-                    listData = r.ToList();//r.Select(p => $"{p.Description}, {p.Cost}, {p.Date}").ToList();
-                        
+                    //var r = db.Select<Record, DateTime>((o) => o.Id > 0, (o) => o.Date, false).Result;
+                    var r = db.Select<Record, DateTime>((o) => o.Earnings == false, (o) => o.Date, false).Result;
+                //var r = await db.Select<Record, DateTime>((o) => o.Id > 0 && o.Earnings == false, (o) => o.Date, false); //.Result;
+                listData = r.ToList();//r.Select(p => $"{p.Description}, {p.Cost}, {p.Date}").ToList();
 
-                    return true;
+                // Month values
+                //this.monthCost_value.Text = listAll.Where(p => p.Date.Month == DateTime.Now.Month && p.Date.Year == DateTime.Now.Year && p.Earnings == false).Select(p => p.Cost).Sum().ToString();
+
+                return true;
                 }
                 catch (Exception ex)
                 {

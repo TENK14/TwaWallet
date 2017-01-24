@@ -8,10 +8,11 @@
     <android.support.v7.widget.Toolbar
         android:id="@+id/my_toolbar"
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="?attr/colorPrimary"
-        android:elevation="4dp" />
-<!--android:theme="@style/ToolbarTheme"
+        android:layout_height="?attr/actionBarSize"        
+        android:elevation="4dp"
+        android:theme="@style/ToolbarTheme"/>
+  <!--android:background="?attr/colorPrimary"-->
+  <!--android:theme="@style/ToolbarTheme"
   app:popupTheme="@style/ToolbarTheme"-->
 <!-- Tabs -->
     <HorizontalScrollView
@@ -23,8 +24,12 @@
             android:id="@+id/sliding_tabs"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="?attr/colorPrimary" />
-    <!--android:background="?attr/colorPrimary"-->
+            android:theme="@style/TabLayoutTheme"
+            />
+      <!--android:background="?attr/colorPrimary"
+      app:tabTextColor="@color/your_unselected_text_color"
+      app:tabSelectedTextColor="@color/your_selected_text_color"-->
+      <!--android:background="?attr/colorPrimary"-->
     <!--android:theme="@style/TabLayoutTheme"-->
     </HorizontalScrollView>
 <!-- Fragments -->
