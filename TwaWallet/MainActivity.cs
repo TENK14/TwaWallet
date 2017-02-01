@@ -272,7 +272,7 @@ namespace TwaWallet
                 Resources.GetString(Resource.String.History),
                 Resources.GetString(Resource.String.Export),
                 Resources.GetString(Resource.String.Settings),
-                Resources.GetString(Resource.String.RegularPayments)
+                Resources.GetString(Resource.String.RecurringPayments)
             };
 
             // Adding Fragments to viewPager

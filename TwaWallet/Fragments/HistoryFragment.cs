@@ -36,8 +36,11 @@ namespace TwaWallet.Fragments
 
         #region GUI
         protected Android.App.ProgressDialog dialog = null;
+        //TextView count_label;
         TextView count_value;
+        //TextView monthCost_label;
         TextView monthCost_value;
+        //TextView filterCost_label;
         TextView filterCost_value;
         CheckBox earnings_checkBox;
         CheckBox costs_checkBox;
@@ -75,8 +78,12 @@ namespace TwaWallet.Fragments
             listView.ItemClick += OnListItemClick;
             listView.ItemLongClick += OnListItemLongClick;
 
+            //count_label = v.FindViewById<TextView>(Resource.Id.count_label);
             count_value = v.FindViewById<TextView>(Resource.Id.count_value);
+            //filterCost_label = v.FindViewById<TextView>(Resource.Id.filterCost_label);
+            //filterCost_label.Text = Resources.GetString(Resource.String.);
             filterCost_value = v.FindViewById<TextView>(Resource.Id.filterCost_value);
+            //monthCost_label = v.FindViewById<TextView>(Resource.Id.monthCost_label);
             monthCost_value = v.FindViewById<TextView>(Resource.Id.monthCost_value);
             earnings_checkBox = v.FindViewById<CheckBox>(Resource.Id.earnings_checkBox);
             earnings_checkBox.CheckedChange += Earnings_checkBox_CheckedChange;
@@ -109,7 +116,7 @@ namespace TwaWallet.Fragments
 
                 this.Activity.RunOnUiThread(() =>
                 {
-                    InitLayout();
+                    InitLayout(true,false);
                 });
             });
             return v;
@@ -134,7 +141,13 @@ namespace TwaWallet.Fragments
             // Create and show the dialog.
             DialogFragment newFragment = ReportFragment.NewInstance(null, delegate ()
             {
-                var r = LoadData(((JavaLangObjectWrapper<DateTime>)dateFrom_button.Tag).Value, ((JavaLangObjectWrapper<DateTime>)dateTo_button.Tag).Value, costs_checkBox.Checked, earnings_checkBox.Checked);//.Result;
+                //var r = LoadData(((JavaLangObjectWrapper<DateTime>)dateFrom_button.Tag).Value, ((JavaLangObjectWrapper<DateTime>)dateTo_button.Tag).Value, costs_checkBox.Checked, earnings_checkBox.Checked);//.Result;
+                var r = LoadData();
+
+                this.Activity.RunOnUiThread(() =>
+                {
+                    InitLayout(true, false);
+                });
             });
 
             //newFragment.SetStyle()
@@ -151,10 +164,15 @@ namespace TwaWallet.Fragments
             if (dateFrom_button?.Tag != null)
             {
                 var r = LoadData(((JavaLangObjectWrapper<DateTime>)dateFrom_button.Tag).Value, ((JavaLangObjectWrapper<DateTime>)dateTo_button.Tag).Value, costs_checkBox.Checked, earnings_checkBox.Checked);//.Result;
+                this.Activity.RunOnUiThread(() =>
+                {
+                    InitLayout(costs_checkBox.Checked, earnings_checkBox.Checked);
+                });
             }
             else
             {
                 var r = LoadData();//.Result;
+                
             }
         }
 
@@ -166,6 +184,10 @@ namespace TwaWallet.Fragments
             if (dateFrom_button?.Tag != null)
             {
                 var r = LoadData(((JavaLangObjectWrapper<DateTime>)dateFrom_button.Tag).Value, ((JavaLangObjectWrapper<DateTime>)dateTo_button.Tag).Value, costs_checkBox.Checked, earnings_checkBox.Checked);//.Result;
+                this.Activity.RunOnUiThread(() =>
+                {
+                    InitLayout(costs_checkBox.Checked, earnings_checkBox.Checked);
+                });
             }
             else
             {
@@ -187,7 +209,7 @@ namespace TwaWallet.Fragments
 
                 this.Activity.RunOnUiThread(() =>
                 {
-                    InitLayout();
+                    InitLayout(true, false);
                 });
             });
         }
@@ -215,13 +237,13 @@ namespace TwaWallet.Fragments
                     //Java.Lang.Thread.Sleep(2000);
                     //var r = db.Select<Record, DateTime>((o) => o.Id > 0, (o) => o.Date, false).Result;
                     var r = db.Select<Record, DateTime>((o) => o.Earnings == false, (o) => o.Date, false).Result;
-                //var r = await db.Select<Record, DateTime>((o) => o.Id > 0 && o.Earnings == false, (o) => o.Date, false); //.Result;
-                listData = r.ToList();//r.Select(p => $"{p.Description}, {p.Cost}, {p.Date}").ToList();
+                    //var r = await db.Select<Record, DateTime>((o) => o.Id > 0 && o.Earnings == false, (o) => o.Date, false); //.Result;
+                    listData = r.ToList();//r.Select(p => $"{p.Description}, {p.Cost}, {p.Date}").ToList();
 
-                // Month values
-                //this.monthCost_value.Text = listAll.Where(p => p.Date.Month == DateTime.Now.Month && p.Date.Year == DateTime.Now.Year && p.Earnings == false).Select(p => p.Cost).Sum().ToString();
+                    // Month values
+                    this.monthCost_value.Text = listData.Where(p => p.Date.Month == DateTime.Now.Month && p.Date.Year == DateTime.Now.Year && p.Earnings == false).Select(p => p.Cost).Sum().ToString();
 
-                return true;
+                    return true;
                 }
                 catch (Exception ex)
                 {
@@ -344,9 +366,7 @@ namespace TwaWallet.Fragments
 
             return false;
         }
-
         
-
         private void DateTo_button_Click(object sender, EventArgs e)
         {
             Log.Debug(TAG, nameof(DateTo_button_Click));
@@ -378,26 +398,65 @@ namespace TwaWallet.Fragments
             
         }
 
-        private void InitLayout()
+        private void InitLayout(bool costsIsChecked, bool earningsIsChecked)
         {
             Log.Debug(TAG, nameof(InitLayout));
 
-            listView.Adapter = new RecordListAdapter(this.Activity, listData, this.db);
-            
-            if (listData != null && listData.Count > 0)
+            this.Activity.RunOnUiThread(() =>
             {
-                var date = listData.LastOrDefault().Date;
-                dateFrom_button.Text = date.ToString(Resources.GetString(Resource.String.DateFormat));
-                dateFrom_button.Tag = new JavaLangObjectWrapper<DateTime>(date);
+                Log.Debug(TAG, "[1] Starting dialog.");
+                dialog = this.Activity.ProgressDialogShow(dialog);
+                Log.Debug(TAG, "[2] Dialog started.");
+            });
 
-                date = listData.FirstOrDefault().Date;
-                dateTo_button.Text = date.ToString(Resources.GetString(Resource.String.DateFormat));
-                dateTo_button.Tag = new JavaLangObjectWrapper<DateTime>(date);
+            try
+            {
+                costs_checkBox.Checked = costsIsChecked;
+                earnings_checkBox.Checked = earningsIsChecked;
 
-                this.count_value.Text = listData.Count.ToString();
-                this.monthCost_value.Text = listData.Where(p => p.Date.Month == DateTime.Now.Month && p.Date.Year == DateTime.Now.Year).Select(p => p.Cost).Sum().ToString();
-                this.filterCost_value.Text = listData.Select(p => p.Cost).Sum().ToString();
+                listView.Adapter = new RecordListAdapter(this.Activity, listData, this.db);
+
+                if (listData != null && listData.Count > 0)
+                {
+                    var date = listData.LastOrDefault().Date;
+                    dateFrom_button.Text = date.ToString(Resources.GetString(Resource.String.DateFormat));
+                    dateFrom_button.Tag = new JavaLangObjectWrapper<DateTime>(date);
+
+                    date = listData.FirstOrDefault().Date;
+                    dateTo_button.Text = date.ToString(Resources.GetString(Resource.String.DateFormat));
+                    dateTo_button.Tag = new JavaLangObjectWrapper<DateTime>(date);
+
+                    this.count_value.Text = listData.Count.ToString();
+                    this.monthCost_value.Text = listData.Where(p => p.Date.Month == DateTime.Now.Month && p.Date.Year == DateTime.Now.Year).Select(p => p.Cost).Sum().ToString();
+                    this.filterCost_value.Text = listData.Select(p => p.Cost).Sum().ToString();
+                }
+                else
+                {
+                    var date = DateTime.Now;
+
+                    dateFrom_button.Text = date.ToString(Resources.GetString(Resource.String.DateFormat));
+                    dateFrom_button.Tag = new JavaLangObjectWrapper<DateTime>(date);
+
+                    dateTo_button.Text = date.ToString(Resources.GetString(Resource.String.DateFormat));
+                    dateTo_button.Tag = new JavaLangObjectWrapper<DateTime>(date);
+
+                    this.count_value.Text = 0.ToString();
+                    this.monthCost_value.Text = 0.ToString();
+                    this.filterCost_value.Text = 0.ToString();
+                }
             }
+            catch (Exception ex)
+            {
+                Log.Error(TAG, ex.ToString());
+                throw;
+            }
+            finally
+            {
+                this.Activity.RunOnUiThread(() =>
+                {
+                    this.Activity.ProgressDialogDismiss(dialog);
+                });
+            }        
         }
 
         private void OnListItemClick(object sender, AdapterView.ItemClickEventArgs e)

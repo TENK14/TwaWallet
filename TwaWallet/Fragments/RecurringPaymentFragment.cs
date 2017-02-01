@@ -303,9 +303,15 @@ namespace TwaWallet.Fragments
                 }
 
             }
+            catch (NullReferenceException ex)
+            {
+                Log.Error(TAG, nameof(Save_button_Click), ex.Message);
+                Toast.MakeText(this.Activity, Resources.GetString(Resource.String.SomethingMissing), ToastLength.Short).Show();
+            }
             catch (Exception ex)
             {
                 Log.Error(TAG, nameof(Save_button_Click),ex.Message);
+                Toast.MakeText(this.Activity, ex.Message, ToastLength.Short).Show();
             }
         }
 
@@ -347,20 +353,20 @@ namespace TwaWallet.Fragments
             if (SelectedItem == null) // Show Empty ReportFragment
             {
                 var category = lstCategory.Where(p => p.IsDefault).FirstOrDefault();
-                this.category_button.Text = category.Description;
-                this.category_button.Tag = new JavaLangObjectWrapper<Category>(category);
+                this.category_button.Text = category?.Description ?? string.Empty;
+                this.category_button.Tag = category != null ? new JavaLangObjectWrapper<Category>(category) : null;
 
                 var paymentType = lstPaymentType.Where(p => p.IsDefault).FirstOrDefault();
-                this.paymentType_button.Text = paymentType.Description;
-                this.paymentType_button.Tag = new JavaLangObjectWrapper<PaymentType>(paymentType);
+                this.paymentType_button.Text = paymentType?.Description ?? string.Empty;
+                this.paymentType_button.Tag = paymentType != null ? new JavaLangObjectWrapper<PaymentType>(paymentType) : null;
 
                 var owner = lstOwner.Where(p => p.IsDefault).FirstOrDefault();
-                this.owner_button.Text = owner.Name;
-                this.owner_button.Tag = new JavaLangObjectWrapper<Owner>(owner);
+                this.owner_button.Text = owner?.Name ?? string.Empty;
+                this.owner_button.Tag = owner != null ? new JavaLangObjectWrapper<Owner>(owner) : null;
 
                 var interval = lstInterval.Where(p => p.IsDefault).FirstOrDefault();
-                this.interval_button.Text = interval.Description;
-                this.interval_button.Tag = new JavaLangObjectWrapper<Interval>(interval);
+                this.interval_button.Text = interval?.Description ?? string.Empty;
+                this.interval_button.Tag = interval != null ? new JavaLangObjectWrapper<Interval>(interval) : null;
 
                 this.earnings_checkBox.Checked = false;
 

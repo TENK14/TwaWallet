@@ -118,16 +118,16 @@ namespace TwaWallet.Fragments
             Log.Debug(TAG, nameof(InitLayout));
 
             var category = lstCategory.Where(p => p.IsDefault).FirstOrDefault();
-            this.category_button.Text = category.Description;
-            this.category_button.Tag = new JavaLangObjectWrapper<Category>(category);
+            this.category_button.Text = category?.Description ?? string.Empty;
+            this.category_button.Tag = category != null ? new JavaLangObjectWrapper<Category>(category) : null;
 
             var paymentType = lstPaymentType.Where(p => p.IsDefault).FirstOrDefault();
-            this.paymentType_button.Text = paymentType.Description;
-            this.paymentType_button.Tag = new JavaLangObjectWrapper<PaymentType>(paymentType);
+            this.paymentType_button.Text = paymentType?.Description ?? string.Empty;
+            this.paymentType_button.Tag = paymentType != null ? new JavaLangObjectWrapper<PaymentType>(paymentType) : null;
 
             var owner = lstOwner.Where(p => p.IsDefault).FirstOrDefault();
-            this.owner_button.Text = owner.Name;
-            this.owner_button.Tag = new JavaLangObjectWrapper<Owner>(owner);
+            this.owner_button.Text = owner?.Name ?? string.Empty;
+            this.owner_button.Tag = owner != null ? new JavaLangObjectWrapper<Owner>(owner) : null;
         }
 
         
@@ -297,7 +297,7 @@ namespace TwaWallet.Fragments
 
                 if (selectedItem.IsDefault)
                 {
-                    var item = db.Select<PaymentType, int>((o) => o.Id > 0, (o) => o.Id).Result.First();
+                    var item = db.Select<PaymentType, int>((o) => o.Id > 0, (o) => o.Id).Result.FirstOrDefault();
                     if (item != null)
                     {
                         item.IsDefault = true;
@@ -399,7 +399,7 @@ namespace TwaWallet.Fragments
 
                 if (selectedItem.IsDefault)
                 {
-                    var item = db.Select<Category, int>((o) => o.Id > 0, (o) => o.Id).Result.First();
+                    var item = db.Select<Category, int>((o) => o.Id > 0, (o) => o.Id).Result.FirstOrDefault();
                     if (item != null)
                     {
                         item.IsDefault = true;

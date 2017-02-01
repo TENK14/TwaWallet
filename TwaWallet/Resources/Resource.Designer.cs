@@ -2652,7 +2652,7 @@ namespace TwaWallet
 			public const int radio = 2131099735;
 			
 			// aapt resource value: 0x7f0600bf
-			public const int regularPayments_listView = 2131099839;
+			public const int recurringPayments_listView = 2131099839;
 			
 			// aapt resource value: 0x7f060031
 			public const int right = 2131099697;
@@ -3122,8 +3122,11 @@ namespace TwaWallet
 			// aapt resource value: 0x7f070034
 			public const int Cost = 2131165236;
 			
-			// aapt resource value: 0x7f07003d
-			public const int Costs = 2131165245;
+			// aapt resource value: 0x7f07003f
+			public const int Costs = 2131165247;
+			
+			// aapt resource value: 0x7f070035
+			public const int Count = 2131165237;
 			
 			// aapt resource value: 0x7f070027
 			public const int DBPath = 2131165223;
@@ -3131,41 +3134,44 @@ namespace TwaWallet
 			// aapt resource value: 0x7f070028
 			public const int DBfilename = 2131165224;
 			
-			// aapt resource value: 0x7f070035
-			public const int Date = 2131165237;
+			// aapt resource value: 0x7f070036
+			public const int Date = 2131165238;
 			
 			// aapt resource value: 0x7f070026
 			public const int DateFormat = 2131165222;
 			
-			// aapt resource value: 0x7f070036
-			public const int DateFrom = 2131165238;
-			
 			// aapt resource value: 0x7f070037
-			public const int DateTo = 2131165239;
+			public const int DateFrom = 2131165239;
 			
 			// aapt resource value: 0x7f070038
-			public const int DefaultOption = 2131165240;
+			public const int DateTo = 2131165240;
 			
 			// aapt resource value: 0x7f070039
-			public const int Delete = 2131165241;
+			public const int DefaultOption = 2131165241;
 			
 			// aapt resource value: 0x7f07003a
-			public const int Deleted = 2131165242;
+			public const int Delete = 2131165242;
 			
 			// aapt resource value: 0x7f07003b
-			public const int Description = 2131165243;
+			public const int Deleted = 2131165243;
 			
 			// aapt resource value: 0x7f07003c
-			public const int Earnings = 2131165244;
+			public const int Description = 2131165244;
 			
-			// aapt resource value: 0x7f07003e
-			public const int Edit = 2131165246;
+			// aapt resource value: 0x7f07003d
+			public const int Earnings = 2131165245;
 			
-			// aapt resource value: 0x7f07003f
-			public const int EndDate = 2131165247;
+			// aapt resource value: 0x7f070040
+			public const int Edit = 2131165248;
+			
+			// aapt resource value: 0x7f070041
+			public const int EndDate = 2131165249;
 			
 			// aapt resource value: 0x7f07002c
 			public const int Export = 2131165228;
+			
+			// aapt resource value: 0x7f07003e
+			public const int FilterCost = 2131165246;
 			
 			// aapt resource value: 0x7f070024
 			public const int Hello = 2131165220;
@@ -3173,56 +3179,62 @@ namespace TwaWallet
 			// aapt resource value: 0x7f07002b
 			public const int History = 2131165227;
 			
-			// aapt resource value: 0x7f070040
-			public const int Interval = 2131165248;
-			
-			// aapt resource value: 0x7f070041
-			public const int IsActive = 2131165249;
-			
 			// aapt resource value: 0x7f070042
-			public const int IsBussy = 2131165250;
-			
-			// aapt resource value: 0x7f070044
-			public const int OK = 2131165252;
-			
-			// aapt resource value: 0x7f070045
-			public const int Owner = 2131165253;
+			public const int Interval = 2131165250;
 			
 			// aapt resource value: 0x7f070043
-			public const int PaymentType = 2131165251;
+			public const int IsActive = 2131165251;
+			
+			// aapt resource value: 0x7f070044
+			public const int IsBussy = 2131165252;
+			
+			// aapt resource value: 0x7f070045
+			public const int MonthCost = 2131165253;
+			
+			// aapt resource value: 0x7f070047
+			public const int OK = 2131165255;
+			
+			// aapt resource value: 0x7f070048
+			public const int Owner = 2131165256;
+			
+			// aapt resource value: 0x7f070046
+			public const int PaymentType = 2131165254;
 			
 			// aapt resource value: 0x7f07002e
-			public const int RegularPayments = 2131165230;
+			public const int RecurringPayments = 2131165230;
 			
 			// aapt resource value: 0x7f07002a
 			public const int Report = 2131165226;
 			
-			// aapt resource value: 0x7f070046
-			public const int Save = 2131165254;
+			// aapt resource value: 0x7f070049
+			public const int Save = 2131165257;
 			
-			// aapt resource value: 0x7f070047
-			public const int Saved = 2131165255;
+			// aapt resource value: 0x7f07004a
+			public const int Saved = 2131165258;
 			
-			// aapt resource value: 0x7f070048
-			public const int Sent = 2131165256;
+			// aapt resource value: 0x7f07004b
+			public const int Sent = 2131165259;
 			
 			// aapt resource value: 0x7f07002d
 			public const int Settings = 2131165229;
 			
-			// aapt resource value: 0x7f070049
-			public const int StartDate = 2131165257;
-			
-			// aapt resource value: 0x7f07004a
-			public const int Tags = 2131165258;
-			
-			// aapt resource value: 0x7f07004b
-			public const int Warranty = 2131165259;
-			
 			// aapt resource value: 0x7f07004c
-			public const int WasntDeleted = 2131165260;
+			public const int SomethingMissing = 2131165260;
 			
 			// aapt resource value: 0x7f07004d
-			public const int WasntSaved = 2131165261;
+			public const int StartDate = 2131165261;
+			
+			// aapt resource value: 0x7f07004e
+			public const int Tags = 2131165262;
+			
+			// aapt resource value: 0x7f07004f
+			public const int Warranty = 2131165263;
+			
+			// aapt resource value: 0x7f070050
+			public const int WasntDeleted = 2131165264;
+			
+			// aapt resource value: 0x7f070051
+			public const int WasntSaved = 2131165265;
 			
 			// aapt resource value: 0x7f070000
 			public const int abc_action_bar_home_description = 2131165184;

@@ -57,7 +57,7 @@ namespace TwaWallet.Fragments
             //addRecurringPayment_button = v.FindViewById<Button>(Resource.Id.addRecurringPayment_button);
             //addRecurringPayment_button.Click += AddRecurringPayment_button_Click;
 
-            listView = v.FindViewById<ListView>(Resource.Id.regularPayments_listView);
+            listView = v.FindViewById<ListView>(Resource.Id.recurringPayments_listView);
             listView.ItemLongClick += OnListItemLongClick;
 
             var fab = v.FindViewById<com.refractored.fab.FloatingActionButton>(Resource.Id.fab);
