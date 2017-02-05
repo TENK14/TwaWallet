@@ -1,12 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="TwaWallet.TwaWallet" android:versionCode="6" android:versionName="2017.02.01" android:installLocation="auto">
+<!--<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="TwaWallet.TwaWallet" android:versionCode="6" android:versionName="2017.02.05" android:installLocation="auto">-->
+  <manifest xmlns:android="http://schemas.android.com/apk/res/android" package="com.twa.TwaWallet" android:versionCode="6" android:versionName="2017.02.05" android:installLocation="auto">
 	<uses-sdk android:minSdkVersion="15" android:targetSdkVersion="24" />
 	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-  <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
-  <!--<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" maxSdkVersion='18'/>-->
+	<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+	<!--<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" maxSdkVersion='18'/>-->
 	<!--<application android:label="TwaWallet_xamarin" android:icon="@drawable/Icon" android:theme="@style/Theme.AppCompat.Light.NoActionBar">-->
 	<!--<application android:label="@string/ApplicationName" android:icon="@drawable/Icon" android:theme="@style/AppTheme">-->
-	<application android:label="TwaWallet_xamarin" android:icon="@drawable/Icon" android:theme="@style/AppTheme"></application>
+	<application android:label="TwaWallet" android:icon="@drawable/Icon" android:theme="@style/AppTheme"></application>
 	<!--android:theme="@style/Theme.AppCompat.Light.NoActionBar-->
 	<!--android:theme="@android:style/Theme.Material"-->
 </manifest>

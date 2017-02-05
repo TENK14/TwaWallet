@@ -19,7 +19,7 @@ using Android.Support.V4.Widget;
 
 namespace TwaWallet
 {
-    [Android.App.Activity(Label = "TwaWallet_Xam", 
+    [Android.App.Activity(Label = "TwaWallet", 
         //MainLauncher = true, 
         Icon = "@drawable/icon",
         ScreenOrientation = Android.Content.PM.ScreenOrientation.Portrait,
@@ -82,7 +82,8 @@ namespace TwaWallet
 
             // Setup Toolbar
             SetSupportActionBar(toolbar);
-            SupportActionBar.Title = $"{Resources.GetString(Resource.String.ApplicationName)} ({code}-{name})";
+            //SupportActionBar.Title = $"{Resources.GetString(Resource.String.ApplicationName)} ({code}-{name})";
+            SupportActionBar.Title = Resources.GetString(Resource.String.ApplicationName);
 
             // Set adapter to view pager
             //pager.Adapter = adapter;
