@@ -36,12 +36,13 @@ namespace Database
             Log.Debug(TAG, $"{nameof(CreateDatabase)}");
             return CreateDatabase(Path);
         }
-        
-        public /*async*/ Task<bool> CreateDatabase(string path)
+
+        /**/
+        public Task<bool> CreateDatabase(string path)
         {
             Log.Debug(TAG, $"{nameof(CreateDatabase)} - {nameof(path)}:{path}");
 
-            return Task.Factory.StartNew(/*async*/ () =>
+            return Task.Factory.StartNew( () =>
             {
                 try
                 {
@@ -55,27 +56,26 @@ namespace Database
                     //await connection.CreateTableAsync<RecurringPayment>();
 
                     //connection.CreateTables(typeof(Owner), typeof(Category), typeof(PaymentType), typeof(Record), typeof(RecurringPayment));
-                    var r = /*await*/ connection.CreateTablesAsync(typeof(Owner), typeof(Category), typeof(PaymentType), typeof(Interval), typeof(Record), typeof(RecurringPayment)).Result;
+                    var r = connection.CreateTablesAsync(typeof(Owner), typeof(Category), typeof(PaymentType), typeof(Interval), typeof(Record), typeof(RecurringPayment)).Result;
 
-                    //if (r.Results.ContainsValue())
-                    if (this.Select<Category, int>(p => p.Id > 0, p => p.Id).Result.Count <= 0)
-                    {
-                        var r2 = /*await*/ (new Seed()).FillDB(this, path);
-                        if (r2.Result)
-                        {
+                    //if (this.Select<Category, int>(p => p.Id > 0, p => p.Id).Result.Count <= 0)
+                    //{
+                    //    var r2 = (new Seed()).FillDB(this, path);
+                    //    if (r2.Result)
+                    //    {
 
-                            return true;
-                        }
-                        else
-                        {
-                            return false;
-                        }
-                    }
-                    else
-                    {
-                        return true;
-                    }
-
+                    //        return true;
+                    //    }
+                    //    else
+                    //    {
+                    //        return false;
+                    //    }
+                    //}
+                    //else
+                    //{
+                    //    return true;
+                    //}
+                    return true;
                 }
                 catch (SQLiteException ex)
                 {
@@ -86,6 +86,7 @@ namespace Database
             }
             );
         }
+        /**/
 
         public /*async*/ Task<bool> InsertUpdateData<T>(T data)
         {

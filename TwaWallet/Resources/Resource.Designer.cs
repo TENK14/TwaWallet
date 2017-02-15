@@ -3098,17 +3098,17 @@ namespace TwaWallet
 		public partial class String
 		{
 			
-			// aapt resource value: 0x7f07002f
-			public const int AddCategory = 2131165231;
+			// aapt resource value: 0x7f070046
+			public const int AddCategory = 2131165254;
 			
-			// aapt resource value: 0x7f070030
-			public const int AddOwner = 2131165232;
+			// aapt resource value: 0x7f070047
+			public const int AddOwner = 2131165255;
 			
-			// aapt resource value: 0x7f070031
-			public const int AddPaymentType = 2131165233;
+			// aapt resource value: 0x7f070048
+			public const int AddPaymentType = 2131165256;
 			
-			// aapt resource value: 0x7f070032
-			public const int AddRecurringPayment = 2131165234;
+			// aapt resource value: 0x7f070049
+			public const int AddRecurringPayment = 2131165257;
 			
 			// aapt resource value: 0x7f070025
 			public const int ApplicationName = 2131165221;
@@ -3116,17 +3116,26 @@ namespace TwaWallet
 			// aapt resource value: 0x7f070029
 			public const int CSVfilename = 2131165225;
 			
-			// aapt resource value: 0x7f070033
-			public const int Category = 2131165235;
-			
-			// aapt resource value: 0x7f070034
-			public const int Cost = 2131165236;
+			// aapt resource value: 0x7f070040
+			public const int Card = 2131165248;
 			
 			// aapt resource value: 0x7f07003f
-			public const int Costs = 2131165247;
+			public const int Cash = 2131165247;
 			
-			// aapt resource value: 0x7f070035
-			public const int Count = 2131165237;
+			// aapt resource value: 0x7f07004a
+			public const int Category = 2131165258;
+			
+			// aapt resource value: 0x7f070036
+			public const int ClothesShoes = 2131165238;
+			
+			// aapt resource value: 0x7f07004b
+			public const int Cost = 2131165259;
+			
+			// aapt resource value: 0x7f070056
+			public const int Costs = 2131165270;
+			
+			// aapt resource value: 0x7f07004c
+			public const int Count = 2131165260;
 			
 			// aapt resource value: 0x7f070027
 			public const int DBPath = 2131165223;
@@ -3134,44 +3143,62 @@ namespace TwaWallet
 			// aapt resource value: 0x7f070028
 			public const int DBfilename = 2131165224;
 			
-			// aapt resource value: 0x7f070036
-			public const int Date = 2131165238;
+			// aapt resource value: 0x7f070041
+			public const int Daily = 2131165249;
+			
+			// aapt resource value: 0x7f07004d
+			public const int Date = 2131165261;
 			
 			// aapt resource value: 0x7f070026
 			public const int DateFormat = 2131165222;
 			
-			// aapt resource value: 0x7f070037
-			public const int DateFrom = 2131165239;
+			// aapt resource value: 0x7f07004e
+			public const int DateFrom = 2131165262;
 			
-			// aapt resource value: 0x7f070038
-			public const int DateTo = 2131165240;
+			// aapt resource value: 0x7f07004f
+			public const int DateTo = 2131165263;
+			
+			// aapt resource value: 0x7f07002f
+			public const int Default = 2131165231;
+			
+			// aapt resource value: 0x7f070050
+			public const int DefaultOption = 2131165264;
+			
+			// aapt resource value: 0x7f070051
+			public const int Delete = 2131165265;
+			
+			// aapt resource value: 0x7f070052
+			public const int Deleted = 2131165266;
+			
+			// aapt resource value: 0x7f070053
+			public const int Description = 2131165267;
 			
 			// aapt resource value: 0x7f070039
-			public const int DefaultOption = 2131165241;
+			public const int Drugstore = 2131165241;
 			
-			// aapt resource value: 0x7f07003a
-			public const int Delete = 2131165242;
+			// aapt resource value: 0x7f070054
+			public const int Earnings = 2131165268;
 			
-			// aapt resource value: 0x7f07003b
-			public const int Deleted = 2131165243;
+			// aapt resource value: 0x7f070057
+			public const int Edit = 2131165271;
+			
+			// aapt resource value: 0x7f070058
+			public const int EndDate = 2131165272;
 			
 			// aapt resource value: 0x7f07003c
-			public const int Description = 2131165244;
-			
-			// aapt resource value: 0x7f07003d
-			public const int Earnings = 2131165245;
-			
-			// aapt resource value: 0x7f070040
-			public const int Edit = 2131165248;
-			
-			// aapt resource value: 0x7f070041
-			public const int EndDate = 2131165249;
+			public const int Entertainment = 2131165244;
 			
 			// aapt resource value: 0x7f07002c
 			public const int Export = 2131165228;
 			
-			// aapt resource value: 0x7f07003e
-			public const int FilterCost = 2131165246;
+			// aapt resource value: 0x7f070055
+			public const int FilterCost = 2131165269;
+			
+			// aapt resource value: 0x7f070032
+			public const int Food = 2131165234;
+			
+			// aapt resource value: 0x7f070037
+			public const int Fuel = 2131165239;
 			
 			// aapt resource value: 0x7f070024
 			public const int Hello = 2131165220;
@@ -3179,26 +3206,47 @@ namespace TwaWallet
 			// aapt resource value: 0x7f07002b
 			public const int History = 2131165227;
 			
-			// aapt resource value: 0x7f070042
-			public const int Interval = 2131165250;
+			// aapt resource value: 0x7f070035
+			public const int Household = 2131165237;
+			
+			// aapt resource value: 0x7f07003a
+			public const int Income = 2131165242;
+			
+			// aapt resource value: 0x7f070059
+			public const int Interval = 2131165273;
+			
+			// aapt resource value: 0x7f07005a
+			public const int IsActive = 2131165274;
+			
+			// aapt resource value: 0x7f07005b
+			public const int IsBussy = 2131165275;
+			
+			// aapt resource value: 0x7f070030
+			public const int Launch = 2131165232;
+			
+			// aapt resource value: 0x7f07003b
+			public const int Medicament = 2131165243;
+			
+			// aapt resource value: 0x7f070033
+			public const int Miscellaneous = 2131165235;
+			
+			// aapt resource value: 0x7f07005c
+			public const int MonthCost = 2131165276;
 			
 			// aapt resource value: 0x7f070043
-			public const int IsActive = 2131165251;
+			public const int Monthly = 2131165251;
+			
+			// aapt resource value: 0x7f07005e
+			public const int OK = 2131165278;
+			
+			// aapt resource value: 0x7f07005f
+			public const int Owner = 2131165279;
+			
+			// aapt resource value: 0x7f07005d
+			public const int PaymentType = 2131165277;
 			
 			// aapt resource value: 0x7f070044
-			public const int IsBussy = 2131165252;
-			
-			// aapt resource value: 0x7f070045
-			public const int MonthCost = 2131165253;
-			
-			// aapt resource value: 0x7f070047
-			public const int OK = 2131165255;
-			
-			// aapt resource value: 0x7f070048
-			public const int Owner = 2131165256;
-			
-			// aapt resource value: 0x7f070046
-			public const int PaymentType = 2131165254;
+			public const int Quarterly = 2131165252;
 			
 			// aapt resource value: 0x7f07002e
 			public const int RecurringPayments = 2131165230;
@@ -3206,35 +3254,56 @@ namespace TwaWallet
 			// aapt resource value: 0x7f07002a
 			public const int Report = 2131165226;
 			
-			// aapt resource value: 0x7f070049
-			public const int Save = 2131165257;
+			// aapt resource value: 0x7f070034
+			public const int RestaurantBar = 2131165236;
 			
-			// aapt resource value: 0x7f07004a
-			public const int Saved = 2131165258;
+			// aapt resource value: 0x7f070060
+			public const int Save = 2131165280;
 			
-			// aapt resource value: 0x7f07004b
-			public const int Sent = 2131165259;
+			// aapt resource value: 0x7f070061
+			public const int Saved = 2131165281;
+			
+			// aapt resource value: 0x7f070062
+			public const int Sent = 2131165282;
+			
+			// aapt resource value: 0x7f070038
+			public const int Services = 2131165240;
 			
 			// aapt resource value: 0x7f07002d
 			public const int Settings = 2131165229;
 			
-			// aapt resource value: 0x7f07004c
-			public const int SomethingMissing = 2131165260;
+			// aapt resource value: 0x7f070063
+			public const int SomethingMissing = 2131165283;
 			
-			// aapt resource value: 0x7f07004d
-			public const int StartDate = 2131165261;
+			// aapt resource value: 0x7f07003d
+			public const int Sport = 2131165245;
 			
-			// aapt resource value: 0x7f07004e
-			public const int Tags = 2131165262;
+			// aapt resource value: 0x7f070064
+			public const int StartDate = 2131165284;
 			
-			// aapt resource value: 0x7f07004f
-			public const int Warranty = 2131165263;
+			// aapt resource value: 0x7f070065
+			public const int Tags = 2131165285;
 			
-			// aapt resource value: 0x7f070050
-			public const int WasntDeleted = 2131165264;
+			// aapt resource value: 0x7f07003e
+			public const int Transportation = 2131165246;
 			
-			// aapt resource value: 0x7f070051
-			public const int WasntSaved = 2131165265;
+			// aapt resource value: 0x7f070031
+			public const int Trip = 2131165233;
+			
+			// aapt resource value: 0x7f070066
+			public const int Warranty = 2131165286;
+			
+			// aapt resource value: 0x7f070067
+			public const int WasntDeleted = 2131165287;
+			
+			// aapt resource value: 0x7f070068
+			public const int WasntSaved = 2131165288;
+			
+			// aapt resource value: 0x7f070042
+			public const int Weekly = 2131165250;
+			
+			// aapt resource value: 0x7f070045
+			public const int Yearly = 2131165253;
 			
 			// aapt resource value: 0x7f070000
 			public const int abc_action_bar_home_description = 2131165184;

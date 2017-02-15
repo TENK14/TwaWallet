@@ -14,7 +14,38 @@
   <string name="Export">EXPORT</string>
   <string name="Settings">NASTAVENI</string>
   <string name="RecurringPayments">PRAVIDELNE PLATBY</string>
+
+  <!-- Owners -->
+  <string name="Default">Default</string>
+
+  <!-- Categories -->
+  <string name="Launch">Obědy</string>
+  <string name="Trip">Výlety</string>
+  <string name="Food">Potraviny</string>
+  <string name="Miscellaneous">Nezařazené</string>
+  <string name="RestaurantBar">Restaurace,bary</string>
+  <string name="Household">Domácnost</string>
+  <string name="ClothesShoes">Oblečení</string>
+  <string name="Fuel">Pohonné hmoty</string>
+  <string name="Services">Služby</string>
+  <string name="Drugstore">Drogerie</string>
+  <string name="Income">Mzda</string>
+  <string name="Medicament">Léky</string>
+  <string name="Entertainment">Zábava,kultura</string>
+  <string name="Sport">Sport</string>
+  <string name="Transportation">Doprava</string>
+
+  <!-- Payment types -->
+  <string name="Cash">Hotově</string>
+  <string name="Card">Kartou</string>
   
+  <!-- Interval -->
+  <string name="Daily">Denně</string>
+  <string name="Weekly">Týdně</string>
+  <string name="Monthly">Měsíčně</string>
+  <string name="Quarterly">Čtvrtletně</string>
+  <string name="Yearly">Ročně</string>
+
   <!--  -->
   <string name="AddCategory">Přidat kategorii</string>
   <string name="AddOwner">Přidat vlastníka</string>

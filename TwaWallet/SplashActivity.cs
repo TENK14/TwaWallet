@@ -15,6 +15,7 @@ using Database.POCO;
 using Database;
 using Android.Support.V4.App;
 using System.IO;
+using Database.Constants;
 
 namespace TwaWallet
 {
@@ -90,11 +91,76 @@ namespace TwaWallet
                 }
                 #endregion
 
+                #region Create DB
                 Log.Debug(TAG, $"DB will be created!");
                 IDataContext db = DataContextFactory.GetDataContext(pathToDatabase);
-                var result = db.CreateDatabase().Result;
-                Log.Debug(TAG, $"DB was created!:: {result}");
 
+                var lstOwner = new Owner[]
+                {
+                    new Owner {Name = Resources.GetString(Resource.String.Default), IsDefault = true },
+                };
+
+                var lstCategory = new Category[]
+                {
+                    new Category {Description = Resources.GetString(Resource.String.Launch), IsDefault = true },
+                    new Category {Description = Resources.GetString(Resource.String.Trip), IsDefault = false },
+                    new Category {Description = Resources.GetString(Resource.String.Food), IsDefault = false },
+                    new Category {Description = Resources.GetString(Resource.String.Miscellaneous), IsDefault = false },
+                    new Category {Description = Resources.GetString(Resource.String.RestaurantBar), IsDefault = false },
+                    new Category {Description = Resources.GetString(Resource.String.Household), IsDefault = false },
+                    new Category {Description = Resources.GetString(Resource.String.ClothesShoes), IsDefault = false },
+                    new Category {Description = Resources.GetString(Resource.String.Fuel), IsDefault = false },
+                    new Category {Description = Resources.GetString(Resource.String.Services), IsDefault = false },
+                    new Category {Description = Resources.GetString(Resource.String.Drugstore), IsDefault = false },
+                    new Category {Description = Resources.GetString(Resource.String.Income), IsDefault = false },
+                    new Category {Description = Resources.GetString(Resource.String.Medicament), IsDefault = false },
+                    new Category {Description = Resources.GetString(Resource.String.Entertainment), IsDefault = false },
+                    new Category {Description = Resources.GetString(Resource.String.Sport), IsDefault = false },
+                    new Category {Description = Resources.GetString(Resource.String.Transportation), IsDefault = false },
+                };
+
+                var lstPaymentType = new PaymentType[]
+                {
+                    new PaymentType {Description = Resources.GetString(Resource.String.Cash), IsDefault = true },
+                    new PaymentType {Description = Resources.GetString(Resource.String.Card), IsDefault = false },
+                };
+
+                var lstInterval = new Interval[]
+                    {
+                        new Interval {Description = Resources.GetString(Resource.String.Daily), IntervalCode = "000001" , IsDefault = false },
+                        new Interval {Description = Resources.GetString(Resource.String.Weekly), IntervalCode = "000007" ,IsDefault = false },
+                        new Interval {Description = Resources.GetString(Resource.String.Monthly), IntervalCode = "000100" ,IsDefault = true },
+                        new Interval {Description = Resources.GetString(Resource.String.Quarterly), IntervalCode = "000300" ,IsDefault = false },
+                        new Interval {Description = Resources.GetString(Resource.String.Yearly), IntervalCode = "010000" ,IsDefault = false },
+                    };
+
+                bool result = db.CreateDatabase().Result;
+                if (result)
+                {
+                    if (db.Select<Category, int>(p => p.Id > 0, p => p.Id).Result.Count <= 0)
+                    {
+                        var r2 = (new Seed()).FillDB(db, lstOwner, lstCategory, lstPaymentType, lstInterval);
+                        if (r2.Result)
+                        {
+
+                            //return true;
+                        }
+                        else
+                        {
+                            //return false;
+                        }
+                    }
+                    else
+                    {
+                        //return true;
+                    }
+                }
+                Log.Debug(TAG, $"DB was created!:: {result}");
+                #endregion
+
+
+                PaymentTypeConst.Cash = Resources.GetString(Resource.String.Cash);
+                PaymentTypeConst.Card = Resources.GetString(Resource.String.Card);
 
                 #region RecurringPayments
                 /**/

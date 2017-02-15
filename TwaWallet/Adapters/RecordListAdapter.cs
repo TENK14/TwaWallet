@@ -88,7 +88,7 @@ namespace TwaWallet.Adapters
                 paymentType_textView.Visibility = ViewStates.Gone;
                 img.SetImageResource(Resource.Drawable.credit_card);
             }
-            else if (item.PaymentTypeId == lstPaymentType.Where(p => p.Description == PaymentTypeConst.Money).FirstOrDefault().Id)
+            else if (item.PaymentTypeId == lstPaymentType.Where(p => p.Description == PaymentTypeConst.Cash).FirstOrDefault().Id)
             {
                 img.Visibility = ViewStates.Visible;
                 paymentType_textView.Visibility = ViewStates.Gone;

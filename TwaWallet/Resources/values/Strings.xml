@@ -15,6 +15,38 @@
   <string name="Settings">SETTINGS</string>
   <string name="RecurringPayments">RECURRING PAYMENTS</string>
   
+  <!-- Owners -->
+  <string name="Default">Default</string>
+  
+  <!-- Categories -->
+  <string name="Launch">Launch</string>
+  <string name="Trip">Trip</string>
+  <string name="Food">Food</string>
+  <string name="Miscellaneous">Miscellaneous</string>
+  <string name="RestaurantBar">Restaurant,bar</string>
+  <string name="Household">Household</string>
+  <string name="ClothesShoes">Clothes,shoes</string>
+  <string name="Fuel">Fuel</string>
+  <string name="Services">Services</string>
+  <string name="Drugstore">Drugstore</string>
+  <string name="Income">Income</string>
+  <string name="Medicament">Medicament</string>
+  <string name="Entertainment">Entertainment</string>
+  <string name="Sport">Sport</string>
+  <string name="Transportation">Transportation</string>
+
+  <!-- Payment types -->
+  <string name="Cash">Cash</string>
+  <string name="Card">Card</string>
+
+  <!-- Interval -->
+  <string name="Daily">Daily</string>
+  <string name="Weekly">Weekly</string>
+  <string name="Monthly">Monthly</string>
+  <string name="Quarterly">Quarterly</string>
+  <string name="Yearly">Yearly</string>
+  
+  
   <!--  -->
   <string name="AddCategory">Add category</string>
   <string name="AddOwner">Add owner</string>

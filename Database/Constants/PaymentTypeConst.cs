@@ -14,7 +14,10 @@ namespace Database.Constants
 {
     public static class PaymentTypeConst
     {
-        public const string Money = "Hotovost";
-        public const string Card = "Karta";
+        //public const string Cash = "Hotovost";
+        //public const string Card = "Karta";
+
+        public static string Cash = "Hotovost";
+        public static string Card = "Karta";
     }
 }
