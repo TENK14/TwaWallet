@@ -198,7 +198,7 @@ namespace TwaWallet.Fragments
 
                 if (selectedItem.IsDefault)
                 {
-                    var item = db.Select<Owner, int>((o) => o.Id > 0, (o) => o.Id).Result.First();
+                    var item = db.Select<Owner, int>((o) => o.Id > 0, (o) => o.Id).Result.FirstOrDefault();
                     if (item != null)
                     {
                         item.IsDefault = true;

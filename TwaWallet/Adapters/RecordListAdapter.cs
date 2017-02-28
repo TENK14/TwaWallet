@@ -81,14 +81,16 @@ namespace TwaWallet.Adapters
 
             var img = view.FindViewById<ImageView>(Resource.Id.paymentType_imageView);
             var paymentType_textView = view.FindViewById<TextView>(Resource.Id.paymentType_textView);
-
-            if (item.PaymentTypeId == lstPaymentType.Where(p => p.Description == PaymentTypeConst.Card).FirstOrDefault().Id)
+            
+            //if (item.PaymentTypeId == lstPaymentType.Where(p => p.Description == PaymentTypeConst.Card)?.FirstOrDefault().Id)
+            if (item.PaymentTypeId == (lstPaymentType.Where(p => p.Description.ToUpper() == this.context.Resources.GetString(Resource.String.Card).ToUpper()).FirstOrDefault()?.Id ?? 0) )
             {
                 img.Visibility = ViewStates.Visible;
                 paymentType_textView.Visibility = ViewStates.Gone;
                 img.SetImageResource(Resource.Drawable.credit_card);
             }
-            else if (item.PaymentTypeId == lstPaymentType.Where(p => p.Description == PaymentTypeConst.Cash).FirstOrDefault().Id)
+            //else if (item.PaymentTypeId == lstPaymentType.Where(p => p.Description == PaymentTypeConst.Cash)?.FirstOrDefault().Id)
+            else if (item.PaymentTypeId == (lstPaymentType.Where(p => p.Description.ToUpper() == this.context.Resources.GetString(Resource.String.Cash).ToUpper()).FirstOrDefault()?.Id ?? 0) )
             {
                 img.Visibility = ViewStates.Visible;
                 paymentType_textView.Visibility = ViewStates.Gone;
@@ -100,7 +102,7 @@ namespace TwaWallet.Adapters
                 img.Visibility = ViewStates.Gone;
                 paymentType_textView.Visibility = ViewStates.Visible;
 
-                paymentType_textView.Text = lstPaymentType.Where(p => p.Id == item.PaymentTypeId).FirstOrDefault()?.Description ?? string.Empty;
+                paymentType_textView.Text = lstPaymentType.Where(p => p.Id == item.PaymentTypeId)?.FirstOrDefault()?.Description ?? string.Empty;
                 paymentType_textView.Text = item.PaymentType?.Description ?? string.Empty;
             }
 
