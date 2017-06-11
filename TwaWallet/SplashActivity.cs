@@ -42,18 +42,7 @@ namespace TwaWallet
             //string versionCompatibility = System.Reflection.Assembly.GetExecutingAssembly()
             //                               .GetName()
             //                               .VersionCompatibility
-            //                               .ToString();
-
-            //var code = ApplicationContext.PackageManager.GetPackageInfo(ApplicationContext.PackageName, 0).VersionCode;
-            //var name = this.ApplicationContext.PackageManager.GetPackageInfo(ApplicationContext.PackageName, 0).VersionName;
-
-
-            //RunOnUiThread(() =>
-            //{
-            //    string s = "test";
-            //    Android.Widget.Toast.MakeText(this, $"{version}-{versionCompatibility}", Android.Widget.ToastLength.Short).Show();
-            //    Android.Widget.Toast.MakeText(this, $"{name}-{code}", Android.Widget.ToastLength.Short).Show();
-            //});
+            //                               .ToString();            
             /**/
 
             var code = ApplicationContext.PackageManager.GetPackageInfo(ApplicationContext.PackageName, 0).VersionCode;
@@ -73,7 +62,6 @@ namespace TwaWallet
                 string pathToDatabase = DeviceInfo.GetFileFinallPath(Resources.GetString(Resource.String.DBfilename));
                 #endregion
 
-                //Android.Widget.Toast.MakeText(this, pathToDatabase, Android.Widget.ToastLength.Short).Show();
                 Log.Debug(TAG, $"directory: {directoryPath}, pathToDB: {pathToDatabase}");
 
                 #region Ask for permission
@@ -142,7 +130,6 @@ namespace TwaWallet
                         var r2 = (new Seed()).FillDB(db, lstOwner, lstCategory, lstPaymentType, lstInterval);
                         if (r2.Result)
                         {
-
                             //return true;
                         }
                         else
@@ -183,7 +170,7 @@ namespace TwaWallet
                                 {
                                     CategoryId = i.CategoryId,
                                     Cost = i.Cost,
-                                    Date = dt, //dtNow,
+                                    Date = dt,
                                     Description = i.Description,
                                     Earnings = i.Earnings,
                                     OwnerId = i.OwnerId,

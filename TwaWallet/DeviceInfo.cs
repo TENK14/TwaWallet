@@ -76,17 +76,7 @@ namespace TwaWallet
                 return deviceAndroidId;
             }
         }
-
-        public bool HasDatawedgeInstalled
-        {
-            get
-            {
-                Log.Debug(TAG, nameof(HasDatawedgeInstalled) + ".get");
-
-                return IsDatawedgeInstalled();
-            }
-        }
-
+        
         public bool HasHardwareKeyboard
         {
             get
@@ -95,16 +85,6 @@ namespace TwaWallet
 
                 var kb = Android.Content.Res.Resources.System.Configuration.Keyboard;
                 return kb == Android.Content.Res.KeyboardType.Qwerty || kb == Android.Content.Res.KeyboardType.Twelvekey;
-            }
-        }
-
-        public bool HasMxExtension
-        {
-            get
-            {
-                Log.Debug(TAG, nameof(HasMxExtension));
-
-                return IsMxExtensionInstalled();
             }
         }
         
@@ -167,44 +147,7 @@ namespace TwaWallet
             string result = Path.Combine(GetDirectoryFinallPath(), sqliteFilename);
             return result;
         }
-
-        protected bool IsDatawedgeInstalled()
-        {
-            Log.Debug(TAG, nameof(IsDatawedgeInstalled));
-            var lst = GetInstalledApplication().Select(p => p.PackageName);
-
-            List<bool> r = new List<bool>();
-
-            r.Add(GetInstalledApplication().Where(p => p.PackageName.Contains("com.motorolasolutions.emdk.datawedge")).Any());
-            r.Add(GetInstalledApplication().Where(p => p.PackageName.Contains("com.symbol.datawedge")).Any());
-            r.Add(GetInstalledApplication().Where(p => p.PackageName.Contains("datawedge")).Any());
-
-            bool result = r.Contains(true);
-
-            return result;
-
-            //return GetInstalledApplication().Where(p => p.PackageName.Contains("com.motorolasolutions.emdk.datawedge")).Any(); //datawedge app package
-        }
-
-        protected bool IsMxExtensionInstalled()
-        {
-            Log.Debug(TAG, nameof(IsMxExtensionInstalled));
-            var lst = GetInstalledApplication().Select(p => p.PackageName);
-
-            List<bool> r = new List<bool>();
-
-            r.Add(GetInstalledApplication().Where(p => p.PackageName.Contains("com.motorolasolutions.emdk.mxframework")).Any());
-            r.Add(GetInstalledApplication().Where(p => p.PackageName.Contains("com.symbol.mxmf")).Any());
-            r.Add(GetInstalledApplication().Where(p => p.PackageName.Contains("mxframework")).Any());
-            r.Add(GetInstalledApplication().Where(p => p.PackageName.Contains("mxmf")).Any());
-
-            bool result = r.Contains(true);
-
-            return result;
-
-            //return GetInstalledApplication().Where(p => p.PackageName.Contains("com.motorolasolutions.emdk.mxframework")).Any(); //MX framework extension
-        }
-
+        
         private bool IntentsExistingChecker(params Intent[] lstIntent)
         {
             Log.Debug(TAG, nameof(IntentsExistingChecker));

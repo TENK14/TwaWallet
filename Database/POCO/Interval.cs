@@ -117,17 +117,6 @@ namespace Database.POCO
             return result;
         }
 
-        //public override string ToString()
-        //{
-        //    Log.Debug(TAG, nameof(ToString));
-
-        //    return $"{nameof(Id)}: {Id}, \r"
-        //            + $"{nameof(Description)}: {Description}, \r"
-        //            + $"{ nameof(IntervalCode)}: {IntervalCode.ToString()}\r"
-        //            + $"{ nameof(IsDefault)}: {IsDefault.ToString()}\r"
-        //            ;
-        //}
-
         public override string ToString()
         {
             Log.Debug(TAG, nameof(ToString));

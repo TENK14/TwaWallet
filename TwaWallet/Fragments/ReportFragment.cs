@@ -51,14 +51,7 @@ namespace TwaWallet.Fragments
         #region Properties
         public Record SelectedItem { get; set; } = null;
         #endregion
-
-        //public static DatePickerFragment NewInstance(Action<DateTime> onDateSelected)
-        //{
-        //    DatePickerFragment frag = new DatePickerFragment();
-        //    frag._dateSelectedHandler = onDateSelected;
-        //    return frag;
-        //}
-
+        
         #region DialogFragment
         // Initialize this value to prevent NullReferenceExceptions.
         Action onContinueWithHandler = delegate { };
@@ -73,26 +66,7 @@ namespace TwaWallet.Fragments
             frag.onContinueWithHandler = onContinueWith;
             return frag;
         }
-
-        //public override Dialog OnCreateDialog(Bundle savedInstanceState)
-        //{
-        //    DateTime currently = DateTime.Now;
-        //    DatePickerDialog dialog = new DatePickerDialog(Activity,
-        //                                                   this,
-        //                                                   currently.Year,
-        //                                                   //currently.Month,
-        //                                                   currently.Month - 1,
-        //                                                   currently.Day);
-        //    return dialog;
-        //}
-
-        //public void OnDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth)
-        //{
-        //    // Note: monthOfYear is a value between 0 and 11, not 1 and 12!
-        //    DateTime selectedDate = new DateTime(year, monthOfYear + 1, dayOfMonth);
-        //    Log.Debug(TAG, $"{nameof(OnDateSet)} - selectedDate:{selectedDate.ToLongDateString()}");
-        //    _dateSelectedHandler(selectedDate);
-        //}
+        
         #endregion
 
         public override void OnCreate(Bundle savedInstanceState)
@@ -100,18 +74,11 @@ namespace TwaWallet.Fragments
             Log.Debug(TAG, nameof(OnCreate));
 
             base.OnCreate(savedInstanceState);
-
-            //var docsFolder = System.Environment.GetFolderPath(System.Environment.SpecialFolder.MyDocuments);
-            //var dbPath = Resources.GetString(Resource.String.DBPath);
-            //var pathToDatabase = System.IO.Path.Combine(dbPath, Resources.GetString(Resource.String.DBfilename));// "db_sqlcompnet.db");
-
+            
             string pathToDatabase = DeviceInfo.GetFileFinallPath(Resources.GetString(Resource.String.DBfilename));
-            //db = new DataContext(pathToDatabase);
             db = DataContextFactory.GetDataContext(pathToDatabase);
 
             LoadData();
-
-            // Create your fragment here
         }
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
@@ -123,15 +90,12 @@ namespace TwaWallet.Fragments
             View v = inflater.Inflate(Resource.Layout.Report, container, false);
 
             category_button = v.FindViewById<Button>(Resource.Id.category_button);
-            //category_button.Text = lstCategory?.First()?.Description ?? "nic";            
             category_button.Click += Category_button_Click;
 
             paymentType_button = v.FindViewById<Button>(Resource.Id.paymentType_button);
-            //paymentType_button.Text = lstPaymentType?.First()?.Description ?? "nic";            
             paymentType_button.Click += PaymentType_button_Click;
 
             owner_button = v.FindViewById<Button>(Resource.Id.owner_button);
-            //owner_button.Text = lstOwner?.First()?.Name ?? "nic";            
             owner_button.Click += Owner_button_Click;
 
             cost_editText = v.FindViewById<EditText>(Resource.Id.cost_editText);
@@ -143,7 +107,6 @@ namespace TwaWallet.Fragments
             date_button = v.FindViewById<Button>(Resource.Id.date_button);            
             date_button.Click += Date_button_Click;
 
-            //warranty_button = v.FindViewById<Button>(Resource.Id.warranty_button);
             warranty_editText = v.FindViewById<EditText>(Resource.Id.warranty_editText);
 
             tags_editText = v.FindViewById<EditText>(Resource.Id.tags_editText);
@@ -169,12 +132,7 @@ namespace TwaWallet.Fragments
         private void LoadData()
         {
             Log.Debug(TAG, nameof(LoadData));
-
-            //throw new NotImplementedException();
-
-            //Task.Run(() =>
-            //{
-
+            
             var r = db.Select<Owner,int>((o) => o.Id > 0, (o) => o.Id).Result;
             lstOwner = r.ToList();
 
@@ -183,12 +141,6 @@ namespace TwaWallet.Fragments
 
             var r3 = db.Select<Category, int>((o) => o.Id > 0, (o) => o.Id).Result;
             lstCategory = r3.ToList();
-
-            //this.Activity.RunOnUiThread(() =>
-            //    {
-            //        Toast.MakeText(this.Activity, $"owners: {lstOwner.Count}, paymentTypes: {lstPaymentType.Count}, categories: {lstCategory.Count}", ToastLength.Short);
-            //    });
-            //});
         }
 
         private void InitLayout()
@@ -208,8 +160,7 @@ namespace TwaWallet.Fragments
                 var owner = lstOwner.Where(p => p.IsDefault).FirstOrDefault();
                 this.owner_button.Text = owner?.Name ?? string.Empty;
                 this.owner_button.Tag = owner != null ? new JavaLangObjectWrapper<Owner>(owner) : null;
-
-                //TODO:odpoznamkuj
+                
                 this.earnings_checkBox.Checked = false;
 
                 this.cost_editText.Text = string.Empty;
@@ -288,8 +239,6 @@ namespace TwaWallet.Fragments
             var fr = SimpleListViewDialogFragment<Category>.NewInstance(lstCategory, delegate (Category selectedItem)
              {
                  category_button.Text = selectedItem.Description;
-                //category_button.SetFlags();
-                //category_button.Tag = /*"str";//*/ // (Java.Lang.Object)c;
                 category_button.Tag = new JavaLangObjectWrapper<Category>(selectedItem);
              },
              Resources.GetString(Resource.String.Category));
@@ -316,7 +265,6 @@ namespace TwaWallet.Fragments
             try
             {
                 // earnings cant have category
-                //int cId = this.earnings_checkBox.Checked ? 0 : ((JavaLangObjectWrapper<Category>)category_button.Tag).Value.Id;
                 int cId = ((JavaLangObjectWrapper<Category>)category_button.Tag).Value.Id;
                 int oId = ((JavaLangObjectWrapper<Owner>)owner_button.Tag).Value.Id;
                 int pId = ((JavaLangObjectWrapper<PaymentType>)paymentType_button.Tag).Value.Id;
@@ -331,30 +279,17 @@ namespace TwaWallet.Fragments
 
                 var record = new Record
                 {
-                    CategoryId = cId, // lstCategory?.First()?.Id ?? 0, //this.category_button.Text,
+                    CategoryId = cId,
                     Cost = this.earnings_checkBox.Checked ? cost : 0f - cost,
-                    Date = ((JavaLangObjectWrapper<DateTime>)this.date_button.Tag).Value, // DateTime.Now,
+                    Date = ((JavaLangObjectWrapper<DateTime>)this.date_button.Tag).Value,
                     Description = this.description_editText.Text,
-                    OwnerId = oId, //lstOwner?.First()?.Id ?? 0, //this.owner_button.Text,
-                    PaymentTypeId = pId, //lstPaymentType?.First()?.Id ?? 0, //this.paymentType_button.Text,
+                    OwnerId = oId, 
+                    PaymentTypeId = pId,
                     Tag = this.tags_editText.Text,
-                    Warranty = warranty, // 0, //int.Parse(this.warranty_button.Text),
+                    Warranty = warranty,
                     Earnings = this.earnings_checkBox.Checked,
                     //DateCreated = new Java.Sql.Timestamp(Tools.ConvertToTimestamp(DateTime.Now))
                 };
-
-                #region Ask for permission
-                //const int REQUEST_CODE_ASK_PERMISSIONS = 123;
-                //const string permission = Android.Manifest.Permission.WriteExternalStorage;
-                //var hasWriteContactsPermission = /*Android.Content.ContextWrapper.*/CheckSelfPermission(permission);
-
-                //if (hasWriteContactsPermission != Android.Content.PM.Permission.Granted)
-                //{
-                //    RequestPermissions(new string[] { Android.Manifest.Permission.WriteExternalStorage },
-                //            REQUEST_CODE_ASK_PERMISSIONS);
-                //    return;
-                //}
-                #endregion
 
                 #region Ask for permission
                 //https://github.com/xamarin/monodroid-samples/blob/master/android-m/RuntimePermissions/MainActivity.cs
@@ -377,7 +312,6 @@ namespace TwaWallet.Fragments
                     record.Id = SelectedItem.Id;
                     if (db.Update(record).Result)
                     {
-                        //Toast.MakeText(this.Activity, record.ToString(), ToastLength.Short).Show();
                         Toast.MakeText(this.Activity, Resources.GetString(Resource.String.Saved), ToastLength.Short).Show();
 
                         if (onContinueWithHandler != null)
@@ -385,16 +319,11 @@ namespace TwaWallet.Fragments
                             onContinueWithHandler();
                         }
                         Dismiss();
-                        
-                        //SelectedItem = null;
-                        //InitLayout();
                     }
                 }
                 else if (db.Insert(record).Result) // inser new item
                 {
-                    //Toast.MakeText(this.Activity, record.ToString(), ToastLength.Short).Show();
                     Toast.MakeText(this.Activity,Resources.GetString(Resource.String.Saved), ToastLength.Short).Show();
-                    //InitLayout();
 
                     if (onContinueWithHandler != null)
                     {

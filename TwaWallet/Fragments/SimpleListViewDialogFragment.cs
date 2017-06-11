@@ -29,21 +29,15 @@ namespace TwaWallet.Fragments
             Log.Debug(TAG, nameof(OnCreate));
 
             base.OnCreate(savedInstanceState);
-
-            // Create your fragment here
-            //this.ListAdapter = new ArrayAdapter<string>(Activity, Android.Resource.Layout.SimpleExpandableListItem1, values);
         }
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
             Log.Debug(TAG, nameof(OnCreateView));
 
-            // Use this to return your custom view for this Fragment
-            // return inflater.Inflate(Resource.Layout.YourFragment, container, false);
-
-            //return base.OnCreateView(inflater, container, savedInstanceState);
             Dialog?.SetTitle(title);
-            
+
+            // Use this to return your custom view for this Fragment
             View view = inflater.Inflate(Resource.Layout.SimpleListView, container, false);
             ListView listView = (Android.Widget.ListView)view.FindViewById(Resource.Id.DataListView);
             listView.SetPadding(5, 5, 5, 5);
@@ -51,35 +45,7 @@ namespace TwaWallet.Fragments
             { 
                 List<string> list;
                 list = _lst.Select(p => p.ToString()).ToList();
-
-                #region OLD
-                /**
-                //if (typeof(T) == typeof(BaseWithDescriptionAndDefault))
-                if ( (typeof(T) == typeof(Category))
-                    || (typeof(T) == typeof(PaymentType)) )
-                //if (T.GetType() == typeof(BaseWithDescriptionAndDefault))
-                {
-                    list = _lst.Select(p => (p as BaseWithDescriptionAndDefault).Description).ToList();
-                }
-                else if (typeof(T) == typeof(Record))
-                {
-                    list = _lst.Select(p => (p as Record).Description).ToList();
-                }
-                else if (typeof(T) == typeof(RecurringPayment))
-                {
-                    list = _lst.Select(p => (p as RecurringPayment).Description).ToList();
-                }
-                else if (typeof(T) == typeof(Owner))
-                {
-                    list = _lst.Select(p => (p as Owner).Name).ToList();
-                }
-                else
-                {
-                    list = _lst.Select(p => p.ToString()).ToList();
-                }
-                /**/
-                #endregion
-
+                
                 var adapter = new ArrayAdapter<string>(Activity, Android.Resource.Layout.SimpleExpandableListItem1, list);
                                 
                 listView.SetAdapter(adapter);
@@ -90,8 +56,6 @@ namespace TwaWallet.Fragments
                 listView.Clickable = true;
 
                 listView.ItemClick += OnItemClick;
-
-                //Dialog.SetTitle(this.title);
             }
             catch (Exception ex)
             {

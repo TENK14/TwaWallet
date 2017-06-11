@@ -44,7 +44,6 @@ namespace TwaWallet.Extensions
         }
 
         public static void ProgressDialogDismiss(this FragmentActivity fragmentActivity, Android.App.ProgressDialog dialog)
-        //public void ProgressDialogDismiss(Android.App.ProgressDialog dialog)
         {
             Log.Debug(TAG, nameof(ProgressDialogDismiss));
 
@@ -56,7 +55,6 @@ namespace TwaWallet.Extensions
                     if (dialog.IsShowing)
                     {
                         Log.Debug(TAG, string.Format($"--{nameof(ProgressDialogDismiss)}: dialog - IsShowing"));
-                        //activity.RunOnUiThread(() => dialog.Dismiss());
                         dialog.Dismiss();
                     }
                     else

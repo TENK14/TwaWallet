@@ -6,8 +6,6 @@
     android:layout_height="match_parent"
     android:layout_marginRight="5dp"
     android:background="@color/settingsBackground">
-<!--android:background="@color/settingsBackground"-->
-<!--android:background="@color/red"-->
     <LinearLayout
         android:id="@+id/titleRow"
         android:orientation="horizontal"

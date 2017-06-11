@@ -30,13 +30,11 @@ namespace TwaWallet
 
         private DrawerLayout mDrawerLayout;
         private ListView mDrawerList;
-
-
+        
         private const string TAG = "X:" + nameof(MainActivity);
 
         Fragment[] fragments = new Fragment[]
             {
-                //new ReportFragment(),
                 new HistoryFragment(),
                 new ExportFragment(),
                 new SettingsFragment(),
@@ -70,11 +68,9 @@ namespace TwaWallet
                 Log.Debug(TAG, $"{nameof(OnCreate)} - The minimum number of threads was not changed.");
             }
 
-
             // Find views
             var pager = FindViewById<ViewPager>(Resource.Id.pager);
-            var tabLayout = FindViewById<TabLayout>(Resource.Id.sliding_tabs);
-            //var adapter = new CustomPagerAdapter(this, SupportFragmentManager, fragments, titles);
+            var tabLayout = FindViewById<TabLayout>(Resource.Id.sliding_tabs);            
             var toolbar = FindViewById<Android.Support.V7.Widget.Toolbar>(Resource.Id.my_toolbar);
 
             var code = ApplicationContext.PackageManager.GetPackageInfo(ApplicationContext.PackageName, 0).VersionCode;
@@ -86,8 +82,6 @@ namespace TwaWallet
             SupportActionBar.Title = Resources.GetString(Resource.String.ApplicationName);
 
             // Set adapter to view pager
-            //pager.Adapter = adapter;
-            //viewPager.Adapter = new TabsFragmentPagerAdapter(SupportFragmentManager, fragments, titles);
             SetupViewPager(pager);
 
             // Setup tablayout with view pager
@@ -100,149 +94,6 @@ namespace TwaWallet
             //    TabLayout.Tab tab = tabLayout.GetTabAt(i);
             //    tab.SetCustomView(adapter.GetTabView(i));
             //}
-
-            #region Show Version
-            /**/
-            //string version = System.Reflection.Assembly.GetExecutingAssembly()
-            //                               .GetName()
-            //                               .Version
-            //                               .ToString();
-
-            //string versionCompatibility = System.Reflection.Assembly.GetExecutingAssembly()
-            //                               .GetName()
-            //                               .VersionCompatibility
-            //                               .ToString();
-
-            //var code = ApplicationContext.PackageManager.GetPackageInfo(ApplicationContext.PackageName, 0).VersionCode;
-            //var name = this.ApplicationContext.PackageManager.GetPackageInfo(ApplicationContext.PackageName, 0).VersionName;
-
-
-            //RunOnUiThread(() =>
-            //{
-            //    string s = "test";
-            //    Android.Widget.Toast.MakeText(this, $"{version}-{versionCompatibility}", Android.Widget.ToastLength.Short).Show();
-            //    Android.Widget.Toast.MakeText(this, $"{name}-{code}", Android.Widget.ToastLength.Short).Show();
-            //});
-            /**/
-            #endregion Show Version
-
-            #region OLD
-
-            /**
-            try
-            {
-
-                // create DB path
-                //var docsFolder = System.Environment.GetFolderPath(System.Environment.SpecialFolder.MyDocuments);
-                //var dbPath = Resources.GetString(Resource.String.DBPath);
-                //var pathToDatabase = System.IO.Path.Combine(dbPath, Resources.GetString(Resource.String.DBfilename));// "db_sqlcompnet.db");
-
-                //Directory.CreateDirectory(directoryPath);            
-                //Directory.CreateDirectory(dbPath);
-
-                string directoryPath = DeviceInfo.GetDirectoryFinallPath();
-                Directory.CreateDirectory(directoryPath);
-
-                #region DB
-                string pathToDatabase = DeviceInfo.GetFileFinallPath(Resources.GetString(Resource.String.DBfilename));
-                #endregion
-
-                Android.Widget.Toast.MakeText(this, pathToDatabase, Android.Widget.ToastLength.Short).Show();
-                Log.Debug(TAG, $"directory: {directoryPath}, pathToDB: {pathToDatabase}");
-
-                //if (!File.Exists(pathToDatabase))
-                //{
-                #region Ask for permission
-                //const string permission = Android.Manifest.Permission.WriteExternalStorage;
-                //var hasWriteContactsPermission = CheckSelfPermission(permission);
-
-                //if (hasWriteContactsPermission != Android.Content.PM.Permission.Granted)
-                //{
-                //    RequestPermissions(new string[] { Android.Manifest.Permission.WriteExternalStorage },
-                //            REQUEST_CODE_ASK_PERMISSIONS);
-                //    return;
-                //}
-                #endregion
-
-                #region Ask for permission
-                //https://github.com/xamarin/monodroid-samples/blob/master/android-m/RuntimePermissions/MainActivity.cs
-                const int REQUEST_CODE_ASK_PERMISSIONS = 123;
-                const string permission = Android.Manifest.Permission.WriteExternalStorage;
-
-                var hasWriteContactsPermission = ActivityCompat.CheckSelfPermission(this, permission);
-
-                if (hasWriteContactsPermission != Android.Content.PM.Permission.Granted)
-                {
-                    RequestPermissions(new string[] { Android.Manifest.Permission.WriteExternalStorage },
-                            REQUEST_CODE_ASK_PERMISSIONS);
-                    return;
-                }
-                #endregion
-
-                Log.Debug(TAG, $"DB will be created!");
-                //IDataContext db = new DataContext(pathToDatabase);
-                IDataContext db = DataContextFactory.GetDataContext(pathToDatabase);
-                var result = db.CreateDatabase().Result;
-                //Toast.MakeText(this,result,ToastLength.Short).Show();// (pathToDatabase);
-                Log.Debug(TAG, $"DB was created!:: {result}");
-                //}
-                //else
-                //{
-                //    //Toast.MakeText(this, "DB soubor již existuje.", ToastLength.Short).Show();
-                //    Log.Debug(TAG, "DB exists!");
-                //}
-
-
-                #region RecurringPayments
-                var lstRecurringPayment = db.Select<RecurringPayment, int>(p => p.IsActive, p => p.Id, false).Result;
-
-                if (lstRecurringPayment != null && lstRecurringPayment.Count > 0)
-                {
-                    var dtNow = DateTime.Now.Date;
-                    foreach (var item in lstRecurringPayment)
-                    {
-                        var i = item.IncludeObjects(db);
-
-                        DateTime dt = i.Interval.NextDateTime(i.LastUpdate).Date;
-
-                        while (dt <= dtNow)
-                        {
-                            Record record = new Record()
-                            {
-                                CategoryId = i.CategoryId,
-                                Cost = i.Cost,
-                                Date = dt, //dtNow,
-                                Description = i.Description,
-                                Earnings = i.Earnings,
-                                OwnerId = i.OwnerId,
-                                PaymentTypeId = i.PaymentTypeId,
-                                Tag = i.Tag,
-                                Warranty = i.Warranty,
-
-                            };
-                            db.Insert(record);
-
-                            i.LastUpdate = dt;
-                            db.Update(i);
-
-                            dt = i.Interval.NextDateTime(i.LastUpdate).Date;
-
-                            //using (var ts = new TransactionScope())
-                            //{
-
-                            //}
-                        }
-                    }
-                }
-                #endregion
-            }
-            catch (Exception ex)
-            {
-                Log.Error(TAG, ex.Message);
-            }
-    /**/
-
-#endregion
 
 }
 
@@ -261,15 +112,11 @@ namespace TwaWallet
             Log.Debug(TAG, nameof(SetupViewPager));
 
             InitialFragment();
-            //ViewPagerAdapter adapter = new ViewPagerAdapter(SupportFragmentManager);
-            var adapter = new CustomPagerAdapter(this, SupportFragmentManager);
-            //adapter.addFragment(exploreFrg, "Explore");
-            //adapter.addFragment(featuredFrg, "Featured");
 
+            var adapter = new CustomPagerAdapter(this, SupportFragmentManager);
 
             var titles = new[]
             {
-                //Resources.GetString(Resource.String.Report),
                 Resources.GetString(Resource.String.History),
                 Resources.GetString(Resource.String.Export),
                 Resources.GetString(Resource.String.Settings),
@@ -279,11 +126,10 @@ namespace TwaWallet
             // Adding Fragments to viewPager
             for (int i = 0; i < fragments.Length; i++)
             {
-                adapter.addFragment(fragments[i], titles[i].ToString());
+                adapter.AddFragment(fragments[i], titles[i].ToString());
             }
 
             viewPager.Adapter = adapter;
-
             viewPager.PageSelected += ViewPager_PageSelected;
         }
 

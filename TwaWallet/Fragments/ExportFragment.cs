@@ -52,7 +52,6 @@ namespace TwaWallet.Fragments
             // return inflater.Inflate(Resource.Layout.YourFragment, container, false);
 
             //return base.OnCreateView(inflater, container, savedInstanceState);
-            //return inflater.Inflate(Resource.Layout.Export, container, false);
 
             View v = inflater.Inflate(Resource.Layout.Export, container, false);
 
@@ -69,7 +68,6 @@ namespace TwaWallet.Fragments
             costs_checkBox = v.FindViewById<CheckBox>(Resource.Id.costs_checkBox);
 
             string pathToDatabase = DeviceInfo.GetFileFinallPath(Resources.GetString(Resource.String.DBfilename));
-            //db = new DataContext(pathToDatabase);
             db = DataContextFactory.GetDataContext(pathToDatabase);
 
             InitLayout();
@@ -83,7 +81,6 @@ namespace TwaWallet.Fragments
 
             base.OnResume();
 
-            //LoadData();
             InitLayout();
         }
 
@@ -132,12 +129,8 @@ namespace TwaWallet.Fragments
         {
             Log.Debug(TAG, nameof(Export_button_Click));
 
-            //throw new NotImplementedException();
-
             DateTime dateFrom = ((JavaLangObjectWrapper<DateTime>)dateFrom_button.Tag).Value;
             DateTime dateTo = ((JavaLangObjectWrapper<DateTime>)dateTo_button.Tag).Value;
-
-            //List<Record> lstRecord = db.Select<Record, DateTime>((o) => o.Date >= dateFrom && o.Date <= dateTo, (o) => o.Date, true).Result;
 
             List<Record> lstRecord = null;
 
@@ -157,14 +150,6 @@ namespace TwaWallet.Fragments
             {
                 lstRecord = db.Select<Record, DateTime>(o => o.Date >= dateFrom.Date && o.Date <= dateTo.Date, o => o.Date, false).Result;
             }
-
-
-            //https://forums.xamarin.com/discussion/32531/permission-denied-for-the-attachment-when-creating-email-on-android
-            //        Update: Found solution -
-            //Need to copy file to External storage and add it as an attachment from there!
-            //var externalPath = global::Android.OS.Environment.ExternalStorageDirectory.AbsolutePath;
-            //            externalPath = Path.Combine(externalPath, filename);
-            //            File.WriteAllBytes(externalPath, bytes);
 
             List<string> lstStr = new List<string>();
             foreach (var item in lstRecord)
@@ -186,19 +171,6 @@ namespace TwaWallet.Fragments
                 return;
             }
 
-
-
-            //if ((int)Build.VERSION.SdkInt >= 23)
-            //{
-            //    if (ActivityCompat.CheckSelfPermission(this.Activity,Manifest.Permission.Camera) != Permission.Granted)
-            //    {
-            //        requestCameraPermission();
-            //    }
-            //    if (CheckSelfPermission(Manifest.Permission.AccessFineLocation) != Permission.Granted)
-            //    {
-            //        requestLocationPermission();
-            //    }
-            //}
             #endregion
 
             try
@@ -206,37 +178,13 @@ namespace TwaWallet.Fragments
                 var externalPath = global::Android.OS.Environment.ExternalStorageDirectory.AbsolutePath;
                 externalPath = Path.Combine(externalPath, Resources.GetString(Resource.String.CSVfilename));
                 File.WriteAllLines(externalPath, lstStr.ToArray());
-                //File.WriteAllBytes(externalPath, bytes);
                 SendMail(externalPath);
             }
             catch (Exception ex)
             {
                 Log.Error(TAG, nameof(Export_button_Click), ex.Message);
                 Toast.MakeText(this.Activity, ex.Message, ToastLength.Short).Show();
-            }
-
-            #region OLD - doesnt function on API 23 and higher
-            // TODO: make csv file
-            //#region Make CSV file
-            //string pathCsvFile = DeviceInfo.GetFileFinallPath(Resources.GetString(Resource.String.CSVfilename));
-
-            //using (var streamWriter = new StreamWriter(pathCsvFile, false))
-            //{
-            //    foreach (var item in lstRecord)
-            //    {
-            //        streamWriter.WriteLine(item.IncludeObjects(db).ToString(';', Resources.GetString(Resource.String.DateFormat)));
-            //    }
-            //}
-            //#endregion
-
-
-
-            // TODO: send email with csv attachement
-            //File filelocation = new File(Environment.GetExternalStoragePublicDirectory().getAbsolutePath(), filename);
-            //string pathToDatabase = DeviceInfo.GetFileFinallPath(Resources.GetString(Resource.String.DBfilename));
-            //SendMail(pathCsvFile);
-            #endregion
-
+            }            
         }
 
         //http://stackoverflow.com/questions/9974987/how-to-send-an-email-with-a-file-attachment-in-android
@@ -276,7 +224,6 @@ namespace TwaWallet.Fragments
 
             if (requestCode == 10)
             {
-                //Toast.MakeText(this.Activity, msg, ToastLength.Short).Show();
                 Toast.MakeText(this.Activity, Resources.GetString(Resource.String.Sent), ToastLength.Short).Show();
             }
         }

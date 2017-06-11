@@ -8,15 +8,14 @@ using Android.Util;
 
 namespace TwaWallet
 {
+    /**
     public class PageFragment : Fragment
     {
         private const string TAG = "X:" + nameof(PageFragment);
         
         const string ARG_PAGE = "ARG_PAGE";
         private int mPage;
-
-
-
+        
         public static PageFragment newInstance(int page)
         {
             Log.Debug(TAG, $"{nameof(newInstance)} - page:{page}");
@@ -46,4 +45,5 @@ namespace TwaWallet
             return view;
         }
     }
+    /**/
 }

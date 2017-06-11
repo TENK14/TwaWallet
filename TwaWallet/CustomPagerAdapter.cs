@@ -13,11 +13,6 @@ namespace TwaWallet
 {
     public class CustomPagerAdapter : FragmentPagerAdapter
     {
-        //const int PAGE_COUNT = 2;
-        //private string[] tabTitles = { "Tab1", "Tab2" };
-        //private readonly Fragment[] fragments;
-        //private readonly ICharSequence[] titles;
-
         readonly Context context;
 
         private List<Android.Support.V4.App.Fragment> mFragmentList = new List<Android.Support.V4.App.Fragment>();
@@ -25,12 +20,9 @@ namespace TwaWallet
 
         private const string TAG = "X:" + nameof(CustomPagerAdapter);
         
-
         public CustomPagerAdapter(IntPtr javaReference, JniHandleOwnership transfer) : base(javaReference, transfer)
         {
             Log.Debug(TAG, $"{nameof(CustomPagerAdapter)}1");
-
-
         }
 
         public CustomPagerAdapter(Context context, FragmentManager fm/*, Fragment[] fragments, ICharSequence[] titles*/) : base(fm)
@@ -46,11 +38,8 @@ namespace TwaWallet
         {
             get
             {
-                //Log.Debug(TAG, $"{nameof(Count)}.get - {(fragments != null ? fragments.Length.ToString() : "null")}");
                 Log.Debug(TAG, $"{nameof(Count)}.get - {(mFragmentList != null ? mFragmentList.Count.ToString() : "null")}");
-
-                //return PAGE_COUNT;
-                //return fragments.Length;
+                
                 return mFragmentList.Count;
             }
         }
@@ -87,7 +76,7 @@ namespace TwaWallet
         //    return fragments[position].OnCreateView(LayoutInflater.From(context), null, null);
         //}
 
-        public void addFragment(Android.Support.V4.App.Fragment fragment, string title)
+        public void AddFragment(Android.Support.V4.App.Fragment fragment, string title)
         {
             Log.Debug(TAG, $"{nameof(GetPageTitleFormatted)} - fragment:{fragment.ToString()}, title:{title}");
 

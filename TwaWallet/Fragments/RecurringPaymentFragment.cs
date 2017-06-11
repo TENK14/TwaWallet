@@ -85,8 +85,6 @@ namespace TwaWallet.Fragments
             Dialog.Window.RequestFeature(WindowFeatures.NoTitle);
 
             // Use this to return your custom view for this Fragment
-            // return inflater.Inflate(Resource.Layout.YourFragment, container, false);
-
             View v = inflater.Inflate(Resource.Layout.RecurringPayment, container, false);
 
             category_button = v.FindViewById<Button>(Resource.Id.category_button);
@@ -113,7 +111,6 @@ namespace TwaWallet.Fragments
             endDate_button = v.FindViewById<Button>(Resource.Id.endDate_button);
             endDate_button.Click += EndDate_button_Click;
 
-            //warranty_button = v.FindViewById<Button>(Resource.Id.warranty_button);
             warranty_editText = v.FindViewById<EditText>(Resource.Id.warranty_editText);
 
             tags_editText = v.FindViewById<EditText>(Resource.Id.tags_editText);
@@ -126,8 +123,6 @@ namespace TwaWallet.Fragments
             InitLayout();
 
             return v;
-
-
         }
 
         private void StartDate_button_Click(object sender, EventArgs e)
@@ -177,8 +172,6 @@ namespace TwaWallet.Fragments
             var fr = SimpleListViewDialogFragment<Category>.NewInstance(lstCategory, delegate (Category selectedItem)
             {
                 category_button.Text = selectedItem.Description;
-                //category_button.SetFlags();
-                //category_button.Tag = /*"str";//*/ // (Java.Lang.Object)c;
                 category_button.Tag = new JavaLangObjectWrapper<Category>(selectedItem);
             },
              Resources.GetString(Resource.String.Category));
@@ -218,7 +211,6 @@ namespace TwaWallet.Fragments
             try
             {
                 // earnings cant have category
-                //int cId = this.earnings_checkBox.Checked ? 0 : ((JavaLangObjectWrapper<Category>)category_button.Tag).Value.Id;
                 int cId = ((JavaLangObjectWrapper<Category>)category_button.Tag).Value.Id;
                 int oId = ((JavaLangObjectWrapper<Owner>)owner_button.Tag).Value.Id;
                 int pId = ((JavaLangObjectWrapper<PaymentType>)paymentType_button.Tag).Value.Id;
@@ -234,18 +226,15 @@ namespace TwaWallet.Fragments
 
                 RecurringPayment item = new RecurringPayment()
                 {
-                    //TODO: napln RecurringPayment obsah ....
-                    CategoryId = cId, // lstCategory?.First()?.Id ?? 0, //this.category_button.Text,
+                    CategoryId = cId,
                     Cost = this.earnings_checkBox.Checked ? cost : 0f - cost,
-                    EndDate = ((JavaLangObjectWrapper<DateTime>)this.endDate_button.Tag).Value, // DateTime.Now,
+                    EndDate = ((JavaLangObjectWrapper<DateTime>)this.endDate_button.Tag).Value,
                     LastUpdate = ((JavaLangObjectWrapper<Interval>)interval_button.Tag).Value.BeforeDateTime(((JavaLangObjectWrapper<DateTime>)this.startDate_button.Tag).Value),
                     Description = this.description_editText.Text,
-                    OwnerId = oId, //lstOwner?.First()?.Id ?? 0, //this.owner_button.Text,
-                    PaymentTypeId = pId, //lstPaymentType?.First()?.Id ?? 0, //this.paymentType_button.Text,
+                    OwnerId = oId,
+                    PaymentTypeId = pId,
                     IntervalId = iId,
-                    //Interval = ((JavaLangObjectWrapper<Interval>)interval_button.Tag).Value,                    
-                    //Tag = this.tags_editText.Text,
-                    Warranty = warranty, // 0, //int.Parse(this.warranty_button.Text),
+                    Warranty = warranty,
                     Earnings = this.earnings_checkBox.Checked,
                     Tag = this.tags_editText.Text,
                     //DateCreated = new Java.Sql.Timestamp(Tools.ConvertToTimestamp(DateTime.Now))
@@ -272,7 +261,6 @@ namespace TwaWallet.Fragments
                     item.Id = SelectedItem.Id;
                     if (db.Update(item).Result)
                     {
-                        //Toast.MakeText(this.Activity, item.ToString(), ToastLength.Short).Show();
                         Toast.MakeText(this.Activity, Resources.GetString(Resource.String.Saved), ToastLength.Short).Show();
 
                         if (onContinueWithHandler != null)
@@ -280,16 +268,11 @@ namespace TwaWallet.Fragments
                             onContinueWithHandler();
                         }
                         Dismiss();
-
-                        //SelectedItem = null;
-                        //InitLayout();
                     }
                 }
                 else if (db.Insert(item).Result) // inser new item
                 {
-                    //Toast.MakeText(this.Activity, item.ToString(), ToastLength.Short).Show();
                     Toast.MakeText(this.Activity, Resources.GetString(Resource.String.Saved), ToastLength.Short).Show();
-                    //InitLayout();
 
                     if (onContinueWithHandler != null)
                     {
@@ -324,7 +307,6 @@ namespace TwaWallet.Fragments
             base.OnResume();
 
             LoadData();
-            //InitLayout();
         }
 
         private void LoadData()
@@ -373,10 +355,6 @@ namespace TwaWallet.Fragments
                 this.cost_editText.Text = string.Empty;
                 this.description_editText.Text = string.Empty;
                 this.warranty_editText.Text = string.Empty;
-                //this.tags_editText.Text = string.Empty;
-
-                // TODO: vyres interval button 
-                //this.interval_button = 
 
                 var date = DateTime.Now.Date;
 
@@ -412,7 +390,6 @@ namespace TwaWallet.Fragments
                 this.warranty_editText.Text = SelectedItem?.Warranty.ToString() ?? string.Empty;
                 this.tags_editText.Text = SelectedItem?.Tag ?? string.Empty;
 
-                // TODO: vyres interval button 
                 this.interval_button.Text = SelectedItem?.Interval.Description;
                 this.interval_button.Tag = SelectedItem != null ? new JavaLangObjectWrapper<Interval>(SelectedItem.Interval) : null;
 

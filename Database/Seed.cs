@@ -81,9 +81,8 @@ namespace Database
             }
         }
 
-        public Task<bool> FillDB(IDataContext database, /*string path,*/ Owner[] lstOwner, Category[] lstCategory, PaymentType[] lstPaymentType, Interval[] lstInterval)
+        public Task<bool> FillDB(IDataContext database, Owner[] lstOwner, Category[] lstCategory, PaymentType[] lstPaymentType, Interval[] lstInterval)
         {
-            //Log.Debug(TAG, $"{nameof(FillDB)} - {nameof(database)}:{database}, {nameof(path)}:{path}");
             Log.Debug(TAG, $"{nameof(FillDB)} - {nameof(database)}:{database}");
 
             bool result;
@@ -93,36 +92,16 @@ namespace Database
                 try
                 {
                     #region Seed Owners
-                    result = database.InsertAll<Owner>(lstOwner/*, path*/).Result;
+                    result = database.InsertAll<Owner>(lstOwner).Result;
                     if (!result)
                     {
                         return result;
                     }
-                    /**
-                    result = database.InsertAll<Owner>(new List<Owner>()
-                    {
-                        new Owner {Name = OwnerConst.Tom, IsDefault = true },
-                        new Owner {Name = OwnerConst.Eli, IsDefault = false }
-                    },
-                    path).Result;
-
-                    if (!result)
-                    {
-                        return result;
-                    }
-                    /**/
                     #endregion
 
                     #region Seed PaymentTypes
-                    result = database.InsertAll<PaymentType>(lstPaymentType/*, path*/).Result;
-
-                    //result = database.InsertAll<PaymentType>(new List<PaymentType>()
-                    //{
-                    //    new PaymentType {Description = PaymentTypeConst.Money /*"Hotovost"*/, IsDefault = true },
-                    //    new PaymentType {Description = PaymentTypeConst.Card /*"Karta"*/, IsDefault = false }
-                    //},
-                    //            path).Result;
-
+                    result = database.InsertAll<PaymentType>(lstPaymentType).Result;
+                    
                     if (!result)
                     {
                         return result;
@@ -130,27 +109,8 @@ namespace Database
                     #endregion
 
                     #region Seed Categories
-                    result = database.InsertAll<Category>(lstCategory/*, path*/).Result;
-
-                    //result = database.InsertAll<Category>(new List<Category>()
-                    //{
-                    //    new Category {Description = "Obìdy", IsDefault = true },
-                    //    new Category {Description = "Výlety", IsDefault = false },
-                    //    new Category {Description = "Potraviny", IsDefault = false },
-                    //    new Category {Description = "Nezaøazené", IsDefault = false },
-                    //    new Category {Description = "Restaurace,Bary", IsDefault = false },
-                    //    new Category {Description = "Domácnost", IsDefault = false },
-                    //    new Category {Description = "Obleèení,obuv", IsDefault = false },
-                    //    new Category {Description = "Pohonné hmoty", IsDefault = false },
-                    //    new Category {Description = "Služby", IsDefault = false },
-                    //    new Category {Description = "Drogerie", IsDefault = false },
-                    //    new Category {Description = "Mzda", IsDefault = false },
-                    //    new Category {Description = "Léky", IsDefault = false },
-                    //    new Category {Description = "Zábava,kultura", IsDefault = false },
-                    //    new Category {Description = "Sport", IsDefault = false },
-                    //    new Category {Description = "Doprava", IsDefault = false },
-                    //},
-                    //            path).Result;
+                    result = database.InsertAll<Category>(lstCategory).Result;
+                    
 
                     if (!result)
                     {
@@ -161,27 +121,7 @@ namespace Database
                     #region Seed Intervals
 
                     result = database.InsertAll<Interval>(lstInterval/*, path*/).Result;
-
-                    //result = database.InsertAll<Interval>(new List<Interval>()
-                    //{
-                    //    new Interval {Description = "Dennì", IntervalCode = "000001" , IsDefault = false },
-                    //    new Interval {Description = "Týdnì", IntervalCode = "000007" ,IsDefault = false },
-                    //    new Interval {Description = "Mìsíènì", IntervalCode = "000100" ,IsDefault = true },
-                    //    new Interval {Description = "Ètvrtletnì", IntervalCode = "000300" ,IsDefault = false },
-                    //    new Interval {Description = "Roènì", IntervalCode = "010000" ,IsDefault = false },
-                    //},
-                    //            path).Result;
-
-                    //result = database.InsertAll<Interval>(new List<Interval>()
-                    //{
-                    //    new Interval {Description = "Dennì", IntervalCode = "000001" , IsDefault = false },
-                    //    new Interval {Description = "Týdnì", IntervalCode = "000007" ,IsDefault = false },
-                    //    new Interval {Description = "Mìsíènì", IntervalCode = "000100" ,IsDefault = true },
-                    //    new Interval {Description = "Ètvrtletnì", IntervalCode = "000300" ,IsDefault = false },
-                    //    new Interval {Description = "Roènì", IntervalCode = "010000" ,IsDefault = false },
-                    //},
-                    //            path).Result;
-
+                    
                     if (!result)
                     {
                         return result;
@@ -196,7 +136,6 @@ namespace Database
                 {
                     Log.Error(TAG, $"{nameof(FillDB)} - {nameof(ex)}:{ex.Message}");
                     throw;
-                    //return false;// ex.Message;
                 }
             });
         }

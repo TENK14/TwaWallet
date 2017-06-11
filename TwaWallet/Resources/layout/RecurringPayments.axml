@@ -5,8 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/recurringPaymentsBackground">
-<!--android:background="@color/recurringPaymentsBackground"-->
-<!--android:background="@color/green"-->
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -30,5 +28,4 @@
             fab:fab_colorRipple="@color/ripple"
             android:layout_gravity="bottom|right" />
     </FrameLayout>
-<!--</LinearLayout>-->
 </LinearLayout>

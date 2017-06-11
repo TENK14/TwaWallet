@@ -57,8 +57,7 @@ namespace Database.POCO
         public bool Earnings { get; set; } = false;
 
         //public Timestamp DateCreated { get; set; }
-
-
+        
         public Record IncludeObjects(IDataContext db)
         {
             Log.Debug(TAG, nameof(IncludeObjects));
@@ -68,22 +67,6 @@ namespace Database.POCO
             this.Category = db.Select<Category, int>((o) => o.Id == this.CategoryId, (o) => o.Id).Result.FirstOrDefault();
             return this;
         }
-
-        //public override string ToString()
-        //{
-        //    Log.Debug(TAG, nameof(ToString));
-
-        //    return $"{nameof(Id)}: {Id}, \r"
-        //            + $"{nameof(Description)}: {Description}, \r"
-        //            + $"{nameof(Cost)}: {Cost}, \r"
-        //            + $"{ nameof(CategoryId)}: {CategoryId}, \r"
-        //            + $"{ nameof(Warranty)}: {Warranty}, \r"
-        //            + $"{ nameof(OwnerId)}: {OwnerId}, \r"
-        //            + $"{ nameof(PaymentTypeId)}: {PaymentTypeId}, \r"
-        //            + $"{ nameof(Tag)}: {Tag}, \r"
-        //            + $"{ nameof(Date)}: {Date.ToString()}\r"
-        //            ;
-        //}
 
         public override string ToString()
         {

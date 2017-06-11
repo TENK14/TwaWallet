@@ -54,32 +54,27 @@ namespace TwaWallet.Fragments
             // Use this to return your custom view for this Fragment
             View v = inflater.Inflate(Resource.Layout.RecurringPayments, container, false);
 
-            //addRecurringPayment_button = v.FindViewById<Button>(Resource.Id.addRecurringPayment_button);
-            //addRecurringPayment_button.Click += AddRecurringPayment_button_Click;
-
             listView = v.FindViewById<ListView>(Resource.Id.recurringPayments_listView);
             listView.ItemLongClick += OnListItemLongClick;
 
             var fab = v.FindViewById<com.refractored.fab.FloatingActionButton>(Resource.Id.fab);
-            //fab.AttachToListView(listView, this, this);
             fab.AttachToListView(listView);
             fab.Click += AddRecurringPayment_button_Click;
 
             return v;
         }
         
-        public override /*async*/ void OnResume()
+        public override void OnResume()
         {
             Log.Debug(TAG, nameof(OnResume));
 
             base.OnResume();
-
-            /*await*/
-            var r = LoadData();//.Result;
+            
+            var r = LoadData();
             InitLayout();
         }
 
-        private /*async Task<bool>*/ bool LoadData()
+        private bool LoadData()
         {
             Log.Debug(TAG, nameof(LoadData));
 
@@ -90,28 +85,24 @@ namespace TwaWallet.Fragments
                 Log.Debug(TAG, "[2] Dialog started.");
             });
 
-            //await Task.Run(() =>
-            //{
-                try
-                {
-                    var r = db.Select<RecurringPayment, int>((o) => o.Id > 0, (o) => o.Id, false).Result;
-                    //var r = await db.Select<RecurringPayment, int>((o) => o.Id > 0, (o) => o.Id, false);
-                    listData = r.ToList();
+            try
+            {
+                var r = db.Select<RecurringPayment, int>((o) => o.Id > 0, (o) => o.Id, false).Result;
+                listData = r.ToList();
 
-                    listView.Adapter = new RecurringPaymentListAdapter(this.Activity, listData, this.db);
+                listView.Adapter = new RecurringPaymentListAdapter(this.Activity, listData, this.db);
 
-                    return true;
-                }
-                catch (Exception ex)
-                {
-                    Log.Error(TAG, ex.ToString());
-                    throw;
-                }
-                finally
-                {
-                    this.Activity.ProgressDialogDismiss(dialog);
-                }
-            //});
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Log.Error(TAG, ex.ToString());
+                throw;
+            }
+            finally
+            {
+                this.Activity.ProgressDialogDismiss(dialog);
+            }
 
             return false;
         }
@@ -139,7 +130,7 @@ namespace TwaWallet.Fragments
             // Create and show the dialog.
             DialogFragment newFragment = RecurringPaymentFragment.NewInstance(null, delegate ()
             {
-                var r = LoadData();//.Result;
+                var r = LoadData();
             });
             Log.Debug(TAG, $"{nameof(AddRecurringPayment_button_Click)} - 1");
 
@@ -155,7 +146,6 @@ namespace TwaWallet.Fragments
 
             Android.App.AlertDialog.Builder builder = new Android.App.AlertDialog.Builder(this.Activity);
             builder.SetMessage(item.ToString())
-                //.SetPositiveButton("Yes", dialogClickListener)
                 .SetPositiveButton(this.Activity.Resources.GetString(Resource.String.Edit), (s, args) =>
                 {
                     // DialogFragment.show() will take care of adding the fragment
@@ -173,21 +163,20 @@ namespace TwaWallet.Fragments
                     // Create and show the dialog.
                     DialogFragment newFragment = RecurringPaymentFragment.NewInstance(item.IncludeObjects(db), delegate ()
                     {
-                        var r = LoadData();//.Result;
+                        var r = LoadData();
                     });
 
 
                     newFragment.Show(ft, "dialog");
                     Log.Debug(TAG, $"{nameof(OnListItemLongClick)} - try to show ReportFragment like dialog - END");
                 })
-                //.SetNegativeButton("No", dialogClickListener)
                 .SetNegativeButton(this.Activity.Resources.GetString(Resource.String.Delete), (s, args) =>
                 {
                     if (db.Delete(item).Result)
                     {
                         Toast.MakeText(this.Activity, Resources.GetString(Resource.String.Deleted), ToastLength.Short).Show();
 
-                        var r = LoadData();//.Result;
+                        var r = LoadData();
                     }
                     else
                     {

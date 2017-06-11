@@ -17,17 +17,7 @@ namespace Database.POCO
     public class PaymentType : BaseWithDescriptionAndDefault
     {
         private const string TAG = "X:" + nameof(PaymentType);
-
-        //public override string ToString()
-        //{
-        //    Log.Debug(TAG, nameof(ToString));
-
-        //    return $"{nameof(Id)}: {Id}, \r"
-        //            + $"{nameof(Description)}: {Description}, \r"
-        //            + $"{ nameof(IsDefault)}: {IsDefault.ToString()}\r"
-        //            ;
-        //}
-
+        
         public override string ToString()
         {
             Log.Debug(TAG, nameof(ToString));

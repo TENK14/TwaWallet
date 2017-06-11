@@ -8,20 +8,6 @@
   <item name="red" type="color">#C40C0A</item>
   <item name="yellow" type="color">#FFCC00</item>
 
-
-
-
-
-
-
-  <!--K.collect 2 modra barva pozadi titulkoveho pruhu-->
-  <!--<color name="primary">#00024C</color>-->
-  <!--<color name="primary">#000000</color>-->
-
-  <!--K.collect 2 temne modra barva-->
-  <!--<color name="primaryDark">#ff0126</color>-->
-
-
   <!--Bily text-->
   <color name="textOnPrimary">#ffffff</color>
 
@@ -127,12 +113,6 @@
   <color name="splash_background">#000000</color>
 
   <!-- Floating Action Button -->
-  <!--<color name="ripple">#ff80ab</color>
-  <color name="accent">#E64A19</color>
-  <color name="accent_pressed">#BF360C</color> 
-  <color name="primary_pressed">#2C3E50</color>-->
-
-
   <color name="fab_color_1">#ff5252</color>
   <color name="fab_color_1_muted">#ff8080</color>
   <color name="fab_color_2">#9c27b0</color>

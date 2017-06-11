@@ -54,9 +54,6 @@ namespace TwaWallet.Fragments
             Log.Debug(TAG, nameof(OnCreateView));
 
             // Use this to return your custom view for this Fragment
-            // return inflater.Inflate(Resource.Layout.YourFragment, container, false);
-
-            //return base.OnCreateView(inflater, container, savedInstanceState);
             View v = inflater.Inflate(Resource.Layout.Settings, container, false);
 
             category_button = v.FindViewById<Button>(Resource.Id.category_button);
@@ -191,9 +188,6 @@ namespace TwaWallet.Fragments
 
             var fr = SimpleListViewDialogFragment<Owner>.NewInstance(lstOwner, delegate (Owner selectedItem)
             {
-                //owner_button.Text = selectedItem.Description;
-                //owner_button.Tag = new JavaLangObjectWrapper<Owner>(selectedItem);
-
                 bool r = db.Delete<Owner>(selectedItem).Result;
 
                 if (selectedItem.IsDefault)
@@ -211,9 +205,6 @@ namespace TwaWallet.Fragments
                         {
                             Toast.MakeText(this.Activity, Resource.String.WasntSaved, ToastLength.Short).Show();
                         }
-
-                        //owner_button.Text = item.Description;
-                        //owner_button.Tag = new JavaLangObjectWrapper<Category>(item);
                     }
                     else
                     {
@@ -290,9 +281,6 @@ namespace TwaWallet.Fragments
 
             var fr = SimpleListViewDialogFragment<PaymentType>.NewInstance(lstPaymentType, delegate (PaymentType selectedItem)
             {
-                //paymentType_button.Text = selectedItem.Description;
-                //paymentType_button.Tag = new JavaLangObjectWrapper<PaymentType>(selectedItem);
-
                 bool r = db.Delete<PaymentType>(selectedItem).Result;
 
                 if (selectedItem.IsDefault)
@@ -310,9 +298,6 @@ namespace TwaWallet.Fragments
                         {
                             Toast.MakeText(this.Activity, Resource.String.WasntSaved, ToastLength.Short).Show();
                         }
-
-                        //paymentType_button.Text = item.Description;
-                        //paymentType_button.Tag = new JavaLangObjectWrapper<PaymentType>(item);
                     }
                     else
                     {

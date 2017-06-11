@@ -38,8 +38,6 @@ namespace TwaWallet.Fragments
             Dialog?.SetTitle(title);
 
             View view = inflater.Inflate(Resource.Layout.Input, container, false);
-            //TextView title_textView = (Android.Widget.TextView)view.FindViewById(Resource.Id.title_textView);
-            //title_textView.Text = title;
 
             input = (Android.Widget.EditText)view.FindViewById(Resource.Id.input_editText);
             input.KeyPress += Input_KeyPress;
