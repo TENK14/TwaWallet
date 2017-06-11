@@ -76,7 +76,7 @@ namespace TwaWallet.Fragments
 
             /*await*/
             var r = LoadData();//.Result;
-            InitLayout();
+            InitLayout(); 
         }
 
         private /*async Task<bool>*/ bool LoadData()
