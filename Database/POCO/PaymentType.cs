@@ -14,6 +14,7 @@ using Android.Util;
 
 namespace Database.POCO
 {
+    [Table(nameof(PaymentType))]
     public class PaymentType : BaseWithDescriptionAndDefault
     {
         private const string TAG = "X:" + nameof(PaymentType);

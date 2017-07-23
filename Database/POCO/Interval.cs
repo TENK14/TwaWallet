@@ -10,11 +10,13 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Android.Util;
+using SQLite;
 
 namespace Database.POCO
 {
     // TODO: Doplò èetnost (int), a dá vypoèítávat po kolika ?dnech? se to má pøièítat.
     // dennì, tıdnì, mìsíènì, roènì
+    [Table(nameof(Interval))]
     public class Interval : BaseWithDescriptionAndDefault
     {
         private const string TAG = "X:" + nameof(Interval);

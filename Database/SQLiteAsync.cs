@@ -28,6 +28,7 @@ using System.Linq.Expressions;
 using System.Threading;
 using System.Threading.Tasks;
 
+/**
 namespace SQLite
 {
 	public partial class SQLiteAsyncConnection
@@ -516,4 +517,5 @@ namespace SQLite
 		}
 	}
 }
+/**/
 

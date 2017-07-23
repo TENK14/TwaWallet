@@ -14,6 +14,7 @@ using Android.Util;
 
 namespace Database.POCO
 {
+    [Table(nameof(Owner))]
     public class Owner : Base
     {
         private const string TAG = "X:" + nameof(Owner);

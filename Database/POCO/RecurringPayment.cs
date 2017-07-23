@@ -14,6 +14,7 @@ using SQLite;
 
 namespace Database.POCO
 {
+    [Table(nameof(RecurringPayment))]
     public class RecurringPayment : Base
     {
         private const string TAG = "X:" + nameof(RecurringPayment);

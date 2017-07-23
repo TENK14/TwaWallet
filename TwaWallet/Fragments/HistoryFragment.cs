@@ -15,7 +15,7 @@ using TwaWallet.Adapters;
 using Database;
 using Database.POCO;
 using TwaWallet.Classes;
-using Android.Support.Design.Widget;
+//using Android.Support.Design.Widget;
 using com.refractored.fab;
 using TwaWallet.Extensions;
 using System.Threading.Tasks;

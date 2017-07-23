@@ -15,6 +15,7 @@ using Java.Sql;
 
 namespace Database.POCO
 {
+    [Table(nameof(Record))]
     public class Record : Base
     {
         private const string TAG = "X:" + nameof(Record);

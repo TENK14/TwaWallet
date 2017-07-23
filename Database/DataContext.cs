@@ -10,10 +10,11 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using System.Threading.Tasks;
-using SQLite;
+//using SQLite; // nejspise dela problem tato knihovna
 using Database.POCO;
 using Android.Util;
 using System.Linq.Expressions;
+using SQLite; // 23.7.2017
 
 namespace Database
 {
@@ -31,51 +32,57 @@ namespace Database
         }
 
         //public async Task<string> CreateDatabase()
-        public Task<bool> CreateDatabase()
+        public bool/*Task<bool>*/ CreateDatabase()
         {
             Log.Debug(TAG, $"{nameof(CreateDatabase)}");
             return CreateDatabase(Path);
         }
-
+                
         /**/
-        public Task<bool> CreateDatabase(string path)
+        public bool/*Task<bool>*/ CreateDatabase(string path)
         {
             Log.Debug(TAG, $"{nameof(CreateDatabase)} - {nameof(path)}:{path}");
 
-            return Task.Factory.StartNew( () =>
-            {
+            //return Task.Factory.StartNew( () =>
+            //{
                 try
                 {
-                    var connection = new SQLiteAsyncConnection(path);
+                // 23.7.2017
+                //var connection = new SQLiteAsyncConnection(path);
+                using (var connection = new SQLiteConnection(path))
+                {
 
 
-                    //await connection.CreateTableAsync<Owner>();
-                    //await connection.CreateTableAsync<Category>();
-                    //await connection.CreateTableAsync<PaymentType>();
-                    //await connection.CreateTableAsync<Record>();
-                    //await connection.CreateTableAsync<RecurringPayment>();
+                    // 23.7.2017
+                    //var r = connection.CreateTablesAsync(typeof(Owner), typeof(Category), typeof(PaymentType), typeof(Interval), typeof(Record), typeof(RecurringPayment)).Result;
+                    //var r = connection.CreateTablesAsync(typeof(Owner), typeof(Category), typeof(PaymentType), typeof(Interval), typeof(Record), typeof(RecurringPayment)).Result;
+                        var r = connection.CreateTable<Owner>();
+                        r = connection.CreateTable<Category>();
+                        r = connection.CreateTable<PaymentType>();
+                        r = connection.CreateTable<Interval>();
+                        r = connection.CreateTable<Record>();
+                        r = connection.CreateTable<RecurringPayment>();
+                    
 
-                    //connection.CreateTables(typeof(Owner), typeof(Category), typeof(PaymentType), typeof(Record), typeof(RecurringPayment));
-                    var r = connection.CreateTablesAsync(typeof(Owner), typeof(Category), typeof(PaymentType), typeof(Interval), typeof(Record), typeof(RecurringPayment)).Result;
+                        //if (this.Select<Category, int>(p => p.Id > 0, p => p.Id).Result.Count <= 0)
+                        //{
+                        //    var r2 = (new Seed()).FillDB(this, path);
+                        //    if (r2.Result)
+                        //    {
 
-                    //if (this.Select<Category, int>(p => p.Id > 0, p => p.Id).Result.Count <= 0)
-                    //{
-                    //    var r2 = (new Seed()).FillDB(this, path);
-                    //    if (r2.Result)
-                    //    {
-
-                    //        return true;
-                    //    }
-                    //    else
-                    //    {
-                    //        return false;
-                    //    }
-                    //}
-                    //else
-                    //{
-                    //    return true;
-                    //}
-                    return true;
+                        //        return true;
+                        //    }
+                        //    else
+                        //    {
+                        //        return false;
+                        //    }
+                        //}
+                        //else
+                        //{
+                        //    return true;
+                        //}
+                        return true;
+                    }
                 }
                 catch (SQLiteException ex)
                 {
@@ -83,8 +90,13 @@ namespace Database
                     throw;
                     //return ex.Message;
                 }
+            catch (Exception ex)
+            {
+                Log.Error(TAG, $"{nameof(CreateDatabase)} - {nameof(ex)}:{ex.Message}");
+                throw;
             }
-            );
+            //}
+            //);
         }
         /**/
 

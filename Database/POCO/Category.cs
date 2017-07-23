@@ -14,6 +14,7 @@ using Android.Util;
 
 namespace Database.POCO
 {
+    [Table(nameof(Category))]
     public class Category : BaseWithDescriptionAndDefault
     {
         private const string TAG = "X:" + nameof(Category);

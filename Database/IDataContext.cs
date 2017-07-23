@@ -9,8 +9,8 @@ namespace Database
     {
         string Path { get; }
 
-        Task<bool> CreateDatabase();
-        Task<bool> CreateDatabase(string path);
+        bool/*Task<bool>*/ CreateDatabase();
+        bool/*Task<bool>*/ CreateDatabase(string path);
         Task<bool> Insert<T>(T data);
         Task<bool> Insert<T>(T data, string path);
         Task<bool> InsertAll<T>(IEnumerable<T> data);

@@ -45,6 +45,7 @@ using Sqlite3DatabaseHandle = System.IntPtr;
 using Sqlite3Statement = System.IntPtr;
 #endif
 
+/**
 namespace SQLite
 {
 	public class SQLiteException : Exception
@@ -183,7 +184,8 @@ namespace SQLite
 			DatabasePath = databasePath;
 
 #if NETFX_CORE
-			SQLite3.SetDirectory(/*temp directory type*/2, Windows.Storage.ApplicationData.Current.TemporaryFolder.Path);
+			//SQLite3.SetDirectory(temp directory type, Windows.Storage.ApplicationData.Current.TemporaryFolder.Path);
+			SQLite3.SetDirectory(2, Windows.Storage.ApplicationData.Current.TemporaryFolder.Path);
 #endif
 
 			Sqlite3DatabaseHandle handle;
@@ -1576,7 +1578,8 @@ namespace SQLite
 	{
 		public override bool Unique {
 			get { return true; }
-			set { /* throw?  */ }
+			//set { throw? }
+			set {  }
 		}
 	}
 
@@ -3276,3 +3279,4 @@ namespace SQLite
 		}
 	}
 }
+ /**/

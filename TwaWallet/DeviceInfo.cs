@@ -239,6 +239,7 @@ namespace TwaWallet
 
             // "/data/user/0/TwaWallet.TwaWallet/files/TWA/TwaWallet/TwaWalletDB.db"
             result = System.Environment.GetFolderPath(System.Environment.SpecialFolder.MyDocuments);
+            //result = System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal);
 
 
             Log.Debug(TAG, $"{nameof(GetFilesPath)} - {nameof(result)}:{result}");

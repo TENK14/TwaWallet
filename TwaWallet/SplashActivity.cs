@@ -68,9 +68,12 @@ namespace TwaWallet
                 // create DB path
                 string directoryPath = DeviceInfo.GetDirectoryFinallPath();
                 Directory.CreateDirectory(directoryPath);
-
+                
                 #region DB
                 string pathToDatabase = DeviceInfo.GetFileFinallPath(Resources.GetString(Resource.String.DBfilename));
+
+                //string folder = System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal);
+                //pathToDatabase = System.IO.Path.Combine(folder, "TwaWallet.db");
                 #endregion
 
                 //Android.Widget.Toast.MakeText(this, pathToDatabase, Android.Widget.ToastLength.Short).Show();
@@ -134,10 +137,13 @@ namespace TwaWallet
                         new Interval {Description = Resources.GetString(Resource.String.Yearly), IntervalCode = "010000" ,IsDefault = false },
                     };
 
-                bool result = db.CreateDatabase().Result;
+                bool result = db.CreateDatabase();//.Result;
                 if (result)
                 {
-                    if (db.Select<Category, int>(p => p.Id > 0, p => p.Id).Result.Count <= 0)
+                    var sel = db.Select<Category, int>(p => p.Id > 0, p => p.Id).Result;
+
+                    //if (db.Select<Category, int>(p => p.Id > 0, p => p.Id).Result.Count <= 0)
+                    if (sel.Count <= 0)
                     {
                         var r2 = (new Seed()).FillDB(db, lstOwner, lstCategory, lstPaymentType, lstInterval);
                         if (r2.Result)
