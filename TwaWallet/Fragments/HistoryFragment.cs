@@ -46,6 +46,8 @@ namespace TwaWallet.Fragments
         CheckBox costs_checkBox;
         Button dateFrom_button;
         Button dateTo_button;
+        EditText find_editText;
+        ImageButton find_imageButton;
         #endregion
 
         #endregion
@@ -99,6 +101,11 @@ namespace TwaWallet.Fragments
             dateTo_button = v.FindViewById<Button>(Resource.Id.dateTo_button);
             dateTo_button.Click += DateTo_button_Click;
 
+            find_editText = v.FindViewById<EditText>(Resource.Id.find_editText);
+            find_imageButton = v.FindViewById<ImageButton>(Resource.Id.find_imageButton);
+            find_imageButton.Click += Find_imageButton_Click;
+
+
             var fab = v.FindViewById<com.refractored.fab.FloatingActionButton>(Resource.Id.fab);
             //fab.AttachToListView(listView, this, this);
             fab.AttachToListView(listView);
@@ -120,6 +127,15 @@ namespace TwaWallet.Fragments
                 });
             });
             return v;
+        }
+
+        private void Find_imageButton_Click(object sender, EventArgs e)
+        {
+            //if (!string.IsNullOrWhiteSpace(find_editText.Text))
+            //{
+                LoadData(((JavaLangObjectWrapper<DateTime>)dateFrom_button.Tag).Value, ((JavaLangObjectWrapper<DateTime>)dateTo_button.Tag).Value, costs_checkBox.Checked, earnings_checkBox.Checked, find_editText.Text);
+            //}
+            
         }
 
         private void Fab_Click(object sender, EventArgs e)
@@ -269,7 +285,7 @@ namespace TwaWallet.Fragments
             return false;
         }
         
-        private /*async Task<bool>*/ bool LoadData(DateTime dateFrom, DateTime dateTo, bool includeCosts, bool includeEarnings)
+        private /*async Task<bool>*/ bool LoadData(DateTime dateFrom, DateTime dateTo, bool includeCosts, bool includeEarnings, string find = "")
         {
             Log.Debug(TAG, $"{nameof(LoadData)} - {nameof(dateFrom)}:{dateFrom.ToString()}, {nameof(dateTo)}:{dateTo.ToString()}, {nameof(includeCosts)}:{includeCosts.ToString()},{nameof(includeEarnings)}:{includeEarnings}");
 
@@ -286,75 +302,100 @@ namespace TwaWallet.Fragments
             //Task.Factory
             //.StartNew(() =>
             //{
-                try
+            try
+            {
+                // Refresh review
+                var rAll = db.Select<Record, DateTime>((o) => o.Id > 0, (o) => o.Date, false).Result;
+                //var rAll = await db.Select<Record, DateTime>((o) => o.Id > 0, (o) => o.Date, false);//.Result;
+                var listAll = rAll.ToList();
+
+                //var r = db.Select<Record, DateTime>((o) => o.Date >= dateFrom && o.Date <= dateTo, (o) => o.Date, false).Result;
+                //listData = r.ToList();//r.Select(p => $"{p.Description}, {p.Cost}, {p.Date}").ToList();
+
+                if (listAll != null && listAll.Count > 0)
                 {
-                    // Refresh review
-                    var rAll = db.Select<Record, DateTime>((o) => o.Id > 0, (o) => o.Date, false).Result;
-                    //var rAll = await db.Select<Record, DateTime>((o) => o.Id > 0, (o) => o.Date, false);//.Result;
-                    var listAll = rAll.ToList();
 
-                    //var r = db.Select<Record, DateTime>((o) => o.Date >= dateFrom && o.Date <= dateTo, (o) => o.Date, false).Result;
-                    //listData = r.ToList();//r.Select(p => $"{p.Description}, {p.Cost}, {p.Date}").ToList();
 
-                    if ( listAll != null && listAll.Count > 0)
+                    // Filtered values
+                    if (includeCosts == false && includeEarnings == false)
                     {
-                
-
-                        // Filtered values
-                        if (includeCosts == false && includeEarnings == false)
-                        {
-                            listData = new List<Record>();
-                            // Month values
-                            this.monthCost_value.Text = Convert.ToString(0);
-                        }
-                        else if (includeCosts == false && includeEarnings == true)
-                        {
-                            listData = listAll.Where((o) => o.Date.Date >= dateFrom.Date && o.Date.Date <= dateTo.Date && o.Earnings == true).OrderByDescending(o => o.Date).ToList();
-                            // Month values
-                            this.monthCost_value.Text = listAll.Where(p => p.Date.Month == DateTime.Now.Month && p.Date.Year == DateTime.Now.Year && p.Earnings == true).Select(p => p.Cost).Sum().ToString();
-                        }
-                        else if (includeCosts == true && includeEarnings == false)
-                        {
-                            listData = listAll.Where((o) => o.Date.Date >= dateFrom.Date && o.Date.Date <= dateTo.Date && o.Earnings == false).OrderByDescending(o => o.Date).ToList();
-                            // Month values
-                            this.monthCost_value.Text = listAll.Where(p => p.Date.Month == DateTime.Now.Month && p.Date.Year == DateTime.Now.Year && p.Earnings == false).Select(p => p.Cost).Sum().ToString();
-                        }
-                        else if (includeCosts == true && includeEarnings == true)
-                        {
-                            listData = listAll.Where((o) => o.Date.Date >= dateFrom.Date && o.Date.Date <= dateTo.Date).OrderByDescending(o => o.Date).ToList();
-                            // Month values
-                            this.monthCost_value.Text = listAll.Where(p => p.Date.Month == DateTime.Now.Month && p.Date.Year == DateTime.Now.Year).Select(p => p.Cost).Sum().ToString();
-                        }
-
-                        if (listData != null && listData.Count > 0)
-                        {
-                            this.count_value.Text = listData.Count.ToString();
-                            this.filterCost_value.Text = listData.Select(p => p.Cost).Sum().ToString();
-                        }
-                    }
-                    else
-                    {
-                        this.monthCost_value.Text = Convert.ToString(0);
                         listData = new List<Record>();
+                        // Month values
+                        this.monthCost_value.Text = Convert.ToString(0);
+                    }
+                    else if (includeCosts == false && includeEarnings == true)
+                    {
+                        listData = listAll.Where((o) => o.Date.Date >= dateFrom.Date && o.Date.Date <= dateTo.Date && o.Earnings == true).OrderByDescending(o => o.Date).ToList();
+                        // Month values
+                        this.monthCost_value.Text = listAll.Where(p => p.Date.Month == DateTime.Now.Month && p.Date.Year == DateTime.Now.Year && p.Earnings == true).Select(p => p.Cost).Sum().ToString();
+                    }
+                    else if (includeCosts == true && includeEarnings == false)
+                    {
+                        listData = listAll.Where((o) => o.Date.Date >= dateFrom.Date && o.Date.Date <= dateTo.Date && o.Earnings == false).OrderByDescending(o => o.Date).ToList();
+                        // Month values
+                        this.monthCost_value.Text = listAll.Where(p => p.Date.Month == DateTime.Now.Month && p.Date.Year == DateTime.Now.Year && p.Earnings == false).Select(p => p.Cost).Sum().ToString();
+                    }
+                    else if (includeCosts == true && includeEarnings == true)
+                    {
+                        listData = listAll.Where((o) => o.Date.Date >= dateFrom.Date && o.Date.Date <= dateTo.Date).OrderByDescending(o => o.Date).ToList();
+                        // Month values
+                        this.monthCost_value.Text = listAll.Where(p => p.Date.Month == DateTime.Now.Month && p.Date.Year == DateTime.Now.Year).Select(p => p.Cost).Sum().ToString();
                     }
 
-                    // Refresh review
-                    this.count_value.Text = listData.Count.ToString();
-                    this.filterCost_value.Text = listData.Select(p => p.Cost).Sum().ToString();
+                    if (listData != null && listData.Count > 0)
+                    {
+                        this.count_value.Text = listData.Count.ToString();
+                        this.filterCost_value.Text = listData.Select(p => p.Cost).Sum().ToString();
+                    }
 
-                    listView.Adapter = new RecordListAdapter(this.Activity, listData, db);
+                    // Find filter
+                    if (!string.IsNullOrWhiteSpace(find) && listData != null && listData.Count > 0)
+                    {
+                        listData = listData.Select(a => a.IncludeObjects(db)).ToList();
 
-                    return true;
+                        string findTmp = find.ToLower();
+
+                        var tmp = listData.Where(a => a.Tag.Contains(findTmp)
+                        || (!string.IsNullOrWhiteSpace(a.Description) ? a.Description.ToLower().Contains(findTmp) : false)
+                        || ((a.Category != null && !string.IsNullOrWhiteSpace(a.Category.Description)) ? a.Category.Description.ToLower().Contains(findTmp) : false)
+                        || ((a.Owner != null && !string.IsNullOrWhiteSpace(a.Owner.Name)) ? a.Owner.Name.ToLower().Contains(findTmp) : false));
+                        //);
+
+                        if (tmp != null && tmp.Count() > 0)
+                        {
+                            listData = tmp.ToList();
+                        }
+                        else
+                        {
+                            this.monthCost_value.Text = Convert.ToString(0);
+                            listData = new List<Record>();
+                        }
+
+                    }
                 }
-                catch (Exception ex)
+                else
                 {
-                    Log.Error(TAG, ex.ToString());
-                    throw;
+                    this.monthCost_value.Text = Convert.ToString(0);
+                    listData = new List<Record>();
                 }
-                finally
-                {
-                    this.Activity.ProgressDialogDismiss(dialog);
-                }
+
+                // Refresh review
+                this.count_value.Text = listData.Count.ToString();
+                this.filterCost_value.Text = listData.Select(p => p.Cost).Sum().ToString();
+
+                listView.Adapter = new RecordListAdapter(this.Activity, listData, db);
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Log.Error(TAG, ex.ToString());
+                throw;
+            }
+            finally
+            {
+                this.Activity.ProgressDialogDismiss(dialog);
+            }
             //})
             //.ContinueWith(task =>
             //this.Activity.RunOnUiThread(() =>

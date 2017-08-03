@@ -6,6 +6,12 @@
     android:layout_height="match_parent"
     android:background="@color/historyBackground">
 <!--android:background="@color/historyBackground"-->
+  <LinearLayout
+    android:id="@+id/top_linearLayout"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    >
     <LinearLayout
         android:id="@+id/filter_linearLayout"
         android:orientation="horizontal"
@@ -93,6 +99,7 @@
                     android:layout_weight="1" />
             </LinearLayout>
         </LinearLayout>
+        
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
@@ -116,12 +123,39 @@
                 android:layout_margin="1dp"
                 android:layout_weight="1" />
         </LinearLayout>
+        
     </LinearLayout>
+    <LinearLayout
+            android:id="@+id/find_linearLayout"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1">
+      <EditText
+          android:id="@+id/find_editText"
+          android:text=""
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:singleLine="true"
+          android:layout_weight="1" />
+      <ImageButton
+          android:id="@+id/find_imageButton"
+          android:layout_width="40dip"
+          android:layout_height="40dip"
+          android:src="@drawable/magnifying_glass" />
+      <!--android:layout_gravity="center"-->
+    </LinearLayout>
+  </LinearLayout>
+  </LinearLayout>
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@drawable/my_button"
-        android:layout_below="@id/filter_linearLayout"
+        android:layout_below="@id/top_linearLayout"
         android:layout_weight="1">
         <LinearLayout
             android:id="@+id/listView_linearLayout"
