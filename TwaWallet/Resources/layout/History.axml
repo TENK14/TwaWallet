@@ -6,151 +6,151 @@
     android:layout_height="match_parent"
     android:background="@color/historyBackground">
 <!--android:background="@color/historyBackground"-->
-  <LinearLayout
-    android:id="@+id/top_linearLayout"
-    android:orientation="vertical"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    >
     <LinearLayout
-        android:id="@+id/filter_linearLayout"
-        android:orientation="horizontal"
+        android:id="@+id/top_linearLayout"
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/my_button"
-        android:layout_weight="3">
+        android:layout_height="wrap_content">
         <LinearLayout
-            android:id="@+id/overview_linearLayout"
-            android:orientation="vertical"
+            android:id="@+id/filter_linearLayout"
+            android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@drawable/my_button"
-            android:layout_weight="2">
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1">
-                <TextView
-                    android:id="@+id/count_label"
-                    android:text="@string/Count"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1" />
-                <TextView
-                    android:id="@+id/count_value"
-                    android:text="270"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1" />
-            </LinearLayout>
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1">
-                <TextView
-                    android:id="@+id/filterCost_label"
-                    android:text="@string/FilterCost"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1" />
-                <TextView
-                    android:id="@+id/filterCost_value"
-                    android:text="132456"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1" />
-            </LinearLayout>
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1">
-                <TextView
-                    android:id="@+id/monthCost_label"
-                    android:text="@string/MonthCost"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1" />
-                <TextView
-                    android:id="@+id/monthCost_value"
-                    android:text="12000"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1" />
-            </LinearLayout>
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1">
-                <CheckBox
-                    android:id="@+id/costs_checkBox"
-                    android:text="@string/Costs"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1" />
-                <CheckBox
-                    android:id="@+id/earnings_checkBox"
-                    android:text="@string/Earnings"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1" />
-            </LinearLayout>
-        </LinearLayout>
-        
-        <LinearLayout
-            android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:background="@drawable/my_button"
             android:layout_weight="3">
-            <Button
-                style="@style/ButtonStyle"
-                android:id="@+id/dateFrom_button"
-                android:text="01.01.2016"
+            <LinearLayout
+                android:id="@+id/overview_linearLayout"
+                android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_margin="1dp"
-                android:layout_weight="1" />
-            <Button
-                style="@style/ButtonStyle"
-                android:id="@+id/dateTo_button"
-                android:text="31.12.2016"
+                android:background="@drawable/my_button"
+                android:layout_weight="2">
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1">
+                    <TextView
+                        android:id="@+id/count_label"
+                        android:text="@string/Count"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1" />
+                    <TextView
+                        android:id="@+id/count_value"
+                        android:text="270"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1" />
+                </LinearLayout>
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1">
+                    <TextView
+                        android:id="@+id/filterCost_label"
+                        android:text="@string/FilterCost"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1" />
+                    <TextView
+                        android:id="@+id/filterCost_value"
+                        android:text="132456"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1" />
+                </LinearLayout>
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1">
+                    <TextView
+                        android:id="@+id/monthCost_label"
+                        android:text="@string/MonthCost"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1" />
+                    <TextView
+                        android:id="@+id/monthCost_value"
+                        android:text="12000"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1" />
+                </LinearLayout>
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1">
+                    <CheckBox
+                        android:id="@+id/costs_checkBox"
+                        android:text="@string/Costs"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1" />
+                    <CheckBox
+                        android:id="@+id/earnings_checkBox"
+                        android:text="@string/Earnings"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1" />
+                </LinearLayout>
+            </LinearLayout>
+            <LinearLayout
+                android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_margin="1dp"
-                android:layout_weight="1" />
+                android:background="@drawable/my_button"
+                android:layout_weight="3">
+                <Button
+                    style="@style/ButtonStyle"
+                    android:id="@+id/dateFrom_button"
+                    android:text="01.01.2016"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="1dp"
+                    android:layout_weight="1" />
+                <Button
+                    style="@style/ButtonStyle"
+                    android:id="@+id/dateTo_button"
+                    android:text="31.12.2016"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="1dp"
+                    android:layout_weight="1" />
+            </LinearLayout>
         </LinearLayout>
-        
-    </LinearLayout>
-    <LinearLayout
+        <LinearLayout
             android:id="@+id/find_linearLayout"
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1">
-      <EditText
-          android:id="@+id/find_editText"
-          android:text=""
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:singleLine="true"
-          android:layout_weight="1" />
-      <ImageButton
-          android:id="@+id/find_imageButton"
-          android:layout_width="40dip"
-          android:layout_height="40dip"
-          android:src="@drawable/magnifying_glass" />
-      <!--android:layout_gravity="center"-->
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_weight="1">
+                <EditText
+                    android:id="@+id/find_editText"
+                    android:text=""
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:singleLine="true"
+                    android:layout_weight="1" />
+                <ImageButton
+                    android:id="@+id/find_imageButton"
+                    android:background="@color/historyBackground"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dip"
+                    android:src="@drawable/magnifying_glass_30dp" />
+            <!--android:layout_gravity="center"-->
+            </LinearLayout>
+        </LinearLayout>
     </LinearLayout>
-  </LinearLayout>
-  </LinearLayout>
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
