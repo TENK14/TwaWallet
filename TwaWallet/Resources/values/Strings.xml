@@ -80,6 +80,7 @@
   <string name="SomethingMissing">Something is missing</string>
   <string name="StartDate">Start date</string>
   <string name="Tags">Tags</string>
+  <string name="Version">Version</string>
   <string name="Warranty">Warranty</string>
   <string name="WasntDeleted">Wasn\'t deleted</string>
   <string name="WasntSaved">Wasn\'t saved</string>

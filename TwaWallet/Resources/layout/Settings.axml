@@ -9,6 +9,26 @@
 <!--android:background="@color/settingsBackground"-->
 <!--android:background="@color/red"-->
     <LinearLayout
+        android:orientation="horizontal"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_margin="10dp">
+        <TextView
+            style="@style/TextViewStyle"
+            android:id="@+id/version_textView_label"
+            android:text="@string/Version"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+        <TextView
+            style="@style/TextViewStyle"
+            android:id="@+id/version_textView_value"
+            android:text="17.8.4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+    </LinearLayout>
+    <LinearLayout
         android:id="@+id/titleRow"
         android:orientation="horizontal"
         android:layout_width="match_parent"

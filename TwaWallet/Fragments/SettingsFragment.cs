@@ -45,7 +45,6 @@ namespace TwaWallet.Fragments
             // Create your fragment here
             string pathToDatabase = DeviceInfo.GetFileFinallPath(Resources.GetString(Resource.String.DBfilename));
             db = DataContextFactory.GetDataContext(pathToDatabase);
-
             
         }
 
@@ -59,6 +58,11 @@ namespace TwaWallet.Fragments
             //return base.OnCreateView(inflater, container, savedInstanceState);
             View v = inflater.Inflate(Resource.Layout.Settings, container, false);
 
+            var version = v.FindViewById<TextView>(Resource.Id.version_textView_value);
+            var code = this.Activity.PackageManager.GetPackageInfo(Activity.PackageName, 0).VersionCode;
+            var name = this.Activity.PackageManager.GetPackageInfo(Activity.PackageName, 0).VersionName;            
+            version.Text = $"{code}-{name}";
+            
             category_button = v.FindViewById<Button>(Resource.Id.category_button);
             category_button.Click += Category_button_Click;
             paymentType_button = v.FindViewById<Button>(Resource.Id.paymentType_button);

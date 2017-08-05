@@ -2429,8 +2429,8 @@ namespace TwaWallet
 		public partial class Id
 		{
 			
-			// aapt resource value: 0x7f0700df
-			public const int DataListView = 2131165407;
+			// aapt resource value: 0x7f0700e1
+			public const int DataListView = 2131165409;
 			
 			// aapt resource value: 0x7f07009f
 			public const int action0 = 2131165343;
@@ -2522,14 +2522,14 @@ namespace TwaWallet
 			// aapt resource value: 0x7f0700a0
 			public const int cancel_action = 2131165344;
 			
-			// aapt resource value: 0x7f0700d9
-			public const int category_add_button = 2131165401;
+			// aapt resource value: 0x7f0700db
+			public const int category_add_button = 2131165403;
 			
 			// aapt resource value: 0x7f0700be
 			public const int category_button = 2131165374;
 			
-			// aapt resource value: 0x7f0700da
-			public const int category_rem_button = 2131165402;
+			// aapt resource value: 0x7f0700dc
+			public const int category_rem_button = 2131165404;
 			
 			// aapt resource value: 0x7f0700b7
 			public const int category_textView = 2131165367;
@@ -2600,8 +2600,8 @@ namespace TwaWallet
 			// aapt resource value: 0x7f070047
 			public const int default_activity_button = 2131165255;
 			
-			// aapt resource value: 0x7f0700d8
-			public const int default_textView = 2131165400;
+			// aapt resource value: 0x7f0700da
+			public const int default_textView = 2131165402;
 			
 			// aapt resource value: 0x7f0700c4
 			public const int description_editText = 2131165380;
@@ -2774,8 +2774,8 @@ namespace TwaWallet
 			// aapt resource value: 0x7f070048
 			public const int list_item = 2131165256;
 			
-			// aapt resource value: 0x7f0700e1
-			public const int masked = 2131165409;
+			// aapt resource value: 0x7f0700e3
+			public const int masked = 2131165411;
 			
 			// aapt resource value: 0x7f0700a2
 			public const int media_actions = 2131165346;
@@ -2828,14 +2828,14 @@ namespace TwaWallet
 			// aapt resource value: 0x7f07008a
 			public const int overview_linearLayout = 2131165322;
 			
-			// aapt resource value: 0x7f0700dd
-			public const int owner_add_button = 2131165405;
+			// aapt resource value: 0x7f0700df
+			public const int owner_add_button = 2131165407;
 			
 			// aapt resource value: 0x7f0700c0
 			public const int owner_button = 2131165376;
 			
-			// aapt resource value: 0x7f0700de
-			public const int owner_rem_button = 2131165406;
+			// aapt resource value: 0x7f0700e0
+			public const int owner_rem_button = 2131165408;
 			
 			// aapt resource value: 0x7f0700b6
 			public const int owner_textView = 2131165366;
@@ -2849,8 +2849,8 @@ namespace TwaWallet
 			// aapt resource value: 0x7f07004d
 			public const int parentPanel = 2131165261;
 			
-			// aapt resource value: 0x7f0700db
-			public const int paymentType_add_button = 2131165403;
+			// aapt resource value: 0x7f0700dd
+			public const int paymentType_add_button = 2131165405;
 			
 			// aapt resource value: 0x7f0700bf
 			public const int paymentType_button = 2131165375;
@@ -2861,8 +2861,8 @@ namespace TwaWallet
 			// aapt resource value: 0x7f0700b3
 			public const int paymentType_linearLayout = 2131165363;
 			
-			// aapt resource value: 0x7f0700dc
-			public const int paymentType_rem_button = 2131165404;
+			// aapt resource value: 0x7f0700de
+			public const int paymentType_rem_button = 2131165406;
 			
 			// aapt resource value: 0x7f0700b5
 			public const int paymentType_textView = 2131165365;
@@ -3059,8 +3059,8 @@ namespace TwaWallet
 			// aapt resource value: 0x7f070059
 			public const int titleDividerNoCustom = 2131165273;
 			
-			// aapt resource value: 0x7f0700d7
-			public const int titleRow = 2131165399;
+			// aapt resource value: 0x7f0700d9
+			public const int titleRow = 2131165401;
 			
 			// aapt resource value: 0x7f070057
 			public const int title_template = 2131165271;
@@ -3089,11 +3089,17 @@ namespace TwaWallet
 			// aapt resource value: 0x7f070018
 			public const int useLogo = 2131165208;
 			
+			// aapt resource value: 0x7f0700d7
+			public const int version_textView_label = 2131165399;
+			
+			// aapt resource value: 0x7f0700d8
+			public const int version_textView_value = 2131165400;
+			
 			// aapt resource value: 0x7f07000e
 			public const int view_offset_helper = 2131165198;
 			
-			// aapt resource value: 0x7f0700e0
-			public const int visible = 2131165408;
+			// aapt resource value: 0x7f0700e2
+			public const int visible = 2131165410;
 			
 			// aapt resource value: 0x7f0700ce
 			public const int warranty_editText = 2131165390;
@@ -3585,13 +3591,16 @@ namespace TwaWallet
 			public const int Trip = 2131230774;
 			
 			// aapt resource value: 0x7f08006b
-			public const int Warranty = 2131230827;
+			public const int Version = 2131230827;
 			
 			// aapt resource value: 0x7f08006c
-			public const int WasntDeleted = 2131230828;
+			public const int Warranty = 2131230828;
 			
 			// aapt resource value: 0x7f08006d
-			public const int WasntSaved = 2131230829;
+			public const int WasntDeleted = 2131230829;
+			
+			// aapt resource value: 0x7f08006e
+			public const int WasntSaved = 2131230830;
 			
 			// aapt resource value: 0x7f080047
 			public const int Weekly = 2131230791;
