@@ -102,6 +102,8 @@ namespace TwaWallet.Fragments
             dateTo_button.Click += DateTo_button_Click;
 
             find_editText = v.FindViewById<EditText>(Resource.Id.find_editText);
+            find_editText.KeyPress += Find_editText_KeyPress;
+
             find_imageButton = v.FindViewById<ImageButton>(Resource.Id.find_imageButton);
             find_imageButton.Click += Find_imageButton_Click;
 
@@ -127,6 +129,14 @@ namespace TwaWallet.Fragments
                 });
             });
             return v;
+        }
+
+        private void Find_editText_KeyPress(object sender, View.KeyEventArgs e)
+        {
+            if (e.KeyCode == Keycode.Enter)
+            {
+                LoadData(((JavaLangObjectWrapper<DateTime>)dateFrom_button.Tag).Value, ((JavaLangObjectWrapper<DateTime>)dateTo_button.Tag).Value, costs_checkBox.Checked, earnings_checkBox.Checked, find_editText.Text);
+            }
         }
 
         private void Find_imageButton_Click(object sender, EventArgs e)
@@ -353,12 +363,14 @@ namespace TwaWallet.Fragments
                     {
                         listData = listData.Select(a => a.IncludeObjects(db)).ToList();
 
-                        string findTmp = find.ToLower();
+                        string findTmp = find.RemoveDiacritics();//.ToLowerInvariant();
 
-                        var tmp = listData.Where(a => a.Tag.Contains(findTmp)
-                        || (!string.IsNullOrWhiteSpace(a.Description) ? a.Description.ToLower().Contains(findTmp) : false)
-                        || ((a.Category != null && !string.IsNullOrWhiteSpace(a.Category.Description)) ? a.Category.Description.ToLower().Contains(findTmp) : false)
-                        || ((a.Owner != null && !string.IsNullOrWhiteSpace(a.Owner.Name)) ? a.Owner.Name.ToLower().Contains(findTmp) : false));
+                        //StringComparison.OrdinalIgnoreCase
+                        var tmp = listData.Where(a => (!string.IsNullOrWhiteSpace(a.Tag) ? a.Tag.RemoveDiacritics().CaseContains(findTmp, StringComparison.InvariantCultureIgnoreCase) : false)
+                        || (!string.IsNullOrWhiteSpace(a.Description) ? a.Description.RemoveDiacritics().CaseContains(findTmp, StringComparison.InvariantCultureIgnoreCase) : false)
+                        || ((a.Category != null && !string.IsNullOrWhiteSpace(a.Category.Description)) ? a.Category.Description.RemoveDiacritics().CaseContains(findTmp, StringComparison.InvariantCultureIgnoreCase) : false)
+                        || ((a.PaymentType != null && !string.IsNullOrWhiteSpace(a.PaymentType.Description)) ? a.PaymentType.Description.RemoveDiacritics().CaseContains(findTmp, StringComparison.InvariantCultureIgnoreCase) : false)
+                        || ((a.Owner != null && !string.IsNullOrWhiteSpace(a.Owner.Name)) ? a.Owner.Name.RemoveDiacritics().CaseContains(findTmp, StringComparison.InvariantCultureIgnoreCase) : false));
                         //);
 
                         if (tmp != null && tmp.Count() > 0)

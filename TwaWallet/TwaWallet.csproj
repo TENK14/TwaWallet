@@ -163,6 +163,7 @@
     <Compile Include="DeviceInfo.cs" />
     <Compile Include="Extensions\FragmentActivityExtension.cs" />
     <Compile Include="Extensions\ButtonExtension.cs" />
+    <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="Fragments\DatePickerFragment.cs" />
     <Compile Include="Fragments\ExportFragment.cs" />
     <Compile Include="Fragments\HistoryFragment.cs" />

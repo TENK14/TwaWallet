@@ -81,14 +81,18 @@ namespace TwaWallet.Adapters
 
             var img = view.FindViewById<ImageView>(Resource.Id.paymentType_imageView);
             var paymentType_textView = view.FindViewById<TextView>(Resource.Id.paymentType_textView);
+            
 
-            if (item.PaymentTypeId == lstPaymentType.Where(p => p.Description == PaymentTypeConst.Card).FirstOrDefault().Id)
+            var ptCard = lstPaymentType.Where(p => p.Description == PaymentTypeConst.Card).FirstOrDefault();
+            var ptCash = lstPaymentType.Where(p => p.Description == PaymentTypeConst.Cash).FirstOrDefault();
+
+            if (item.PaymentTypeId == (ptCard?.Id ?? -1))
             {
                 img.Visibility = ViewStates.Visible;
                 paymentType_textView.Visibility = ViewStates.Gone;
                 img.SetImageResource(Resource.Drawable.credit_card);
             }
-            else if (item.PaymentTypeId == lstPaymentType.Where(p => p.Description == PaymentTypeConst.Cash).FirstOrDefault().Id)
+            else if (item.PaymentTypeId == (ptCash?.Id ?? -1))
             {
                 img.Visibility = ViewStates.Visible;
                 paymentType_textView.Visibility = ViewStates.Gone;
